@@ -1,0 +1,20 @@
+//shortcut
+@mixin pic($name) {
+	background: url("../img/#{$name}") no-repeat 0 0;
+	//background-image: inline-image("#{$name}",'image/png');
+	@include image-size("img/#{$name}");
+}
+
+@mixin png($name) {
+	background: url("../img/#{$name}.png") no-repeat 0 0;
+	//background-image: inline-image("#{$name}.png",'image/png');
+	@include image-size("img/#{$name}.png");
+}
+
+@mixin jpg($name){
+	background: url("../img/#{$name}.jpg") no-repeat 0 0;
+	//background-image: inline-image("#{$name}.jpg",'image/jpg');
+	@include image-size("img/#{$name}.jpg");
+}
+
+	

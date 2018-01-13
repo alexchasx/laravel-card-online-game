@@ -1,0 +1,56 @@
+//=============== ACCORDION_BOOTSTRAP ===============
+// $font_size: 1rem
+$color_bg: #29b0a0
+$color_text: #fff
+// $color_input_text: #333
+// $color_placeholder: #777
+// $text_shadow: 0
+// $box_shadow: 0
+
+$color_link: #fff
+// $color_link-nav: #78828c
+$color_hover: #414041
+// $color_visit: #C62EB2
+// $color_active: #c62f21
+$color_link_bg: #5A768A
+
+#accordion .panel
+		border: none
+		+bs(none)
+		+br(0)
+		margin-bottom: 5px
+
+#accordion .panel-heading
+		padding: 0
+		+br(0)
+		text-align: center
+		border: none
+
+#accordion .panel-title	a
+			display: block
+			padding: 15px
+			font-size: 20px
+			color: $color_link
+			background: $color_link_bg
+			transition: all 0.5s ease 0s
+
+#accordion .panel-title	a:hover
+			background: $color_hover
+
+#accordion .panel-body
+		font-size: 14px
+		color: $color_text
+		background: $color_bg
+		padding: 15px 20px
+		line-height: 25px
+		border: none
+		position: relative
+
+#accordion .panel-body:after
+		content: ""
+		position: absolute
+		top: -30px
+		left: 40px
+		border: 15px solid transparent
+		border-bottom: 15px solid $color_bg
+//=============== ACCORDION_BOOTSTRAP END ===============

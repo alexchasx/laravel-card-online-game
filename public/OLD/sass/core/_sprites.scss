@@ -1,0 +1,69 @@
+//	sprites with padding
+$icons: sprite-map("icons/*.png", $spacing: 10px);
+
+// Вычисляет размер изображения($path - путь)
+@mixin image-size($path) {
+	width: image-width($path);
+	height: image-height($path);
+}
+
+//Позициониорование иконки в спрайте. $sprite - имя картинки, $icons - путь
+@mixin s($sprite, $map: $icons) {
+	@include image-size(sprite-file($map, $sprite));
+	background-position: sprite-position($map, $sprite);
+	//background-image: inline-image('icons/'@include $sprite@include '.png','image/png');
+}
+
+@mixin sized-sprite($map, $sprite) {
+	background: sprite($map, $sprite) no-repeat;
+	@include image-size(sprite-file($map, $sprite));
+}
+
+//for retina
+@mixin image-sizer($path) {
+	width: image-width($path) / 2;
+	height: image-height($path) / 2;
+}
+
+//for retina
+@mixin sized-spriter($map, $sprite) {
+	background: sprite($map, $sprite) no-repeat;
+	$ypos: round(nth(sprite-position($map, $sprite), 2) / 2);
+	background-position: 0 $ypos;
+	@include image-sizer(sprite-file($map, $sprite));
+	@include bg-size(ceil(image-width(sprite-path($map)) / 2), ceil(image-height(sprite-path($map)) / 2));
+}
+
+//for retina
+@mixin sr($sprite, $map: $icons) {
+	background: sprite($map, $sprite) no-repeat;
+	$ypos: round(nth(sprite-position($map, $sprite), 2) / 2);
+	background-position: 0 $ypos;
+	@include image-sizer(sprite-file($map, $sprite));
+	@include bg-size(ceil(image-width(sprite-path($map)) / 2), ceil(image-height(sprite-path($map)) / 2));
+}
+
+//только картинка, где размеры бесполезны
+@mixin si($sprite, $map: $icons) {
+	background: sprite($map, $sprite) no-repeat;
+}
+
+//Только положение спрайта, для устранения эффекта мерцания в хроме
+@mixin sp($sprite, $map: $icons) {
+	background-position: sprite-position($map, $sprite);
+}
+
+@mixin svg($name, $width, $height) {
+	background: url("../img/svg/#{$name}.svg") no-repeat 0 0;
+	//background-image: inline-image('icons/svg/'@include $sprite@include '.svg','image/svg'); // to switches sprites to base64, elegant;
+	@include background-size(#{$width}px #{$height}px);
+	width: #{$width}px;
+	height: #{$height}px;
+	display: inline-block;
+}
+
+@mixin svgi($name, $width, $height) {
+	background: url("../img/svg/#{$name}.svg") no-repeat 0 0;
+	//background-image: inline-image('icons/svg/'@include $sprite@include '.svg','image/svg'); // to switches sprites to base64, elegant;
+	@include background-size(#{$width}px #{$height}px);
+}

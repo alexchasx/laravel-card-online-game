@@ -1,0 +1,243 @@
+
+
+/* 1. MAIN ================== */
+
+.main 
+	position: relative
+	overflow: hidden
+	min-height: 100%
+
+.wrapper
+	position: relative
+	max-width: 1212px
+	min-width: 320px
+	padding: 0 15px
+	margin-right: auto 
+	margin-left: auto
+
+
+.text-left
+	text-align: left !important
+
+.text-right
+	text-align: right !important
+
+
+/* 2. ICONS ================== */
+.ic 
+	position: relative
+	display: inline-block
+	vertical-align: middle
+	background: $icons no-repeat
+
+
+@each $i in next, prev
+	.ic--#{$i}
+		+s(ic--#{$i})
+
+
+/* 2. BUTTON ================== */
+
+
+.btn, a.btn 
+	display: inline-block
+	vertical-align: middle
+	text-align: center
+	padding: 10px 20px 0
+	height: 40px
+	font: normal 14px/14px Arial, sans-serif
+	+tr(all 0.2s linear)
+	border-radius: 5px
+	background: transparent
+	border: none 
+
+input[type="submit"].btn, button.btn
+	padding-top: 0
+
+
+/* 3. FORM ================== */
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+textarea
+	height: 40px
+	padding: 0 15px
+	font: normal 14px/14px Arial, sans-serif
+	color: #000
+	background: #fff 
+	border: 1px solid #ccc
+	&.form-control
+		display: block
+		width: 100%
+
+textarea
+	resize: none 
+	height: auto
+	min-height: 100px
+	padding-top: 10px
+
+label 
+	display: block
+
+
+/* 4. HEADER ================== */
+.header 
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	&__top
+		padding: 35px 0 20px
+	.logo 
+		float: left
+		margin-right: 34px
+	.address 
+		float: left
+		margin-right: 64px
+	.list-lang
+		float: left
+		padding-top: 9px
+		margin-right: 30px
+	.file 
+		float: left
+	.phone 
+		float: right
+
+.address
+	max-width: 220px
+	color: #636363
+	font-size: 13px
+	font-style: normal
+	line-height: 15px
+
+.circle
+	display: inline-block
+	vertical-align: top
+	color: #262729
+	font-size: 12px
+	font-weight: 600
+	line-height: 17px
+	& + .circle
+		margin-left: 8px
+	&:before 
+		content: ''
+		display: inline-block
+		vertical-align: middle
+		width: 8px
+		height: 8px
+		margin-right: 2px
+		background-color: #2d71cf
+		+border-radius(50%)
+	&:nth-child(2):before
+		background-color: #7218b2
+
+.list-lang 
+	list-style: none
+	&__item 
+		display: inline-block
+		vertical-align: top
+		margin-right: -4px
+		&.active .list-lang__link 
+			color: #017f5a
+			background-color: #ededed
+		& + .list-lang__item 
+			margin-left: 10px
+	&__link 
+		display: block
+		height: 32px
+		width: 32px
+		padding-top: 10px
+		font-size: 14px
+		font-weight: 700
+		text-transform: uppercase
+		text-align: center
+		color: #c3c3c3
+		+border-radius(50%)
+		&:hover 
+			color: #017f5a
+		
+.file 	
+	display: block
+	width: 170px
+	height: 41px
+	padding: 5px 11px
+	background-color: #ffffff
+	+box-shadow(0 0 10px rgba(0, 0, 0, 0.08))
+	+border-radius(3px)
+	border: 1px solid #eee // изменил цвет бордера из-за opacity который был
+	&__type 
+		position: relative
+		z-index: 1
+		display: inline-block
+		vertical-align: middle
+		margin-right: -4px
+		width: 60px
+		color: #1b9c76
+		font-size: 32px
+		line-height: 32px
+		font-weight: 900
+		text-transform: uppercase
+	&__name 
+		display: inline-block
+		vertical-align: middle
+		margin-right: -4px
+		width: 100%
+		margin-left: -60px
+		padding-left: 70px
+		color: rgba(38,39,41,0.57)
+		font-size: 11px
+		font-weight: 400
+		line-height: 14px
+		text-transform: uppercase
+		// +opacity(0.57)  удалить забыл
+
+.phone 
+	padding-top: 8px
+	padding-right: 53px
+	text-align: right
+	background: url("../img/telephone.png") no-repeat right top
+	&__text 
+		text-transform: uppercase
+		color: #262729
+		font-size: 16px
+		line-height: 16px
+		font-weight: 400
+		strong
+			display: inline-block
+			vertical-align: middle
+			margin-left: 4px
+			color: #017f5a
+			font-size: 32px
+			line-height: 30px
+			font-weight: 700
+	&__link 
+		display: inline-block
+		color: #262729
+		font-size: 12px
+		border-bottom: 1px solid #c9c9c9
+		&:hover 
+			border-color: transparent
+
+
+/* 5. CONTENT ================== */
+
+.content
+	width: 100%
+	
+
+/* 6. FOOTER ================== */
+footer 
+	position: absolute
+	left: 0
+	width: 100%
+	bottom: 0
+
+
+/* 7. MEDIA ================== */
+
+
+
+
+

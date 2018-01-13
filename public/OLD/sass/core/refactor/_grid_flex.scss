@@ -1,0 +1,61 @@
+@import "compass/css3";
+@import "core/core";
+
+//$width: 100%;
+//$gutter: auto;
+//$gutter-col: 10px;
+//$columns: 12;
+
+//$col-xs: 12;
+//$col-sm: 6;
+//$col-md: ;
+//$col-lg: 3;
+//.my-row   {   
+//    margin-left: $gutter;
+//    margin-right: $gutter;
+//    @include flex;
+//    flex-wrap: wrap;
+////    @include clr;
+//    & > [class*="col-"]{
+//        min-height: 1px;
+////        float: left;
+//    }        
+//}
+
+//@for $i from 1 through $columns {
+//    .col-#{$i} {
+//        $width2: (($width / $columns) * $i);
+//        width: calc(#{$width2} - #{$gutter-col}*2);
+//        text-align: center;
+//        margin: $gutter-col;
+//        @include flex;
+//        flex-direction: column;
+//    }
+//    .
+//}
+
+@mixin col($i, $r) {
+    @include media ($r) {
+            $width2: (($width / $columns) * $i);
+            width: calc(#{$width2} - #{$gutter-col}*2);
+            text-align: center;
+            margin: $gutter-col;
+            @include flex;
+            flex-direction: column;
+               
+    }
+}
+
+//@mixin col-sm($sm) {
+//    @include media (768){
+
+//    }
+//}
+
+//@mixin col-md($md) {
+//    @include media (992){}
+//}
+
+//@mixin col-lg ($lg) {
+//    @include media (1200){}    
+//}

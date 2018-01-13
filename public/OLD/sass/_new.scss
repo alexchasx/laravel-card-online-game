@@ -1,0 +1,58 @@
+
+
+/*Прижатие футера к низу*/
+html, body {
+	min-height: 100%;
+	position: relative;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1280px;
+  min-width: 240px;
+  min-height: 100%;
+  padding-bottom: 40px;
+}
+
+.footer {
+  border: 1px solid #000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+/*=====================*/
+
+.content {
+	position: relative;
+	max-width: 850px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.paginate {
+	max-width: 850px;
+	text-align: center;
+}
+
+.form-control {
+	margin-bottom: 5px;
+}
+
+.categories {
+	background-color: #D5D5D5;
+	position: absolute;
+	top: 53px;
+	&:hover {
+		@include rot(90);
+	}
+
+}
+
+
+.footer__logo {
+  margin: 0 auto;
+}
+

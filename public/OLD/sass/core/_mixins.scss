@@ -1,0 +1,432 @@
+
+@mixin bg($img: url('../img/bg.png'), $repeat: no-repeat, $x: 0, $y: 0, $color: transparent) {
+	background: $img $repeat  $x $y $color;
+}
+
+@mixin box {
+	@include box-sizing(border-box);
+}
+
+@mixin br($radius: 2px)  {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius ;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+	
+@mixin bs($bshadow: 2px) {
+	-webkit-box-shadow: $bshadow;
+	-moz-box-shadow: $bshadow;
+	-ms-box-shadow: $bshadow;
+	-o-box-shadow: $bshadow;
+	box-shadow: $bshadow;
+}
+
+//Размытие изображения
+@mixin blur($var) {
+	-webkit-filter: blur($var);
+	filter: blur($var);
+}
+
+//стилизация номеров списка ($var @mixin  li или dt)
+@mixin num-list($var) {
+	counter-reset: $var;
+    li &:before {
+		content: counter($var);
+		counter-increment: $var;
+		display: inline-block;
+		margin: 2px;
+		padding-top: 2px;
+		vertical-align: middle;
+		margin-right: 10px;
+		width: 20px;
+		height: 20px;
+		background: #333;
+		color: #fff;
+		text-align: center;
+		@include br(50%);
+		}
+}
+
+// === GRID ===
+@mixin col($i, $r: 768) {
+    @include media ($r) {
+            $width2: (($width / $columns) * $i);
+            width: calc(#{$width2} - #{$gutter-col}*2);
+            text-align: center;
+            margin: $gutter-col;
+            @include flex;
+            flex-direction: column;
+               
+    }
+}
+
+@mixin counter {
+	@include num-list;
+}
+
+//Очистка от float
+@mixin clr {
+	&:after {
+		content: " ";
+		display: table;
+		clear: both;
+	}
+	*zoom: 1;
+}
+
+//Растянуть на весь блок
+@mixin cover-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@mixin flex {	
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+//Сглаживание шрифта (в основном для Safari)
+@mixin font-smooth($val: antialiased) {
+	-webkit-font-smoothing: $val;
+	-moz-font-smoothing: $val;
+	-ms-font-smoothing: $val;
+	-o-font-smoothing: $val;
+}
+
+//Фильтрация изображения:
+//grayscale@mixin 100% -черное-белое, sepia - сепия, bright - яркость
+@mixin filter($grayscale: 0%, $sepia: 0%, $bright: 100%, $contrast: 100%) {
+	-webkit-filter: grayscale($grayscale);
+	-webkit-filter: sepia($sepia);
+	-webkit-filter: brightness($bright);
+	-webkit-filter: contrast($contrast);
+}
+
+// Подключение шрифтов
+@mixin font($alias, $name) {
+	@font-face {
+		font-family: $alias;
+		src: url("../fonts/" +  $name +  ".eot");
+		src: url("../fonts/" +  $name +  ".eot?#iefix") format("embedded-opentype"), url("fonts/" +  $name +  ".woff2") format("woff2"), url("fonts/" +  $name +  ".woff") format("woff"), url("fonts/" +  $name +  ".ttf") format("truetype");
+		@content;
+	}
+}
+
+//Перевод цветного изображения в черно-белое
+@mixin grays {
+	-webkit-filter: grayscale(100%);
+}
+
+// Градиент слева направо
+@mixin grad($color1, $color2) {
+	@include background(linear-gradient(left, $color1, $color2));
+}
+
+// Градиент сверху вниз
+@mixin gradv($color1, $color2) {
+	@include background(linear-gradient($color1, $color2));
+}
+
+//Растянуть картинку на весь блок и по центру
+@mixin img-cover {
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+@mixin ie {
+	*display: inline;
+	*zoom: 1;
+}
+
+@function makelongshadow($color) {
+	$val: 0px 0px $color;
+	@for $i from 1 through 200 {
+		$val: #{$val}, #{$i}px #{$i}px #{$color}
+	}
+	@return $val;
+}
+
+@mixin longshadow($color) {
+	text-shadow: makelongshadow($color);
+}
+
+// width
+@mixin media($width) {
+	@media only screen and (max-width: $width + "px"){
+		@content;
+	}
+}
+
+// height
+@mixin media-height($height) {
+	@media only screen and (max-height: $height + "px"){
+		@content;
+	}
+}
+		
+@mixin opacity($trans) {
+	-moz-opacity: $trans;
+	-khtml-opacity: $trans;
+	opacity: $trans;
+	filter: alpha(opacty=($trans * 100));
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity@mixin #{$trans * 100})";
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+//Указание содержимого placeholder
+@mixin phold {
+	&:-ms-input-placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&::placeholder {
+		@content;
+	}
+}
+
+@mixin placeholder { @include phold; }
+
+//Цвет фона placeholder
+@mixin phold-color($color) {
+	&:-moz-placeholder,
+	&::-moz-placeholder {
+		color: $color;
+		opacity: 1;
+	}
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+}
+
+// ROTATE
+@mixin rotf($deg: 0, $m11: 0, $m12: 0, $m21: 0, $m22: 0) {
+	-moz-transform: rotate($deg + deg);
+	-o-transform: rotate($deg + deg);
+	-webkit-transform: rotate($deg + deg);
+	-ms-transform: rotate($deg + deg);
+	transform: rotate($deg + deg);
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=$m11, M12=$m12,M21=$m21, M22=$m22, sizingMethod='auto expand');
+	zoom: 1;
+}
+
+@mixin rot($var) {
+	-ms-transform: rotate($var + deg);
+	-webkit-transform: rotate($var + deg);
+	transform: rotate($var + deg);
+	transform-origin: center center;
+}
+
+// retina, также доступна как @include hdpi
+@mixin retina {
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		@content;
+	}
+}
+
+@mixin size($width: 100%, $height: 100%) {
+	-moz-background-size: $width $height;
+	-webkit-background-size: $width $height;
+}
+
+//Запрещает выделение на сайте
+@mixin select-none {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+//Стилизация выделе {нного текста
+@mixin selection {
+	& ::selection {
+		@content;
+	}
+	& ::-moz-selection {
+		@content;
+	}
+}
+
+@mixin sel {
+	@include selection;
+}
+
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+ //Видимая часть трека
+ @mixin scroll-piece {
+ 	&::-webkit-scrollbar-track-piece{
+ 		@content;
+ 	}
+}
+//@mixin scroll {
+//	&::-webkit-scrollbar{
+//		@content;
+//	}
+//}
+
+// //трек скролбара (пространство для ползунка)
+// @mixin scroll-track {
+// 	&::-webkit-scrollbar-track {
+// 		@content; 
+// 	}
+//}
+
+// //Ползунок
+// @mixin scroll-thumb {
+// 	&::-webkit-scrollbar-thumb {
+// 		@content;
+// 	}
+//}
+
+
+ //Изменение размеров окна
+ @mixin scroll-res {
+ 	&::-webkit-resizer{
+ 		@content;
+ 	}
+}
+		
+ //Сепия как в Инстаграмм
+@mixin sepia {
+	-webkit-filter: sepia(100%);
+}
+
+//Масштабирует
+@mixin scale($x, $y) {
+	-ms-transform: scale($x, $y);
+	-webkit-transform: scale($x, $y);
+ 	transform: scale($x, $y);
+}
+
+
+@mixin txthide {
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+ //triangle (треугольники через border)
+// @mixin tri($width, $height, $bg, $direction) {
+// 	width: 0px;
+// 	height: 0px;
+// 	border-style: solid;
+// 	@if $direction @mixin @mixin  t
+// 		border-width: 0 $width / 2 @include  px $height @include  px $width / 2 @include  px;
+// 		border-color: transparent transparent $bg transparent;
+// 	@if $direction @mixin @mixin  r
+// 		border-width: $height / 2 @include  px 0 $height / 2 @include  px $width @include  px;
+// 		border-color: transparent transparent transparent $bg;
+// 	@if $direction @mixin @mixin  b
+// 		border-width: $height @include  px $width / 2 @include  px 0 $width / 2 @include  px;
+// 		border-color: $bg transparent transparent transparent;
+// 	@if $direction @mixin @mixin  l
+// 		border-width: $height / 2 @include  px $width @include  px $height / 2 @include  px 0;
+// 		border-color: transparent $bg transparent transparent;
+// 	@if $direction @mixin @mixin  tl
+// 		border-width: $height @include  px $width @include  px 0 0;
+// 		border-color: $bg transparent transparent transparent;
+// 	@if $direction @mixin @mixin  tr
+// 		border-width: 0 $width @include  px $height @include  px 0;
+// 		border-color: transparent $bg transparent transparent;
+// 	@if $direction @mixin @mixin  br
+// 		border-width: 0 0 $height @include  px $width @include  px;
+// 		border-color: transparent transparent $bg transparent;
+// 	@if $direction @mixin @mixin  bl
+// 		border-width: $height @include  px 0 0 $width @include  px;
+// 		border-color: transparent transparent transparent $bg;
+// }
+//  example
+//  @include arr(500,50, #000, l);
+//  @include arr(500,50, #000, bl);
+
+//  Обрезание текста с 3 точиями. Указать display: block рядом
+@mixin txt-ov {
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// TRANSITION - переход между состояниями (анимация)
+@mixin tr($time: 1s, $what: all, $func: ease) {
+	-moz-transition: $what $time $func;
+	-o-transition: $what $time $func;
+	-webkit-transition: $what $time $func;
+	-ms-transition: $what $time $func;
+	transition: $what $time $func;
+}
+
+@mixin ts($string)  {
+	-webkit-text-shadow: $string;
+	-moz-text-shadow: $string;
+	-ms-text-shadow: $string;
+	-o-text-shadow: $string;
+	text-shadow: $string;
+}
+
+@mixin unsel {
+	@include select-none;
+}
+
+// Разрыв текста (перенос строк добавляется автоматически)
+@mixin wbk {
+	-ms-word-break: break-all;
+	word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
