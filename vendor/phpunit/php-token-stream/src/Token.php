@@ -475,7 +475,7 @@ class PHP_Token_INTERFACE extends PHP_TokenWithScopeAndVisibility
         $result = array(
             'namespace'   => '',
             'fullPackage' => '',
-            'category'    => '',
+            'card_set'    => '',
             'package'     => '',
             'subpackage'  => ''
         );
@@ -487,8 +487,8 @@ class PHP_Token_INTERFACE extends PHP_TokenWithScopeAndVisibility
             }
         }
 
-        if (preg_match('/@category[\s]+([\.\w]+)/', $docComment, $matches)) {
-            $result['category'] = $matches[1];
+        if (preg_match('/@card_set[\s]+([\.\w]+)/', $docComment, $matches)) {
+            $result['card_set'] = $matches[1];
         }
 
         if (preg_match('/@package[\s]+([\.\w]+)/', $docComment, $matches)) {

@@ -38,7 +38,7 @@ class NamespacedAttributeBagTest extends TestCase
                 'a' => '1234',
                 'b' => '4321',
             ),
-            'category' => array(
+            'card_set' => array(
                 'fishing' => array(
                     'first' => 'cod',
                     'second' => 'sole',
@@ -144,7 +144,7 @@ class NamespacedAttributeBagTest extends TestCase
 
     public function testRemoveExistingNamespacedAttribute()
     {
-        $this->assertSame('cod', $this->bag->remove('category/fishing/first'));
+        $this->assertSame('cod', $this->bag->remove('card_set/fishing/first'));
     }
 
     public function testRemoveNonexistingNamespacedAttribute()
@@ -167,12 +167,12 @@ class NamespacedAttributeBagTest extends TestCase
             array('csrf.token', array('a' => '1234', 'b' => '4321'), true),
             array('csrf.token/a', '1234', true),
             array('csrf.token/b', '4321', true),
-            array('category', array('fishing' => array('first' => 'cod', 'second' => 'sole')), true),
-            array('category/fishing', array('first' => 'cod', 'second' => 'sole'), true),
-            array('category/fishing/missing/first', null, false),
-            array('category/fishing/first', 'cod', true),
-            array('category/fishing/second', 'sole', true),
-            array('category/fishing/missing/second', null, false),
+            array('card_set', array('fishing' => array('first' => 'cod', 'second' => 'sole')), true),
+            array('card_set/fishing', array('first' => 'cod', 'second' => 'sole'), true),
+            array('card_set/fishing/missing/first', null, false),
+            array('card_set/fishing/first', 'cod', true),
+            array('card_set/fishing/second', 'sole', true),
+            array('card_set/fishing/missing/second', null, false),
             array('user2.login', null, false),
             array('never', null, false),
             array('bye', null, false),

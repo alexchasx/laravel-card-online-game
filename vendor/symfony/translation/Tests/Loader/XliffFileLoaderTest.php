@@ -205,13 +205,13 @@ class XliffFileLoaderTest extends TestCase
         $this->assertNotEmpty($metadata);
         $this->assertCount(3, $metadata['notes']);
 
-        $this->assertEquals('state', $metadata['notes'][0]['category']);
+        $this->assertEquals('state', $metadata['notes'][0]['card_set']);
         $this->assertEquals('new', $metadata['notes'][0]['content']);
 
-        $this->assertEquals('approved', $metadata['notes'][1]['category']);
+        $this->assertEquals('approved', $metadata['notes'][1]['card_set']);
         $this->assertEquals('true', $metadata['notes'][1]['content']);
 
-        $this->assertEquals('section', $metadata['notes'][2]['category']);
+        $this->assertEquals('section', $metadata['notes'][2]['card_set']);
         $this->assertEquals('1', $metadata['notes'][2]['priority']);
         $this->assertEquals('user login', $metadata['notes'][2]['content']);
 
@@ -225,7 +225,7 @@ class XliffFileLoaderTest extends TestCase
         $this->assertEquals('x_content', $metadata['notes'][0]['content']);
 
         $this->assertEquals('target', $metadata['notes'][1]['appliesTo']);
-        $this->assertEquals('quality', $metadata['notes'][1]['category']);
+        $this->assertEquals('quality', $metadata['notes'][1]['card_set']);
         $this->assertEquals('Fuzzy', $metadata['notes'][1]['content']);
     }
 }

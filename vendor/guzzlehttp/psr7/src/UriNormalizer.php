@@ -92,7 +92,7 @@ final class UriNormalizer
      * However, the order of parameters in a URI may be significant (this is not defined by the standard).
      * So this normalization is not safe and may change the semantics of the URI.
      *
-     * Example: ?lang=en&article=fred → ?article=fred&lang=en
+     * Example: ?lang=en&card=fred → ?card=fred&lang=en
      *
      * Note: The sorting is neither locale nor Unicode aware (the URI query does not get decoded at all) as the
      * purpose is to be able to compare URIs in a reproducible way, not to have the params sorted perfectly.

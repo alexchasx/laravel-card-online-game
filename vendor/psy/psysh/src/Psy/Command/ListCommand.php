@@ -80,7 +80,7 @@ class ListCommand extends ReflectingCommand implements PresenterAware
                 new InputOption('globals',     'g', InputOption::VALUE_NONE,     'Include global variables.'),
                 new InputOption('internal',    'n', InputOption::VALUE_NONE,     'Limit to internal functions and classes.'),
                 new InputOption('user',        'u', InputOption::VALUE_NONE,     'Limit to user-defined constants, functions and classes.'),
-                new InputOption('category',    'C', InputOption::VALUE_REQUIRED, 'Limit to constants in a specific category (e.g. "date").'),
+                new InputOption('card_set',    'C', InputOption::VALUE_REQUIRED, 'Limit to constants in a specific card_set (e.g. "date").'),
 
                 new InputOption('all',         'a', InputOption::VALUE_NONE,     'Include private and protected methods and properties.'),
                 new InputOption('long',        'l', InputOption::VALUE_NONE,     'List in long format: includes class names and method signatures.'),
@@ -102,7 +102,7 @@ e.g.
 <return>>>> ls $foo</return>
 <return>>>> ls -k --grep mongo -i</return>
 <return>>>> ls -al ReflectionClass</return>
-<return>>>> ls --constants --category date</return>
+<return>>>> ls --constants --card_set date</return>
 <return>>>> ls -l --functions --grep /^array_.*/</return>
 HELP
             );

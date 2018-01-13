@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Card[] $cards
  */
-class CardSet extends Model
+class CardSet extends BaseModel
 {
     use SoftDeletes;
 

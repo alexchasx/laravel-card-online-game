@@ -98,7 +98,7 @@ class AdminUserController extends BaseController
     /**
      * Восстанавливает s
      *
-     * GET /admin/category/restore/{id}
+     * GET /admin/card_set/restore/{id}
      *
      * @param $id
      *

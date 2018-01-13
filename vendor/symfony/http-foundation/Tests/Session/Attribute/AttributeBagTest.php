@@ -38,7 +38,7 @@ class AttributeBagTest extends TestCase
                 'a' => '1234',
                 'b' => '4321',
             ),
-            'category' => array(
+            'card_set' => array(
                 'fishing' => array(
                     'first' => 'cod',
                     'second' => 'sole',
@@ -160,7 +160,7 @@ class AttributeBagTest extends TestCase
             array('always', 'be happy', true),
             array('user.login', 'drak', true),
             array('csrf.token', array('a' => '1234', 'b' => '4321'), true),
-            array('category', array('fishing' => array('first' => 'cod', 'second' => 'sole')), true),
+            array('card_set', array('fishing' => array('first' => 'cod', 'second' => 'sole')), true),
             array('user2.login', null, false),
             array('never', null, false),
             array('bye', null, false),

@@ -84,7 +84,7 @@
                         </td>
                         <td>{{ $category->deleted_at }}</td>
                         <td><a class="btn btn-success"
-                               href="{{ route('categoryRestore',['category'=>$category->id]) }}"
+                               href="{{ route('categoryRestore',['card_set'=>$category->id]) }}"
                                role="button">Восстановить</a>
                         </td>
                     </tr>

@@ -38,24 +38,24 @@ Route::post('send.attachment.email','MailController@attachmentEmail')->name('att
 
 // Articles
 Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
-Route::get('article.{id}', 'SiteController@show')->name('articleShow');
-Route::get('category.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
+Route::get('card.{id}', 'SiteController@show')->name('cardShow');
+Route::get('card_set.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
 Route::get('tag.{tagId}', 'SiteController@showByTag')->name('showByTag');
 
 // ======== AdminPanel =========================
 Route::group(['prefix' => 'admin'], function() {
-    Route::group(['prefix' => 'article'], function() {
-// Route::group(['prefix' => 'admin/article', 'middleware' => ['auth', 'admin']], function () {
+    Route::group(['prefix' => 'card'], function() {
+// Route::group(['prefix' => 'admin/card', 'middleware' => ['auth', 'admin']], function () {
 
-        Route::get('index', 'Admin\AdminArticleController@index')->name('adminIndex');
-        Route::post('create', 'Admin\AdminArticleController@store')->name('articleStore');
-        Route::get('create', 'Admin\AdminArticleController@create')->name('articleCreate');
-        Route::get('update.{id}', 'Admin\AdminArticleController@edit')->name('articleEdit');
-        Route::post('update', 'Admin\AdminArticleController@update')->name('articleUpdate');
-        Route::delete('destroy.{id}', 'Admin\AdminArticleController@destroy')->name('articleDelete');
-        Route::delete('delete.{article}.{tag}', 'Admin\AdminArticleController@deleteTag')->name('articleTagDelete');
-        Route::get('restore.{article}', 'Admin\AdminArticleController@restore')->name('articleRestore');
-        Route::get('status.{article}', 'Admin\AdminArticleController@statusChange')->name('articleStatusChange');
+        Route::get('index', 'Admin\AdminCardController@index')->name('adminIndex');
+        Route::get('create', 'Admin\AdminCardController@create')->name('cardCreate');
+        Route::post('create', 'Admin\AdminCardController@store')->name('cardStore');
+        Route::get('update.{id}', 'Admin\AdminCardController@edit')->name('cardEdit');
+        Route::post('update', 'Admin\AdminCardController@update')->name('cardUpdate');
+        Route::delete('destroy.{id}', 'Admin\AdminCardController@destroy')->name('cardDelete');
+        Route::delete('delete.{card}.{tag}', 'Admin\AdminCardController@deleteTag')->name('cardTagDelete');
+        Route::get('restore.{card}', 'Admin\AdminCardController@restore')->name('cardRestore');
+        Route::get('status.{card}', 'Admin\AdminCardController@statusChange')->name('cardStatusChange');
     });
 
     Route::group(['prefix' => 'user'], function() {
@@ -81,18 +81,18 @@ Route::group(['prefix' => 'admin'], function() {
             ->name('tagStatusChange');
     });
 
-    Route::group(['prefix' => 'category'], function() {
+    Route::group(['prefix' => 'card_set'], function() {
 
         Route::get('index', 'Admin\AdminCategoryController@index')->name('categoryIndex');
         Route::post('create', 'Admin\AdminCategoryController@store')->name('categoryStore');
         Route::get('create', 'Admin\AdminCategoryController@create')->name('categoryCreate');
         Route::get('update.{id}', 'Admin\AdminCategoryController@edit')->name('categoryEdit');
         Route::any('update', 'Admin\AdminCategoryController@update')->name('categoryUpdate');
-        Route::delete('category.{category}', 'Admin\AdminCategoryController@destroy')
+        Route::delete('card_set.{card_set}', 'Admin\AdminCategoryController@destroy')
             ->name('categoryDelete');
-        Route::get('category.restore.{category}', 'Admin\AdminCategoryController@restore')
+        Route::get('card_set.restore.{card_set}', 'Admin\AdminCategoryController@restore')
             ->name('categoryRestore');
-        Route::get('status.{category}', 'Admin\AdminCategoryController@statusChange')
+        Route::get('status.{card_set}', 'Admin\AdminCategoryController@statusChange')
             ->name('categoryStatusChange');
     });
 
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'admin'], function() {
 // Route::controller('/pages', 'NewController'); // methods: getShow, getIndex, postStore и др.
 
 // uses ... as -> назначить имя,
-// Route::controller('/pages', ['uses' => 'NewController', 'as' => 'article', 'middleware' => 'mymiddle:admin']); //admin - параметр
-// Route::controller('/pages', ['uses' => 'NewController', 'as' => 'article'])->middleware(['mymiddle']);
+// Route::controller('/pages', ['uses' => 'NewController', 'as' => 'card', 'middleware' => 'mymiddle:admin']); //admin - параметр
+// Route::controller('/pages', ['uses' => 'NewController', 'as' => 'card'])->middleware(['mymiddle']);
 
 // ============================================

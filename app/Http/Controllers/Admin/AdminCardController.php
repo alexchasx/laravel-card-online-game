@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Article;
-use App\ArticleTag;
+use App\Model\Card;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\BaseController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class AdminArticleController extends BaseController
+class AdminCardController extends BaseController
 {
     /**
-     * Показывает все статьи в админ панели
-     *
-     * GET /admin/article/index
+     * GET /admin/Card/index
      *
      * @return View | HttpException
      */
@@ -23,20 +20,22 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        $articles = Article::withTrashed()
-            ->orderBy('created_at', 'desc')
+        $cards = Card::withTrashed()
+            ->orderBy('card_name', 'desc')
             ->get();
 
         return view('admin.index')->with([
-            'articles' => $articles,
-            'categories' => $this->showCategories(),
+            'cards' => $cards,
+            'cardSets' => $this->showCardSets(),
+            'races' => $this->showRaces(),
+            'abilities' => $this->showAbilities(),
+            'types' => Card::TYPES,
+            'rarities' => Card::RARITIES,
         ]);
     }
 
     /**
-     * Выводит форму для создания статьи
-     *
-     * GET /admin/article/create
+     * GET /admin/Card/create
      *
      * @return View | HttpException
      */
@@ -44,8 +43,8 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        return view('admin.article.create')->with([
-            'categories' => $this->showCategories(),
+        return view('admin.Card.create')->with([
+            'cardSet' => $this->showCardSet(),
             'tags' => $this->showTags(),
         ]);
     }
@@ -53,7 +52,7 @@ class AdminArticleController extends BaseController
     /**
      * Сохраняет статью и выводит форму с сообщением об успешной операции
      *
-     * POST /admin/article/store
+     * POST /admin/Card/store
      *
      * @param Request $request
      *
@@ -63,33 +62,21 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
+//        $this->validate($request, [
+//            'card_name' => 'required',
+//            'content' => 'required',
+//        ]);
 
-        $article = Article::create(
-            array_except($request->all(), ['tags_id'])
-        );
+        Card::query()
+            ->create($request->all());
 
-        foreach ($request->input('tags_id') as $tagId) {
-            $article->tags()->save(new ArticleTag([
-                'article_id' => $article->id,
-                'tag_id' => $tagId,
-            ]));
-        }
-
-        return view('admin.article.create')->with([
-            'categories' => $this->showCategories(),
-            'tags' => $this->showTags(),
-            'message' => 'Статья успешно создана.',
-        ]);
+        return redirect()->back();
     }
 
     /**
      * Выводит форму для редактирования статьи
      *
-     * GET /admin/article/update.{id}
+     * GET /admin/Card/update.{id}
      *
      * @var int $id
      *
@@ -99,13 +86,13 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        $article = Article::withTrashed()
+        $Card = Card::withTrashed()
             ->where('id', $id)
             ->first();
 
-        return view('admin.article.update')->with([
-            'article' => $article,
-            'categories' => $this->showCategories(),
+        return view('admin.Card.update')->with([
+            'Card' => $Card,
+            'cardSet' => $this->showCardSet(),
             'tags' => $this->showTags(),
         ]);
     }
@@ -113,7 +100,7 @@ class AdminArticleController extends BaseController
     /**
      * Редактирует статью
      *
-     * POST /admin/article/update
+     * POST /admin/Card/update
      *
      * @param Request $request
      *
@@ -127,24 +114,24 @@ class AdminArticleController extends BaseController
             'title' => 'required|max:255',
         ]);
 
-        $articleId = Article::withTrashed()
+        $CardId = Card::withTrashed()
             ->where('id', $request->id)
             ->update(array_except($request->all(), ['tags_id', '_token']));
 
         foreach ($request->input('tags_id') as $tagId) {
-            ArticleTag::create([
-                'article_id' => $request->id,
+            CardTag::create([
+                'Card_id' => $request->id,
                 'tag_id' => $tagId,
             ]);
         }
 
-        return redirect()->route('articleEdit', ['id' => $articleId]);
+        return redirect()->route('CardEdit', ['id' => $CardId]);
     }
 
     /**
      * Удаляет статью
      *
-     * DELETE /admin/article/delete/{id}
+     * DELETE /admin/Card/delete/{id}
      *
      * @param $id
      *
@@ -154,7 +141,7 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        Article::find($id)->delete();
+        Card::find($id)->delete();
 
         return redirect()->back();
     }
@@ -162,18 +149,18 @@ class AdminArticleController extends BaseController
     /**
      * Удаляет тег статьи
      *
-     * DELETE /admin/article/delete/{article_id}/{tag_id}
+     * DELETE /admin/Card/delete/{Card_id}/{tag_id}
      *
-     * @param $article
+     * @param $Card
      * @param $tag
      *
      * @return RedirectResponse | HttpException
      */
-    public function deleteTag($article, $tag)
+    public function deleteTag($Card, $tag)
     {
         self::checkAdmin();
 
-        ArticleTag::where('article_id', $article)
+        CardTag::where('Card_id', $Card)
             ->where('tag_id', $tag)
             ->delete();
 
@@ -183,7 +170,7 @@ class AdminArticleController extends BaseController
     /**
      * Восстанавливает пользователя
      *
-     * GET /admin/article/restore/{id}
+     * GET /admin/Card/restore/{id}
      *
      * @param $id
      *
@@ -193,7 +180,7 @@ class AdminArticleController extends BaseController
     {
         self::checkAdmin();
 
-        Article::withTrashed()
+        Card::withTrashed()
             ->where('id', $id)
             ->restore();
 

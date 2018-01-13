@@ -12,7 +12,7 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
+ * @card_set   Mockery
  * @package    Mockery
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010-2014 Pádraic Brady (http://blog.astrumfutura.com)

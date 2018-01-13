@@ -146,7 +146,7 @@ class Name
                 };
             case 'body':
             case 'summary':
-            case 'article':
+            case 'card':
             case 'description':
                 return function () use ($generator) {
                     return $generator->text;

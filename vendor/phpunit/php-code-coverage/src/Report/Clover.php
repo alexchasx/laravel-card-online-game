@@ -114,10 +114,10 @@ class Clover
                     );
                 }
 
-                if (!empty($class['package']['category'])) {
+                if (!empty($class['package']['card_set'])) {
                     $xmlClass->setAttribute(
-                        'category',
-                        $class['package']['category']
+                        'card_set',
+                        $class['package']['card_set']
                     );
                 }
 

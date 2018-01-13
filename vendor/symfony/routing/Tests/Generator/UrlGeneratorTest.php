@@ -286,9 +286,9 @@ class UrlGeneratorTest extends TestCase
 
     public function testNoTrailingSlashForMultipleOptionalParameters()
     {
-        $routes = $this->getRoutes('test', new Route('/category/{slug1}/{slug2}/{slug3}', array('slug2' => null, 'slug3' => null)));
+        $routes = $this->getRoutes('test', new Route('/card_set/{slug1}/{slug2}/{slug3}', array('slug2' => null, 'slug3' => null)));
 
-        $this->assertEquals('/app.php/category/foo', $this->getGenerator($routes)->generate('test', array('slug1' => 'foo')));
+        $this->assertEquals('/app.php/card_set/foo', $this->getGenerator($routes)->generate('test', array('slug1' => 'foo')));
     }
 
     public function testWithAnIntegerAsADefaultValue()
@@ -531,28 +531,28 @@ class UrlGeneratorTest extends TestCase
     public function testGenerateRelativePath()
     {
         $routes = new RouteCollection();
-        $routes->add('article', new Route('/{author}/{article}/'));
-        $routes->add('comments', new Route('/{author}/{article}/comments'));
-        $routes->add('host', new Route('/{article}', array(), array(), array(), '{author}.example.com'));
+        $routes->add('card', new Route('/{author}/{card}/'));
+        $routes->add('comments', new Route('/{author}/{card}/comments'));
+        $routes->add('host', new Route('/{card}', array(), array(), array(), '{author}.example.com'));
         $routes->add('scheme', new Route('/{author}/blog', array(), array(), array(), '', array('https')));
         $routes->add('unrelated', new Route('/about'));
 
         $generator = $this->getGenerator($routes, array('host' => 'example.com', 'pathInfo' => '/fabien/symfony-is-great/'));
 
         $this->assertSame('comments', $generator->generate('comments',
-            array('author' => 'fabien', 'article' => 'symfony-is-great'), UrlGeneratorInterface::RELATIVE_PATH)
+            array('author' => 'fabien', 'card' => 'symfony-is-great'), UrlGeneratorInterface::RELATIVE_PATH)
         );
         $this->assertSame('comments?page=2', $generator->generate('comments',
-            array('author' => 'fabien', 'article' => 'symfony-is-great', 'page' => 2), UrlGeneratorInterface::RELATIVE_PATH)
+            array('author' => 'fabien', 'card' => 'symfony-is-great', 'page' => 2), UrlGeneratorInterface::RELATIVE_PATH)
         );
-        $this->assertSame('../twig-is-great/', $generator->generate('article',
-            array('author' => 'fabien', 'article' => 'twig-is-great'), UrlGeneratorInterface::RELATIVE_PATH)
+        $this->assertSame('../twig-is-great/', $generator->generate('card',
+            array('author' => 'fabien', 'card' => 'twig-is-great'), UrlGeneratorInterface::RELATIVE_PATH)
         );
-        $this->assertSame('../../bernhard/forms-are-great/', $generator->generate('article',
-            array('author' => 'bernhard', 'article' => 'forms-are-great'), UrlGeneratorInterface::RELATIVE_PATH)
+        $this->assertSame('../../bernhard/forms-are-great/', $generator->generate('card',
+            array('author' => 'bernhard', 'card' => 'forms-are-great'), UrlGeneratorInterface::RELATIVE_PATH)
         );
         $this->assertSame('//bernhard.example.com/app.php/forms-are-great', $generator->generate('host',
-            array('author' => 'bernhard', 'article' => 'forms-are-great'), UrlGeneratorInterface::RELATIVE_PATH)
+            array('author' => 'bernhard', 'card' => 'forms-are-great'), UrlGeneratorInterface::RELATIVE_PATH)
         );
         $this->assertSame('https://example.com/app.php/bernhard/blog', $generator->generate('scheme',
                 array('author' => 'bernhard'), UrlGeneratorInterface::RELATIVE_PATH)

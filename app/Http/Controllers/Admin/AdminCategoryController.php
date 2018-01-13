@@ -25,7 +25,7 @@ class AdminCategoryController extends BaseController
             ->get();
 
         //TODO Не сделаны вьюхи
-        return view('admin.category.index')->with([
+        return view('admin.card_set.index')->with([
             'categories' => $categories,
         ]);
     }
@@ -33,7 +33,7 @@ class AdminCategoryController extends BaseController
     /**
      * Сохраняет категорию
      *
-     * POST /admin/category/store
+     * POST /admin/card_set/store
      *
      * @param Request $request
      *
@@ -55,7 +55,7 @@ class AdminCategoryController extends BaseController
     /**
      * Редактирует категорию
      *
-     * POST /admin/category/update
+     * POST /admin/card_set/update
      *
      * @param Request $request
      *
@@ -78,7 +78,7 @@ class AdminCategoryController extends BaseController
     /**
      * Удаляет категорию
      *
-     * DELETE /admin/category/delete/{id}
+     * DELETE /admin/card_set/delete/{id}
      *
      * @param $id
      *
@@ -97,7 +97,7 @@ class AdminCategoryController extends BaseController
     /**
      * Восстанавливает категорию
      *
-     * GET /admin/category/restore/{id}
+     * GET /admin/card_set/restore/{id}
      *
      * @param $id
      *

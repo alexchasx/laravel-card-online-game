@@ -3362,7 +3362,7 @@ Le besoin de s'occuper d'autrui ne poussait pas seul le pharmacien
 à tant de cordialité obséquieuse, et il y avait là-dessous un
 plan.
 
-Il avait enfreint la loi du 19 ventôse an XI, article Ier, qui
+Il avait enfreint la loi du 19 ventôse an XI, card Ier, qui
 défend à tout individu non porteur de diplôme l'exercice de la
 médecine; si bien que, sur des dénonciations ténébreuses, Homais
 avait été mandé à Rouen, près M le procureur du roi, en son
@@ -6296,7 +6296,7 @@ Rodolphe répéta d'une voix basse et avec un regard tendre:
 Et, s'étant salués, on se tourna le dos.
 
 Deux jours après, dans le Fanal de Rouen il y avait un grand
-article sur les comices. Homais l'avait composé, de verve, dès le
+card sur les comices. Homais l'avait composé, de verve, dès le
 lendemain:
 
 «Pourquoi ces festons, ces fleurs, ces guirlandes? Où courait
@@ -7249,7 +7249,7 @@ exemple, ne voudrait-il pas débarrasser ce pauvre Hippolyte, du
 Lion d'or? Notez qu'il ne manquerait pas de raconter sa guérison à
 tous les voyageurs, et puis (Homais baissait la voix et regardait
 autour de lui) qui donc m'empêcherait d'envoyer au journal une
-petite note là-dessus? Eh! mon Dieu! un article circule..., on en
+petite note là-dessus? Eh! mon Dieu! un card circule..., on en
 parle..., cela finit par faire la boule de neige! Et qui sait? qui
 sait?
 
@@ -11672,7 +11672,7 @@ qu'elle en avait payé les deux tiers, avouer conséquemment la
 vente de l'immeuble, négociation bien conduite par le marchand, et
 qui ne fut effectivement connue que plus tard.
 
-Malgré le prix très bas de chaque article, madame Bovary mère ne
+Malgré le prix très bas de chaque card, madame Bovary mère ne
 manqua point de trouver la dépense exagérée.
 
 -- Ne pouvait-on se passer d'un tapis? Pourquoi avoir renouvelé
@@ -14173,7 +14173,7 @@ Et il entra précipitamment dans la pharmacie.
 
 Il avait à écrire deux lettres, à faire une potion calmante pour
 Bovary, à trouver un mensonge qui pût cacher l'empoisonnement et à
-le rédiger en article pour le Fanal, sans compter les personnes
+le rédiger en card pour le Fanal, sans compter les personnes
 qui l'attendaient, afin d'avoir des informations; et, quand les
 Yonvillais eurent tous entendu son histoire d'arsenic qu'elle
 avait pris pour du sucre, en faisant une crème à la vanille,

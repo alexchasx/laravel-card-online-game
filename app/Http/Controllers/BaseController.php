@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Category;
-use App\Comment;
-use App\File;
-use App\Tag;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use App\Model\Ability;
+use App\Model\CardSet;
+use App\Model\Race;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BaseController extends Controller
@@ -30,6 +24,39 @@ class BaseController extends Controller
         }
 
         abort(403, 'Доступ запрещён!');
+    }
+
+    /**
+     * @return CardSet[] | Collection
+     */
+    protected function showCardSets()
+    {
+        return CardSet::query()
+            ->where('hidden', false)
+            ->orderBy('set_name')
+            ->get();
+    }
+
+    /**
+     * @return Race[] | Collection
+     */
+    protected function showRaces()
+    {
+        return Race::query()
+            ->where('hidden', false)
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @return Ability[] | Collection
+     */
+    protected function showAbilities()
+    {
+        return Ability::query()
+            ->where('hidden', false)
+            ->orderBy('name')
+            ->get();
     }
 
 }

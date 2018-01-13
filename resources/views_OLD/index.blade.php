@@ -17,8 +17,8 @@
                             <a href="#">Comments (10)</a>
                         </p>
                         <a href="{{ route('articleShow',['id'=>$article->id]) }}">
-{{--                            @if (!empty($article))
-                                <img src="uploads/{{ $article->file }}" alt="" align="middle"
+{{--                            @if (!empty($card))
+                                <img src="uploads/{{ $card->file }}" alt="" align="middle"
                                      width="90%"/>
                             @endif--}}
                         </a>

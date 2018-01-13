@@ -22,7 +22,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Дата в прошлом
 
 
 define('ROOT', __DIR__);
-define('IS_ADMIN', 'admin545');
+define('IS_ADMIN', 'admin');
 
 //===== My functions =====
 

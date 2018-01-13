@@ -11,10 +11,10 @@
         {{--<div class="container">--}}
 
 
-            {{--@unless(empty($category))--}}
+            {{--@unless(empty($card_set))--}}
 
                 {{--<div class="blog-info wow fadeInDown animated animated" data-wow-delay=".5s">--}}
-                    {{--<h3 class="tittle">Статьи по категории: {{$category->title}}</h3>--}}
+                    {{--<h3 class="tittle">Статьи по категории: {{$card_set->title}}</h3>--}}
                 {{--</div>--}}
 
             {{--@endunless--}}
@@ -39,12 +39,12 @@
                         {{--<ul>--}}
 
                             {{--@if (!empty($categories))--}}
-                                {{--@foreach($categories as $category)--}}
+                                {{--@foreach($categories as $card_set)--}}
 
-                                    {{--@unless (empty($articleCount = $category->articles->count()))--}}
+                                    {{--@unless (empty($articleCount = $card_set->articles->count()))--}}
                                         {{--<li class="wow fadeInLeft animated animated"--}}
                                             {{--data-wow-delay=".5s">--}}
-                                            {{--<a href="{{ route('showByCategory', ['id' => $category->id] ) }}">{{$category->title}}</a>--}}
+                                            {{--<a href="{{ route('showByCategory', ['id' => $card_set->id] ) }}">{{$card_set->title}}</a>--}}
                                             {{--<span class="post-count pull-right">--}}
                                         {{--({{ $articleCount }})--}}
                                     {{--</span>--}}
@@ -62,20 +62,20 @@
                     {{--<div class="left-blog">--}}
 
                         {{--@unless (empty($articles))--}}
-                            {{--@foreach ($articles as $article)--}}
+                            {{--@foreach ($articles as $card)--}}
 
                                 {{--<div class="blog-left">--}}
 
                                     {{--<div class="blog-left-left wow fadeInRight animated animated"--}}
                                          {{--data-wow-delay=".5s">--}}
                                         {{--<hr>--}}
-                                        {{--<p>Статья от {{$article->user->name}}--}}
-                                            {{--&nbsp;&nbsp; {{$article->created_at}}--}}
+                                        {{--<p>Статья от {{$card->user->name}}--}}
+                                            {{--&nbsp;&nbsp; {{$card->created_at}}--}}
                                             {{--&nbsp;&nbsp;--}}
-                                            {{--(Комментариев: {{$article->comments->count()}}--}}
+                                            {{--(Комментариев: {{$card->comments->count()}}--}}
                                             {{--)</p>--}}
-                                        {{--<a href="{{route('articleShow', ['id' => $article->id])}}">--}}
-                                            {{--@unless (empty($avatar = $article->files->last()))--}}
+                                        {{--<a href="{{route('articleShow', ['id' => $card->id])}}">--}}
+                                            {{--@unless (empty($avatar = $card->files->last()))--}}
                                                 {{--<img class="media-object"--}}
                                                      {{--src="{{ asset('storage/app/'. $avatar->path) }}"--}}
                                                      {{--alt="image">--}}
@@ -85,15 +85,15 @@
 
                                     {{--<div class="blog-left-right wow fadeInRight animated animated"--}}
                                          {{--data-wow-delay=".5s">--}}
-                                        {{--<a href="{{route('articleShow', ['id' => $article->id])}}">{{$article->title}}</a>--}}
+                                        {{--<a href="{{route('articleShow', ['id' => $card->id])}}">{{$card->title}}</a>--}}
                                         {{--<p>--}}
-                                            {{--{{$article->description}}--}}
+                                            {{--{{$card->description}}--}}
                                         {{--</p>--}}
                                     {{--</div>--}}
 
                                     {{--<ul class="text-center pull-right">--}}
                                         {{--<li><i class="fa fa-yey">Количество просмотров&nbsp;&nbsp;--}}
-                                            {{--</i>{{(int)$article->viewed}}</li>--}}
+                                            {{--</i>{{(int)$card->viewed}}</li>--}}
                                     {{--</ul>--}}
 
                                     {{--<div class="clearfix"></div>--}}
@@ -142,7 +142,7 @@
                                     {{--</div>--}}
                                     {{--<div class="col-md-9 comments-right">--}}
                                         {{--<a href="{{ route('articleShow', ['id' => $pop->id]) }}">--}}
-                                            {{--{{$article->title}}--}}
+                                            {{--{{$card->title}}--}}
                                         {{--</a>--}}
                                         {{--<p>{{  $pop->created_at }}</p>--}}
                                     {{--</div>--}}

@@ -1,4 +1,4 @@
-			<form action="{{ route('articleDelete', ['article'=>$article->id]) }}" method="post">
+			<form action="{{ route('articleDelete', ['card'=>$article->id]) }}" method="post">
 				<!-- <input type="hidden" name="_method" value="DELETE"> -->
 				{{method_field('DELETE')}}
 				{{csrf_field()}}

@@ -2,22 +2,23 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
  * @property string  $name
  * @property string  $avatar
+ * @property string  $background
  * @property string  $description
- * @property string  $full_description
+ * @property string  $border
+ * @property boolean $pay
  * @property boolean $hidden
  */
-class Ability extends BaseModel
+class Battlefield extends BaseModel
 {
     use SoftDeletes;
 
-    const TABLE_NAME = 'abilities';
+    const TABLE_NAME = 'battlefield';
 
     /**
      * @var string

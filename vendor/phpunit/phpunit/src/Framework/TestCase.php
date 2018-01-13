@@ -1429,7 +1429,7 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
         if ($result === false) {
             throw new PHPUnit_Framework_Exception(
                 'The locale functionality is not implemented on your platform, ' .
-                'the specified locale does not exist or the category name is ' .
+                'the specified locale does not exist or the card_set name is ' .
                 'invalid.'
             );
         }

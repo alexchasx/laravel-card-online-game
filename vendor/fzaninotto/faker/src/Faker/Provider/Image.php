@@ -39,7 +39,7 @@ class Image extends Base
 
         if ($category) {
             if (!in_array($category, static::$categories)) {
-                throw new \InvalidArgumentException(sprintf('Unknown image category "%s"', $category));
+                throw new \InvalidArgumentException(sprintf('Unknown image card_set "%s"', $category));
             }
             $url .= "{$category}/";
             if ($word) {

@@ -177,7 +177,7 @@
                                     </form>
                                     <hr>
                                     @if (isset($image->path))
-                                        <form action="{{ route('file.destroy', ['article'=>$article->id]) }}"
+                                        <form action="{{ route('file.destroy', ['card'=>$article->id]) }}"
                                               method="post">
                                             <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                             {{method_field('DELETE')}}
@@ -244,7 +244,7 @@
                                     <a href="{{ route('articleShow', ['id' => $pop->id]) }}">
                                         {{$pop->title}}
                                     </a>
-                                    <p><?/*= $article->getDate() */?></p>
+                                    <p><?/*= $artcardetDate() */?></p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -278,7 +278,7 @@
                                     <a href="{{ route('articleShow', ['id' => $rec->id]) }}">
                                         {{ $rec->title }}
                                     </a>
-                                    <p><?/*= $article->getDate() */?></p>
+                                    <p><?/*= $artcardetDate() */?></p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

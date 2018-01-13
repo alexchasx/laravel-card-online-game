@@ -41,7 +41,7 @@ class ConstantEnumerator extends Enumerator
 
         $user     = $input->getOption('user');
         $internal = $input->getOption('internal');
-        $category = $input->getOption('category');
+        $category = $input->getOption('card_set');
 
         $ret = array();
 
@@ -68,8 +68,8 @@ class ConstantEnumerator extends Enumerator
     /**
      * Get defined constants.
      *
-     * Optionally restrict constants to a given category, e.g. "date". If the
-     * category is "internal", include all non-user-defined constants.
+     * Optionally restrict constants to a given card_set, e.g. "date". If the
+     * card_set is "internal", include all non-user-defined constants.
      *
      * @param string $category
      *

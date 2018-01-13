@@ -28,7 +28,7 @@ class SiteController extends BaseController
     /**
      * Показывает одну статью
      *
-     * GET /article.{id}
+     * GET /card.{id}
      *
      * @param $articleId
      *
@@ -46,8 +46,8 @@ class SiteController extends BaseController
 
         $articles = $this->allArticles();
 
-        return view('article')->with([
-            'article' => $article,
+        return view('card')->with([
+            'card' => $article,
             'popular' => $this->popularArticles($articles),
             'recent' => $this->recentArticles($articles),
             'categories' => $this->showCategories(),

@@ -60,7 +60,7 @@ class Unit
         $node->setAttribute('full', $full);
         $node->setAttribute('name', $package);
         $node->setAttribute('sub', $sub);
-        $node->setAttribute('category', $category);
+        $node->setAttribute('card_set', $category);
     }
 
     public function setNamespace($namespace)

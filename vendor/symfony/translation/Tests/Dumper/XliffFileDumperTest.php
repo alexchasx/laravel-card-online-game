@@ -96,13 +96,13 @@ class XliffFileDumperTest extends TestCase
             'baz' => 'biz',
         ));
         $catalogue->setMetadata('foo', array('notes' => array(
-            array('category' => 'state', 'content' => 'new'),
-            array('category' => 'approved', 'content' => 'true'),
-            array('category' => 'section', 'content' => 'user login', 'priority' => '1'),
+            array('card_set' => 'state', 'content' => 'new'),
+            array('card_set' => 'approved', 'content' => 'true'),
+            array('card_set' => 'section', 'content' => 'user login', 'priority' => '1'),
         )));
         $catalogue->setMetadata('baz', array('notes' => array(
             array('id' => 'x', 'content' => 'x_content'),
-            array('appliesTo' => 'target', 'category' => 'quality', 'content' => 'Fuzzy'),
+            array('appliesTo' => 'target', 'card_set' => 'quality', 'content' => 'Fuzzy'),
         )));
 
         $dumper = new XliffFileDumper();
