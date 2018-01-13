@@ -14,12 +14,20 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create(User::TABLE_NAME, function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');            
             $table->string('name');
-            $table->string('email', 150)/*->unique()*/;
+            $table->string('avatar');
+            $table->string('email', 150)->unique();
             $table->string('password');
-            $table->string('role')->default(0);
+            $table->enum('role', ['user', 'admin', 'manager'])->default('user');
+            $table->boolean('verified')->after('remember_token')->default(0);
+            $table->string('email_token')->after('remember_token')->nullable();
+            $table->double('rating')->default(0);
+            $table->integer('count_wins')->default(0);
+            $table->integer('count_defeats')->default(0);
+            $table->integer('prom')->default(0);
+            $table->boolean('vip')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
