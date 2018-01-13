@@ -16,14 +16,14 @@ class CreateTableCards extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('card_name', 150);
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->integer('ability1_id')->nullable();
             $table->integer('ability2_id')->nullable();
             $table->integer('energy')->nullable();
             $table->integer('attack')->nullable();
             $table->integer('health_points')->nullable();
             $table->integer('armor')->nullable();
-            $table->enum('rarity', ['normal', 'rare', 'legendary']);
+            $table->enum('rarity', ['normal', 'rare', 'legendary'])->default('normal');
             $table->boolean('pay')->default(0);
             $table->boolean('hidden')->default(0);
             $table->softDeletes();

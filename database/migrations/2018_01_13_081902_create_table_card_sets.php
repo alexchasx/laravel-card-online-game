@@ -16,7 +16,7 @@ class CreateTableCardSets extends Migration
         Schema::create('card_sets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('set_name');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->boolean('pay')->default(0);
             $table->boolean('hidden')->default(0);
             $table->softDeletes();

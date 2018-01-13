@@ -1,6 +1,5 @@
 <?php
 
-use App\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +13,7 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create(File::TABLE_NAME, function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('target_id'); // Для MySQL 5.0 полиморф не работает
             $table->string('target_type'); // Для MySQL 5.0 метод foreign() не работает
@@ -32,6 +31,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(File::TABLE_NAME);
+        Schema::dropIfExists('files');
     }
 }

@@ -20,8 +20,6 @@ class SiteController extends BaseController
      */
     public function index()
     {
-        die('index');
-
         return view('index')->with([
             'empty' => self::EMPTY_IMAGE,
         ]);

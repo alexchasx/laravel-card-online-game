@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Model\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as Validation;
@@ -65,16 +66,17 @@ class RegisterController extends Controller
      *
      * @param Request $request
      *
-     * @return User
+     * @return $this | Authenticatable
      */
     protected function create(Request $request)
     {
-        return User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'email_token' => str_random($request->email),
-        ]);
+        return User::query()
+            ->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'email_token' => str_random($request->email),
+            ]);
     }
 
     /**

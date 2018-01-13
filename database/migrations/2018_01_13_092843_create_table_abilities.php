@@ -16,8 +16,8 @@ class CreateTableAbilities extends Migration
         Schema::create('abilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 150);
-            $table->string('avatar');
-            $table->string('description');
+            $table->string('avatar')->nullable();
+            $table->string('description')->nullable();
             $table->text('full_description')->nullable();
             $table->boolean('hidden')->default(0);
             $table->softDeletes();

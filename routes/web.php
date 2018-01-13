@@ -42,15 +42,6 @@ Route::get('article.{id}', 'SiteController@show')->name('articleShow');
 Route::get('category.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
 Route::get('tag.{tagId}', 'SiteController@showByTag')->name('showByTag');
 
-// Comments
-Route::get('comment.index', 'CommentController@index')->name('commentIndex');
-Route::get('comment.{id}', 'CommentController@show')->name('commentShow');
-Route::post('comment.create', 'CommentController@store')->name('commentStore');
-Route::post('comment.update', 'CommentController@update')->name('commentUpdate');
-Route::delete('delete.{comment}', 'CommentController@delete')->name('commentDelete');
-Route::get('restore.{comment}', 'CommentController@restore')->name('commentRestore');
-Route::get('comment.status.{comment}', 'CommentController@statusChange')->name('commentStatusChange');
-
 // ======== AdminPanel =========================
 Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'article'], function() {
