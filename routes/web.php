@@ -55,7 +55,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::delete('destroy.{id}', 'Admin\AdminCardController@destroy')->name('cardDelete');
         Route::delete('delete.{card}.{tag}', 'Admin\AdminCardController@deleteTag')->name('cardTagDelete');
         Route::get('restore.{card}', 'Admin\AdminCardController@restore')->name('cardRestore');
-        Route::get('status.{card}', 'Admin\AdminCardController@statusChange')->name('cardStatusChange');
     });
 
     Route::group(['prefix' => 'user'], function() {
@@ -83,17 +82,15 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'card_set'], function() {
 
-        Route::get('index', 'Admin\AdminCategoryController@index')->name('categoryIndex');
-        Route::post('create', 'Admin\AdminCategoryController@store')->name('categoryStore');
-        Route::get('create', 'Admin\AdminCategoryController@create')->name('categoryCreate');
-        Route::get('update.{id}', 'Admin\AdminCategoryController@edit')->name('categoryEdit');
-        Route::any('update', 'Admin\AdminCategoryController@update')->name('categoryUpdate');
-        Route::delete('card_set.{card_set}', 'Admin\AdminCategoryController@destroy')
-            ->name('categoryDelete');
-        Route::get('card_set.restore.{card_set}', 'Admin\AdminCategoryController@restore')
-            ->name('categoryRestore');
-        Route::get('status.{card_set}', 'Admin\AdminCategoryController@statusChange')
-            ->name('categoryStatusChange');
+        Route::get('index', 'Admin\AdminCardSetController@index')->name('cardSetIndex');
+        Route::post('create', 'Admin\AdminCardSetController@store')->name('cardSetStore');
+        Route::get('create', 'Admin\AdminCardSetController@create')->name('cardSetCreate');
+        Route::get('update.{id}', 'Admin\AdminCardSetController@edit')->name('cardSetEdit');
+        Route::any('update', 'Admin\AdminCardSetController@update')->name('cardSetUpdate');
+        Route::delete('card_set.{card_set}', 'Admin\AdminCardSetController@destroy')
+            ->name('cardSetDelete');
+        Route::get('card_set.restore.{card_set}', 'Admin\AdminCardSetController@restore')
+            ->name('cardSetRestore');
     });
 
     Route::resource('file', 'Admin\AdminFileController', [

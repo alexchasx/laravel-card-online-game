@@ -110,22 +110,15 @@ class AdminCardController extends BaseController
     {
         self::checkAdmin();
 
-        $this->validate($request, [
-            'title' => 'required|max:255',
-        ]);
+//        $this->validate($request, [
+//            'title' => 'required|max:255',
+//        ]);
 
-        $CardId = Card::withTrashed()
+        Card::withTrashed()
             ->where('id', $request->id)
-            ->update(array_except($request->all(), ['tags_id', '_token']));
+            ->update(array_except($request->all(), ['_token']));
 
-        foreach ($request->input('tags_id') as $tagId) {
-            CardTag::create([
-                'Card_id' => $request->id,
-                'tag_id' => $tagId,
-            ]);
-        }
-
-        return redirect()->route('CardEdit', ['id' => $CardId]);
+        return redirect()->back();
     }
 
     /**

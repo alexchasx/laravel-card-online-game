@@ -6,75 +6,127 @@
                 <thead>
                 <tr>
                     <td>ID</td>
-                    <td>Заголовок</td>
-                    <td>Статус</td>
-                    <td>Кол-во статей</td>
-                    <td></td>
-                    <td></td>
-                    <td>Удалено</td>
-                    <td></td>
+                    <td style="min-width: 150px;">Аватар</td>
+                    <td style="min-width: 220px;">Наименование</td>
+                    <td>Видна?</td>
+                    <td style="min-width: 125px;">Тип</td>
+                    <td>Пользователь</td>
+                    <td style="min-width: 150px;">Раса</td>
+                    <td>Рубашка</td>
+                    <td>Фон</td>
+                    <td>Рамка</td>
+                    <td>Платный?</td>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr>
-                    <form action="{{ route('categoryStore') }}" method="post" role="form">
+                    <form action="{{ route('cardSetStore') }}" method="post" role="form">
                         <td></td>
-                        <td><input name="title" type="text" class="form-control" id="title" required></td>
+                        <td><input name="avatar" type="file" class="form-control" id="avatar" value="{{ old('avatar') }}"></td>
+                        <td><input name="set_name" type="text" class="form-control" id="set_name" value="{{ old('set_name') }}" required></td>
                         <td>
-                            <label for="status">Показывать?</label>
-                            <select name="status" id="status">
-                                <option selected value="1">Да</option>
-                                <option value="0">Нет</option>
+                            <select name="hidden" id="hidden">
+                                <option selected value="0">Да</option>
+                                <option value="1">Нет</option>
                             </select>
                         </td>
-                        <td></td>
+                        <td>
+                            <select name="type" size="3" class="form-control" id="type"
+                                    required>
+                                @foreach ($types as $type)
+                                    <option value="{{$type}}">{{$type}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td><input name="user_id" type="number" class="form-control" id="user_id" value="{{ old('user_id') }}"></td>
+                        <td>
+                            <select name="race_id" size="3" class="form-control" id="race_id">
+                                @foreach ($races as $race)
+                                    <option value="{{$race->id}}">{{$race->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td><input name="shirt" type="file" class="form-control" id="shirt" value="{{ old('shirt') }}"></td>
+                        <td><input name="background" type="file" class="form-control" id="background" value="{{ old('background') }}"></td>
+                        <td><input name="border" type="file" class="form-control" id="border" value="{{ old('border') }}"></td>
+                        <td>
+                            <select name="pay" id="pay">
+                                <option value="1">Да</option>
+                                <option selected value="0">Нет</option>
+                            </select>
+                        </td>
                         <td>
                             <button type="submit" class="btn btn-primary">Создать</button>
                         </td>
                         <td>{{ csrf_field() }}</td>
-                        <td></td>
-                        <td></td>
                     </form>
                 </tr>
 
-                @foreach($categories as $category)
+                @foreach($cardSets as $cardSet)
 
-                    <tr>
-                        <form action="{{ route('categoryUpdate') }}" method="post" role="form">
+                    <tr @if ($cardSet->deleted_at)
+                        style="background-color: #e4b9b9;"
+                        @elseif ($cardSet->hidden)
+                        style="background-color: #9B859D;"
+                            @endif>
+                        <form action="{{ route('cardSetUpdate') }}" method="post" role="form">
+                            <td></td>
+                            <td><input name="avatar" type="file" class="form-control" id="avatar" value="{{$cardSet->avatar}}"></td>
+                            <td><input name="set_name" type="text" class="form-control" id="set_name" value="{{$cardSet->set_name}}" required></td>
                             <td>
-                                <input name="id" type="hidden" class="form-control" value="{{$category->id}}">
-                                <input style="max-width: 50px" type="numeric" class="form-control" id="id"
-                                       value="{{$category->id}}"
-                                       disabled>
-                            </td>
-                            <td><input name="title" type="text" class="form-control" id="title"
-                                       value="{{ $category->title }}" required></td>
-                            <td>
-                                <label for="status">Показывать?</label>
-                                <select name="status" id="status">
+                                <select name="hidden" id="hidden">
                                     <option
-                                            @if ($category->status)
-                                            selected
-                                            @endif
-                                            value="1">Да
-                                    </option>
-                                    <option
-                                            @unless ($category->status)
-                                            selected
-                                            @endunless
-                                            value="0">Нет
+                                        @if ($cardSet->hidden)
+                                            selected value="1">Нет
+                                        @else
+                                            selected value="0">Да
+                                        @endif
                                     </option>
                                 </select>
                             </td>
-                            <td>{{ $category->articles->count() }}</td>
                             <td>
-                                <button type="submit" class="btn btn-warning">Сохранить изменения</button>
-                                {{ csrf_field() }}
+                                <select name="type" size="3" class="form-control" id="type"
+                                        required>
+                                    @foreach ($types as $type)
+                                        <option
+                                            @if ($cardSet->type === $type)
+                                                selected
+                                            @endif
+                                            value="{{$type}}">{{$type}}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </td>
+                            <td><input name="user_id" type="number" class="form-control" id="user_id" value="{{$cardSet->user_id}}"></td>
+                            <td>
+                                <select name="race_id" size="3" class="form-control" id="race_id">
+                                    @foreach ($races as $race)
+                                        <option
+                                                @if ($cardSet->race_id === $race->id)
+                                                    selected
+                                                @endif
+                                                value="{{$race->id}}">{{$race->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td><input name="shirt" type="file" class="form-control" id="shirt" value="{{ $cardSet->shirt }}"></td>
+                            <td><input name="background" type="file" class="form-control" id="background" value="{{ $cardSet->background }}"></td>
+                            <td><input name="border" type="file" class="form-control" id="border" value="{{ $cardSet->border }}"></td>
+                            <td>
+                                <select name="pay" id="pay">
+                                    <option value="1">Да</option>
+                                    <option selected value="0">Нет</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                            </td>
+                            <td>{{ csrf_field() }}</td>
                         </form>
                         <td>
-                            <form action="{{ route('categoryDelete', ['id'=>$category->id]) }}"
+                            <form action="{{ route('cardSetDelete', ['id'=>$cardSet->id]) }}"
                                   method="post">
                                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{method_field('DELETE')}}
@@ -82,9 +134,9 @@
                                 <button type="submit" class="btn btn-danger">Удалить</button>
                             </form>
                         </td>
-                        <td>{{ $category->deleted_at }}</td>
+                        <td>{{ $cardSet->deleted_at }}</td>
                         <td><a class="btn btn-success"
-                               href="{{ route('categoryRestore',['card_set'=>$category->id]) }}"
+                               href="{{ route('cardSetRestore',['card_set'=>$cardSet->id]) }}"
                                role="button">Восстановить</a>
                         </td>
                     </tr>

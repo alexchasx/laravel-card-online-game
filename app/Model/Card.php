@@ -30,13 +30,16 @@ class Card extends BaseModel
 
     const TABLE_NAME = 'cards';
 
-    const TYPE_MANPOWER = 'manpower';
-    const TYPE_TECHNIQUE = 'technique';
-    const TYPE_TACTIC = 'tactic';
-    const TYPE_ENERGY = 'energy';
-    const TYPE_CYBORG = 'cyborg';
-    const TYPE_BIOMASS = 'biomass';
-    const TYPE_MASSIVE = 'massive';
+    const TYPE_MANPOWER = 'Живая сила';
+    const TYPE_TECHNIQUE = 'Техника';
+    const TYPE_TACTIC = 'Тактика';
+    const TYPE_ENERGY = 'Энергетическое';
+    const TYPE_CYBORG = 'Киборг';
+    const TYPE_BIOMASS = 'Биомасса';
+    const TYPE_MASSIVE = 'Массивное';
+    const TYPE_WEAPONS = 'Оружие';
+    const TYPE_MERCENARY = 'Наемник';
+    const TYPE_SHELTER = 'Укрытие';
 
     const TYPES = [
         self::TYPE_MANPOWER,
@@ -46,17 +49,22 @@ class Card extends BaseModel
         self::TYPE_CYBORG,
         self::TYPE_BIOMASS,
         self::TYPE_MASSIVE,
+        self::TYPE_WEAPONS,
+        self::TYPE_MERCENARY,
+        self::TYPE_SHELTER,
     ];
 
-    const RARITY_NORMAL = 'normal';
-    const RARITY_UNUSUAL = 'unusual';
-    const RARITY_RARE = 'rare';
-    const RARITY_LEGENDARY = 'legendary';
+    const RARITY_NORMAL = 'Обычная';
+    const RARITY_UNUSUAL = 'Необычная';
+    const RARITY_RARE = 'Редкая';
+    const RARITY_MASTERPIECE = 'Шедевральная';
+    const RARITY_LEGENDARY = 'Легендарная';
 
     const RARITIES = [
         self::RARITY_NORMAL,
         self::RARITY_UNUSUAL,
         self::RARITY_RARE,
+        self::RARITY_MASTERPIECE,
         self::RARITY_LEGENDARY,
     ];
 
@@ -64,6 +72,8 @@ class Card extends BaseModel
      * @var string
      */
     protected $table = self::TABLE_NAME;
+
+    public $timestamps = false;
 
     /**
      * Атрибуты, для которых запрещено массовое назначение.

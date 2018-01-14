@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Model\CardSet;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Category;
@@ -10,9 +11,8 @@ use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class AdminCategoryController extends BaseController
+class AdminCardSetController extends BaseController
 {
-    //TODO Не доделаны методы данного класса
     /**
      * @return View
      */
@@ -20,19 +20,14 @@ class AdminCategoryController extends BaseController
     {
         self::checkAdmin();
 
-        $categories = Category::withTrashed()
-            ->orderBy('id', 'desc')
-            ->get();
-
-        //TODO Не сделаны вьюхи
         return view('admin.card_set.index')->with([
-            'categories' => $categories,
+            'cardSets' => $this->showCardSets(),
+            'races' => $this->showRaces(),
+            'types' => CardSet::TYPES,
         ]);
     }
 
     /**
-     * Сохраняет категорию
-     *
      * POST /admin/card_set/store
      *
      * @param Request $request
@@ -43,11 +38,11 @@ class AdminCategoryController extends BaseController
     {
         self::checkAdmin();
 
-        $this->validate($request, [
-            'title' => 'required|max:255',
-        ]);
+//        $this->validate($request, [
+//            'set_name' => 'required|max:255',
+//        ]);
 
-        Category::create($request->all());
+        CardSet::create($request->all());
 
         return redirect()->back();
     }
@@ -65,11 +60,11 @@ class AdminCategoryController extends BaseController
     {
         self::checkAdmin();
 
-        $this->validate($request, [
-            'title' => 'required|max:255',
-        ]);
+//        $this->validate($request, [
+//            'set_name' => 'required|max:255',
+//        ]);
 
-        Category::find($request->id)
+        CardSet::find($request->id)
             ->update($request->all());
 
         return redirect()->back();
@@ -88,7 +83,7 @@ class AdminCategoryController extends BaseController
     {
         self::checkAdmin();
 
-        Category::find($id)->delete();
+        CardSet::find($id)->delete();
 
         return redirect()->back();
     }
@@ -107,7 +102,7 @@ class AdminCategoryController extends BaseController
     {
         self::checkAdmin();
 
-        Category::withTrashed()
+        CardSet::withTrashed()
             ->where('id', $id)
             ->restore();
 

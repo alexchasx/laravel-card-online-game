@@ -11,7 +11,7 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\File' => $baseDir . '/app/Model/File.php',
     'App\\Http\\Controllers\\Admin\\AdminCardController' => $baseDir . '/app/Http/Controllers/Admin/AdminCardController.php',
-    'App\\Http\\Controllers\\Admin\\AdminCategoryController' => $baseDir . '/app/Http/Controllers/Admin/AdminCategoryController.php',
+    'App\\Http\\Controllers\\Admin\\AdminCardSetController' => $baseDir . '/app/Http/Controllers/Admin/AdminCardSetController.php',
     'App\\Http\\Controllers\\Admin\\AdminFileController' => $baseDir . '/app/Http/Controllers/Admin/AdminFileController.php',
     'App\\Http\\Controllers\\Admin\\AdminTagController' => $baseDir . '/app/Http/Controllers/Admin/AdminTagController.php',
     'App\\Http\\Controllers\\Admin\\AdminUserController' => $baseDir . '/app/Http/Controllers/Admin/AdminUserController.php',

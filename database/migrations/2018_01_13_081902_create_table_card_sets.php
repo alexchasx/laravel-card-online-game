@@ -16,6 +16,9 @@ class CreateTableCardSets extends Migration
         Schema::create('card_sets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('set_name');
+            $table->string('type')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('race_id')->nullable();
             $table->string('avatar')->nullable();
             $table->string('shirt')->comment('рубашка')->nullable();
             $table->string('background')->nullable();
