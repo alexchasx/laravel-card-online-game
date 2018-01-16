@@ -30,17 +30,24 @@ Route::get('contact', function() {
 })->name('contact');
 
 // Отправка электронной почты
-Route::post('send.simple.email','MailController@simplePHPEmail')->name('simplePHPEmail');
-Route::post('send.row.email','MailController@rowEmail')->name('rowEmail');
-Route::post('send.basic.email','MailController@basicEmail')->name('basicEmail');
-Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
-Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
+//Route::post('send.simple.email','MailController@simplePHPEmail')->name('simplePHPEmail');
+//Route::post('send.row.email','MailController@rowEmail')->name('rowEmail');
+//Route::post('send.basic.email','MailController@basicEmail')->name('basicEmail');
+//Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
+//Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
 
 // Articles
-Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
+Route::get('/', ['as' => 'index', 'uses' => 'CardController@replaceCard']);
+Route::post('begin.game', 'CardController@replaceCardSubmit')
+    ->name('replaceCardSubmit');
+
+
+//Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
 Route::get('card.{id}', 'SiteController@show')->name('cardShow');
 Route::get('card_set.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
 Route::get('tag.{tagId}', 'SiteController@showByTag')->name('showByTag');
+
+
 
 // ======== AdminPanel =========================
 Route::group(['prefix' => 'admin'], function() {

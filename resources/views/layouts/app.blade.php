@@ -23,6 +23,7 @@
     <!--// css -->
     <!-- font-awesome icons -->
     <link href="{{ asset('GoEasyOn/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
     <!-- //font-awesome icons -->
 </head>
 <body>
@@ -134,21 +135,21 @@
     <!--//end-inner-content-->
 
     <!--copy-right-->
-    <div class="copy">
-        <p class="wow fadeInUp animated animated" data-wow-delay=".5s">
-            <a href="{{ route('contact') }}">© {{ config('app.name') }}</a>, 2017
-            @if (date('Y', time()) > 2017)
-                - {!! date('Y', time()) !!}
-            @endif
-            .
-            Все права защищены.
-        <div> Блог сделан на
-            <a href="https://laravel.com/">
-                <em>Laravel</em>
-            </a>
-        </div>
-        </p>
-    </div>
+    {{--<div class="copy">--}}
+        {{--<p class="wow fadeInUp animated animated" data-wow-delay=".5s">--}}
+            {{--<a href="{{ route('contact') }}">© {{ config('app.name') }}</a>, 2017--}}
+            {{--@if (date('Y', time()) > 2017)--}}
+                {{--- {!! date('Y', time()) !!}--}}
+            {{--@endif--}}
+            {{--.--}}
+            {{--Все права защищены.--}}
+        {{--<div> Блог сделан на--}}
+            {{--<a href="https://laravel.com/">--}}
+                {{--<em>Laravel</em>--}}
+            {{--</a>--}}
+        {{--</div>--}}
+        {{--</p>--}}
+    {{--</div>--}}
     <!--//copy-right-->
     <!--//footer-->
     <a href="#home" id="toTop" class="scroll" style="
@@ -250,6 +251,7 @@
     </script>
     <!-- for bootstrap working -->
     <script src="{{ asset('GoEasyOn/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/card-begin.js') }}"></script>
     <!-- //for bootstrap working -->
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
