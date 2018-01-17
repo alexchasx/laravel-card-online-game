@@ -29,25 +29,25 @@ class AdminCardController extends BaseController
             'cardSets' => $this->showCardSets(),
             'races' => $this->showRaces(),
             'abilities' => $this->showAbilities(),
-            'types' => Card::TYPES,
-            'rarities' => Card::RARITIES,
+            'types' => $this->showCardTypes(),
+            'rarities' => $this->showRarities(),
         ]);
     }
 
-    /**
-     * GET /admin/Card/create
-     *
-     * @return View | HttpException
-     */
-    public function create()
-    {
-        self::checkAdmin();
-
-        return view('admin.Card.create')->with([
-            'cardSet' => $this->showCardSet(),
-            'tags' => $this->showTags(),
-        ]);
-    }
+//    /**
+//     * GET /admin/Card/create
+//     *
+//     * @return View | HttpException
+//     */
+//    public function create()
+//    {
+//        self::checkAdmin();
+//
+//        return view('admin.Card.create')->with([
+//            'cardSet' => $this->showCardSet(),
+//            'tags' => $this->showTags(),
+//        ]);
+//    }
 
     /**
      * Сохраняет статью и выводит форму с сообщением об успешной операции

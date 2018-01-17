@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -13,16 +14,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string    $avatar
  * @property integer   $ability1_id
  * @property integer   $ability2_id
- * @property string    $type
+ * @property integer   $card_type_id
  * @property integer   $energy
  * @property integer   $attack
  * @property integer   $health_points
  * @property integer   $armor
- * @property string    $rarity
+ * @property integer   $rarity_id
  * @property boolean   $pay
  * @property boolean   $hidden
  *
  * @property CardSet[] $cardSet
+ * @property Race[]    $race
+ * @property Ability   $ability1
+ * @property Ability   $ability2
+ * @property Rarity    $rarity
+ * @property CardType  $cardType
  */
 class Card extends BaseModel
 {
@@ -39,7 +45,7 @@ class Card extends BaseModel
     const TYPE_MASSIVE = 'Массивное';
     const TYPE_WEAPONS = 'Оружие';
     const TYPE_MERCENARY = 'Наемник';
-    const TYPE_SHELTER = 'Укрытие';
+    const TYPE_SHELTER = 'Укрепление';
 
     const TYPES = [
         self::TYPE_MANPOWER,
@@ -83,13 +89,43 @@ class Card extends BaseModel
     protected $guarded = [];
 
     /**
-     * Возращает категорию данной статьи.
-     *
      * @return BelongsTo
      */
     public function cardSet()
     {
         return $this->belongsTo(CardSet::class, 'card_sets_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function ability1()
+    {
+        return $this->belongsTo(Ability::class, 'ability1_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function rarity()
+    {
+        return $this->belongsTo(Rarity::class, 'rarity_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function cardType()
+    {
+        return $this->belongsTo(CardType::class, 'card_type_id');
+    }
+
+    /**
+     * @return belongsTo
+     */
+    public function ability2()
+    {
+        return $this->belongsTo(Ability::class, 'ability2_id');
     }
 
     /**

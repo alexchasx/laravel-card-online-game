@@ -3,12 +3,12 @@
 @section('content')
 
     <section>
-        <div class="container">
+        <div class="">
             <div class="admin-panel">
                 <ul>
-                    @if ('adminIndex' !== Route::current()->getName())
+                    {{--@if ('adminIndex' !== Route::current()->getName())--}}
                         <li><a class="link" href="{{route('adminIndex')}}">Все карты</a></li>
-                    @endif
+                    {{--@endif--}}
                     <li><a class="link" href="{{route('cardSetIndex')}}">Все наборы</a></li>
                     {{--<br/>--}}
                     {{--<li><a class="link" href="{{route('commentIndex')}}">Все комментарии</a></li>--}}

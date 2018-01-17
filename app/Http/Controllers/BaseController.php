@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Model\Ability;
 use App\Model\CardSet;
+use App\Model\CardType;
 use App\Model\Race;
+use App\Model\Rarity;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -54,6 +56,28 @@ class BaseController extends Controller
     protected function showAbilities()
     {
         return Ability::query()
+            ->where('hidden', false)
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @return CardType[] | Collection
+     */
+    protected function showCardTypes()
+    {
+        return CardType::query()
+            ->where('hidden', false)
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @return Rarity[] | Collection
+     */
+    protected function showRarities()
+    {
+        return Rarity::query()
             ->where('hidden', false)
             ->orderBy('name')
             ->get();
