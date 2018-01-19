@@ -5,6 +5,7 @@
     <!--/start-inner-content-->
     <!-- blog -->
     <div class="blog">
+        <a href="{{ route('battleGround') }}" style="top: 200px;">Бой</a>
         <!-- container -->
         <div class="wrapper">
             <form action="{{ route('replaceCardSubmit') }}" method="post">

@@ -9,6 +9,11 @@ class CardController extends BaseController
         return view('card.replace_card');
     }
 
+    public function battleGround()
+    {
+        return view('card.battleground');
+    }
+
     public function replaceCardSubmit()
     {
         die('sdsd');

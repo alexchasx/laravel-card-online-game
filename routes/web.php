@@ -40,6 +40,8 @@ Route::get('contact', function() {
 Route::get('/', ['as' => 'index', 'uses' => 'CardController@replaceCard']);
 Route::post('begin.game', 'CardController@replaceCardSubmit')
     ->name('replaceCardSubmit');
+Route::get('battleground', 'CardController@battleGround')
+    ->name('battleGround');
 
 
 //Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
