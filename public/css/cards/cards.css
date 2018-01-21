@@ -1,7 +1,11 @@
 
-body {
+html {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
+    overflow:  hidden;
+    height: 100%;
+}
+body {
     margin: 0;
     background: #4250c7 url(/images/battleground1.jpg) no-repeat;
     -moz-background-size: cover; /* Firefox 3.6+ */
@@ -9,16 +13,10 @@ body {
     -o-background-size: cover; /* Opera 9.6+ */
     background-size: cover; /* Современные браузеры */
     color: #c1e2b3;
+    height: 100%;
 }
-html {
-    overflow:  hidden;
-}
-.btn {
-    background: -moz-linear-gradient(#0b16d6, #5358bf);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b16d6), to(#4c52a7));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
-    color: #c9c9c9;
-    border: 1px solid #666;
+a {
+    text-decoration: none;
 }
 .clearfix {
     clear: both;
@@ -80,7 +78,7 @@ html {
     box-sizing: border-box;
     transition: .4s ease-in-out;
 }
-a {
+.btn2 {
     text-decoration: none;
     text-align: center;
     color: white;
@@ -93,7 +91,7 @@ a {
     border: 2px solid transparent;
     margin: 80px auto 0;
 }
-a:hover {
+.btn2:hover {
     background: #ff8349;
     border: 2px solid #3C4896;
 }
@@ -117,20 +115,20 @@ i.fa {
     font-size: 30px;
     color: #3C4896;
 }
-a:hover em {
+.btn2:hover em {
     top: -100%; /* смещаем вверх */
 }
-a:hover i.fa {
+.btn2:hover i.fa {
     top: 0;
 }
 /* делаем подсказку прозрачной и убираем её со страницы, чтобы она не появлялась при наведении на место, где она должна появиться */
-a:before, a:after{
+.btn2:before, .btn2:after{
     position: absolute;
     opacity: 0;
     visibility: hidden;
 }
 /* стили для всплывающего блока с текстом */
-a:before{
+.btn2:before{
     content: attr(data-tooltip);
     width: 200px;
     height: auto;
@@ -144,7 +142,7 @@ a:before{
     right: 0;
 }
 /* стили для стрелки */
-a:after {
+.btn2:after {
     content: "";
     width: 0;
     height: 0;
@@ -153,16 +151,16 @@ a:after {
     bottom: 70px;
     left: calc(50% - 10px);
 }
-a:hover:before, a:hover:after {
+.btn2:hover:before, .btn2:hover:after {
     opacity: 1;
     visibility: visible;
     transition: .2s ease-in-out .4s; /* сделаем появление подсказки с задержкой */
 }
 /* добавляем эффект движения */
-a:hover:before {
+.btn2:hover:before {
     bottom: 70px;
 }
-a:hover:after {
+.btn2:hover:after {
     bottom: 50px;
 }
 .end_turn {
@@ -205,25 +203,33 @@ a:hover:after {
     border: 2px double black;
 }
 /*@media (min-width: 300px) {*/
-    /*.card_places {*/
-        /*width: 60%;*/
-    /*}*/
+/*.card_places {*/
+/*width: 60%;*/
+/*}*/
 /*}*/
 /*@media (min-width: 768px) {*/
-    /*.card_places {*/
-        /*width: 70%;*/
-    /*}*/
+/*.card_places {*/
+/*width: 70%;*/
+/*}*/
 /*}*/
 /*@media (min-width: 992px) {*/
-    /*.card_places {*/
-        /*width: 80%;*/
-    /*}*/
+/*.card_places {*/
+/*width: 80%;*/
+/*}*/
 /*}*/
 /*@media (min-width: 1200px) {*/
-    /*.card_places {*/
-        /*width: 85%;*/
-    /*}*/
+/*.card_places {*/
+/*width: 85%;*/
 /*}*/
+/*}*/
+
+.my-btn {
+    background: -moz-linear-gradient(#0b16d6, #5358bf);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b16d6), to(#4c52a7));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
+    color: #c9c9c9;
+    border: 1px solid #666;
+}
 
 .box {
     display: inline-block;
@@ -235,31 +241,12 @@ a:hover:after {
 
 /*-----------Карта--------*/
 .card {
+    margin-left: 2px;
+    float: left;
     height: 160px;
     width: 114px;
     border: 2px double black;
     border-radius: 5px;
-    margin-left: 2px;
-    float: left;
-}
-.player_hand {
-    position: relative;
-    bottom: -10px;
-    margin: auto;
-    width: 70%;
-    /*border: 2px double black;*/
-}
-.card-1 {
-    z-index: 5;
-    background: #4250c7 url(/images/card_face/terminator114х114_2.jpg) no-repeat;
-}
-.card-2 {
-    z-index: 6;
-    background: #4250c7 url(/images/card_face/terminator114х114_2.jpg) no-repeat;
-}
-.card-3 {
-    z-index: 7;
-    background: #4250c7 url(/images/card_face/terminator114х114_2.jpg) no-repeat;
 }
 .attack, .energy, .armor, .health_points {
     text-align: center;
@@ -280,14 +267,36 @@ a:hover:after {
     top: 100px;
 }
 .card_name, .ability {
+    border-radius: 2px;
     width: 100%;
     text-align: center;
     margin: auto;
 }
 .ability {
+    border-radius: 2px;
     position: relative;
-    top: 108px;
+    top: 105px;
     height: 32px;
+}
+
+.player_hand {
+    position: relative;
+    bottom: -10px;
+    margin: auto;
+    width: 70%;
+    /*border: 2px double black;*/
+}
+.card-1 {
+    z-index: 5;
+    background: #4250c7 url(/images/card_face/opustoshiteli.jpg) no-repeat;
+}
+.card-2 {
+    z-index: 6;
+    background: #4250c7 url(/images/card_face/predator.jpg) no-repeat;
+}
+.card-3 {
+    z-index: 7;
+    background: #4250c7 url(/images/card_face/shturm.jpg) no-repeat;
 }
 /*-----------Карта-END--------*/
 .card_place {

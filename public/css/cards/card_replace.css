@@ -1,0 +1,51 @@
+
+.places {
+    border: none;
+}
+.card-begin input {
+    height: 90%;
+    width: 100%;
+}
+
+.card-begin {
+    margin: 10px;
+    height: 160px;
+    width: 114px;
+    border: 4px double black;
+    float: left;
+}
+
+.card-close {
+    opacity: 0.3;
+}
+
+.card-begin-submit {
+    top: 300px;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    transform: translate(-50%);
+    height: 50px;
+    width: 120px;
+}
+
+/*------------------*/
+.card {
+    margin-left: 20px;
+}
+.energy {
+    top: 40px;
+}
+.health_points {
+    top: 60px;
+}
+.armor {
+    top: 80px;
+}
+.attack {
+    top: 100px;
+}
+/*------------------*/

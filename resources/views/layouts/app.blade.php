@@ -23,7 +23,8 @@
     <!--// css -->
     <!-- font-awesome icons -->
     <link href="{{ asset('GoEasyOn/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/cards.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/card_replace.css') }}" rel="stylesheet">
     <!-- //font-awesome icons -->
 </head>
 <body>
@@ -152,12 +153,12 @@
     {{--</div>--}}
     <!--//copy-right-->
     <!--//footer-->
-    <a href="#home" id="toTop" class="scroll" style="
-    display: block;
-    filter: alpha(Opacity=50);
-    opacity: 0.5;
-"> <span id="toTopHover"
-                                                                             style="opacity: 1;"> </span></a>
+    {{--<a href="#home" id="toTop" class="scroll" style="--}}
+    {{--display: block;--}}
+    {{--filter: alpha(Opacity=50);--}}
+    {{--opacity: 0.5;--}}
+{{--"> <span id="toTopHover"--}}
+                                                                             {{--style="opacity: 1;"> </span></a>--}}
     <!--/script-->
     <script src="{{ asset('GoEasyOn/js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('GoEasyOn/js/modernizr.custom.js') }}"></script>
@@ -250,8 +251,9 @@
         });
     </script>
     <!-- for bootstrap working -->
-    <script src="{{ asset('GoEasyOn/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/card-begin.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('GoEasyOn/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/cards/cards.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/cards/card-begin.js') }}"></script>
     <!-- //for bootstrap working -->
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>

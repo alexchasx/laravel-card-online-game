@@ -12,8 +12,8 @@
             <div class="enemy-deck card-deck">enemy-deck</div>
             <div class="player-deck card-deck">player-deck</div>
 
-            <button class="btn enemy_end end_turn">Ход соперника</button>
-            {{--<div class="btn player_end end_turn yellow" title="Софийский собор">Закончить ход</div>--}}
+            <button class="my-btn enemy_end end_turn">Ход соперника</button>
+            {{--<div class="my-btn player_end end_turn yellow" title="Софийский собор">Закончить ход</div>--}}
             <a href="" data-tooltip="Кнопка подсвечивается желтым, если остались незаконченные действия"
                class="player_end end_turn yellow">
               <span>
@@ -49,14 +49,14 @@
                 <div class="player_hand">
                     @foreach ([1, 2, 3] as $number)
                         <div class="card card-{{ $number }}">
-                            <div class="btn attack">5</div>
-                            <div class="btn health_points">4</div>
-                            <div class="btn armor">3</div>
-                            <div class="btn energy">2</div>
-                            <button class="btn card_name" title="Софийский собор">
+                            <div class="my-btn attack">5</div>
+                            <div class="my-btn health_points">4</div>
+                            <div class="my-btn armor">3</div>
+                            <div class="my-btn energy">2</div>
+                            <button class="my-btn card_name" title="Софийский собор">
                                 Наименование
                             </button>
-                            <button class="btn ability">
+                            <button class="my-btn ability">
                                 Маскировка
                             </button>
                         </div>

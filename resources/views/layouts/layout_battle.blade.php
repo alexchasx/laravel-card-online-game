@@ -23,12 +23,16 @@
     <!--// css -->
     <!-- font-awesome icons -->
     <link href="{{ asset('GoEasyOn/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card_battle.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/cards.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/card_replace.css') }}" rel="stylesheet">
     <!-- //font-awesome icons -->
 </head>
 <body>
 
 @yield('content')
 
+<script src="{{ asset('GoEasyOn/js/jquery-2.1.4.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/cards/cards.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/cards/card-begin.js') }}"></script>
 </body>
 </html>

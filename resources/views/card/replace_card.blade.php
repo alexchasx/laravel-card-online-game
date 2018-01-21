@@ -1,41 +1,55 @@
-@extends('layouts.app')
+@extends('layouts.layout_battle')
 
 @section('content')
 
     <!--/start-inner-content-->
-    <!-- blog -->
-    <div class="blog">
-        <a href="{{ route('battleGround') }}" style="top: 200px;">Бой</a>
         <!-- container -->
         <div class="wrapper">
-            <form action="{{ route('replaceCardSubmit') }}" method="post">
-                <div class="box text-center">
-                    <label for="card-begin1">
-                        <div class="card-begin" id="card-begin1">
-                            <input id="card-begin1" type="checkbox" name="card-begin1">
-                        </div>
-                    </label>
-                    <div class="card-begin" id="card-begin2">
-                        <input type="checkbox" name="card-begin2">
+            <a href="{{ url('/') }}">
+                <button class="btn2" style="top: -100px;z-index: 900;">
+                    Главная
+                </button>
+            </a>
+            <a href="{{ route('battleGround') }}">
+                <button class="btn2" style="top: 350px;z-index: 900;">
+                    Бой
+                </button>
+            </a>
+            <div class="places card_places">
+                <form action="{{ route('replaceCardSubmit') }}" method="post">
+                    <div class="box text-center">
+                        @foreach ([1,2,3,4,5] as $number)
+                            <label for="card-begin{{ $number }}">
+                                {{--<div class="card-begin" id="card-begin1" data-id="1">--}}
+                                {{--<input id="card-begin1" type="checkbox" name="card-begin1">--}}
+                                {{--</div>--}}
+                                <div class="card" data-id="{{ $number }}" id="card-begin{{ $number }}">
+                                    <div class="my-btn energy">1</div>
+                                    <div class="my-btn health_points">2</div>
+                                    <div class="my-btn armor">3</div>
+                                    <div class="my-btn attack">4</div>
+                                    <div class="my-btn card_name"
+                                            title="Софийский собор">
+                                        Наименование
+                                    </div>
+                                    <div class="my-btn ability">
+                                        Маскировка
+                                    </div>
+                                </div>
+                            </label>
+                        @endforeach
                     </div>
-                    <div class="card-begin" id="card-begin3">
-                        <input type="checkbox" name="card-begin3">
-                    </div>
-                    <div class="card-begin" id="card-begin4">
-                        <input type="checkbox" name="card-begin4">
-                    </div>
-                </div>
 
-                <button type="submit" class="btn btn-primary btn-lg card-begin-submit">Принять</button>
-                {{ csrf_field() }}
-            </form>
+                    <button type="submit" data-tooltip="Вперед, и с песней!"
+                            class="btn2">Принять</button>
+                    {{ csrf_field() }}
+                </form>
+            </div>
 
             <div class="clearfix"></div>
 
         </div>
         <!-- //container -->
-    </div>
-    <!-- //blog -->
     <!--//end-inner-content-->
 
 @endsection

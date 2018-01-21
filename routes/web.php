@@ -36,8 +36,10 @@ Route::get('contact', function() {
 //Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
 //Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
 
-// Articles
-Route::get('/', ['as' => 'index', 'uses' => 'CardController@replaceCard']);
+Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
+
+Route::get('replace_card', 'CardController@replaceCard')
+    ->name('replaceCard');
 Route::post('begin.game', 'CardController@replaceCardSubmit')
     ->name('replaceCardSubmit');
 Route::get('battleground', 'CardController@battleGround')
