@@ -12,11 +12,20 @@
             <div class="enemy-deck card-deck">enemy-deck</div>
             <div class="player-deck card-deck">player-deck</div>
 
+            <button class="btn enemy_end end_turn">Ход соперника</button>
+            {{--<div class="btn player_end end_turn yellow" title="Софийский собор">Закончить ход</div>--}}
+            <a href="" data-tooltip="Кнопка подсвечивается желтым, если остались незаконченные действия"
+               class="player_end end_turn yellow">
+              <span>
+                <em>Закончить ход</em><i class="fa fa-hourglass-start"></i>
+              </span>
+            </a>
+
             <div class="places card_places">
                 <div class="box enemy_hand">
                     <div class="place player">
                         @foreach ([1,2,3,4,5,6,7] as $number)
-                            <div class="card_place place_{{ $number }}"></div>
+                            <div class="card_place place_enemy place_{{ $number }}"></div>
                         @endforeach
                         <div class="clearfix"></div>
                     </div>
@@ -24,7 +33,7 @@
                 <div class="box enemy_place">
                     <div class="place player">
                         @foreach ([1,2,3,4,5,6,7] as $number)
-                            <div class="card_place place_{{ $number }}"></div>
+                            <div class="card_place place_enemy place_{{ $number }}"></div>
                         @endforeach
                         <div class="clearfix"></div>
                     </div>
@@ -44,7 +53,7 @@
                             <div class="btn health_points">4</div>
                             <div class="btn armor">3</div>
                             <div class="btn energy">2</div>
-                            <button class="btn card_name">
+                            <button class="btn card_name" title="Софийский собор">
                                 Наименование
                             </button>
                             <button class="btn ability">

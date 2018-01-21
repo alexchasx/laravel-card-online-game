@@ -1,5 +1,7 @@
 
 body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
     margin: 0;
     background: #4250c7 url(/images/battleground1.jpg) no-repeat;
     -moz-background-size: cover; /* Firefox 3.6+ */
@@ -10,6 +12,13 @@ body {
 }
 html {
     overflow:  hidden;
+}
+.btn {
+    background: -moz-linear-gradient(#0b16d6, #5358bf);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b16d6), to(#4c52a7));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
+    color: #c9c9c9;
+    border: 1px solid #666;
 }
 .clearfix {
     clear: both;
@@ -65,6 +74,127 @@ html {
 }
 /*-----------Колода-END--------*/
 
+/*-----------Кнопка конца хода--------*/
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    transition: .4s ease-in-out;
+}
+a {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    position: relative;
+    background: #3C4896;
+    display: block;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    margin: 80px auto 0;
+}
+a:hover {
+    background: #ff8349;
+    border: 2px solid #3C4896;
+}
+/* скроем иконку загрузки до наведения на кнопку и текст "Скачать" после наведения на кнопку */
+span {
+    overflow: hidden;
+}
+span, em, i.fa {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 46px; /* за вычетом границ кнопки */
+}
+em {
+    top: 0;
+    font-style: normal;
+}
+i.fa {
+    top: 100%; /* смещаем вниз */
+    font-size: 30px;
+    color: #3C4896;
+}
+a:hover em {
+    top: -100%; /* смещаем вверх */
+}
+a:hover i.fa {
+    top: 0;
+}
+/* делаем подсказку прозрачной и убираем её со страницы, чтобы она не появлялась при наведении на место, где она должна появиться */
+a:before, a:after{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+/* стили для всплывающего блока с текстом */
+a:before{
+    content: attr(data-tooltip);
+    width: 200px;
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 20px;
+    background: #3C4896;
+    border-radius: 5px;
+    bottom: 70px;
+    /*left: calc(50% - 100px);*/
+    right: 0;
+}
+/* стили для стрелки */
+a:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #3C4896;
+    bottom: 70px;
+    left: calc(50% - 10px);
+}
+a:hover:before, a:hover:after {
+    opacity: 1;
+    visibility: visible;
+    transition: .2s ease-in-out .4s; /* сделаем появление подсказки с задержкой */
+}
+/* добавляем эффект движения */
+a:hover:before {
+    bottom: 70px;
+}
+a:hover:after {
+    bottom: 50px;
+}
+.end_turn {
+    z-index: 999;
+    position: absolute;
+    right: 0;
+    width: 140px;
+    height: 50px;
+    font-size: medium;
+    border: 2px double black;
+    border-radius: 5px;
+}
+.enemy_end {
+    top: 150px;
+    /*background: -moz-linear-gradient(#28252d, #7b7c7f);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#28252d), to(#7b7c7f));*/
+    background: -moz-linear-gradient(#8a0022, #b82e45);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#8a0022), to(#b82e45));
+}
+.player_end {
+    bottom: 150px;
+}
+.grin {
+    background: -moz-linear-gradient(#0b4b25, #06ab3e);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b4b25), to(#06ab3e));
+}
+.yellow {
+    background: -moz-linear-gradient(#0b4b25, #06ab3e);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#634c29), to(#e4a804));
+}
+/*-----------Кнопка конца хода-END--------*/
+
 .places {
     text-align: center;
     position: relative;
@@ -100,7 +230,7 @@ html {
     text-align: center;
     height: 160px;
     margin-top: 10px;
-    border: 1px double #fc1757;
+    /*border: 1px double #fc1757;*/
 }
 
 /*-----------Карта--------*/
@@ -114,10 +244,10 @@ html {
 }
 .player_hand {
     position: relative;
-    bottom: 0;
+    bottom: -10px;
     margin: auto;
     width: 70%;
-    border: 2px double black;
+    /*border: 2px double black;*/
 }
 .card-1 {
     z-index: 5;
@@ -149,14 +279,6 @@ html {
 .attack {
     top: 100px;
 }
-
-.btn {
-    background: -moz-linear-gradient(#0b16d6, #5358bf);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b16d6), to(#4c52a7));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
-    color: #c9c9c9;
-    border: 1px solid #666;
-}
 .card_name, .ability {
     width: 100%;
     text-align: center;
@@ -176,5 +298,9 @@ html {
     border: 1px dashed #a8a8a8;
     border-radius: 5px;
     /*background: transparent url(/images/card_place/place1.jpg) no-repeat;*/
+}
+
+.place_enemy {
+    border: 0;
 }
 
