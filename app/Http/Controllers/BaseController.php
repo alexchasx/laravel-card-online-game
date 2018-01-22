@@ -41,50 +41,6 @@ class BaseController extends Controller
     }
 
     /**
-     * @return Race[] | Collection
-     */
-    protected function showRaces()
-    {
-        return Race::query()
-            ->where('hidden', false)
-            ->orderBy('name')
-            ->get();
-    }
-
-    /**
-     * @return Ability[] | Collection
-     */
-    protected function showAbilities()
-    {
-        return Ability::query()
-            ->where('hidden', false)
-            ->orderBy('name')
-            ->get();
-    }
-
-    /**
-     * @return CardType[] | Collection
-     */
-    protected function showCardTypes()
-    {
-        return CardType::query()
-            ->where('hidden', false)
-            ->orderBy('name')
-            ->get();
-    }
-
-    /**
-     * @return Rarity[] | Collection
-     */
-    protected function showRarities()
-    {
-        return Rarity::query()
-            ->where('hidden', false)
-            ->orderBy('name')
-            ->get();
-    }
-
-    /**
      * @param string $modelName
      *
      * @return Collection | Model[]

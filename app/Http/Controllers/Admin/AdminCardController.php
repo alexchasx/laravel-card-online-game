@@ -7,6 +7,7 @@ use App\Model\Card;
 use App\Model\CardType;
 use App\Model\Race;
 use App\Model\Rarity;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -65,13 +66,16 @@ class AdminCardController extends BaseController
 //            'content' => 'required',
 //        ]);
 
+        $originalName =  $request->file('avatar')->getClientOriginalName();
+
         $path = $request->file('avatar')
-            ->store('upload');
+            ->storeAs('upload', $originalName);
 
-        $request->all()['avatar'] = $path;
+        $card = Card::query()
+            ->create(array_except($request->all(), ['avatar']));
 
-        Card::query()
-            ->create($request->all());
+        $card->avatar = '/storage/app/' . $path;
+        $card->save();
 
         return redirect()->back();
     }
