@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Ability;
 use App\Model\Card;
+use App\Model\CardType;
+use App\Model\Race;
+use App\Model\Rarity;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -21,22 +25,20 @@ class AdminCardController extends BaseController
         self::checkAdmin();
 
         $cards = Card::withTrashed()
-            ->orderBy('card_name', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('admin.index')->with([
             'cards' => $cards,
             'cardSets' => $this->showCardSets(),
-            'races' => $this->showRaces(),
-            'abilities' => $this->showAbilities(),
-            'types' => $this->showCardTypes(),
-            'rarities' => $this->showRarities(),
+            'races' => $this->showModels(Race::class),
+            'abilities' => $this->showModels(Ability::class),
+            'types' => $this->showModels(CardType::class),
+            'rarities' => $this->showModels(Rarity::class),
         ]);
     }
 
 //    /**
-//     * GET /admin/Card/create
-//     *
 //     * @return View | HttpException
 //     */
 //    public function create()
@@ -44,16 +46,12 @@ class AdminCardController extends BaseController
 //        self::checkAdmin();
 //
 //        return view('admin.Card.create')->with([
-//            'cardSet' => $this->showCardSet(),
+//            'cardSet' => $this->showCardSets(),
 //            'tags' => $this->showTags(),
 //        ]);
 //    }
 
     /**
-     * Сохраняет статью и выводит форму с сообщением об успешной операции
-     *
-     * POST /admin/Card/store
-     *
      * @param Request $request
      *
      * @return $this | HttpException
@@ -67,6 +65,11 @@ class AdminCardController extends BaseController
 //            'content' => 'required',
 //        ]);
 
+        $path = $request->file('avatar')
+            ->store('upload');
+
+        $request->all()['avatar'] = $path;
+
         Card::query()
             ->create($request->all());
 
@@ -74,10 +77,6 @@ class AdminCardController extends BaseController
     }
 
     /**
-     * Выводит форму для редактирования статьи
-     *
-     * GET /admin/Card/update.{id}
-     *
      * @var int $id
      *
      * @return View | HttpException
@@ -92,8 +91,7 @@ class AdminCardController extends BaseController
 
         return view('admin.Card.update')->with([
             'Card' => $Card,
-            'cardSet' => $this->showCardSet(),
-            'tags' => $this->showTags(),
+            'cardSet' => $this->showCardSets(),
         ]);
     }
 
@@ -122,10 +120,6 @@ class AdminCardController extends BaseController
     }
 
     /**
-     * Удаляет статью
-     *
-     * DELETE /admin/Card/delete/{id}
-     *
      * @param $id
      *
      * @return RedirectResponse | HttpException
@@ -134,37 +128,13 @@ class AdminCardController extends BaseController
     {
         self::checkAdmin();
 
-        Card::find($id)->delete();
+        Card::query()
+            ->find($id)->delete();
 
         return redirect()->back();
     }
 
     /**
-     * Удаляет тег статьи
-     *
-     * DELETE /admin/Card/delete/{Card_id}/{tag_id}
-     *
-     * @param $Card
-     * @param $tag
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function deleteTag($Card, $tag)
-    {
-        self::checkAdmin();
-
-        CardTag::where('Card_id', $Card)
-            ->where('tag_id', $tag)
-            ->delete();
-
-        return redirect()->back();
-    }
-
-    /**
-     * Восстанавливает пользователя
-     *
-     * GET /admin/Card/restore/{id}
-     *
      * @param $id
      *
      * @return RedirectResponse | HttpException

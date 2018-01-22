@@ -8,7 +8,7 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td style="min-width: 70px;">Аватар</td>
+            <td style="min-width: 140px;">Аватар</td>
             <td style="min-width: 100px;">Наименование</td>
             <td>Видна?</td>
             <td style="min-width: 50px;">Стоим.</td>
@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr>
-                <form action="{{ route('cardStore') }}" method="post" role="form">
+                <form action="{{ route('cardStore') }}" method="post" role="form" enctype="multipart/form-data">
                     <td></td>
                     <td><input name="avatar" type="file" class="form-control" id="avatar" value="{{ old('avatar') }}"></td>
                     <td><input name="card_name" type="text" class="form-control" id="card_name" value="{{ old('card_name') }}" required></td>
@@ -106,7 +106,7 @@
                 style="background-color: #9B859D;"
                     @endif>
                 <td>{{ $card->id }}</td>
-                <td></td>
+                <td>{{ $card->avatar }}</td>
                 <td>{{ $card->card_name }}</td>
                 <td>
                     @if ($card->hidden)

@@ -8,6 +8,7 @@ use App\Model\CardType;
 use App\Model\Race;
 use App\Model\Rarity;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BaseController extends Controller
@@ -78,6 +79,19 @@ class BaseController extends Controller
     protected function showRarities()
     {
         return Rarity::query()
+            ->where('hidden', false)
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @param string $modelName
+     *
+     * @return Collection | Model[]
+     */
+    protected function showModels($modelName)
+    {
+        return $modelName::query()
             ->where('hidden', false)
             ->orderBy('name')
             ->get();
