@@ -105,6 +105,14 @@ class Card extends BaseModel
     }
 
     /**
+     * @return belongsTo
+     */
+    public function ability2()
+    {
+        return $this->belongsTo(Ability::class, 'ability2_id');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function rarity()
@@ -118,14 +126,6 @@ class Card extends BaseModel
     public function cardType()
     {
         return $this->belongsTo(CardType::class, 'card_type_id');
-    }
-
-    /**
-     * @return belongsTo
-     */
-    public function ability2()
-    {
-        return $this->belongsTo(Ability::class, 'ability2_id');
     }
 
     /**
