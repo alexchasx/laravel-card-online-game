@@ -35,7 +35,7 @@ use Webmozart\Assert\Assert;
  * > and the namespace aliases that apply to this DocBlock. These are used by the Factory to resolve and expand partial
  * > type names and FQSENs.
  *
- * If you do not want to use the DescriptionFactory you can pass a body template and tag listing like this:
+ * If you do not want to use the DescriptionFactory you can pass a body template and ability listing like this:
  *
  *     $description = new Description(
  *         'This is a %1$s',

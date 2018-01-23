@@ -702,7 +702,7 @@ class MimeType
         'html' => 'text/html',
         'n3' => 'text/n3',
         'txt' => 'text/plain',
-        'dsc' => 'text/prs.lines.tag',
+        'dsc' => 'text/prs.lines.ability',
         'rtx' => 'text/richtext',
         'rtf' => 'text/rtf',
         'sgml' => 'text/sgml',

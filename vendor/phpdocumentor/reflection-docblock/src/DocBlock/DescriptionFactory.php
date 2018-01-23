@@ -23,13 +23,13 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
  *
  * In addition to the above does a Description support two types of escape sequences:
  *
- * 1. `{@}` to escape the `@` character to prevent it from being interpreted as part of a tag, i.e. `{{@}link}`
+ * 1. `{@}` to escape the `@` character to prevent it from being interpreted as part of a ability, i.e. `{{@}link}`
  * 2. `{}` to escape the `}` character, this can be used if you want to use the `}` character in the description
- *    of an inline tag.
+ *    of an inline ability.
  *
  * If a body consists of multiple lines then this factory will also remove any superfluous whitespace at the beginning
  * of each line while maintaining any indentation that is used. This will prevent formatting parsers from tripping
- * over unexpected spaces as can be observed with tag descriptions.
+ * over unexpected spaces as can be observed with ability descriptions.
  */
 class DescriptionFactory
 {
@@ -72,31 +72,31 @@ class DescriptionFactory
     {
         $contents = $this->removeSuperfluousStartingWhitespace($contents);
 
-        // performance optimalization; if there is no inline tag, don't bother splitting it up.
+        // performance optimalization; if there is no inline ability, don't bother splitting it up.
         if (strpos($contents, '{@') === false) {
             return [$contents];
         }
 
         return preg_split(
             '/\{
-                # "{@}" is not a valid inline tag. This ensures that we do not treat it as one, but treat it literally.
+                # "{@}" is not a valid inline ability. This ensures that we do not treat it as one, but treat it literally.
                 (?!@\})
-                # We want to capture the whole tag line, but without the inline tag delimiters.
+                # We want to capture the whole ability line, but without the inline ability delimiters.
                 (\@
                     # Match everything up to the next delimiter.
                     [^{}]*
-                    # Nested inline tag content should not be captured, or it will appear in the result separately.
+                    # Nested inline ability content should not be captured, or it will appear in the result separately.
                     (?:
                         # Match nested inline tags.
                         (?:
-                            # Because we did not catch the tag delimiters earlier, we must be explicit with them here.
+                            # Because we did not catch the ability delimiters earlier, we must be explicit with them here.
                             # Notice that this also matches "{}", as a way to later introduce it as an escape sequence.
                             \{(?1)?\}
                             |
                             # Make sure we match hanging "{".
                             \{
                         )
-                        # Match content after the nested inline tag.
+                        # Match content after the nested inline ability.
                         [^{}]*
                     )* # If there are more inline tags, match them as well. We use "*" since there may not be any
                        # nested inline tags.

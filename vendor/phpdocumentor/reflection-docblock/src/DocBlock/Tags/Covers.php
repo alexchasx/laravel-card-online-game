@@ -30,7 +30,7 @@ final class Covers extends BaseTag implements Factory\StaticMethod
     private $refers = null;
 
     /**
-     * Initializes this tag.
+     * Initializes this ability.
      *
      * @param Fqsen $refers
      * @param Description $description
@@ -63,7 +63,7 @@ final class Covers extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns the structural element this tag refers to.
+     * Returns the structural element this ability refers to.
      *
      * @return Fqsen
      */
@@ -73,7 +73,7 @@ final class Covers extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation of this tag.
+     * Returns a string representation of this ability.
      *
      * @return string
      */

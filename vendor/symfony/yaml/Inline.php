@@ -647,18 +647,18 @@ class Inline
             case '!' === $scalar[0]:
                 switch (true) {
                     case 0 === strpos($scalar, '!str'):
-                        @trigger_error(self::getDeprecationMessage('Support for the !str tag is deprecated since Symfony 3.4. Use the !!str tag instead.'), E_USER_DEPRECATED);
+                        @trigger_error(self::getDeprecationMessage('Support for the !str ability is deprecated since Symfony 3.4. Use the !!str ability instead.'), E_USER_DEPRECATED);
 
                         return (string) substr($scalar, 5);
                     case 0 === strpos($scalar, '!!str '):
                         return (string) substr($scalar, 6);
                     case 0 === strpos($scalar, '! '):
-                        @trigger_error(self::getDeprecationMessage('Using the non-specific tag "!" is deprecated since Symfony 3.4 as its behavior will change in 4.0. It will force non-evaluating your values in 4.0. Use plain integers or !!float instead.'), E_USER_DEPRECATED);
+                        @trigger_error(self::getDeprecationMessage('Using the non-specific ability "!" is deprecated since Symfony 3.4 as its behavior will change in 4.0. It will force non-evaluating your values in 4.0. Use plain integers or !!float instead.'), E_USER_DEPRECATED);
 
                         return (int) self::parseScalar(substr($scalar, 2), $flags);
                     case 0 === strpos($scalar, '!php/object:'):
                         if (self::$objectSupport) {
-                            @trigger_error(self::getDeprecationMessage('The !php/object: tag to indicate dumped PHP objects is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/object (without the colon) tag instead.'), E_USER_DEPRECATED);
+                            @trigger_error(self::getDeprecationMessage('The !php/object: ability to indicate dumped PHP objects is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/object (without the colon) ability instead.'), E_USER_DEPRECATED);
 
                             return unserialize(substr($scalar, 12));
                         }
@@ -670,7 +670,7 @@ class Inline
                         return;
                     case 0 === strpos($scalar, '!!php/object:'):
                         if (self::$objectSupport) {
-                            @trigger_error(self::getDeprecationMessage('The !!php/object: tag to indicate dumped PHP objects is deprecated since Symfony 3.1 and will be removed in 4.0. Use the !php/object (without the colon) tag instead.'), E_USER_DEPRECATED);
+                            @trigger_error(self::getDeprecationMessage('The !!php/object: ability to indicate dumped PHP objects is deprecated since Symfony 3.1 and will be removed in 4.0. Use the !php/object (without the colon) ability instead.'), E_USER_DEPRECATED);
 
                             return unserialize(substr($scalar, 13));
                         }
@@ -692,7 +692,7 @@ class Inline
                         return;
                     case 0 === strpos($scalar, '!php/const:'):
                         if (self::$constantSupport) {
-                            @trigger_error(self::getDeprecationMessage('The !php/const: tag to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) tag instead.'), E_USER_DEPRECATED);
+                            @trigger_error(self::getDeprecationMessage('The !php/const: ability to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) ability instead.'), E_USER_DEPRECATED);
 
                             if (defined($const = substr($scalar, 11))) {
                                 return constant($const);
@@ -807,7 +807,7 @@ class Inline
 
         // Built-in tags
         if ($tag && '!' === $tag[0]) {
-            throw new ParseException(sprintf('The built-in tag "!%s" is not implemented.', $tag), self::$parsedLineNumber + 1, $value, self::$parsedFilename);
+            throw new ParseException(sprintf('The built-in ability "!%s" is not implemented.', $tag), self::$parsedLineNumber + 1, $value, self::$parsedFilename);
         }
 
         if (Yaml::PARSE_CUSTOM_TAGS & $flags) {

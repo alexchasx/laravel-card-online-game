@@ -16,20 +16,20 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 
 /**
- * Parses a tag definition for a DocBlock.
+ * Parses a ability definition for a DocBlock.
  */
 abstract class BaseTag implements DocBlock\Tag
 {
-    /** @var string Name of the tag */
+    /** @var string Name of the ability */
     protected $name = '';
 
-    /** @var Description|null Description of the tag. */
+    /** @var Description|null Description of the ability. */
     protected $description;
 
     /**
-     * Gets the name of this tag.
+     * Gets the name of this ability.
      *
-     * @return string The name of this tag.
+     * @return string The name of this ability.
      */
     public function getName()
     {

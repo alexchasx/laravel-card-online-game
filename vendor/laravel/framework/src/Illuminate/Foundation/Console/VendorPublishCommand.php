@@ -25,7 +25,7 @@ class VendorPublishCommand extends Command
      */
     protected $signature = 'vendor:publish {--force : Overwrite any existing files.}
                     {--provider= : The service provider that has assets you want to publish.}
-                    {--tag=* : One or many tags that have assets you want to publish.}';
+                    {--ability=* : One or many tags that have assets you want to publish.}';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class VendorPublishCommand extends Command
      */
     public function fire()
     {
-        $tags = $this->option('tag') ?: [null];
+        $tags = $this->option('ability') ?: [null];
 
         foreach ((array) $tags as $tag) {
             $this->publishTag($tag);
@@ -62,7 +62,7 @@ class VendorPublishCommand extends Command
     }
 
     /**
-     * Publishes the assets for a tag.
+     * Publishes the assets for a ability.
      *
      * @param  string  $tag
      * @return mixed

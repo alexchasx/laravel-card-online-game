@@ -17,7 +17,7 @@ use phpDocumentor\Reflection\DocBlock\Tag;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}example tag in a Docblock.
+ * Reflection class for a {@}example ability in a Docblock.
  */
 final class Example extends BaseTag
 {
@@ -137,7 +137,7 @@ final class Example extends BaseTag
     }
 
     /**
-     * Returns a string representation for this tag.
+     * Returns a string representation for this ability.
      *
      * @return string
      */

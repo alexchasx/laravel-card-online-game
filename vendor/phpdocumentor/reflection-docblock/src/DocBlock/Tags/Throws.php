@@ -20,7 +20,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}throws tag in a Docblock.
+ * Reflection class for a {@}throws ability in a Docblock.
  */
 final class Throws extends BaseTag implements Factory\StaticMethod
 {

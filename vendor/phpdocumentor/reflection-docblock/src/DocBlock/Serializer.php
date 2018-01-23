@@ -32,7 +32,7 @@ class Serializer
     /** @var int|null The max length of a line. */
     protected $lineLength = null;
 
-    /** @var DocBlock\Tags\Formatter A custom tag formatter. */
+    /** @var DocBlock\Tags\Formatter A custom ability formatter. */
     protected $tagFormatter = null;
 
     /**
@@ -42,7 +42,7 @@ class Serializer
      * @param string   $indentString    The string to indent the comment with.
      * @param bool     $indentFirstLine Whether to indent the first line.
      * @param int|null $lineLength The max length of a line or NULL to disable line wrapping.
-     * @param DocBlock\Tags\Formatter $tagFormatter A custom tag formatter, defaults to PassthroughFormatter.
+     * @param DocBlock\Tags\Formatter $tagFormatter A custom ability formatter, defaults to PassthroughFormatter.
      */
     public function __construct($indent = 0, $indentString = ' ', $indentFirstLine = true, $lineLength = null, $tagFormatter = null)
     {

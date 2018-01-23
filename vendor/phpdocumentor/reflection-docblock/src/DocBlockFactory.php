@@ -158,7 +158,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
          *   newline OR two consecutive newlines (horizontal whitespace is taken into account to consider spacing
          *   errors). This is optional.
          * - The long description, any character until a new line is encountered followed by an @ and word
-         *   characters (a tag). This is optional.
+         *   characters (a ability). This is optional.
          * - Tags; the remaining characters
          *
          * Big thanks to RichardJ for contributing this Regular Expression
@@ -212,7 +212,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
     }
 
     /**
-     * Creates the tag objects.
+     * Creates the ability objects.
      *
      * @param string $tags Tag block to parse.
      * @param Types\Context $context Context of the parsed Tag
@@ -268,7 +268,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
             // @codeCoverageIgnoreStart
             // Can't simulate this; this only happens if there is an error with the parsing of the DocBlock that
             // we didn't foresee.
-            throw new \LogicException('A tag block started with text instead of an at-sign(@): ' . $tags);
+            throw new \LogicException('A ability block started with text instead of an at-sign(@): ' . $tags);
             // @codeCoverageIgnoreEnd
         }
 

@@ -177,7 +177,7 @@ final class Method extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Checks whether the method tag describes a static method or not.
+     * Checks whether the method ability describes a static method or not.
      *
      * @return bool TRUE if the method declaration is for a static method, FALSE otherwise.
      */

@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}source tag in a Docblock.
+ * Reflection class for a {@}source ability in a Docblock.
  */
 final class Source extends BaseTag implements Factory\StaticMethod
 {

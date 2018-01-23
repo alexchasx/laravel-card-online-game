@@ -62,7 +62,7 @@ class HtmlFormatter extends NormalizerFormatter
     }
 
     /**
-     * Create a HTML h1 tag
+     * Create a HTML h1 ability
      *
      * @param  string $title Text to be in the h1
      * @param  int    $level Error level

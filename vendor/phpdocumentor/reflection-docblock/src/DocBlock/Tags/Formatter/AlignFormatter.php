@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 
 class AlignFormatter implements Formatter
 {
-    /** @var int The maximum tag name length. */
+    /** @var int The maximum ability name length. */
     protected $maxLen = 0;
 
     /**
@@ -34,7 +34,7 @@ class AlignFormatter implements Formatter
     }
 
     /**
-     * Formats the given tag to return a simple plain text version.
+     * Formats the given ability to return a simple plain text version.
      *
      * @param Tag $tag
      *

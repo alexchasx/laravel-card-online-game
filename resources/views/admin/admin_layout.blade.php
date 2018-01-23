@@ -11,6 +11,7 @@
                     {{--@endif--}}
                     <li><a class="link" href="{{route('cardSetIndex')}}">Все наборы</a></li>
                     <li><a class="link" href="{{route('raceIndex')}}">Все расы</a></li>
+                    <li><a class="link" href="{{route('abilityIndex')}}">Все способности</a></li>
                     {{--<br/>--}}
                     {{--<li><a class="link" href="{{route('commentIndex')}}">Все комментарии</a></li>--}}
                     {{--<li><a class="link" href="{{route('categoryIndex')}}">Все категории</a></li>--}}

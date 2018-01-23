@@ -14,7 +14,7 @@ class TagSet
     protected $store;
 
     /**
-     * The tag names.
+     * The ability names.
      *
      * @var array
      */
@@ -44,7 +44,7 @@ class TagSet
     }
 
     /**
-     * Reset the tag and return the new tag identifier.
+     * Reset the ability and return the new ability identifier.
      *
      * @param  string  $name
      * @return string
@@ -67,7 +67,7 @@ class TagSet
     }
 
     /**
-     * Get an array of tag identifiers for all of the tags in the set.
+     * Get an array of ability identifiers for all of the tags in the set.
      *
      * @return array
      */
@@ -77,7 +77,7 @@ class TagSet
     }
 
     /**
-     * Get the unique tag identifier for a given tag.
+     * Get the unique ability identifier for a given ability.
      *
      * @param  string  $name
      * @return string
@@ -88,18 +88,18 @@ class TagSet
     }
 
     /**
-     * Get the tag identifier key for a given tag.
+     * Get the ability identifier key for a given ability.
      *
      * @param  string  $name
      * @return string
      */
     public function tagKey($name)
     {
-        return 'tag:'.$name.':key';
+        return 'ability:'.$name.':key';
     }
 
     /**
-     * Get all of the tag names in the set.
+     * Get all of the ability names in the set.
      *
      * @return array
      */

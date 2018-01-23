@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 class PassthroughFormatter implements Formatter
 {
     /**
-     * Formats the given tag to return a simple plain text version.
+     * Formats the given ability to return a simple plain text version.
      *
      * @param Tag $tag
      *

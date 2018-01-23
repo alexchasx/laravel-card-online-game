@@ -113,7 +113,7 @@ class PgSqlCaster
         if (isset(self::$resultStatus[$a['status']])) {
             $a['status'] = new ConstStub(self::$resultStatus[$a['status']], $a['status']);
         }
-        $a['command-completion tag'] = pg_result_status($result, PGSQL_STATUS_STRING);
+        $a['command-completion ability'] = pg_result_status($result, PGSQL_STATUS_STRING);
 
         if (-1 === $a['num rows']) {
             foreach (self::$diagCodes as $k => $v) {

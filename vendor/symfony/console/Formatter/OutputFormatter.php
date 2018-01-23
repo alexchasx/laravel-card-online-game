@@ -143,11 +143,11 @@ class OutputFormatter implements OutputFormatterInterface
                 continue;
             }
 
-            // add the text up to the next tag
+            // add the text up to the next ability
             $output .= $this->applyCurrentStyle(substr($message, $offset, $pos - $offset));
             $offset = $pos + strlen($text);
 
-            // opening tag?
+            // opening ability?
             if ($open = '/' != $text[1]) {
                 $tag = $matches[1][$i][0];
             } else {

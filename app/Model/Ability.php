@@ -27,6 +27,8 @@ class Ability extends BaseModel
      */
     protected $table = self::TABLE_NAME;
 
+    public $timestamps = false;
+
     /**
      * Атрибуты, для которых запрещено массовое назначение.
      *

@@ -47,7 +47,7 @@ class AnnotationFileLoaderTest extends AbstractAnnotationLoaderTest
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Did you forgot to add the "<?php" start tag at the beginning of the file?
+     * @expectedExceptionMessage Did you forgot to add the "<?php" start ability at the beginning of the file?
      */
     public function testLoadFileWithoutStartTag()
     {

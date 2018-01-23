@@ -63,10 +63,10 @@ class AdminCardController extends BaseController
 
 //        $this->validate($request, [
 //            'card_name' => 'required',
-//            'content' => 'required',
 //        ]);
 
-        $originalName =  $request->file('avatar')->getClientOriginalName();
+        $originalName =  $request->file('avatar')
+            ->getClientOriginalName();
 
         $path = $request->file('avatar')
             ->storeAs('upload', $originalName);
@@ -134,6 +134,22 @@ class AdminCardController extends BaseController
 
         Card::query()
             ->find($id)->delete();
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param $id
+     *
+     * @return RedirectResponse | HttpException
+     */
+    public function forceDestroy($id)
+    {
+        self::checkAdmin();
+
+        Card::withTrashed()
+            ->find($id)
+            ->forceDelete();
 
         return redirect()->back();
     }

@@ -43,7 +43,7 @@ class RegisterControllerArgumentLocatorsPassTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Missing "action" attribute on tag "controller.service_arguments" {"argument":"bar"} for service "foo".
+     * @expectedExceptionMessage Missing "action" attribute on ability "controller.service_arguments" {"argument":"bar"} for service "foo".
      */
     public function testNoAction()
     {
@@ -60,7 +60,7 @@ class RegisterControllerArgumentLocatorsPassTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Missing "argument" attribute on tag "controller.service_arguments" {"action":"fooAction"} for service "foo".
+     * @expectedExceptionMessage Missing "argument" attribute on ability "controller.service_arguments" {"action":"fooAction"} for service "foo".
      */
     public function testNoArgument()
     {
@@ -77,7 +77,7 @@ class RegisterControllerArgumentLocatorsPassTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Missing "id" attribute on tag "controller.service_arguments" {"action":"fooAction","argument":"bar"} for service "foo".
+     * @expectedExceptionMessage Missing "id" attribute on ability "controller.service_arguments" {"action":"fooAction","argument":"bar"} for service "foo".
      */
     public function testNoService()
     {
@@ -94,7 +94,7 @@ class RegisterControllerArgumentLocatorsPassTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Invalid "action" attribute on tag "controller.service_arguments" for service "foo": no public "barAction()" method found on class "Symfony\Component\HttpKernel\Tests\DependencyInjection\RegisterTestController".
+     * @expectedExceptionMessage Invalid "action" attribute on ability "controller.service_arguments" for service "foo": no public "barAction()" method found on class "Symfony\Component\HttpKernel\Tests\DependencyInjection\RegisterTestController".
      */
     public function testInvalidMethod()
     {
@@ -111,7 +111,7 @@ class RegisterControllerArgumentLocatorsPassTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Invalid "controller.service_arguments" tag for service "foo": method "fooAction()" has no "baz" argument on class "Symfony\Component\HttpKernel\Tests\DependencyInjection\RegisterTestController".
+     * @expectedExceptionMessage Invalid "controller.service_arguments" ability for service "foo": method "fooAction()" has no "baz" argument on class "Symfony\Component\HttpKernel\Tests\DependencyInjection\RegisterTestController".
      */
     public function testInvalidArgument()
     {

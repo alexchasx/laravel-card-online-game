@@ -20,7 +20,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for the {@}param tag in a Docblock.
+ * Reflection class for the {@}param ability in a Docblock.
  */
 final class Param extends BaseTag implements Factory\StaticMethod
 {
@@ -117,7 +117,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns whether this tag is variadic.
+     * Returns whether this ability is variadic.
      *
      * @return boolean
      */
@@ -127,7 +127,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation for this tag.
+     * Returns a string representation for this ability.
      *
      * @return string
      */

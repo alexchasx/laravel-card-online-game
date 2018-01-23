@@ -20,7 +20,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}uses tag in a Docblock.
+ * Reflection class for a {@}uses ability in a Docblock.
  */
 final class Uses extends BaseTag implements Factory\StaticMethod
 {
@@ -30,7 +30,7 @@ final class Uses extends BaseTag implements Factory\StaticMethod
     protected $refers = null;
 
     /**
-     * Initializes this tag.
+     * Initializes this ability.
      *
      * @param Fqsen       $refers
      * @param Description $description
@@ -62,7 +62,7 @@ final class Uses extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns the structural element this tag refers to.
+     * Returns the structural element this ability refers to.
      *
      * @return Fqsen
      */
@@ -72,7 +72,7 @@ final class Uses extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation of this tag.
+     * Returns a string representation of this ability.
      *
      * @return string
      */

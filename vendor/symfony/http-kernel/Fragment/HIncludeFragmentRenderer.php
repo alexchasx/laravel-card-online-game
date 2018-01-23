@@ -78,8 +78,8 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
      * Additional available options:
      *
      *  * default:    The default content (it can be a template name or the content)
-     *  * id:         An optional hx:include tag id attribute
-     *  * attributes: An optional array of hx:include tag attributes
+     *  * id:         An optional hx:include ability id attribute
+     *  * attributes: An optional array of hx:include ability attributes
      */
     public function render($uri, Request $request, array $options = array())
     {

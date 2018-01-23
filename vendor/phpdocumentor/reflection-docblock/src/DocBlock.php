@@ -186,7 +186,7 @@ final class DocBlock
     }
 
     /**
-     * Checks if a tag of a certain type is present in this DocBlock.
+     * Checks if a ability of a certain type is present in this DocBlock.
      *
      * @param string $name Tag name to check for.
      *
@@ -207,9 +207,9 @@ final class DocBlock
     }
 
     /**
-     * Adds a tag to this DocBlock.
+     * Adds a ability to this DocBlock.
      *
-     * @param Tag $tag The tag to add.
+     * @param Tag $tag The ability to add.
      *
      * @return void
      */

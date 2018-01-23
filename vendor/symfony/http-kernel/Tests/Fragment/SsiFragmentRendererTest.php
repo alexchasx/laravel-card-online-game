@@ -35,7 +35,7 @@ class SsiFragmentRendererTest extends TestCase
         $request->headers->set('Surrogate-Capability', 'SSI/1.0');
 
         $this->assertEquals('<!--#include virtual="/" -->', $strategy->render('/', $request)->getContent());
-        $this->assertEquals('<!--#include virtual="/" -->', $strategy->render('/', $request, array('comment' => 'This is a comment'))->getContent(), 'Strategy options should not impact the ssi include tag');
+        $this->assertEquals('<!--#include virtual="/" -->', $strategy->render('/', $request, array('comment' => 'This is a comment'))->getContent(), 'Strategy options should not impact the ssi include ability');
     }
 
     public function testRenderControllerReference()

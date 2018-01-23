@@ -23,7 +23,7 @@ use Symfony\Component\Yaml\Tag\TaggedValue;
  */
 class Parser
 {
-    const TAG_PATTERN = '(?P<tag>![\w!.\/:-]+)';
+    const TAG_PATTERN = '(?P<ability>![\w!.\/:-]+)';
     const BLOCK_SCALAR_HEADER_PATTERN = '(?P<separator>\||>)(?P<modifiers>\+|\-|\d+|\+\d+|\-\d+|\d+\+|\d+\-)?(?P<comments> +#.*)?';
 
     private $filename;
@@ -186,7 +186,7 @@ class Parser
             }
         }
 
-        // Resolves the tag and returns if end of the document
+        // Resolves the ability and returns if end of the document
         if (null !== ($tag = $this->getLineTag($this->currentLine, $flags, false)) && !$this->moveToNextLine()) {
             return new TaggedValue($tag, '');
         }
@@ -737,13 +737,13 @@ class Parser
 
             $data = $this->parseBlockScalar($matches['separator'], preg_replace('#\d+#', '', $modifiers), (int) abs($modifiers));
 
-            if ('' !== $matches['tag']) {
-                if ('!!binary' === $matches['tag']) {
+            if ('' !== $matches['ability']) {
+                if ('!!binary' === $matches['ability']) {
                     return Inline::evaluateBinaryScalar($data);
-                } elseif ('tagged' === $matches['tag']) {
-                    return new TaggedValue(substr($matches['tag'], 1), $data);
-                } elseif ('!' !== $matches['tag']) {
-                    @trigger_error($this->getDeprecationMessage(sprintf('Using the custom tag "%s" for the value "%s" is deprecated since Symfony 3.3. It will be replaced by an instance of %s in 4.0.', $matches['tag'], $data, TaggedValue::class)), E_USER_DEPRECATED);
+                } elseif ('tagged' === $matches['ability']) {
+                    return new TaggedValue(substr($matches['ability'], 1), $data);
+                } elseif ('!' !== $matches['ability']) {
+                    @trigger_error($this->getDeprecationMessage(sprintf('Using the custom ability "%s" for the value "%s" is deprecated since Symfony 3.3. It will be replaced by an instance of %s in 4.0.', $matches['ability'], $data, TaggedValue::class)), E_USER_DEPRECATED);
                 }
             }
 
@@ -1118,7 +1118,7 @@ class Parser
     }
 
     /**
-     * Trim the tag on top of the value.
+     * Trim the ability on top of the value.
      *
      * Prevent values such as `!foo {quz: bar}` to be considered as
      * a mapping block.
@@ -1142,18 +1142,18 @@ class Parser
             return;
         }
 
-        $tag = substr($matches['tag'], 1);
+        $tag = substr($matches['ability'], 1);
 
         // Built-in tags
         if ($tag && '!' === $tag[0]) {
-            throw new ParseException(sprintf('The built-in tag "!%s" is not implemented.', $tag), $this->getRealCurrentLineNb() + 1, $value, $this->filename);
+            throw new ParseException(sprintf('The built-in ability "!%s" is not implemented.', $tag), $this->getRealCurrentLineNb() + 1, $value, $this->filename);
         }
 
         if (Yaml::PARSE_CUSTOM_TAGS & $flags) {
             return $tag;
         }
 
-        throw new ParseException(sprintf('Tags support is not enabled. You must use the flag `Yaml::PARSE_CUSTOM_TAGS` to use "%s".', $matches['tag']), $this->getRealCurrentLineNb() + 1, $value, $this->filename);
+        throw new ParseException(sprintf('Tags support is not enabled. You must use the flag `Yaml::PARSE_CUSTOM_TAGS` to use "%s".', $matches['ability']), $this->getRealCurrentLineNb() + 1, $value, $this->filename);
     }
 
     private function getDeprecationMessage($message)

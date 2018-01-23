@@ -72,7 +72,7 @@ class OutputFormatterStyleStack
             }
         }
 
-        throw new InvalidArgumentException('Incorrectly nested style tag found.');
+        throw new InvalidArgumentException('Incorrectly nested style ability found.');
     }
 
     /**

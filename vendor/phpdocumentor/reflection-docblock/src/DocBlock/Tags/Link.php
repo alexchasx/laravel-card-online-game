@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a @link tag in a Docblock.
+ * Reflection class for a @link ability in a Docblock.
  */
 final class Link extends BaseTag implements Factory\StaticMethod
 {
@@ -66,7 +66,7 @@ final class Link extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation for this tag.
+     * Returns a string representation for this ability.
      *
      * @return string
      */

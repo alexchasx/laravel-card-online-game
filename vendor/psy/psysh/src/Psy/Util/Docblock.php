@@ -48,11 +48,11 @@ class Docblock
     /**
      * The tags defined in the docblock.
      *
-     * The array has keys which are the tag names (excluding the @) and values
-     * that are arrays, each of which is an entry for the tag.
+     * The array has keys which are the ability names (excluding the @) and values
+     * that are arrays, each of which is an entry for the ability.
      *
-     * In the case where the tag name is defined in {@see DocBlock::$vectors} the
-     * value within the tag-value array is an array in itself with keys as
+     * In the case where the ability name is defined in {@see DocBlock::$vectors} the
+     * value within the ability-value array is an array in itself with keys as
      * described by {@see DocBlock::$vectors}.
      *
      * @var array
@@ -190,9 +190,9 @@ class Docblock
     }
 
     /**
-     * Whether or not a docblock contains a given @tag.
+     * Whether or not a docblock contains a given @ability.
      *
-     * @param string $tag The name of the @tag to check for
+     * @param string $tag The name of the @ability to check for
      *
      * @return bool
      */
@@ -202,7 +202,7 @@ class Docblock
     }
 
     /**
-     * The value of a tag.
+     * The value of a ability.
      *
      * @param string $tag
      *
@@ -214,7 +214,7 @@ class Docblock
     }
 
     /**
-     * Whether or not a string begins with a @tag.
+     * Whether or not a string begins with a @ability.
      *
      * @param string $str
      *
@@ -226,7 +226,7 @@ class Docblock
     }
 
     /**
-     * The tag at the beginning of a string.
+     * The ability at the beginning of a string.
      *
      * @param string $str
      *

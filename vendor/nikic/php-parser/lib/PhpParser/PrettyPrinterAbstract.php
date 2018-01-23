@@ -121,7 +121,7 @@ abstract class PrettyPrinterAbstract
     }
 
     /**
-     * Pretty prints a file of statements (includes the opening <?php tag if it is required).
+     * Pretty prints a file of statements (includes the opening <?php ability if it is required).
      *
      * @param Node[] $stmts Array of statements
      *

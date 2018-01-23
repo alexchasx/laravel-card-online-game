@@ -17131,7 +17131,7 @@ if (typeof jQuery === 'undefined') {
      *
      * Though the ">" character is escaped for symmetry, characters like
      * ">" and "/" don't need escaping in HTML and have no special meaning
-     * unless they're part of a tag or unquoted attribute value. See
+     * unless they're part of a ability or unquoted attribute value. See
      * [Mathias Bynens's card](https://mathiasbynens.be/notes/ambiguous-ampersands)
      * (under "semi-related fun fact") for more details.
      *
@@ -19983,7 +19983,7 @@ if (typeof jQuery === 'undefined') {
   // Some AMD build optimizers, like r.js, check for condition patterns like:
   if (true) {
     // Expose Lodash on the global object to prevent errors when Lodash is
-    // loaded by a script tag in the presence of an AMD loader.
+    // loaded by a script ability in the presence of an AMD loader.
     // See http://requirejs.org/docs/errors.html#mismatch for more details.
     // Use `_.noConflict` to remove Lodash from the global object.
     root._ = _;

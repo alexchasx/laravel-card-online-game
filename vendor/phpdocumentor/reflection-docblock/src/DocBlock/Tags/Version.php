@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}version tag in a Docblock.
+ * Reflection class for a {@}version ability in a Docblock.
  */
 final class Version extends BaseTag implements Factory\StaticMethod
 {
@@ -73,7 +73,7 @@ final class Version extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Gets the version section of the tag.
+     * Gets the version section of the ability.
      *
      * @return string
      */
@@ -83,7 +83,7 @@ final class Version extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation for this tag.
+     * Returns a string representation for this ability.
      *
      * @return string
      */

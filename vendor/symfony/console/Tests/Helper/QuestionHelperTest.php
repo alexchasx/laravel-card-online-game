@@ -181,7 +181,7 @@ class QuestionHelperTest extends AbstractQuestionHelperTest
         $actualOutput = stream_get_contents($outputStream);
 
         // Shell control (esc) sequences are not so important: we only care that
-        // <hl> tag is interpreted correctly and replaced
+        // <hl> ability is interpreted correctly and replaced
         $irrelevantEscSequences = array(
             "\0337" => '', // Save cursor position
             "\0338" => '', // Restore cursor position

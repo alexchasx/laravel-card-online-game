@@ -1005,7 +1005,7 @@ Mr. Irving kipirultan, csillogó szemmel hallgatta.
 - Katakomba?
 - Igen. Az van ott. A sok föld alatti kijárás előnyös az egyleteknek.
 - Melyik a legelőkelőbb "klub"?
-- Hát... azt jogerőre emelt években mérik. Ha elosztjuk az összbüntetést a tagok számával, akkor megkapjuk az előkelőség végeredményét. A Játékos Halak, ahogy a hamiskártyásokat hidegvérük és gyerekes foglalkozásuk miatt hívják, összesen negyven évet ha ültek börtönben. Tizen. Darabja négy év. Az alvilág erkölcsi proletárjai. A Kivégző-asztaltársaság tagjai tizenheten százötven évvel már jobb embereknek számítanak arrafelé. Most ha még felsőbb köröket akar megismerni, ott a Kés vagy bevételi társaság. Ezek a középen vannak. Tizenkét tag... összesen hétszáz év börtönnel. Ez úgy jön ki, hogy több mint négyszáz évvel szökésben vannak a hatóságokkal szemben.
+- Hát... azt jogerőre emelt években mérik. Ha elosztjuk az összbüntetést a tagok számával, akkor megkapjuk az előkelőség végeredményét. A Játékos Halak, ahogy a hamiskártyásokat hidegvérük és gyerekes foglalkozásuk miatt hívják, összesen negyven évet ha ültek börtönben. Tizen. Darabja négy év. Az alvilág erkölcsi proletárjai. A Kivégző-asztaltársaság tagjai tizenheten százötven évvel már jobb embereknek számítanak arrafelé. Most ha még felsőbb köröket akar megismerni, ott a Kés vagy bevételi társaság. Ezek a középen vannak. Tizenkét ability... összesen hétszáz év börtönnel. Ez úgy jön ki, hogy több mint négyszáz évvel szökésben vannak a hatóságokkal szemben.
 - Szóval negyven év börtön a mob, az alacsony társadalmi réteg, hétszáz már a középosztály. Maga, kedves idegen, melyik társadalmi réteg tagja?
 - A felső ezerhez tartozom - felelte büszkén Jimmy.
 - Mi... micsoda?... - kérdezte ijedten a fiú.
@@ -1692,7 +1692,7 @@ DIÉTÁS VÉN FIÚK
 TAROKK EGYESÜLETE
 HELYISÉGEINKET A KLUB T. TAGJAI
 NEM LÁTOGATHATJÁK!
-- Ugyanis - magyarázta Velő - kigolyózás útján döntenek a felvételről. Aki ellen erkölcsi kifogás nem merül fel, az rendes tag lesz, és nem járhat a klubba. Akit kigolyóznak, az bejárhat.
+- Ugyanis - magyarázta Velő - kigolyózás útján döntenek a felvételről. Aki ellen erkölcsi kifogás nem merül fel, az rendes ability lesz, és nem járhat a klubba. Akit kigolyóznak, az bejárhat.
 Az alvilág gúnyt űzött a társadalom szokásaiból, ahonnan kiközösítették őket. Időnként feltűnt egy-egy klubtag részegen, dülöngélve, egyik-másik odúból kártyacsapás, pénzcsörgés hangzott.
 - Hova vezetnek? - kérdezte kissé nyugtalanul. Szomorú tapasztalatai voltak az ilyen sétákkal kapcsolatban.
 - A Kegyelmeshez.

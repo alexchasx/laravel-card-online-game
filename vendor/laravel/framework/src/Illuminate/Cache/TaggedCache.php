@@ -9,7 +9,7 @@ class TaggedCache extends Repository
     use RetrievesMultipleKeys;
 
     /**
-     * The tag set instance.
+     * The ability set instance.
      *
      * @var \Illuminate\Cache\TagSet
      */

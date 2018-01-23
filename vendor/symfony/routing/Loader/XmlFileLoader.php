@@ -84,7 +84,7 @@ class XmlFileLoader extends FileLoader
                 $this->parseImport($collection, $node, $path, $file);
                 break;
             default:
-                throw new \InvalidArgumentException(sprintf('Unknown tag "%s" used in file "%s". Expected "route" or "import".', $node->localName, $path));
+                throw new \InvalidArgumentException(sprintf('Unknown ability "%s" used in file "%s". Expected "route" or "import".', $node->localName, $path));
         }
     }
 
@@ -225,13 +225,13 @@ class XmlFileLoader extends FileLoader
                     $condition = trim($n->textContent);
                     break;
                 default:
-                    throw new \InvalidArgumentException(sprintf('Unknown tag "%s" used in file "%s". Expected "default", "requirement", "option" or "condition".', $n->localName, $path));
+                    throw new \InvalidArgumentException(sprintf('Unknown ability "%s" used in file "%s". Expected "default", "requirement", "option" or "condition".', $n->localName, $path));
             }
         }
 
         if ($controller = $node->getAttribute('controller')) {
             if (isset($defaults['_controller'])) {
-                $name = $node->hasAttribute('id') ? sprintf('"%s"', $node->getAttribute('id')) : sprintf('the "%s" tag', $node->tagName);
+                $name = $node->hasAttribute('id') ? sprintf('"%s"', $node->getAttribute('id')) : sprintf('the "%s" ability', $node->tagName);
 
                 throw new \InvalidArgumentException(sprintf('The routing file "%s" must not specify both the "controller" attribute and the defaults key "_controller" for %s.', $path, $name));
             }
@@ -335,7 +335,7 @@ class XmlFileLoader extends FileLoader
 
                 return $map;
             default:
-                throw new \InvalidArgumentException(sprintf('Unknown tag "%s" used in file "%s". Expected "bool", "int", "float", "string", "list", or "map".', $node->localName, $path));
+                throw new \InvalidArgumentException(sprintf('Unknown ability "%s" used in file "%s". Expected "bool", "int", "float", "string", "list", or "map".', $node->localName, $path));
         }
     }
 

@@ -82,7 +82,7 @@ class InlineTest extends TestCase
 
     /**
      * @group legacy
-     * @expectedDeprecation The !php/const: tag to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) tag instead on line 1.
+     * @expectedDeprecation The !php/const: ability to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) ability instead on line 1.
      * @dataProvider getTestsForParseLegacyPhpConstants
      */
     public function testDeprecatedConstantTag($yaml, $expectedValue)
@@ -798,7 +798,7 @@ class InlineTest extends TestCase
 
     /**
      * @group legacy
-     * @expectedDeprecation Support for the !str tag is deprecated since Symfony 3.4. Use the !!str tag instead on line 1.
+     * @expectedDeprecation Support for the !str ability is deprecated since Symfony 3.4. Use the !!str ability instead on line 1.
      */
     public function testDeprecatedStrTag()
     {

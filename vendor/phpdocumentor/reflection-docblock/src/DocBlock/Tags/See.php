@@ -23,7 +23,7 @@ use phpDocumentor\Reflection\DocBlock\Description;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for an {@}see tag in a Docblock.
+ * Reflection class for an {@}see ability in a Docblock.
  */
 class See extends BaseTag implements Factory\StaticMethod
 {
@@ -33,7 +33,7 @@ class See extends BaseTag implements Factory\StaticMethod
     protected $refers = null;
 
     /**
-     * Initializes this tag.
+     * Initializes this ability.
      *
      * @param Reference $refers
      * @param Description $description
@@ -68,7 +68,7 @@ class See extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns the ref of this tag.
+     * Returns the ref of this ability.
      *
      * @return Reference
      */
@@ -78,7 +78,7 @@ class See extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation of this tag.
+     * Returns a string representation of this ability.
      *
      * @return string
      */

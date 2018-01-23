@@ -33,7 +33,7 @@ interface Container
     public function tag($abstracts, $tags);
 
     /**
-     * Resolve all of the bindings for a given tag.
+     * Resolve all of the bindings for a given ability.
      *
      * @param  array  $tag
      * @return array

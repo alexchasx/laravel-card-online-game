@@ -88,11 +88,11 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                 }
                 foreach (array('action', 'argument', 'id') as $k) {
                     if (!isset($attributes[$k][0])) {
-                        throw new InvalidArgumentException(sprintf('Missing "%s" attribute on tag "%s" %s for service "%s".', $k, $this->controllerTag, json_encode($attributes, JSON_UNESCAPED_UNICODE), $id));
+                        throw new InvalidArgumentException(sprintf('Missing "%s" attribute on ability "%s" %s for service "%s".', $k, $this->controllerTag, json_encode($attributes, JSON_UNESCAPED_UNICODE), $id));
                     }
                 }
                 if (!isset($methods[$action = strtolower($attributes['action'])])) {
-                    throw new InvalidArgumentException(sprintf('Invalid "action" attribute on tag "%s" for service "%s": no public "%s()" method found on class "%s".', $this->controllerTag, $id, $attributes['action'], $class));
+                    throw new InvalidArgumentException(sprintf('Invalid "action" attribute on ability "%s" for service "%s": no public "%s()" method found on class "%s".', $this->controllerTag, $id, $attributes['action'], $class));
                 }
                 list($r, $parameters) = $methods[$action];
                 $found = false;
@@ -108,7 +108,7 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                 }
 
                 if (!$found) {
-                    throw new InvalidArgumentException(sprintf('Invalid "%s" tag for service "%s": method "%s()" has no "%s" argument on class "%s".', $this->controllerTag, $id, $r->name, $attributes['argument'], $class));
+                    throw new InvalidArgumentException(sprintf('Invalid "%s" ability for service "%s": method "%s()" has no "%s" argument on class "%s".', $this->controllerTag, $id, $r->name, $attributes['argument'], $class));
                 }
             }
 
@@ -127,7 +127,7 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                         if ('?' !== $target[0]) {
                             $invalidBehavior = ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE;
                         } elseif ('' === $target = (string) substr($target, 1)) {
-                            throw new InvalidArgumentException(sprintf('A "%s" tag must have non-empty "id" attributes for service "%s".', $this->controllerTag, $id));
+                            throw new InvalidArgumentException(sprintf('A "%s" ability must have non-empty "id" attributes for service "%s".', $this->controllerTag, $id));
                         } elseif ($p->allowsNull() && !$p->isOptional()) {
                             $invalidBehavior = ContainerInterface::NULL_ON_INVALID_REFERENCE;
                         }

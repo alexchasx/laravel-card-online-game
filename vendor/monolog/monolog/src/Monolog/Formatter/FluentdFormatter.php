@@ -25,7 +25,7 @@ namespace Monolog\Formatter;
  *
  * Monolog setup:
  *
- * $logger = new Monolog\Logger('fluent.tag');
+ * $logger = new Monolog\Logger('fluent.ability');
  * $fluentHandler = new Monolog\Handler\SocketHandler('unix:///var/run/td-agent/td-agent.sock');
  * $fluentHandler->setFormatter(new Monolog\Formatter\FluentdFormatter());
  * $logger->pushHandler($fluentHandler);
@@ -35,7 +35,7 @@ namespace Monolog\Formatter;
 class FluentdFormatter implements FormatterInterface
 {
     /**
-     * @var bool $levelTag should message level be a part of the fluentd tag
+     * @var bool $levelTag should message level be a part of the fluentd ability
      */
     protected $levelTag = false;
 

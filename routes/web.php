@@ -45,13 +45,10 @@ Route::post('begin.game', 'CardController@replaceCardSubmit')
 Route::get('battleground', 'CardController@battleGround')
     ->name('battleGround');
 
-
 //Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
 Route::get('card.{id}', 'SiteController@show')->name('cardShow');
 Route::get('card_set.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
-Route::get('tag.{tagId}', 'SiteController@showByTag')->name('showByTag');
-
-
+Route::get('ability.{tagId}', 'SiteController@showByTag')->name('showByTag');
 
 // ======== AdminPanel =========================
 Route::group(['prefix' => 'admin'], function() {
@@ -64,7 +61,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('update.{id}', 'Admin\AdminCardController@edit')->name('cardEdit');
         Route::post('update', 'Admin\AdminCardController@update')->name('cardUpdate');
         Route::delete('destroy.{id}', 'Admin\AdminCardController@destroy')->name('cardDelete');
-        Route::delete('delete.{card}.{tag}', 'Admin\AdminCardController@deleteTag')->name('cardTagDelete');
+        Route::delete('force_destroy.{id}', 'Admin\AdminCardController@forceDestroy')
+            ->name('cardForceDelete');
+        Route::delete('delete.{card}.{ability}', 'Admin\AdminCardController@deleteTag')
+            ->name('cardTagDelete');
         Route::get('restore.{card}', 'Admin\AdminCardController@restore')->name('cardRestore');
     });
 
@@ -87,6 +87,18 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('create', 'Admin\AdminRaceController@store')->name('raceStore');
     });
 
+    Route::group(['prefix' => 'ability'], function() {
+
+        Route::get('index', 'Admin\AdminAbilityController@index')->name('abilityIndex');
+        Route::post('create', 'Admin\AdminAbilityController@store')->name('abilityStore');
+        Route::post('update', 'Admin\AdminAbilityController@update')->name('abilityUpdate');
+        Route::delete('delete.{id}', 'Admin\AdminAbilityController@destroy')->name('abilityDelete');
+        Route::delete('force_destroy.{id}', 'Admin\AdminAbilityController@forceDestroy')
+            ->name('abilityForceDelete');
+        Route::get('restore.{ability}', 'Admin\AdminAbilityController@restore')
+            ->name('abilityRestore');
+    });
+
     Route::group(['prefix' => 'user'], function() {
 
         Route::get('index', 'Admin\AdminUserController@index')->name('userIndex');
@@ -96,38 +108,23 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('restore.{user}', 'Admin\AdminUserController@restore')->name('userRestore');
     });
 
-    Route::group(['prefix' => 'tag'], function() {
-
-        Route::get('index', 'Admin\AdminTagController@index')->name('tagIndex');
-        Route::post('create', 'Admin\AdminTagController@store')->name('tagStore');
-        Route::get('create', 'Admin\AdminTagController@create')->name('tagCreate');
-        Route::get('update.{id}', 'Admin\AdminTagController@edit')->name('tagEdit');
-        Route::any('update', 'Admin\AdminTagController@update')->name('tagUpdate');
-        Route::delete('delete.{id}', 'Admin\AdminTagController@destroy')->name('tagDelete');
-        Route::get('restore.{tag}', 'Admin\AdminTagController@restore')
-            ->name('tagRestore');
-        Route::get('status.{tag}', 'Admin\AdminTagController@statusChange')
-            ->name('tagStatusChange');
-    });
-
-    Route::resource('file', 'Admin\AdminFileController', [
-        'only' => [
-            'store',
-            'update',
-            'destroy',
-        ],
-        [
-            'names' => [
-                'store' => 'file.store',
-                'update' => 'file.update',
-                'destroy' => 'file.destroy',
-            ]
-        ]
-    ]);
+//    Route::resource('file', 'Admin\AdminFileController', [
+//        'only' => [
+//            'store',
+//            'update',
+//            'destroy',
+//        ],
+//        [
+//            'names' => [
+//                'store' => 'file.store',
+//                'update' => 'file.update',
+//                'destroy' => 'file.destroy',
+//            ]
+//        ]
+//    ]);
 });
 
 // ======== END AdminPanel =======================
-
 
 // ======== MyExample =======================
 // Route::post('registerX.{id?}', function() {

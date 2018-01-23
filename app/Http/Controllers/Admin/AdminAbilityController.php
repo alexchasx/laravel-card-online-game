@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
-use App\Tag;
+use App\Model\Ability;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class AdminTagController extends BaseController
+class AdminAbilityController extends BaseController
 {
     /**
      * Показать все теги
@@ -18,19 +18,19 @@ class AdminTagController extends BaseController
     {
         self::checkAdmin();
 
-        $tags = Tag::withTrashed()
+        $abilities = Ability::withTrashed()
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('admin.tag.index')->with([
-            'tags' => $tags
+        return view('admin.ability.index')->with([
+            'abilities' => $abilities
         ]);
     }
 
     /**
      * Сохраняет тег
      *
-     * POST /admin/tag/store
+     * POST /admin/ability/store
      *
      * @param Request $request
      *
@@ -40,11 +40,21 @@ class AdminTagController extends BaseController
     {
         self::checkAdmin();
 
-        $this->validate($request, [
-            'title' => 'required|max:255',
-        ]);
+//        $this->validate($request, [
+//            'name' => 'required|max:255',
+//        ]);
 
-        Tag::create($request->all());
+        $originalName =  $request->file('avatar')
+            ->getClientOriginalName();
+
+        $path = $request->file('avatar')
+            ->storeAs('upload', $originalName);
+
+        $ability = Ability::query()
+            ->create(array_except($request->all(), ['avatar']));
+
+        $ability->avatar = '/storage/app/' . $path;
+        $ability->save();
 
         return redirect()->back();
     }
@@ -52,7 +62,7 @@ class AdminTagController extends BaseController
     /**
      * Редактирует тег
      *
-     * POST /admin/tag/update
+     * POST /admin/ability/update
      *
      * @param Request $request
      *
@@ -66,7 +76,8 @@ class AdminTagController extends BaseController
             'title' => 'required|max:255',
         ]);
 
-        Tag::find($request->id)
+        Ability::query()
+            ->find($request->id)
             ->update($request->all());
 
         return redirect()->back();
@@ -75,7 +86,7 @@ class AdminTagController extends BaseController
     /**
      * Удаляет тег
      *
-     * DELETE /admin/tag/delete/{id}
+     * DELETE /admin/ability/delete/{id}
      *
      * @param $id
      *
@@ -85,7 +96,25 @@ class AdminTagController extends BaseController
     {
         self::checkAdmin();
 
-        Tag::find($id)->delete();
+        Ability::query()
+            ->find($id)
+            ->delete();
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param $id
+     *
+     * @return RedirectResponse | HttpException
+     */
+    public function forceDestroy($id)
+    {
+        self::checkAdmin();
+
+        Ability::withTrashed()
+            ->find($id)
+            ->forceDelete();
 
         return redirect()->back();
     }
@@ -93,7 +122,7 @@ class AdminTagController extends BaseController
     /**
      * Восстанавливает тег
      *
-     * GET /admin/tag/restore/{tag}
+     * GET /admin/ability/restore/{ability}
      *
      * @param $id
      *
@@ -103,7 +132,7 @@ class AdminTagController extends BaseController
     {
         self::checkAdmin();
 
-        Tag::withTrashed()
+        Ability::withTrashed()
             ->where('id', $id)
             ->restore();
 

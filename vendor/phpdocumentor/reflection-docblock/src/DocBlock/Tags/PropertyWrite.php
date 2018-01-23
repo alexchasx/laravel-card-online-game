@@ -20,7 +20,7 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for a {@}property-write tag in a Docblock.
+ * Reflection class for a {@}property-write ability in a Docblock.
  */
 class PropertyWrite extends BaseTag implements Factory\StaticMethod
 {
@@ -105,7 +105,7 @@ class PropertyWrite extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns a string representation for this tag.
+     * Returns a string representation for this ability.
      *
      * @return string
      */

@@ -115,7 +115,7 @@ class ContainerControllerResolver extends ControllerResolver
     private function throwExceptionIfControllerWasRemoved($controller, $previous = null)
     {
         if ($this->container instanceof Container && isset($this->container->getRemovedIds()[$controller])) {
-            throw new \LogicException(sprintf('Controller "%s" cannot be fetched from the container because it is private. Did you forget to tag the service with "controller.service_arguments"?', $controller), 0, $previous);
+            throw new \LogicException(sprintf('Controller "%s" cannot be fetched from the container because it is private. Did you forget to ability the service with "controller.service_arguments"?', $controller), 0, $previous);
         }
     }
 }

@@ -419,7 +419,7 @@ class Container implements ArrayAccess, ContainerContract
     }
 
     /**
-     * Resolve all of the bindings for a given tag.
+     * Resolve all of the bindings for a given ability.
      *
      * @param  string  $tag
      * @return array

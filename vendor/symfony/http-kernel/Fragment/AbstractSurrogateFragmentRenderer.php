@@ -52,7 +52,7 @@ abstract class AbstractSurrogateFragmentRenderer extends RoutableFragmentRendere
      * Additional available options:
      *
      *  * alt: an alternative URI to render in case of an error
-     *  * comment: a comment to add when returning the surrogate tag
+     *  * comment: a comment to add when returning the surrogate ability
      *
      * Note, that not all surrogate strategies support all options. For now
      * 'alt' and 'comment' are only supported by ESI.

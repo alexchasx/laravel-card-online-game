@@ -65,7 +65,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
 
     public function provideTestLex() {
         return array(
-            // tests conversion of closing PHP tag and drop of whitespace and opening tags
+            // tests conversion of closing PHP ability and drop of whitespace and opening tags
             array(
                 '<?php tokens ?>plaintext',
                 array(),

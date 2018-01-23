@@ -114,7 +114,7 @@ class ContainerControllerResolverTest extends ControllerResolverTest
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Controller "Symfony\Component\HttpKernel\Tests\Controller\ImpossibleConstructController" cannot be fetched from the container because it is private. Did you forget to tag the service with "controller.service_arguments"?
+     * @expectedExceptionMessage Controller "Symfony\Component\HttpKernel\Tests\Controller\ImpossibleConstructController" cannot be fetched from the container because it is private. Did you forget to ability the service with "controller.service_arguments"?
      */
     public function testNonConstructController()
     {
@@ -181,7 +181,7 @@ class ContainerControllerResolverTest extends ControllerResolverTest
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Controller "app.my_controller" cannot be fetched from the container because it is private. Did you forget to tag the service with "controller.service_arguments"?
+     * @expectedExceptionMessage Controller "app.my_controller" cannot be fetched from the container because it is private. Did you forget to ability the service with "controller.service_arguments"?
      */
     public function testExceptionWhenUsingRemovedControllerService()
     {

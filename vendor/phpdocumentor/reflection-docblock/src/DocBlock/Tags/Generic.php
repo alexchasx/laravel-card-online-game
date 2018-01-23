@@ -19,15 +19,15 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Parses a tag definition for a DocBlock.
+ * Parses a ability definition for a DocBlock.
  */
 class Generic extends BaseTag implements Factory\StaticMethod
 {
     /**
-     * Parses a tag and populates the member variables.
+     * Parses a ability and populates the member variables.
      *
-     * @param string $name Name of the tag.
-     * @param Description $description The contents of the given tag.
+     * @param string $name Name of the ability.
+     * @param Description $description The contents of the given ability.
      */
     public function __construct($name, Description $description = null)
     {
@@ -38,7 +38,7 @@ class Generic extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Creates a new tag that represents any unknown tag type.
+     * Creates a new ability that represents any unknown ability type.
      *
      * @param string             $body
      * @param string             $name
@@ -63,7 +63,7 @@ class Generic extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns the tag as a serialized string
+     * Returns the ability as a serialized string
      *
      * @return string
      */
@@ -73,7 +73,7 @@ class Generic extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Validates if the tag name matches the expected format, otherwise throws an exception.
+     * Validates if the ability name matches the expected format, otherwise throws an exception.
      *
      * @param string $name
      *
@@ -83,7 +83,7 @@ class Generic extends BaseTag implements Factory\StaticMethod
     {
         if (! preg_match('/^' . StandardTagFactory::REGEX_TAGNAME . '$/u', $name)) {
             throw new \InvalidArgumentException(
-                'The tag name "' . $name . '" is not wellformed. Tags may only consist of letters, underscores, '
+                'The ability name "' . $name . '" is not wellformed. Tags may only consist of letters, underscores, '
                 . 'hyphens and backslashes.'
             );
         }

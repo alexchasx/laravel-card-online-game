@@ -127,7 +127,7 @@ class PHPConsoleHandlerTest extends TestCase
     public function testDebugContextInMessage()
     {
         $message = 'test';
-        $tag = 'tag';
+        $tag = 'ability';
         $context = array($tag, 'custom' => mt_rand());
         $expectedMessage = $message . ' ' . json_encode(array_slice($context, 1));
         $this->debugDispatcher->expects($this->once())->method('dispatchDebug')->with(

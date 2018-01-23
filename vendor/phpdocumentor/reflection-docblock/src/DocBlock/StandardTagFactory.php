@@ -19,29 +19,29 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
 use Webmozart\Assert\Assert;
 
 /**
- * Creates a Tag object given the contents of a tag.
+ * Creates a Tag object given the contents of a ability.
  *
- * This Factory is capable of determining the appropriate class for a tag and instantiate it using its `create`
+ * This Factory is capable of determining the appropriate class for a ability and instantiate it using its `create`
  * factory method. The `create` factory method of a Tag can have a variable number of arguments; this way you can
- * pass the dependencies that you need to construct a tag object.
+ * pass the dependencies that you need to construct a ability object.
  *
  * > Important: each parameter in addition to the body variable for the `create` method must default to null, otherwise
  * > it violates the constraint with the interface; it is recommended to use the {@see Assert::notNull()} method to
  * > verify that a dependency is actually passed.
  *
  * This Factory also features a Service Locator component that is used to pass the right dependencies to the
- * `create` method of a tag; each dependency should be registered as a service or as a parameter.
+ * `create` method of a ability; each dependency should be registered as a service or as a parameter.
  *
  * When you want to use a Tag of your own with custom handling you need to call the `registerTagHandler` method, pass
- * the name of the tag and a Fully Qualified Class Name pointing to a class that implements the Tag interface.
+ * the name of the ability and a Fully Qualified Class Name pointing to a class that implements the Tag interface.
  */
 final class StandardTagFactory implements TagFactory
 {
-    /** PCRE regular expression matching a tag name. */
+    /** PCRE regular expression matching a ability name. */
     const REGEX_TAGNAME = '[\w\-\_\\\\]+';
 
     /**
-     * @var string[] An array with a tag as a key, and an FQCN to a class that handles it as an array value.
+     * @var string[] An array with a ability as a key, and an FQCN to a class that handles it as an array value.
      */
     private $tagHandlerMappings = [
         'author'         => '\phpDocumentor\Reflection\DocBlock\Tags\Author',
@@ -82,15 +82,15 @@ final class StandardTagFactory implements TagFactory
     private $serviceLocator = [];
 
     /**
-     * Initialize this tag factory with the means to resolve an FQSEN and optionally a list of tag handlers.
+     * Initialize this ability factory with the means to resolve an FQSEN and optionally a list of ability handlers.
      *
-     * If no tag handlers are provided than the default list in the {@see self::$tagHandlerMappings} property
+     * If no ability handlers are provided than the default list in the {@see self::$tagHandlerMappings} property
      * is used.
      *
      * @param FqsenResolver $fqsenResolver
      * @param string[]      $tagHandlers
      *
-     * @see self::registerTagHandler() to add a new tag handler to the existing default list.
+     * @see self::registerTagHandler() to add a new ability handler to the existing default list.
      */
     public function __construct(FqsenResolver $fqsenResolver, array $tagHandlers = null)
     {
@@ -115,7 +115,7 @@ final class StandardTagFactory implements TagFactory
 
         if ($tagBody !== '' && $tagBody[0] === '[') {
             throw new \InvalidArgumentException(
-                'The tag "' . $tagLine . '" does not seem to be wellformed, please check it for errors'
+                'The ability "' . $tagLine . '" does not seem to be wellformed, please check it for errors'
             );
         }
 
@@ -150,7 +150,7 @@ final class StandardTagFactory implements TagFactory
 
         if (strpos($tagName, '\\') && $tagName[0] !== '\\') {
             throw new \InvalidArgumentException(
-                'A namespaced tag must have a leading backslash as it must be fully qualified'
+                'A namespaced ability must have a leading backslash as it must be fully qualified'
             );
         }
 
@@ -158,7 +158,7 @@ final class StandardTagFactory implements TagFactory
     }
 
     /**
-     * Extracts all components for a tag.
+     * Extracts all components for a ability.
      *
      * @param string $tagLine
      *
@@ -169,7 +169,7 @@ final class StandardTagFactory implements TagFactory
         $matches = array();
         if (! preg_match('/^@(' . self::REGEX_TAGNAME . ')(?:\s*([^\s].*)|$)/us', $tagLine, $matches)) {
             throw new \InvalidArgumentException(
-                'The tag "' . $tagLine . '" does not seem to be wellformed, please check it for errors'
+                'The ability "' . $tagLine . '" does not seem to be wellformed, please check it for errors'
             );
         }
 
@@ -181,7 +181,7 @@ final class StandardTagFactory implements TagFactory
     }
 
     /**
-     * Creates a new tag object with the given name and body or returns null if the tag name was recognized but the
+     * Creates a new ability object with the given name and body or returns null if the ability name was recognized but the
      * body was invalid.
      *
      * @param string  $body
@@ -232,7 +232,7 @@ final class StandardTagFactory implements TagFactory
      * @param \ReflectionParameter[] $parameters
      * @param mixed[]                $locator
      *
-     * @return mixed[] A series of values that can be passed to the Factory Method of the tag whose parameters
+     * @return mixed[] A series of values that can be passed to the Factory Method of the ability whose parameters
      *     is provided with this method.
      */
     private function getArgumentsForParametersFromWiring($parameters, $locator)
@@ -259,7 +259,7 @@ final class StandardTagFactory implements TagFactory
 
     /**
      * Retrieves a series of ReflectionParameter objects for the static 'create' method of the given
-     * tag handler class name.
+     * ability handler class name.
      *
      * @param string $handlerClassName
      *
@@ -276,12 +276,12 @@ final class StandardTagFactory implements TagFactory
     }
 
     /**
-     * Returns a copy of this class' Service Locator with added dynamic parameters, such as the tag's name, body and
+     * Returns a copy of this class' Service Locator with added dynamic parameters, such as the ability's name, body and
      * Context.
      *
      * @param TypeContext $context The Context (namespace and aliasses) that may be passed and is used to resolve FQSENs.
-     * @param string      $tagName The name of the tag that may be passed onto the factory method of the Tag class.
-     * @param string      $tagBody The body of the tag that may be passed onto the factory method of the Tag class.
+     * @param string      $tagName The name of the ability that may be passed onto the factory method of the Tag class.
+     * @param string      $tagBody The body of the ability that may be passed onto the factory method of the Tag class.
      *
      * @return mixed[]
      */
@@ -300,7 +300,7 @@ final class StandardTagFactory implements TagFactory
     }
 
     /**
-     * Returns whether the given tag belongs to an annotation.
+     * Returns whether the given ability belongs to an annotation.
      *
      * @param string $tagContent
      *
@@ -313,7 +313,7 @@ final class StandardTagFactory implements TagFactory
         // 1. Contains a namespace separator
         // 2. Contains parenthesis
         // 3. Is present in a list of known annotations (make the algorithm smart by first checking is the last part
-        //    of the annotation class name matches the found tag name
+        //    of the annotation class name matches the found ability name
 
         return false;
     }

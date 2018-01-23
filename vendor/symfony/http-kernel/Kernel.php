@@ -921,7 +921,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
             } else {
                 $rawChunk .= $token[1];
 
-                // The PHP-open tag already has a new-line
+                // The PHP-open ability already has a new-line
                 if (T_OPEN_TAG === $token[0]) {
                     $ignoreSpace = true;
                 }

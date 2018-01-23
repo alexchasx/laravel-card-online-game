@@ -458,7 +458,7 @@ class File extends Base
             'log',
             'in'
         ),
-        'text/prs.lines.tag'                                                        => 'dsc',
+        'text/prs.lines.ability'                                                        => 'dsc',
         'text/richtext'                                                             => 'rtx',
         'text/sgml'                                                                 => array('sgml', 'sgm'),
         'text/tab-separated-values'                                                 => 'tsv',

@@ -106,7 +106,7 @@
                     <tr>
                         <td>{{$tag->title}}</td>
                         <td>
-                            <form action="{{ route('articleTagDelete', ['card'=>$article->id, 'tag'=>$tag->id]) }}"
+                            <form action="{{ route('articleTagDelete', ['card'=>$article->id, 'ability'=>$tag->id]) }}"
                                   method="post">
                                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{method_field('DELETE')}}

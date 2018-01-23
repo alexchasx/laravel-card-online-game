@@ -5384,7 +5384,7 @@ jQuery.fn.extend( {
 var rootjQuery,
 
 	// A simple way to check for HTML strings
-	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+	// Prioritize #id over <ability> to avoid XSS via location.hash (#9521)
 	// Strict HTML recognition (#11290: must start with <)
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
@@ -7137,7 +7137,7 @@ var wrapMap = {
 	option: [ 1, "<select multiple='multiple'>", "</select>" ],
 
 	// XHTML parsers do not magically insert elements in the
-	// same way that tag soup parsers do. So we cannot shorten
+	// same way that ability soup parsers do. So we cannot shorten
 	// this by omitting <tbody> or other required elements.
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
@@ -10957,7 +10957,7 @@ var
 	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
 	allTypes = "*/".concat( "*" ),
 
-	// Anchor tag for parsing the document origin
+	// Anchor ability for parsing the document origin
 	originAnchor = document.createElement( "a" );
 	originAnchor.href = location.href;
 
@@ -12051,7 +12051,7 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 	}
 } );
 
-// Bind script tag hack transport
+// Bind script ability hack transport
 jQuery.ajaxTransport( "script", function( s ) {
 
 	// This transport only deals with cross domain requests
@@ -12231,7 +12231,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 	parsed = rsingleTag.exec( data );
 	scripts = !keepScripts && [];
 
-	// Single tag
+	// Single ability
 	if ( parsed ) {
 		return [ context.createElement( parsed[ 1 ] ) ];
 	}
@@ -13281,7 +13281,7 @@ function makeMap (
 }
 
 /**
- * Check if a tag is a built-in tag.
+ * Check if a ability is a built-in ability.
  */
 var isBuiltInTag = makeMap('slot,component', true);
 
@@ -13550,7 +13550,7 @@ var config = ({
   keyCodes: Object.create(null),
 
   /**
-   * Check if a tag is reserved so that it cannot be registered as a
+   * Check if a ability is reserved so that it cannot be registered as a
    * component. This is platform-dependent and may be overwritten.
    */
   isReservedTag: no,
@@ -13562,7 +13562,7 @@ var config = ({
   isReservedAttr: no,
 
   /**
-   * Check if a tag is an unknown element.
+   * Check if a ability is an unknown element.
    * Platform-dependent.
    */
   isUnknownElement: no,
@@ -13573,7 +13573,7 @@ var config = ({
   getTagNamespace: noop,
 
   /**
-   * Parse the real tag name for the specific platform.
+   * Parse the real ability name for the specific platform.
    */
   parsePlatformTagName: identity,
 
@@ -17310,7 +17310,7 @@ function initRender (vm) {
   vm.$scopedSlots = emptyObject;
   // bind the createElement fn to this instance
   // so that we get proper render context inside it.
-  // args order: tag, data, children, normalizationType, alwaysNormalize
+  // args order: ability, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
   vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
   // normalization is always applied for the public version, used in
@@ -19091,7 +19091,7 @@ function setAttr (el, key, value) {
       el.removeAttribute(key);
     } else {
       // technically allowfullscreen is a boolean attribute for <iframe>,
-      // but Flash expects a value of "true" when used on <embed> tag
+      // but Flash expects a value of "true" when used on <embed> ability
       value = key === 'allowfullscreen' && el.tagName === 'EMBED'
         ? 'true'
         : key;
@@ -21224,7 +21224,7 @@ function parseText (
     if (index > lastIndex) {
       tokens.push(JSON.stringify(text.slice(lastIndex, index)));
     }
-    // tag token
+    // ability token
     var exp = parseFilters(match[1].trim());
     tokens.push(("_s(" + exp + ")"));
     lastIndex = index + match[0].length;
@@ -21493,7 +21493,7 @@ function parseHTML (html, options) {
           continue
         }
 
-        // End tag:
+        // End ability:
         var endTagMatch = html.match(endTag);
         if (endTagMatch) {
           var curIndex = index;
@@ -21502,7 +21502,7 @@ function parseHTML (html, options) {
           continue
         }
 
-        // Start tag:
+        // Start ability:
         var startTagMatch = parseStartTag();
         if (startTagMatch) {
           handleStartTag(startTagMatch);
@@ -21567,7 +21567,7 @@ function parseHTML (html, options) {
     if (html === last) {
       options.chars && options.chars(html);
       if ("development" !== 'production' && !stack.length && options.warn) {
-        options.warn(("Mal-formatted tag at end of template: \"" + html + "\""));
+        options.warn(("Mal-formatted ability at end of template: \"" + html + "\""));
       }
       break
     }
@@ -21658,7 +21658,7 @@ function parseHTML (html, options) {
       lowerCasedTagName = tagName.toLowerCase();
     }
 
-    // Find the closest opened tag of the same type
+    // Find the closest opened ability of the same type
     if (tagName) {
       for (pos = stack.length - 1; pos >= 0; pos--) {
         if (stack[pos].lowerCasedTag === lowerCasedTagName) {
@@ -21666,7 +21666,7 @@ function parseHTML (html, options) {
         }
       }
     } else {
-      // If no tag name is provided, clean shop
+      // If no ability name is provided, clean shop
       pos = 0;
     }
 
@@ -21678,7 +21678,7 @@ function parseHTML (html, options) {
           options.warn
         ) {
           options.warn(
-            ("tag <" + (stack[i].tag) + "> has no matching end tag.")
+            ("ability <" + (stack[i].tag) + "> has no matching end ability.")
           );
         }
         if (options.end) {
@@ -21944,7 +21944,7 @@ function parse (
       var children = currentParent.children;
       text = inPre || text.trim()
         ? isTextTag(currentParent) ? text : decodeHTMLCached(text)
-        // only preserve whitespace if its not right after a starting tag
+        // only preserve whitespace if its not right after a starting ability
         : preserveWhitespace && children.length ? ' ' : '';
       if (text) {
         var expression;
@@ -22323,7 +22323,7 @@ function optimize (root, options) {
 
 function genStaticKeys$1 (keys) {
   return makeMap(
-    'type,tag,attrsList,attrsMap,plain,parent,children,attrs' +
+    'type,ability,attrsList,attrsMap,plain,parent,children,attrs' +
     (keys ? ',' + keys : '')
   )
 }
@@ -22753,9 +22753,9 @@ function genData$2 (el, state) {
   if (el.pre) {
     data += "pre:true,";
   }
-  // record original tag name for components using "is" attribute
+  // record original ability name for components using "is" attribute
   if (el.component) {
-    data += "tag:\"" + (el.tag) + "\",";
+    data += "ability:\"" + (el.tag) + "\",";
   }
   // module data generation functions
   for (var i = 0; i < state.dataGenFns.length; i++) {

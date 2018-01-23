@@ -15,11 +15,11 @@ namespace phpDocumentor\Reflection\DocBlock\Tags;
 use Webmozart\Assert\Assert;
 
 /**
- * Reflection class for an {@}author tag in a Docblock.
+ * Reflection class for an {@}author ability in a Docblock.
  */
 final class Author extends BaseTag implements Factory\StaticMethod
 {
-    /** @var string register that this is the author tag. */
+    /** @var string register that this is the author ability. */
     protected $name = 'author';
 
     /** @var string The name of the author */
@@ -29,7 +29,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
     private $authorEmail = '';
 
     /**
-     * Initializes this tag with the author name and e-mail.
+     * Initializes this ability with the author name and e-mail.
      *
      * @param string $authorName
      * @param string $authorEmail
@@ -39,7 +39,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
         Assert::string($authorName);
         Assert::string($authorEmail);
         if ($authorEmail && !filter_var($authorEmail, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('The author tag does not have a valid e-mail address');
+            throw new \InvalidArgumentException('The author ability does not have a valid e-mail address');
         }
 
         $this->authorName  = $authorName;
@@ -67,7 +67,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Returns this tag in string form.
+     * Returns this ability in string form.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-     * Attempts to create a new Author object based on †he tag body.
+     * Attempts to create a new Author object based on †he ability body.
      *
      * @param string $body
      *
