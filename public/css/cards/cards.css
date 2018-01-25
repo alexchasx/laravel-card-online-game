@@ -18,6 +18,27 @@ body {
 a {
     text-decoration: none;
 }
+a.btn2 {
+    position: absolute;
+    width: 140px;
+    height: 50px;
+    top: 100px;
+    left: 100px;
+    z-index: 9999999;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #FDBE33 #000 #D77206;
+    border-radius: 6px;
+    background: linear-gradient(#F3AE0F, #E38916) #E38916;
+    transition: 0.2s;
+}
+a.btn2:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+a.btn2:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
 .clearfix {
     clear: both;
 }
@@ -73,120 +94,20 @@ a {
 /*-----------Колода-END--------*/
 
 /*-----------Кнопка конца хода--------*/
-
-*, *:before, *:after {
-    box-sizing: border-box;
-    transition: .4s ease-in-out;
-}
-.btn2 {
-    text-decoration: none;
-    text-align: center;
-    color: white;
-    position: relative;
-    background: #3C4896;
-    display: block;
-    width: 200px;
-    height: 50px;
-    border-radius: 50px;
-    border: 2px solid transparent;
-    margin: 80px auto 0;
-}
-.btn2:hover {
-    background: #ff8349;
-    border: 2px solid #3C4896;
-}
-/* скроем иконку загрузки до наведения на кнопку и текст "Скачать" после наведения на кнопку */
-span {
-    overflow: hidden;
-}
-span, em, i.fa {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    line-height: 46px; /* за вычетом границ кнопки */
-}
-em {
-    top: 0;
-    font-style: normal;
-}
-i.fa {
-    top: 100%; /* смещаем вниз */
-    font-size: 30px;
-    color: #3C4896;
-}
-.btn2:hover em {
-    top: -100%; /* смещаем вверх */
-}
-.btn2:hover i.fa {
-    top: 0;
-}
-/* делаем подсказку прозрачной и убираем её со страницы, чтобы она не появлялась при наведении на место, где она должна появиться */
-.btn2:before, .btn2:after{
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-}
-/* стили для всплывающего блока с текстом */
-.btn2:before{
-    content: attr(data-tooltip);
-    width: 200px;
-    height: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    line-height: 20px;
-    background: #3C4896;
-    border-radius: 5px;
-    bottom: 70px;
-    /*left: calc(50% - 100px);*/
-    right: 0;
-}
-/* стили для стрелки */
-.btn2:after {
-    content: "";
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: #3C4896;
-    bottom: 70px;
-    left: calc(50% - 10px);
-}
-.btn2:hover:before, .btn2:hover:after {
-    opacity: 1;
-    visibility: visible;
-    transition: .2s ease-in-out .4s; /* сделаем появление подсказки с задержкой */
-}
-/* добавляем эффект движения */
-.btn2:hover:before {
-    bottom: 70px;
-}
-.btn2:hover:after {
-    bottom: 50px;
-}
 .end_turn {
-    z-index: 999;
     position: absolute;
+    text-align: center;
+    z-index: 999;
     right: 0;
-    width: 140px;
-    height: 50px;
     font-size: medium;
     border: 2px double black;
     border-radius: 5px;
 }
-.enemy_end {
-    top: 150px;
-    /*background: -moz-linear-gradient(#28252d, #7b7c7f);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#28252d), to(#7b7c7f));*/
-    background: -moz-linear-gradient(#8a0022, #b82e45);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#8a0022), to(#b82e45));
-}
+
 .player_end {
     bottom: 150px;
 }
-.grin {
-    background: -moz-linear-gradient(#0b4b25, #06ab3e);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0b4b25), to(#06ab3e));
-}
+
 .yellow {
     background: -moz-linear-gradient(#0b4b25, #06ab3e);
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#634c29), to(#e4a804));
@@ -255,15 +176,19 @@ i.fa {
     height: 18px;
 }
 .energy {
+    background-color: #92830e;
     top: 22px;
 }
 .health_points {
+    background-color: #1a8a28;
     top: 48px;
 }
 .armor {
+    background-color: #1b191d;
     top: 74px;
 }
 .attack {
+    background-color: #a1171f;
     top: 100px;
 }
 .card_name, .ability {
@@ -288,15 +213,13 @@ i.fa {
 }
 .card-1 {
     z-index: 5;
-    background: #4250c7 url(/images/card_face/opustoshiteli.jpg) no-repeat;
 }
 .card-2 {
     z-index: 6;
-    background: #4250c7 url(/images/card_face/predator.jpg) no-repeat;
+    /*background: #4250c7 url(/images/card_face/predator.jpg) no-repeat;*/
 }
 .card-3 {
     z-index: 7;
-    background: #4250c7 url(/images/card_face/shturm.jpg) no-repeat;
 }
 /*-----------Карта-END--------*/
 .card_place {
@@ -312,4 +235,39 @@ i.fa {
 .place_enemy {
     border: 0;
 }
+a.button9 {
+    z-index: 999999;
+    top: 300px;
+    left: 50%;
+    position: relative;
+    display: inline-block;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+    user-select: none;
+    padding: 1em 2em;
+    outline: none;
+    border-radius: 3px / 100%;
+    background-image:
+            linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+            linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+            linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+            linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+            linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+            linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+a.button9:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+a.button9:active {
+    top: 1px;
+}
+
+
 

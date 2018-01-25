@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{ config('app.name') }}</title>
     <!-- bootstrap-css -->
-<!--    <link href="{{ asset('GoEasyOn/css/bootstrap.css') }}" rel="stylesheet" type="text/css"-->
+{{--<!--    <link href="{{ asset('GoEasyOn/css/bootstrap.css') }}" rel="stylesheet" type="text/css"-->--}}
 <!--          media="all"/>-->
     <!--// bootstrap-css -->
     <!-- font -->
