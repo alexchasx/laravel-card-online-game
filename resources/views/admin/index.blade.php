@@ -1,6 +1,6 @@
-@extends('admin.admin_layout')
+@extends('adminlte::page')
 
-@section('inner_content')
+@section('content')
     <br>
     <br>
 

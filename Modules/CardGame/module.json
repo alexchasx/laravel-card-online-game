@@ -1,0 +1,16 @@
+{
+    "name": "CardGame",
+    "alias": "cardgame",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\CardGame\\Providers\\CardGameServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
