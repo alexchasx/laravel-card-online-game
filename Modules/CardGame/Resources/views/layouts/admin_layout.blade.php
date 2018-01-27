@@ -57,12 +57,12 @@
             @if ('cardSetIndex' !== Route::current()->getName())
                 <li><a class="link" href="{{route('cardSetIndex')}}">Наборы</a></li>
             @endif
-            {{--@if ('raceIndex' !== Route::current()->getName())--}}
-                {{--<li><a class="link" href="{{route('raceIndex')}}">Расы</a></li>--}}
-            {{--@endif--}}
-            {{--@if ('abilityIndex' !== Route::current()->getName())--}}
-                {{--<li><a class="link" href="{{route('abilityIndex')}}">Способности</a></li>--}}
-            {{--@endif--}}
+            @if ('raceIndex' !== Route::current()->getName())
+                <li><a class="link" href="{{route('raceIndex')}}">Расы</a></li>
+            @endif
+            @if ('abilityIndex' !== Route::current()->getName())
+                <li><a class="link" href="{{route('abilityIndex')}}">Способности</a></li>
+            @endif
         </ul>
     </div>
 

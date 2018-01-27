@@ -4,13 +4,16 @@
 @section('content-subtitle', '')
 
 @section('content')
-<div class="error-page">
-  <h2 class="headline text-yellow"> 403</h2>
-
+<div style="position: relative; top: 35%;" class="error-page">
   <div class="error-content">
-    <h3><i class="fa fa-warning text-yellow"></i> Нет доступа! {{-- class_basename($exception->getPrevious() ? : $exception) --}}</h3>
+    <h2 class="headline text-default text-center"><i class="fa fa-warning text-yellow text-center"></i>
+      {{ $exception->getPrevious() ? $exception->getPrevious()->getMessage()
+      : $exception->getMessage() ? $exception->getMessage() : 'Доступ запрещен!' }}
+    </h2>
 
-    <p>{{ $exception->getPrevious() ? $exception->getPrevious()->getMessage() : $exception->getMessage() }}</p>
+    <br>
+
+    <h3 class="headline text-default text-center">Код ошибки: 403</h3>
 
   </div>
   <!-- /.error-content -->
