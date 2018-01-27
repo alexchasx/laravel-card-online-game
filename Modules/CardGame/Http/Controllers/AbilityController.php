@@ -2,141 +2,50 @@
 
 namespace Modules\CardGame\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
-use App\Model\Ability;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Http\Controllers\BaseController;
+use Modules\CardGame\Http\Entities\Ability;
+use Modules\CardGame\Repositories\AbilityRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AbilityController extends BaseController
 {
     /**
-     * Показать все теги
+     * BaseController constructor.
+     *
+     * @param AbilityRepository $repository
+     */
+    public function __construct(AbilityRepository $repository)
+    {
+        parent::__construct($repository);
+    }
+
+    /**
+     * @return View
      */
     public function index()
     {
         self::checkAdmin();
 
-        $abilities = Ability::withTrashed()
-            ->orderBy('id', 'desc')
-            ->get();
-
-        return view('admin.ability.index')->with([
-            'abilities' => $abilities
+        return view('cardgame::ability.index')->with([
+            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
         ]);
     }
 
     /**
-     * Сохраняет тег
+     * @var int $id
      *
-     * POST /admin/ability/store
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
+     * @return View | HttpException
      */
-    public function store(Request $request)
+    public function edit($id)
     {
         self::checkAdmin();
 
-//        $this->validate($request, [
-//            'name' => 'required|max:255',
-//        ]);
+        $ability = parent::edit($id);
 
-        $originalName =  $request->file('avatar')
-            ->getClientOriginalName();
-
-        $path = $request->file('avatar')
-            ->storeAs('upload', $originalName);
-
-        $ability = Ability::query()
-            ->create(array_except($request->all(), ['avatar']));
-
-        $ability->avatar = '/storage/app/' . $path;
-        $ability->save();
-
-        return redirect()->back();
-    }
-
-    /**
-     * Редактирует тег
-     *
-     * POST /admin/ability/update
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function update(Request $request)
-    {
-        self::checkAdmin();
-
-        $this->validate($request, [
-            'title' => 'required|max:255',
+        return view('cardgame::ability.update')->with([
+            'ability' => $ability,
         ]);
-
-        Ability::query()
-            ->find($request->id)
-            ->update($request->all());
-
-        return redirect()->back();
     }
 
-    /**
-     * Удаляет тег
-     *
-     * DELETE /admin/ability/delete/{id}
-     *
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function destroy($id)
-    {
-        self::checkAdmin();
-
-        Ability::query()
-            ->find($id)
-            ->delete();
-
-        return redirect()->back();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function forceDestroy($id)
-    {
-        self::checkAdmin();
-
-        Ability::withTrashed()
-            ->find($id)
-            ->forceDelete();
-
-        return redirect()->back();
-    }
-
-    /**
-     * Восстанавливает тег
-     *
-     * GET /admin/ability/restore/{ability}
-     *
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function restore($id)
-    {
-        self::checkAdmin();
-
-        Ability::withTrashed()
-            ->where('id', $id)
-            ->restore();
-
-        return redirect()->back();
-    }
 }
-

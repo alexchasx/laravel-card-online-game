@@ -51,18 +51,18 @@
         <ul id="nav">
             <!-- Main menu with font awesome icon -->
             <br>
-            <li>
-                <a class="link" href="{{route('cardIndex')}}">Все карты</a>
-            </li>
-            <li>
-                <a class="link" href="{{route('cardSetIndex')}}">Все наборы</a>
-            </li>
-            <li>
-                <a class="link" href="{{route('raceIndex')}}">Все расы</a>
-            </li>
-            <li>
-                <a class="link" href="{{route('abilityIndex')}}">Все способности</a>
-            </li>
+            @if ('cardIndex' !== Route::current()->getName())
+            <li><a class="link" href="{{route('cardIndex')}}">Карты</a></li>
+            @endif
+            @if ('cardSetIndex' !== Route::current()->getName())
+                <li><a class="link" href="{{route('cardSetIndex')}}">Наборы</a></li>
+            @endif
+            {{--@if ('raceIndex' !== Route::current()->getName())--}}
+                {{--<li><a class="link" href="{{route('raceIndex')}}">Расы</a></li>--}}
+            {{--@endif--}}
+            {{--@if ('abilityIndex' !== Route::current()->getName())--}}
+                {{--<li><a class="link" href="{{route('abilityIndex')}}">Способности</a></li>--}}
+            {{--@endif--}}
         </ul>
     </div>
 

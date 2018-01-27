@@ -3,16 +3,24 @@
 namespace Modules\CardGame\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
-use App\Model\CardSet;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Category;
-use Illuminate\Routing\Redirector;
+
 use Illuminate\View\View;
+use Modules\CardGame\Http\Entities\Race;
+use Modules\CardGame\Repositories\RaceRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RaceController extends BaseController
 {
+    /**
+     * BaseController constructor.
+     *
+     * @param RaceRepository $repository
+     */
+    public function __construct(RaceRepository $repository)
+    {
+        parent::__construct($repository);
+    }
+
     /**
      * @return View
      */
@@ -20,91 +28,25 @@ class RaceController extends BaseController
     {
         self::checkAdmin();
 
-        return view('admin.race.index')->with([
-            'races' => $this->showRaces(),
+        return view('cardgame::race.index')->with([
+            'races' => $this->repository->showEntitiesByClassName(Race::class),
         ]);
     }
 
     /**
-     * POST /admin/card_set/store
+     * @var int $id
      *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
+     * @return View | HttpException
      */
-    public function store(Request $request)
+    public function edit($id)
     {
         self::checkAdmin();
 
-//        $this->validate($request, [
-//            'set_name' => 'required|max:255',
-//        ]);
+        $race = parent::edit($id);
 
-        CardSet::create($request->all());
-
-        return redirect()->back();
-    }
-
-    /**
-     * Редактирует категорию
-     *
-     * POST /admin/card_set/update
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function update(Request $request)
-    {
-        self::checkAdmin();
-
-//        $this->validate($request, [
-//            'set_name' => 'required|max:255',
-//        ]);
-
-        CardSet::find($request->id)
-            ->update($request->all());
-
-        return redirect()->back();
-    }
-
-    /**
-     * Удаляет категорию
-     *
-     * DELETE /admin/card_set/delete/{id}
-     *
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function destroy($id)
-    {
-        self::checkAdmin();
-
-        CardSet::find($id)->delete();
-
-        return redirect()->back();
-    }
-
-
-    /**
-     * Восстанавливает категорию
-     *
-     * GET /admin/card_set/restore/{id}
-     *
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function restore($id)
-    {
-        self::checkAdmin();
-
-        CardSet::withTrashed()
-            ->where('id', $id)
-            ->restore();
-
-        return redirect()->back();
+        return view('cardgame::race.update')->with([
+            'race' => $race,
+        ]);
     }
 
 }

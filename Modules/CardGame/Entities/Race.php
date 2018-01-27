@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
  * @property string  $name
  * @property string  $avatar
- * @property string  $background
+ * @property string  $feature
  * @property string  $description
- * @property string  $border
  * @property boolean $pay
  * @property boolean $hidden
  */
-class Battlefield extends BaseModel
+class Race extends BaseModel
 {
     use SoftDeletes;
 
-    const TABLE_NAME = 'battlefield';
+    const TABLE_NAME = 'races';
 
     /**
      * @var string

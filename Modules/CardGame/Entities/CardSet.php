@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

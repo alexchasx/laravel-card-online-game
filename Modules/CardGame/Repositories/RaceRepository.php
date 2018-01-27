@@ -3,15 +3,15 @@
 namespace Modules\CardGame\Repositories;
 
 
-use Modules\CardGame\Http\Entities\Card;
+use Modules\CardGame\Http\Entities\Race;
 use App\Repositories\BaseRepository;
 
-class CardRepository extends BaseRepository
+class RaceRepository extends BaseRepository
 {
     /**
-     * @param Card $model
+     * @param Race $model
      */
-    public function __construct(Card $model)
+    public function __construct(Race $model)
     {
         parent::__construct($model);
     }

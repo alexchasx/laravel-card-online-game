@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
+use App\Model\BaseModel;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property integer   $id
- * @property string    $name
- * @property string    $image
- * @property string    $description
- * @property boolean   $hidden
+ * @property integer $id
+ * @property string  $name
+ * @property string  $avatar
+ * @property string  $description
+ * @property string  $full_description
+ * @property boolean $hidden
  *
  * @property Carbon   $deleted_at
  */
-class CardType extends Model
+class Ability extends BaseModel
 {
     use SoftDeletes;
 
-    const TABLE_NAME = 'card_types';
-
+    const TABLE_NAME = 'abilities';
 
     /**
      * @var string

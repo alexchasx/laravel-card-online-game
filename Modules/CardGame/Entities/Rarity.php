@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Carbon   $deleted_at
  */
-class Rarity extends Model
+class Rarity extends BaseModel
 {
     use SoftDeletes;
 

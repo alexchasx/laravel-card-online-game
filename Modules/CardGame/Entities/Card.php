@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**

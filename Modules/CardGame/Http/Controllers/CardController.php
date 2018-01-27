@@ -2,28 +2,28 @@
 
 namespace Modules\CardGame\Http\Controllers;
 
-use App\Model\Ability;
-use App\Model\Card;
-use App\Model\CardType;
-use App\Model\Race;
-use App\Model\Rarity;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\BaseController;
+use Modules\CardGame\Http\Entities\Card;
+use Modules\CardGame\Http\Entities\Race;
+use Modules\CardGame\Http\Entities\Rarity;
+use Modules\CardGame\Http\Entities\CardSet;
+use Modules\CardGame\Http\Entities\Ability;
+use Modules\CardGame\Http\Entities\CardType;
 use Modules\CardGame\Repositories\CardRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CardController extends BaseController
 {
     /**
-     * @var CardRepository
+     * BaseController constructor.
+     *
+     * @param CardRepository $repository
      */
-    protected $repository;
-
-    public function __construct(CardRepository $repository){
-        $this->repository = $repository;
+    public function __construct(CardRepository $repository)
+    {
+        parent::__construct($repository);
     }
 
     /**
@@ -33,60 +33,16 @@ class CardController extends BaseController
      */
     public function index()
     {
-        self::checkAdmin(); //TODO Избавиться!
-
-        $cards = $this->repository->withTrashedOrderByDesc('id');
-        dd($cards);
+//        self::checkAdmin(); //TODO Избавиться!
 
         return view('cardgame::card.index')->with([
-            'cards' => $cards,
-            'cardSets' => $this->showCardSets(),
-            'races' => $this->showModels(Race::class),
-            'abilities' => $this->showModels(Ability::class),
-            'types' => $this->showModels(CardType::class),
-            'rarities' => $this->showModels(Rarity::class),
+            'cards' => $this->repository->withTrashedOrderByDesc(),
+            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class, 'set_name'),
+            'races' => $this->repository->showEntitiesByClassName(Race::class),
+            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
+            'types' => $this->repository->showEntitiesByClassName(CardType::class),
+            'rarities' => $this->repository->showEntitiesByClassName(Rarity::class),
         ]);
-    }
-
-//    /**
-//     * @return View | HttpException
-//     */
-//    public function create()
-//    {
-//        self::checkAdmin();
-//
-//        return view('admin.Card.create')->with([
-//            'cardSet' => $this->showCardSets(),
-//            'tags' => $this->showTags(),
-//        ]);
-//    }
-
-    /**
-     * @param Request $request
-     *
-     * @return $this | HttpException
-     */
-    public function store(Request $request)
-    {
-        self::checkAdmin();
-
-//        $this->validate($request, [
-//            'card_name' => 'required',
-//        ]);
-
-        $originalName =  $request->file('avatar')
-            ->getClientOriginalName();
-
-        $path = $request->file('avatar')
-            ->storeAs('upload', $originalName);
-
-        $card = Card::query()
-            ->create(array_except($request->all(), ['avatar']));
-
-        $card->avatar = '/storage/app/' . $path;
-        $card->save();
-
-        return redirect()->back();
     }
 
     /**
@@ -98,87 +54,17 @@ class CardController extends BaseController
     {
         self::checkAdmin();
 
-        $Card = Card::withTrashed()
-            ->where('id', $id)
-            ->first();
+        $card = parent::edit($id);
 
-        return view('admin.Card.update')->with([
-            'Card' => $Card,
-            'cardSet' => $this->showCardSets(),
+        return view('cardgame::card.update')->with([
+            'Card' => $card,
+            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class, 'set_name'),
         ]);
     }
 
     /**
-     * Редактирует статью
-     *
-     * POST /admin/Card/update
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
+     * @return $this
      */
-    public function update(Request $request)
-    {
-        self::checkAdmin();
-
-//        $this->validate($request, [
-//            'title' => 'required|max:255',
-//        ]);
-
-        Card::withTrashed()
-            ->where('id', $request->id)
-            ->update(array_except($request->all(), ['_token']));
-
-        return redirect()->back();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function destroy($id)
-    {
-        self::checkAdmin();
-
-        Card::query()
-            ->find($id)->delete();
-
-        return redirect()->back();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function forceDestroy($id)
-    {
-        self::checkAdmin();
-
-        Card::withTrashed()
-            ->find($id)
-            ->forceDelete();
-
-        return redirect()->back();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return RedirectResponse | HttpException
-     */
-    public function restore($id)
-    {
-        self::checkAdmin();
-
-        Card::withTrashed()
-            ->where('id', $id)
-            ->restore();
-
-        return redirect()->back();
-    }
-
     public function replaceCard()
     {
         $cards = Card::query()

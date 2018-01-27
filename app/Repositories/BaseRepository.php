@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
+use Symfony\Component\HttpFoundation\Request;
 
 abstract class BaseRepository
 {
@@ -33,6 +35,57 @@ abstract class BaseRepository
     }
 
     /**
+     * @param      $column
+     * @param null $operator
+     * @param null $value
+     *
+     * @return Builder
+     */
+    public function withTrashedWhere($column, $operator = null, $value = null)
+    {
+        return $this->model->withTrashed()
+            ->where($column, $operator, $value);
+    }
+
+    /**
+     * @param string $className
+     *
+     * @param string $column
+     *
+     * @return Collection[] | Model[]
+     */
+    public function showEntitiesByClassName($className, $column = 'name')
+    {
+        return $className::query()
+            ->where('hidden', false)
+            ->orderBy($column)
+            ->get();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return void
+     */
+    public function create(Request $request)
+    {
+        if ($request->file('avatar')) {
+            $originalName = $request->file('avatar')
+                ->getClientOriginalName();
+
+            $basePath = $request->file('avatar')
+                ->storeAs('upload', $originalName);
+
+            $card = $this->model->create(array_except($request->all(), ['avatar']));
+            $card->avatar = config('cardgame.avatar_path') . $basePath;
+            $card->save();
+
+        } else {
+            $this->model->create($request->all());
+        }
+    }
+
+    /**
      * @param  int $id
      *
      * @return void
@@ -44,12 +97,14 @@ abstract class BaseRepository
     }
 
     /**
-     * @param  int $id
+     * @param  int  $id
+     *
+     * @param array $columns
      *
      * @return Model
      */
-    public function getById($id)
+    public function getById($id, $columns = ['*'])
     {
-        return $this->model->findOrFail($id);
+        return $this->model->findOrFail($id, $columns);
     }
 }
