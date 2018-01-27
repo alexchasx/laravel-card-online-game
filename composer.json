@@ -6,6 +6,7 @@
     "type": "laravel-module",
     "require": {
         "php": ">=5.6.4",
+        "dlnsk/h-rbac": "^0.3.1",
         "doctrine/dbal": "*",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.4.*",

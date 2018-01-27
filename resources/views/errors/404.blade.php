@@ -7,8 +7,7 @@
   <div style="position: relative; top: 35%;" class="error-page">
     <div class="error-content">
       <h2 class="headline text-default text-center"><i class="fa fa-warning text-yellow text-center"></i>
-        {{ $exception->getPrevious() ? $exception->getPrevious()->getMessage()
-        : $exception->getMessage() ? $exception->getMessage() : 'Нет такой страницы' }}
+        Нет такой страницы
       </h2>
 
       <br>

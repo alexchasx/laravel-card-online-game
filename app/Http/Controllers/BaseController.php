@@ -24,31 +24,12 @@ class BaseController extends Controller
     }
 
     /**
-     * Проверяет пользователя на наличие администраторских прав
-     *
-     * @return true
-     *
-     * @throws HttpException
-     */
-    public static function checkAdmin()
-    {
-        if (\Auth::check() && isAdmin()) {
-            return true;
-        }
-
-        abort(403, 'Доступ запрещён!');
-    }
-
-
-    /**
      * @param Request $request
      *
      * @return RedirectResponse | HttpException
      */
     public function store(Request $request)
     {
-        self::checkAdmin();
-
         // TODO сделать валидацию
 //        $this->validate($request->all(), [
 //            'set_name' => 'required|max:255',
@@ -66,8 +47,6 @@ class BaseController extends Controller
      */
     public function edit($id)
     {
-        self::checkAdmin();
-
         return $this->repository->withTrashedWhere('id', $id)
             ->first();
     }
@@ -83,8 +62,6 @@ class BaseController extends Controller
      */
     public function update(Request $request)
     {
-        self::checkAdmin();
-
         // TODO сделать валидацию
 //        $this->validate($request, [
 //            'title' => 'required|max:255',
@@ -103,8 +80,6 @@ class BaseController extends Controller
      */
     public function destroy($id)
     {
-        self::checkAdmin();
-
         $this->repository->getById($id)
             ->delete();
 
@@ -118,8 +93,6 @@ class BaseController extends Controller
      */
     public function forceDestroy($id)
     {
-        self::checkAdmin();
-
         $this->repository->withTrashedWhere('id', $id)
             ->forceDelete();
 
@@ -133,8 +106,6 @@ class BaseController extends Controller
      */
     public function restore($id)
     {
-        self::checkAdmin();
-
         $this->repository->withTrashedWhere('id', $id)
             ->restore();
 

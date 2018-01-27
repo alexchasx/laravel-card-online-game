@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Category;
-use App\Tag;
 use Illuminate\View\View;
 
-class SiteController extends BaseController
+class SiteController extends Controller
 {
     const EMPTY_IMAGE = 'upload/no-image.png';
 

@@ -35,6 +35,16 @@ class User extends Authenticatable
 
     const TABLE_NAME = 'users';
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_MANAGER = 'manager';
+    const ROLE_USER = 'user';
+
+    public $roles = [
+      self::ROLE_ADMIN,
+      self::ROLE_MANAGER,
+      self::ROLE_USER,
+    ];
+
     /**
      * Связанная с моделью таблица.
      *

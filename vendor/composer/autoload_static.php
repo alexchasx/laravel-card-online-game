@@ -104,6 +104,7 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
+            'Dlnsk\\HierarchicalRBAC\\' => 23,
             'DeepCopy\\' => 9,
         ),
         'C' => 
@@ -276,6 +277,10 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
+        'Dlnsk\\HierarchicalRBAC\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC',
+        ),
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
@@ -349,7 +354,6 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\SendMailFromContactEvent' => __DIR__ . '/../..' . '/app/Events/SendMailFromContactEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\Admin\\AdminUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminUserController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -439,6 +443,9 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
+        'Dlnsk\\HierarchicalRBAC\\ArrayAuthorization' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/ArrayAuthorization.php',
+        'Dlnsk\\HierarchicalRBAC\\Authorization' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/Authorization.php',
+        'Dlnsk\\HierarchicalRBAC\\HRBACServiceProvider' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/HRBACServiceProvider.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
         'Doctrine\\Common\\Annotations\\AnnotationException' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php',
         'Doctrine\\Common\\Annotations\\AnnotationReader' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationReader.php',

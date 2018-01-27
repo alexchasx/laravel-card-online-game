@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
+        Dlnsk\HierarchicalRBAC\HRBACServiceProvider::class,
 
         /*
          * Application Service Providers...

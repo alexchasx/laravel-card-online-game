@@ -10,7 +10,7 @@ Route::get('battleground', 'CardController@battleGround')
     ->name('battleGround');
 
 Route::group([
-    'middleware' => 'web',
+    'middleware' => ['web', 'admin'],
     'prefix' => 'cardgame',
     'namespace' => 'Modules\CardGame\Http\Controllers'
 ], function() {

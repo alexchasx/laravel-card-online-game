@@ -2,6 +2,7 @@
 
 namespace Modules\CardGame\Http\Controllers;
 
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
@@ -33,10 +34,10 @@ class CardController extends BaseController
      */
     public function index()
     {
-//        self::checkAdmin(); //TODO Избавиться!
+        $cards = $this->repository->withTrashedOrderByDesc();
 
         return view('cardgame::card.index')->with([
-            'cards' => $this->repository->withTrashedOrderByDesc(),
+            'cards' => $cards,
             'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class, 'set_name'),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
@@ -52,8 +53,6 @@ class CardController extends BaseController
      */
     public function edit($id)
     {
-        self::checkAdmin();
-
         $card = parent::edit($id);
 
         return view('cardgame::card.update')->with([
