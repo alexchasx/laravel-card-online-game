@@ -14,7 +14,7 @@ Route::group([
     'prefix' => 'cardgame',
     'namespace' => 'Modules\CardGame\Http\Controllers'
 ], function() {
-    Route::get('/', 'CardGameController@index');
+    Route::get('/', 'CardGameController@index')->name('cardGameIndex');
 
     Route::group(['prefix' => 'card'], function() {
 // Route::group(['prefix' => 'card', 'middleware' => ['auth', 'admin']], function () {

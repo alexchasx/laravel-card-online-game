@@ -74,7 +74,7 @@
 
                                 @if (isAdmin())
                                     <li class="m_nav_item" id="moble_nav_item_6">
-                                        <a href="{{ route('adminIndex') }}"
+                                        <a href="{{ route('cardIndex') }}"
                                            class="link link--kumya scroll">
                                             <span data-letters="Админ">Админ-панель</span>
                                         </a>

@@ -23,14 +23,13 @@ class CardController extends BaseController
      */
     public function index()
     {
-        die('Card');
         self::checkAdmin();
 
         $cards = Card::withTrashed()
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('admin.index')->with([
+        return view('cardgame::card.index')->with([
             'cards' => $cards,
             'cardSets' => $this->showCardSets(),
             'races' => $this->showModels(Race::class),

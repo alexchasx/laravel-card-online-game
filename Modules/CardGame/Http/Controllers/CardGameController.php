@@ -14,7 +14,9 @@ class CardGameController extends Controller
      */
     public function index()
     {
-        return view('cardgame::index');
+        return redirect()->route('/');
+
+//        return view('cardgame::index');
     }
 
     /**

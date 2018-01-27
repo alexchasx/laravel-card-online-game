@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Ability;
 use App\Model\CardSet;
-use App\Model\CardType;
-use App\Model\Race;
-use App\Model\Rarity;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\HttpException;

@@ -36,7 +36,7 @@ Route::get('contact', function() {
 //Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
 //Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
 
-Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
+Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index'])->name('home');
 
 //Route::get('replace_card', 'CardController@replaceCard')
 //    ->name('replaceCard');
@@ -45,59 +45,12 @@ Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
 //Route::get('battleground', 'CardController@battleGround')
 //    ->name('battleGround');
 
-//Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index']);
 Route::get('card.{id}', 'SiteController@show')->name('cardShow');
 Route::get('card_set.{categoryId}', 'SiteController@showByCategory')->name('showByCategory');
 Route::get('ability.{tagId}', 'SiteController@showByTag')->name('showByTag');
 
 // ======== AdminPanel =========================
 Route::group(['prefix' => 'admin'], function() {
-//    Route::group(['prefix' => 'card'], function() {
-//// Route::group(['prefix' => 'admin/card', 'middleware' => ['auth', 'admin']], function () {
-//
-//        Route::get('index', 'Admin\AdminCardController@index')->name('adminIndex');
-//        Route::get('create', 'Admin\AdminCardController@create')->name('cardCreate');
-//        Route::post('create', 'Admin\AdminCardController@store')->name('cardStore');
-//        Route::get('update.{id}', 'Admin\AdminCardController@edit')->name('cardEdit');
-//        Route::post('update', 'Admin\AdminCardController@update')->name('cardUpdate');
-//        Route::delete('destroy.{id}', 'Admin\AdminCardController@destroy')->name('cardDelete');
-//        Route::delete('force_destroy.{id}', 'Admin\AdminCardController@forceDestroy')
-//            ->name('cardForceDelete');
-//        Route::delete('delete.{card}.{ability}', 'Admin\AdminCardController@deleteTag')
-//            ->name('cardTagDelete');
-//        Route::get('restore.{card}', 'Admin\AdminCardController@restore')->name('cardRestore');
-//    });
-//
-//    Route::group(['prefix' => 'card_set'], function() {
-//
-//        Route::get('index', 'Admin\AdminCardSetController@index')->name('cardSetIndex');
-//        Route::post('create', 'Admin\AdminCardSetController@store')->name('cardSetStore');
-//        Route::get('create', 'Admin\AdminCardSetController@create')->name('cardSetCreate');
-//        Route::get('update.{id}', 'Admin\AdminCardSetController@edit')->name('cardSetEdit');
-//        Route::any('update', 'Admin\AdminCardSetController@update')->name('cardSetUpdate');
-//        Route::delete('card_set.{card_set}', 'Admin\AdminCardSetController@destroy')
-//            ->name('cardSetDelete');
-//        Route::get('card_set.restore.{card_set}', 'Admin\AdminCardSetController@restore')
-//            ->name('cardSetRestore');
-//    });
-//
-//    Route::group(['prefix' => 'race'], function() {
-//
-//        Route::get('index', 'Admin\AdminRaceController@index')->name('raceIndex');
-//        Route::post('create', 'Admin\AdminRaceController@store')->name('raceStore');
-//    });
-//
-//    Route::group(['prefix' => 'ability'], function() {
-//
-//        Route::get('index', 'Admin\AdminAbilityController@index')->name('abilityIndex');
-//        Route::post('create', 'Admin\AdminAbilityController@store')->name('abilityStore');
-//        Route::post('update', 'Admin\AdminAbilityController@update')->name('abilityUpdate');
-//        Route::delete('delete.{id}', 'Admin\AdminAbilityController@destroy')->name('abilityDelete');
-//        Route::delete('force_destroy.{id}', 'Admin\AdminAbilityController@forceDestroy')
-//            ->name('abilityForceDelete');
-//        Route::get('restore.{ability}', 'Admin\AdminAbilityController@restore')
-//            ->name('abilityRestore');
-//    });
 
     Route::group(['prefix' => 'user'], function() {
 
