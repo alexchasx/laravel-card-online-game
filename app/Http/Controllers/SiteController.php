@@ -17,7 +17,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('index')->with([
+        return view('auth.login')->with([
             'empty' => self::EMPTY_IMAGE,
         ]);
     }

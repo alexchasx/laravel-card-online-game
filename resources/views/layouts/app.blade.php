@@ -25,6 +25,7 @@
     <link href="{{ asset('GoEasyOn/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cards/cards.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cards/card_replace.css') }}" rel="stylesheet">
+    <link href="{{ asset('my/form_login.css') }}" rel="stylesheet">
     <!-- //font-awesome icons -->
 </head>
 <body>

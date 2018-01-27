@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Model\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +13,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Jobs\SendVerificationEmail;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
@@ -77,6 +77,14 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'email_token' => str_random($request->email),
             ]);
+    }
+
+    /**
+     * @return View
+     */
+    public function registerForm()
+    {
+        return view('auth.register');
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <div class="container">
@@ -20,7 +20,8 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" required @if ($errors->has('name')) autofocus @endif>
+                                           value="{{ old('name') }}" required
+                                           @if ($errors->has('name')) autofocus @endif>
 
                                     @if ($errors->has('name'))
                                         <div class="help-block">
@@ -35,7 +36,8 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}"  @if ($errors->has('email')) autofocus @endif required>
+                                           value="{{ old('email') }}"
+                                           @if ($errors->has('email')) autofocus @endif required>
 
                                     @if ($errors->has('email'))
                                         <div class="help-block">
@@ -50,7 +52,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control"
-                                           name="password" required @if ($errors->has('name')) autofocus @endif>
+                                           name="password" required
+                                           @if ($errors->has('name')) autofocus @endif>
 
                                     @if ($errors->has('password'))
                                         <div class="help-block">
@@ -72,10 +75,13 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-4" style="position: relative;">
                                     <button type="submit" class="btn btn-primary">
                                         Зарегистрироваться
                                     </button>
+                                    <a style="position: absolute; right: 14px;" class="btn btn-primary text-center" href="{{ url('/') }}">
+                                        Отмена
+                                    </a>
                                 </div>
                             </div>
 

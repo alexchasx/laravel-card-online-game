@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/verify_email/{token}', 'Auth\RegisterController@verify');
+Route::get('register', function(){
+    return view('auth.register');
+})->name('registerForm');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 // Logout
 Route::any('/logout', function() { //TODO Не доделал

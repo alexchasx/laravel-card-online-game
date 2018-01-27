@@ -37,21 +37,15 @@
     <main class="content">
         <div class="wrapper">
 
-    @yield('content')
+            @yield('content')
 
         </div><!-- /.wrapper -->
     </main>
     <!-- CONTENT END-->
 
-    @include('cardgame::layouts.footer')
+    {{--@include('cardgame::layouts.footer')--}}
 
 </div><!-- /.main -->
-
-<a href="" class="btn btn-primary btn-lg go-to-top" role="button" title="Незамедлительно вверх">
-    <div class="glyphicon glyphicon-chevron-up"></div>
-    <div class="glyphicon glyphicon-chevron-up"></div>
-    <div class="glyphicon glyphicon-chevron-up"></div>
-</a>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

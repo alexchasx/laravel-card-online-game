@@ -1,0 +1,132 @@
+@import "bootstrap.min.css";
+@import "reset.css";
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/FontAwesome/FontAwesome.eot');
+  src: url('../fonts/FontAwesome/FontAwesome.eot#iefix') format('embedded-opentype'), url('/fonts/FontAwesome/FontAwesome.woff') format('woff'), url('/fonts/FontAwesome/FontAwesome.ttf') format('truetype'), url('/fonts/FontAwesome/FontAwesome.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/FontAwesome-Bold/FontAwesome-Bold.eot');
+  src: url('../fonts/FontAwesome-Bold/FontAwesome-Bold.eot#iefix') format('embedded-opentype'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.woff') format('woff'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.ttf') format('truetype'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+/*box-shadow: inset(тень внутри) <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет>*/
+body {
+  font-family: Tahoma, fontRegular, sans-serif;
+  background: #4250c7 url(/images/battleground1.jpg) no-repeat;
+  background-attachment: fixed;
+  font-size: 1.2em;
+  overflow-x: hidden;
+}
+p {
+  text-indent: 25px;
+  padding: 10px;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+/* 1. MAIN ====================*/
+.main {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+.wrapper {
+  position: relative;
+  max-width: 1212px;
+  min-width: 320px;
+  padding: 0 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+/* 2. ICONS ====================*/
+.ic {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  background: url() no-repeat;
+}
+/* 3. BUTTON ====================*/
+.btn, a.btn {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px 20px 0;
+  height: 40px;
+  font: normal 14px/14px Arial, sans-serif;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+}
+input[type="submit"].btn,
+button.btn {
+  padding-top: 0;
+}
+/* 4. FORM ====================*/
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+textarea {
+  height: 40px;
+  padding: 0 15px;
+  font: normal 14px/14px Arial, sans-serif;
+  color: #000;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+input[type="text"].form-control,
+input[type="password"].form-control,
+input[type="tel"].form-control,
+input[type="email"].form-control,
+textarea.form-control {
+  display: block;
+  width: 100%;
+}
+textarea {
+  resize: none;
+  height: auto;
+  min-height: 100px;
+  padding-top: 10px;
+}
+label {
+  display: block;
+}
+/* 5. HEADER ====================*/
+header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.slogun {
+  min-width: 30rem;
+  color: #a4a4a4;
+}
+/* 6. CONTENT ====================*/
+.content {
+  width: 100%;
+}
+
+.remember {
+  top: -5px;
+  margin: 0 0 0 270px;
+}
