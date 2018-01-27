@@ -12,10 +12,20 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\BaseController;
+use Modules\CardGame\Repositories\CardRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CardController extends BaseController
 {
+    /**
+     * @var CardRepository
+     */
+    protected $repository;
+
+    public function __construct(CardRepository $repository){
+        $this->repository = $repository;
+    }
+
     /**
      * GET /admin/Card/index
      *
@@ -23,11 +33,10 @@ class CardController extends BaseController
      */
     public function index()
     {
-        self::checkAdmin();
+        self::checkAdmin(); //TODO Избавиться!
 
-        $cards = Card::withTrashed()
-            ->orderBy('id', 'desc')
-            ->get();
+        $cards = $this->repository->withTrashedOrderByDesc('id');
+        dd($cards);
 
         return view('cardgame::card.index')->with([
             'cards' => $cards,
