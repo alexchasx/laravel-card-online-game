@@ -7,20 +7,20 @@ use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property integer   $id
- * @property string    $name
- * @property string    $image
- * @property string    $description
- * @property boolean   $hidden
+ * @property integer $id
+ * @property string  $name
+ * @property integer $avatar_id
+ * @property boolean $seen
+ * @property string  $description
+ * @property string  $price
  *
- * @property Carbon   $deleted_at
+ * @property Carbon  $deleted_at
  */
 class Rarity extends BaseModel
 {
     use SoftDeletes;
 
     const TABLE_NAME = 'rarities';
-
 
     /**
      * @var string

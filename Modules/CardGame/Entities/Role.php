@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Model;
+namespace Modules\CardGame\Http\Entities;
 
+use App\Model\BaseModel;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
- * @property string  $path
- * @property integer $owner_id
- * @property string  $owner_type
+ * @property string  $name
  * @property boolean $seen
  * @property string  $price
  *
@@ -17,9 +16,11 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property Carbon  $updated_at
  * @property Carbon  $deleted_at
  */
-class File extends BaseModel
+class Role extends BaseModel
 {
-    const TABLE_NAME = 'files';
+    use SoftDeletes;
+
+    const TABLE_NAME = 'roles';
 
     /**
      * @var string

@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer $id
  * @property string  $name
- * @property string  $avatar
+ * @property integer $avatar_id
+ * @property boolean $seen
  * @property string  $description
  * @property string  $full_description
- * @property boolean $hidden
  *
- * @property Carbon   $deleted_at
+ * @property Carbon  $deleted_at
  */
 class Ability extends BaseModel
 {

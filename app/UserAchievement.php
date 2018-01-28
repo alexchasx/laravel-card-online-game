@@ -8,27 +8,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
- * @property string  $name
- * @property integer $avatar_id
+ * @property integer $user_id
+ * @property integer $achievement_id
  * @property boolean $seen
- * @property string  $feature
- * @property string  $description
- * @property string  $price
- *
- * @property Carbon  $deleted_at
  */
-class Race extends BaseModel
+class UserAchievement extends BaseModel
 {
     use SoftDeletes;
 
-    const TABLE_NAME = 'races';
-
-    public $timestamps = false;
+    const TABLE_NAME = 'user_achievement';
 
     /**
      * @var string
      */
     protected $table = self::TABLE_NAME;
+
+    public $timestamps = false;
 
     /**
      * Атрибуты, для которых запрещено массовое назначение.

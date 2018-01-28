@@ -7,26 +7,36 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\CardGame\Http\Entities\CardSet;
 
 /**
  * @property integer $id
  * @property string  $name
- * @property string  $avatar
+ * @property integer $avatar_id
  * @property string  $email
  * @property string  $password
- * @property string  $role
+ * @property integer $role_id
+ * @property integer $card_set_id
+ * @property integer $rank_id
  * @property boolean $verified
- * @property integer $email_token
+ * @property string  $email_token
  * @property float   $rating
  * @property integer $count_wins
- * @property integer $count_defeats
+ * @property integer $count_battles
  * @property integer $prom
  * @property boolean $vip
+ * @property boolean $seen
+ * @property string  $price
  * @property integer $rememberTokenName
  *
  * @property Carbon  $created_at
  * @property Carbon  $updated_at
  * @property Carbon  $deleted_at
+ *
+ * @property Role    $role
+ * @property Rank    $rank
+ * @property File    $avatar
+ * @property CardSet $cardSet
  */
 class User extends Authenticatable
 {
@@ -34,16 +44,6 @@ class User extends Authenticatable
     use Notifiable;
 
     const TABLE_NAME = 'users';
-
-    const ROLE_ADMIN = 'admin';
-    const ROLE_MANAGER = 'manager';
-    const ROLE_USER = 'user';
-
-    public $roles = [
-      self::ROLE_ADMIN,
-      self::ROLE_MANAGER,
-      self::ROLE_USER,
-    ];
 
     /**
      * Связанная с моделью таблица.
