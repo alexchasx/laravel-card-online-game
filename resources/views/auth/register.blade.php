@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                <h1 class="logo">{{config('app.name')}}</h1>
                 <br/>
                 <br/>
                 <br/>

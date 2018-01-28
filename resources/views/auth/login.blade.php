@@ -3,9 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <h1 class="logo">{{config('app.name')}}</h1>
             <br>
             <br>
             <br>
+
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -50,26 +52,20 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-8 col-md-offset-3 btn btn-link">
-                                    <input type="checkbox" name="remember"
-                                           id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    Запомнить меня
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-3">
+                                <div class="col-md-4 col-md-offset-3">
                                     <button type="submit" style="width: 100%"
                                             class="btn btn-primary">
                                         Войти
                                     </button>
-
-                                    <a class="btn btn-link"
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-link password-restore"
                                        href="{{ route('password.request') }}">
                                         Восстановить пароль?
                                     </a>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-3">
                                     <a class="btn btn-success text-center" style="width: 100%"
@@ -83,20 +79,15 @@
                     </div>
                 </div>
             </div>
+
+            <br>
+
+            <div class="col-md-4 col-md-offset-4">
+                <a class="btn btn-warning text-center" style="width: 100%"
+                   href="{{ url('battle.start') }}">
+                    Пробный бой
+                </a>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 @endsection

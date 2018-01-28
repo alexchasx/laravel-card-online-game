@@ -17,8 +17,9 @@
 /*box-shadow: inset(тень внутри) <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет>*/
 body {
   font-family: Tahoma, fontRegular, sans-serif;
-  background: #4250c7 url(/images/battleground1.jpg) no-repeat;
+  background: #828288 url(/images/battleground1.jpg) repeat;
   background-attachment: fixed;
+  background-size: cover;
   font-size: 1.2em;
   overflow-x: hidden;
 }
@@ -129,4 +130,19 @@ header {
 .remember {
   top: -5px;
   margin: 0 0 0 270px;
+}
+
+.logo {
+  color: #ff8349;
+  width: 5.2em;
+  font-size: 2.5em;
+  font-weight: 700;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0.4em;
+}
+
+.password-restore {
+  margin-left: -1em;
 }
