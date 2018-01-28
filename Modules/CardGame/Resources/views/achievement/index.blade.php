@@ -10,105 +10,40 @@
                     <tr>
                         <td>ID</td>
                         <td style="min-width: 100px;">Наименование</td>
-                        <td>Видна?</td>
-                        <td style="min-width: 50px;">Стоим.</td>
-                        <td style="min-width: 50px;">Атака</td>
-                        <td style="min-width: 50px;">ХП</td>
-                        <td style="min-width: 50px;">Броня</td>
-                        <td style="min-width: 120px;">Раса</td>
-                        <td style="min-width: 120px;">Свойство 1</td>
-                        <td style="min-width: 120px;">Свойство 2</td>
-                        <td style="min-width: 140px;">Аватар</td>
-                        <td style="min-width: 120px;">Набор</td>
-                        <td style="min-width: 125px;">Тип</td>
-                        <td style="min-width: 125px;">Редкость</td>
-                        <td>Платная?</td>
+                        <td style="min-width: 50px;">Видимость</td>
+                        <td style="min-width: 50px;">Описание</td>
+                        <td {{--style="min-width: 140px;"--}}>Аватар</td>
+                        <td style="min-width: 50px;">Сорт.</td>
+                        <td style="min-width: 50px;">Рейтинг</td>
+                        <td style="min-width: 120px;">Цена</td>
                         <td></td>
                         <td>Удалено</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <form action="{{ route('cardStore') }}" method="post" role="form"
+                        <form action="{{ route('achievement.store') }}" method="post" role="form"
                               enctype="multipart/form-data">
                             <td></td>
-                            <td><input name="card_name" type="text" class="form-control"
-                                       id="card_name" value="{{ old('card_name') }}" required></td>
+                            <td><input name="name" type="text" class="form-control"
+                                       id="name" value="{{ old('name') }}" required></td>
                             <td>
-                                <select class="form-control" name="hidden" id="hidden">
-                                    <option selected value="0">Да</option>
-                                    <option value="1">Нет</option>
+                                <select class="form-control" name="seen" id="hidden">
+                                    <option selected value="1">Да</option>
+                                    <option value="0">Нет</option>
                                 </select>
                             </td>
-                            <td><input name="energy" type="text" class="form-control" id="energy"
-                                       value="{{ old('energy') }}"></td>
-                            <td><input name="attack" type="text" class="form-control" id="attack"
-                                       value="{{ old('attack') }}"></td>
-                            <td><input name="health_points" type="text" class="form-control"
-                                       id="health_points" value="{{ old('health_points') }}"></td>
-                            <td><input name="armor" type="text" class="form-control" id="armor"
-                                       value="{{ old('armor') }}"></td>
-                            <td>
-                                <select class="form-control" name="race_id" size="3"
-                                        class="form-control" id="race_id">
-                                    @foreach ($races as $race)
-                                        <option value="{{$race->id}}">{{$race->name}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control" name="ability1_id" size="3"
-                                        class="form-control"
-                                        id="ability1_id">
-                                    @foreach ($abilities as $ability)
-                                        <option value="{{$ability->id}}">{{$ability->name}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control" name="ability2_id" size="3"
-                                        class="form-control"
-                                        id="ability2_id">
-                                    @foreach ($abilities as $ability)
-                                        <option value="{{$ability->id}}">{{$ability->name}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td><input name="avatar" type="file" class="form-control" id="avatar"
-                                       value="{{ old('avatar') }}"></td>
-                            <td>
-                                <select class="form-control" name="card_sets_id" size="3"
-                                        class="form-control"
-                                        id="card_sets_id">
-                                    @foreach ($cardSets as $cardSet)
-                                        <option value="{{$cardSet->id}}">{{$cardSet->set_name}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control" name="card_type_id" size="3"
-                                        class="form-control"
-                                        id="card_type_id">
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control" name="rarity_id" size="3"
-                                        class="form-control"
-                                        id="rarity_id">
-                                    @foreach ($rarities as $rarity)
-                                        <option value="{{ $rarity->id }}">{{ $rarity->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control" name="pay" id="pay">
-                                    <option value="1">Да</option>
-                                    <option selected value="0">Нет</option>
-                                </select>
-                            </td>
+                            <td><input name="description" type="text" class="form-control" id="description"
+                                       value="{{ old('description') }}"></td>
+                            <td></td>
+                            <td><input name="sort" type="text" class="form-control"
+                                       id="sort" value="{{ old('sort') }}"></td>
+                            <td><input name="rating" type="text" class="form-control" id="rating"
+                                       value="{{ old('rating') }}"></td>
+                            <td><input name="price" type="text" class="form-control" id="price"
+                                       value="{{ old('price') }}"></td>
                             <td>
                                 <button type="submit" class="btn btn-primary">Создать</button>
                             </td>
@@ -117,79 +52,42 @@
                         </form>
                     </tr>
 
-                    @foreach($cards as $card)
+                    @foreach($achievements as $achievement)
 
-                        <tr @if ($card->deleted_at)
+                        <tr @if ($achievement->deleted_at)
                             style="background-color: #e4b9b9;"
-                            @elseif ($card->hidden)
+                            @elseif (!$achievement->seen)
                             style="background-color: #9B859D;"
                                 @endif>
-                            <td>{{ $card->id }}</td>
-                            <td>{{ $card->card_name }}</td>
+                            <td>{{ $achievement->id }}</td>
+                            <td>{{ $achievement->name }}</td>
                             <td>
-                                @if ($card->hidden)
-                                    Нет
-                                @else
-                                    Да
-                                @endif
-                            </td>
-                            <td>{{ $card->energy }}</td>
-                            <td>{{ $card->attack }}</td>
-                            <td>{{ $card->health_points }}</td>
-                            <td>{{ $card->armor }}</td>
-                            <td>
-                                @if ($card->race)
-                                    {{ $card->race->name }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($card->ability1)
-                                    {{ $card->ability1->name }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($card->ability2)
-                                    {{ $card->ability2->name }}
-                                @endif
-                            </td>
-                            <td>{{ $card->avatar }}</td>
-                            <td>
-                                @if ($card->cardSet)
-                                    {{ $card->cardSet->set_name }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($card->cardType)
-                                    {{ $card->cardType->name }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($card->rarity)
-                                    {{ $card->rarity->name }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($card->pay)
+                                @if ($achievement->seen)
                                     Да
                                 @else
                                     Нет
                                 @endif
                             </td>
+                            <td>{{ $achievement->description }}</td>
+                            <td>{{--{{ $achievement->avatar->path }}--}}</td>
+                            <td>{{ $achievement->sort }}</td>
+                            <td>{{ $achievement->rating }}</td>
+                            <td>{{ $achievement->price }}</td>
                             <td>
-                                <form action="{{ route('cardDelete', ['id'=>$card->id]) }}"
+                                <form action="{{ route('achievement.destroy', ['id'=>$achievement->id]) }}"
                                       method="post">
                                     {{method_field('DELETE')}}
                                     {{csrf_field()}}
                                     <button type="submit" class="btn btn-danger">Удалить</button>
                                 </form>
                             </td>
-                            <td>{{ $card->deleted_at }}</td>
+                            <td>{{ $achievement->deleted_at }}</td>
                             <td><a class="btn btn-success"
-                                   href="{{ route('cardRestore',['comment'=>$card->id]) }}"
+                                   href="{{ route('achievementRestore',['comment'=>$achievement->id]) }}"
                                    role="button">Восстановить</a>
                             </td>
                             <td>
-                                <form action="{{ route('cardForceDelete', ['id'=>$card->id]) }}"
+                                <form action="{{ route('achievementForceDelete', ['id'=>$achievement->id]) }}"
                                       method="post">
                                     {{method_field('DELETE')}}
                                     {{csrf_field()}}

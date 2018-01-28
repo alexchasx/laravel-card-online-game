@@ -3,11 +3,12 @@
 namespace App\Model;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\CardGame\Http\Entities\CardSet;
+use Modules\CardGame\Http\Entities\Rank;
 
 /**
  * @property integer $id
@@ -45,6 +46,11 @@ class User extends Authenticatable
 
     const TABLE_NAME = 'users';
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
+    const ROLE_MANAGER = 'manager';
+    const ROLE_BOT = 'bot';
+
     /**
      * Связанная с моделью таблица.
      *
@@ -80,5 +86,29 @@ class User extends Authenticatable
         'role',
         'remember_token',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function rank()
+    {
+        return $this->belongsTo(Rank::class, 'rank_id');
+    }
 
 }

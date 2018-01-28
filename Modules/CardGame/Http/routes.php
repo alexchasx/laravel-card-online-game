@@ -67,23 +67,28 @@ Route::group([
     });
 
     Route::group(['prefix' => 'achievement'], function() {
-        Route::resource('achievement', 'AchievementController', [
-            'only' => [
-                'store',
-                'update',
-                'destroy',
-            ],
-            [
-                'names' => [
-                    'store' => 'achievement.store',
-                    'update' => 'achievement.update',
-                    'destroy' => 'achievement.destroy',
-                ]
-            ]
-        ]);
         Route::delete('force_destroy.{id}', 'AchievementController@forceDestroy')
             ->name('achievementForceDelete');
         Route::get('restore.{achievement}', 'AchievementController@restore')
             ->name('achievementRestore');
+
+        Route::get('/{name}', function($name) {
+            return view('errors.404');
+        })->where('name', '(.)*');
     });
+    Route::resource('achievement', 'AchievementController', [
+        'only' => [
+            'index',
+            'store',
+            'update',
+            'destroy',
+        ],
+        [
+            'names' => [
+                'store' => 'achievement.index',
+                'update' => 'achievement.update',
+                'destroy' => 'achievement.destroy',
+            ]
+        ]
+    ]);
 });

@@ -35,7 +35,7 @@ class CardController extends BaseController
 
         return view('cardgame::card.index')->with([
             'cards' => $cards,
-            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class, 'set_name'),
+            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
             'types' => $this->repository->showEntitiesByClassName(CardType::class),

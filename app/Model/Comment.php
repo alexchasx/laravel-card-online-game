@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property Carbon  $created_at
  * @property Carbon  $updated_at
  * @property Carbon  $deleted_at
+ *
+ * @property User    $user
  */
 class Comment extends BaseModel
 {
@@ -41,4 +43,12 @@ class Comment extends BaseModel
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

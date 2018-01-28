@@ -63,6 +63,9 @@
             @if ('abilityIndex' !== Route::current()->getName())
                 <li><a class="link" href="{{route('abilityIndex')}}">Способности</a></li>
             @endif
+            @if ('achievement.index' !== Route::current()->getName())
+                <li><a class="link" href="{{route('achievement.index')}}">Достижения</a></li>
+            @endif
         </ul>
     </div>
 

@@ -1,8 +1,7 @@
 <?php
 
-namespace Modules\CardGame\Http\Entities;
+namespace App\Model;
 
-use App\Model\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

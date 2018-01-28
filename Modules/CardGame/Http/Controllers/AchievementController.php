@@ -60,27 +60,24 @@ class AchievementController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param Request $request
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        parent::update($request, $id);
+        parent::update($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        parent::destroy($id);
-    }
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param  int $id
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function destroy($id)
+//    {
+//        parent::destroy($id);
+//    }
 }

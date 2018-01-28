@@ -2,8 +2,10 @@
 
 namespace Modules\CardGame\Http\Entities;
 
+use App\Model\File;
 use Carbon\Carbon;
 use App\Model\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -35,4 +37,12 @@ class Rarity extends BaseModel
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @return BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
 }

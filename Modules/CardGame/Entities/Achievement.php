@@ -3,7 +3,9 @@
 namespace Modules\CardGame\Http\Entities;
 
 use App\Model\BaseModel;
+use App\Model\File;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -37,4 +39,12 @@ class Achievement extends BaseModel
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @return BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
 }

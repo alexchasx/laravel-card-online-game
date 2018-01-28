@@ -7,10 +7,17 @@
 
             <br>
 
+            <a href="{{ route('cardIndex') }}">Админка</a>
+
+
+            <br>
+
             <table class="table table-striped table-bordered table-hover">
                 <tbody>
 
                 <tr>{{ $user->name }}</tr>
+                <br>
+                <tr>{{ $user->email }}</tr>
                 <br>
                 <tr>{{ $user->email }}</tr>
 

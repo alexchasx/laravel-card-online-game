@@ -3,7 +3,9 @@
 namespace Modules\CardGame\Http\Entities;
 
 use App\Model\BaseModel;
+use App\Model\File;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -50,5 +52,13 @@ class CardSet extends BaseModel
     public function cards()
     {
         return $this->hasMany(Card::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
     }
 }

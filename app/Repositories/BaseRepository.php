@@ -79,7 +79,6 @@ abstract class BaseRepository
             $card = $this->model->create(array_except($request->all(), ['avatar']));
             $card->avatar = config('cardgame.avatar_path') . $basePath;
             $card->save();
-
         } else {
             $this->model->create($request->all());
         }
