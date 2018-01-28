@@ -57,7 +57,7 @@ abstract class BaseRepository
     public function showEntitiesByClassName($className, $column = 'name')
     {
         return $className::query()
-            ->where('hidden', false)
+            ->where('seen', true)
             ->orderBy($column)
             ->get();
     }

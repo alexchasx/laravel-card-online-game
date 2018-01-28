@@ -24,7 +24,6 @@ Route::group([
     Route::get('/', 'CardGameController@index')->name('cardGameIndex');
 
     Route::group(['prefix' => 'card'], function() {
-// Route::group(['prefix' => 'card', 'middleware' => ['auth', 'admin']], function () {
 
         Route::get('index', 'CardController@index')->name('cardIndex');
         Route::get('create', 'CardController@create')->name('cardCreate');
@@ -65,5 +64,26 @@ Route::group([
             ->name('abilityForceDelete');
         Route::get('restore.{ability}', 'AbilityController@restore')
             ->name('abilityRestore');
+    });
+
+    Route::group(['prefix' => 'achievement'], function() {
+        Route::resource('achievement', 'AchievementController', [
+            'only' => [
+                'store',
+                'update',
+                'destroy',
+            ],
+            [
+                'names' => [
+                    'store' => 'achievement.store',
+                    'update' => 'achievement.update',
+                    'destroy' => 'achievement.destroy',
+                ]
+            ]
+        ]);
+        Route::delete('force_destroy.{id}', 'AchievementController@forceDestroy')
+            ->name('achievementForceDelete');
+        Route::get('restore.{achievement}', 'AchievementController@restore')
+            ->name('achievementRestore');
     });
 });

@@ -10,19 +10,19 @@
                     <tr>
                         <td>ID</td>
                         <td style="min-width: 100px;">Наименование</td>
-                        <td>Видимость</td>
+                        <td>Видна?</td>
                         <td style="min-width: 50px;">Стоим.</td>
                         <td style="min-width: 50px;">Атака</td>
                         <td style="min-width: 50px;">ХП</td>
                         <td style="min-width: 50px;">Броня</td>
-                        <td style="min-width: 120px;">Нация</td>
+                        <td style="min-width: 120px;">Раса</td>
                         <td style="min-width: 120px;">Свойство 1</td>
                         <td style="min-width: 120px;">Свойство 2</td>
                         <td style="min-width: 140px;">Аватар</td>
                         <td style="min-width: 120px;">Набор</td>
                         <td style="min-width: 125px;">Тип</td>
                         <td style="min-width: 125px;">Редкость</td>
-                        <td>Цена</td>
+                        <td>Платная?</td>
                         <td></td>
                         <td>Удалено</td>
                     </tr>
@@ -35,17 +35,17 @@
                             <td><input name="card_name" type="text" class="form-control"
                                        id="card_name" value="{{ old('card_name') }}" required></td>
                             <td>
-                                <select class="form-control" name="seen" id="seen">
-                                    <option selected value="1">Да</option>
-                                    <option value="0">Нет</option>
+                                <select class="form-control" name="hidden" id="hidden">
+                                    <option selected value="0">Да</option>
+                                    <option value="1">Нет</option>
                                 </select>
                             </td>
                             <td><input name="energy" type="text" class="form-control" id="energy"
                                        value="{{ old('energy') }}"></td>
                             <td><input name="attack" type="text" class="form-control" id="attack"
                                        value="{{ old('attack') }}"></td>
-                            <td><input name="health" type="text" class="form-control"
-                                       id="health" value="{{ old('health') }}"></td>
+                            <td><input name="health_points" type="text" class="form-control"
+                                       id="health_points" value="{{ old('health_points') }}"></td>
                             <td><input name="armor" type="text" class="form-control" id="armor"
                                        value="{{ old('armor') }}"></td>
                             <td>
@@ -74,7 +74,8 @@
                                     @endforeach
                                 </select>
                             </td>
-                            <td></td>
+                            <td><input name="avatar" type="file" class="form-control" id="avatar"
+                                       value="{{ old('avatar') }}"></td>
                             <td>
                                 <select class="form-control" name="card_sets_id" size="3"
                                         class="form-control"
@@ -102,8 +103,12 @@
                                     @endforeach
                                 </select>
                             </td>
-                            <td><input name="price" type="text" class="form-control" id="price"
-                                       value="{{ old('price') }}"></td>
+                            <td>
+                                <select class="form-control" name="pay" id="pay">
+                                    <option value="1">Да</option>
+                                    <option selected value="0">Нет</option>
+                                </select>
+                            </td>
                             <td>
                                 <button type="submit" class="btn btn-primary">Создать</button>
                             </td>
@@ -130,7 +135,7 @@
                             </td>
                             <td>{{ $card->energy }}</td>
                             <td>{{ $card->attack }}</td>
-                            <td>{{ $card->health }}</td>
+                            <td>{{ $card->health_points }}</td>
                             <td>{{ $card->armor }}</td>
                             <td>
                                 @if ($card->race)
@@ -147,7 +152,7 @@
                                     {{ $card->ability2->name }}
                                 @endif
                             </td>
-                            <td>{{ $card->avatar->path }}</td>
+                            <td>{{ $card->avatar }}</td>
                             <td>
                                 @if ($card->cardSet)
                                     {{ $card->cardSet->set_name }}
@@ -163,7 +168,13 @@
                                     {{ $card->rarity->name }}
                                 @endif
                             </td>
-                            <td>{{ $card->price }}</td>
+                            <td>
+                                @if ($card->pay)
+                                    Да
+                                @else
+                                    Нет
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('cardDelete', ['id'=>$card->id]) }}"
                                       method="post">

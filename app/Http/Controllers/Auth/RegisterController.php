@@ -35,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -103,9 +103,11 @@ class RegisterController extends Controller
             $user = $this->create($request)
         ));
 
-        dispatch(new SendVerificationEmail($user));
+        return redirect($this->redirectTo);
 
-        return view('verification');
+//        dispatch(new SendVerificationEmail($user));
+//
+//        return view('verification');
     }
 
     /**

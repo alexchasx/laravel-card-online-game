@@ -1,4 +1,4 @@
-@extends('layouts.layout_battle')
+@extends('resources.views.layouts.layout_battle')
 
 @section('content')
 

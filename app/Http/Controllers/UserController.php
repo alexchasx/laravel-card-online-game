@@ -2,37 +2,42 @@
 
 namespace App\Http\Controllers;
 
-class UserController extends Controller
+use App\Repositories\UserRepository;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+
+class UserController extends BaseController
 {
-  /**
-   * Отклик на запрос GET /users
-   */
-  public function getIndex()
-  {
-    //
-  }
+    /**
+     * BaseController constructor.
+     *
+     * @param UserRepository $repository
+     */
+    public function __construct(UserRepository $repository)
+    {
+        parent::__construct($repository);
+    }
 
-  /**
-   * Отклик на запрос GET /users/show/1
-   */
-  public function getShow($id)
-  {
-    //
-  }
+    /**
+     * @return RedirectResponse
+     */
+    public function logout()
+    {
+        Auth::logout();
 
-  /**
-   * Отклик на запрос GET /users/admin-profile
-   */
-  public function getAdminProfile()
-  {
-    //
-  }
+        return redirect('/');
+    }
 
-  /**
-   * Отклик на запрос POST /users/profile
-   */
-  public function postProfile()
-  {
-    //
-  }
+    /**
+     * @return View
+     */
+    public function getProfile()
+    {
+        $user = $this->repository->getById(Auth::id());
+
+        return view('user.profile')->with([
+            'user' => $user,
+        ]);
+    }
 }

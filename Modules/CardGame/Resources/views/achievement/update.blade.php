@@ -2,28 +2,21 @@
 
 @section('inner_content')
 
-    <?/* $faker = Faker\Factory::create();*/?>
-
     <div class="container">
         <div class="row">
-
-            @if (!empty($message))
-                <div class="alert alert-danger text-center">
-                    {{$message}}
-                </div>
-            @endif
-
-            <form action="{{ route('articleStore') }}" method="post" role="form"
-                  enctype="multipart/form-data">
-                <h2>Создать статью</h2>
-                <br>
+            <form action="{{ route('articleUpdate') }}" method="post" role="form">
                 <p>Поля, обозначенные звёздочкой (&#10033;), обязательны для заполнения.</p>
-                <br>
 
                 <div class="form-group">
+                    <label for="id">ID</label>
+                    <input name="id" type="hidden" class="form-control" value="{{$article->id}}">
+                    <input type="numeric" class="form-control" id="id" value="{{$article->id}}"
+                           disabled>
+                </div>
+                <div class="form-group">
                     <label for="title">Заголовок</label>&nbsp;&#10033;
-                    <input name="title" type="text" class="form-control" id="title" required
-                           value="{{--{{$faker->text(50)}}--}}">
+                    <input name="title" type="text" class="form-control" id="title"
+                           value="{{$article->title}}" required>
                 </div>
                 <div class="form-group">
                     <label for="categories_id">Категория</label>&nbsp;&#10033;
@@ -31,10 +24,11 @@
                             required>
                         @foreach ($categories as $category)
                             <option
-                                    @if (1 === $category->id)
+                                    @if($article->categories_id == $category->id)
                                     selected
                                     @endif
                                     value="{{$category->id}}">{{$category->title}}</option>
+
                         @endforeach
                     </select>
                 </div>
@@ -45,13 +39,13 @@
                 {{--</div>--}}
                 <div class="form-group">
                     <label for="description">Краткое описание</label>&nbsp;&#10033;
-                    <textarea name="description" class="form-control textarea" id="description"
-                              required>{{--{{$faker->text(200)}}--}}</textarea>
+                    <textarea name="description" rows="4" class="form-control"
+                              id="description" required>{{$article->description}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="content">Полный текст</label>&nbsp;&#10033;
-                    <textarea name="content" class="form-control textarea" id="content" required
-                    >{{--{{$faker->text(2000)}}--}}</textarea>
+                    <textarea name="content" rows="7" class="form-control" id="content"
+                              required>{{$article->content}}</textarea>
                 </div>
                 <div class="form-group">
                     <input name="user_id" type="hidden" class="form-control" id="user_id"
@@ -67,17 +61,17 @@
                 <div class="form-group">
                     <label for="meta_desc">Мета: описание</label>
                     <input name="meta_desc" type="text" class="form-control" id="meta_desc"
-                           value="{{--{{$faker->text(50)}}--}}" required>
+                           value="{{$article->meta_desc}}">
                 </div>
                 <div class="form-group">
                     <label for="keywords">Мета: ключевые слова</label>
                     <input name="keywords" type="text" class="form-control" id="keywords"
-                           value="{{--{{$faker->text(50)}}--}}" required>
+                           value="{{$article->keywords}}">
                 </div>
                 <div class="form-group">
-                    <label for="tags_id">Теги</label>&nbsp;&#10033;
+                    <label for="tags_id">Все теги:</label>
                     <select name="tags_id[]" size="5" class="form-control" id="tags_id"
-                            required multiple>
+                            multiple>
                         @foreach ($tags as $tag)
                             <option
                                     @if (1 === $tag->id)
@@ -88,15 +82,41 @@
                         @endforeach
                     </select>
                 </div>
-            <!-- 	<div class="form-group">
+            <!-- 			<div class="form-group">
 				<label for="created_at">Дата создания</label>
-				<input name="created_at" type="text" class="form-control" id="created_at" value="{{date('Y-m-d')}}">
+				<input name="created_at" type="text" class="form-control" id="created_at" value="{{time()}}">
+			</div>
+			<div class="form-group">
+				<label for="updated_at">Дата создания</label>
+				<input name="updated_at" type="text" class="form-control" id="updated_at" value="{{time()}}">
 			</div> -->
 
                 <button type="submit" class="btn btn-primary">Сохранить</button>
 
                 {{ csrf_field() }}
             </form>
+
+            <label for="tags">Выбранные теги:</label>
+            <table>
+                @if (!$article->tags->count())
+                    Тегов нет.
+                @endif
+
+                @foreach ($article->tags as $tag)
+                    <tr>
+                        <td>{{$tag->title}}</td>
+                        <td>
+                            <form action="{{ route('articleTagDelete', ['card'=>$article->id, 'ability'=>$tag->id]) }}"
+                                  method="post">
+                                <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                {{method_field('DELETE')}}
+                                {{csrf_field()}}
+                                <button type="submit" class="btn-twitter btn-danger">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
         </div>
     </div>
 

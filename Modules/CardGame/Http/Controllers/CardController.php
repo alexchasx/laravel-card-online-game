@@ -2,11 +2,8 @@
 
 namespace Modules\CardGame\Http\Controllers;
 
-use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use Modules\CardGame\Http\Entities\Card;
 use Modules\CardGame\Http\Entities\Race;
 use Modules\CardGame\Http\Entities\Rarity;
 use Modules\CardGame\Http\Entities\CardSet;

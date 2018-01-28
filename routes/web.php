@@ -16,19 +16,26 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/verify_email/{token}', 'Auth\RegisterController@verify');
+Route::group([
+    'middleware' => 'guest',
+], function() {
+    Route::get('register', function(){
+        return view('auth.register');
+    })->name('registerForm');
 
-Route::get('register', function(){
-    return view('auth.register');
-})->name('registerForm');
+    Route::post('/register', 'Auth\RegisterController@register')->name('register');
+});
 
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
-// Logout
-Route::any('/logout', function() { //TODO Не доделал
-    Auth::logout();
-    return redirect()->back();
-})->name('logout');
+Route::group([
+    'middleware' => ['web', 'auth'],
+], function() {
+
+    Route::get('/verify_email/{token}', 'Auth\RegisterController@verify');
+    Route::get('/profile', 'UserController@getProfile')->name('getProfile');
+    Route::any('/logout', 'UserController@logout')->name('logout');
+});
+
 
 // Contact
 Route::get('contact', function() {
@@ -37,10 +44,31 @@ Route::get('contact', function() {
 
 Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index'])->name('home');
 
+
 // Отправка электронной почты
 //Route::post('send.simple.email','MailController@simplePHPEmail')->name('simplePHPEmail');
 //Route::post('send.row.email','MailController@rowEmail')->name('rowEmail');
 //Route::post('send.basic.email','MailController@basicEmail')->name('basicEmail');
 //Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
 //Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
+
+
+Route::group([
+    'middleware' => ['web', 'admin'],
+], function() {
+    Route::resource('file', 'FileController', [
+        'only' => [
+            'store',
+            'update',
+            'destroy',
+        ],
+        [
+            'names' => [
+                'store' => 'file.store',
+                'update' => 'file.update',
+                'destroy' => 'file.destroy',
+            ]
+        ]
+    ]);
+});
 
