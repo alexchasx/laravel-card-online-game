@@ -14,11 +14,12 @@ class CreateFilesTable extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('target_id'); // Для MySQL 5.0 полиморф не работает
-            $table->string('target_type'); // Для MySQL 5.0 метод foreign() не работает
-            $table->boolean('status')->default(true);
+            $table->bigIncrements('id');
             $table->string('path');
+            $table->integer('owner_id')->nullable(); // Для MySQL 5.0 полиморф не работает
+            $table->string('owner_type')->nullable(); // Для MySQL 5.0 метод foreign() не работает
+            $table->tinyInteger('seen')->default(1);
+            $table->tinyInteger('pay')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

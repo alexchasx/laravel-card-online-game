@@ -17,9 +17,10 @@ class CreateTableRarities extends Migration
         Schema::create('rarities', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('image')->nullable();
+            $table->integer('avatar_id')->nullable();
+            $table->tinyInteger('seen')->default(1);
             $table->string('description')->nullable();
-            $table->boolean('hidden')->default(0);
+            $table->string('price')->nullable();
             $table->softDeletes();
         });
 
@@ -28,6 +29,7 @@ class CreateTableRarities extends Migration
                      'Обычная',
                      'Необычная',
                      'Редкая',
+                     'Очень редкая',
                      'Элитная',
                      'Шедевральная',
                      'Легендарная',

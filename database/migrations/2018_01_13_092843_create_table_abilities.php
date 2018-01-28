@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,12 +17,29 @@ class CreateTableAbilities extends Migration
         Schema::create('abilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 150);
-            $table->string('avatar')->nullable();
+            $table->integer('avatar_id')->nullable();
+            $table->tinyInteger('seen')->default(1);
             $table->string('description')->nullable();
             $table->text('full_description')->nullable();
-            $table->boolean('hidden')->default(0);
             $table->softDeletes();
         });
+
+        foreach ([
+                     'Маскировка',
+                     'Разведчик',
+                     'Сплэш',
+                     'Фугас',
+                     'Таран',
+                     'Крепкая башня',
+                     'Барабанное орудие',
+                     'Рывок',
+                     'Заслон',
+                     'Взвод',
+                 ] as $ability) {
+            DB::table('abilities')->insert([
+                'name' => $ability,
+            ]);
+        }
     }
 
     /**

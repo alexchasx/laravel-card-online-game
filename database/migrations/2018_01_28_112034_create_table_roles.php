@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableRaces extends Migration
+class CreateTableRoles extends Migration
 {
     /**
      * Run the migrations.
@@ -14,28 +14,25 @@ class CreateTableRaces extends Migration
      */
     public function up()
     {
-        Schema::create('races', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('avatar_id')->nullable();
             $table->tinyInteger('seen')->default(1);
-            $table->string('feature')->nullable();
-            $table->string('description')->nullable();
             $table->string('price')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
 
         foreach ([
-                     'Германия',
-                     'СССР',
-                     'Франция',
-                     'США',
-                     'Китай',
-                     'Япония',
-                     'Великобритания',
-                 ] as $race) {
-            DB::table('races')->insert([
-                'name' => $race,
+                     'user',
+                     'бот',
+                     'paid_name',
+                     'admin',
+                     'manager',
+                     'vip',
+                 ] as $role) {
+            DB::table('roles')->insert([
+                'name' => $role,
             ]);
         }
     }
