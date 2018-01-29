@@ -6,16 +6,18 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td style="min-width: 150px;">Аватар</td>
             <td style="min-width: 220px;">Наименование</td>
-            <td>Видна?</td>
             <td style="min-width: 125px;">Тип</td>
             <td>Пользователь</td>
             <td style="min-width: 150px;">Раса</td>
+            <td style="min-width: 150px;">Аватар</td>
+            <td>Видна?</td>
             <td>Рубашка</td>
             <td>Фон</td>
             <td>Рамка</td>
-            <td>Платный?</td>
+            <td>Цена</td>
+            <td></td>
+            <td>Удалено</td>
         </tr>
         </thead>
 
@@ -23,16 +25,8 @@
         <tr>
             <form action="{{ route('cardSetStore') }}" method="post" role="form">
                 <td></td>
-                <td><input name="avatar" type="file" class="form-control" id="avatar"
-                           value="{{ old('avatar') }}"></td>
-                <td><input name="set_name" type="text" class="form-control" id="set_name"
-                           value="{{ old('set_name') }}" required></td>
-                <td>
-                    <select name="hidden" id="hidden">
-                        <option selected value="0">Да</option>
-                        <option value="1">Нет</option>
-                    </select>
-                </td>
+                <td><input name="name" type="text" class="form-control" id="name"
+                           value="{{ old('name') }}" required></td>
                 <td>
                     <select name="type" size="3" class="form-control" id="type"
                             required>
@@ -50,18 +44,22 @@
                         @endforeach
                     </select>
                 </td>
-                <td><input name="shirt" type="file" class="form-control" id="shirt"
-                           value="{{ old('shirt') }}"></td>
-                <td><input name="background" type="file" class="form-control" id="background"
-                           value="{{ old('background') }}"></td>
-                <td><input name="border" type="file" class="form-control" id="border"
-                           value="{{ old('border') }}"></td>
+                <td><input name="avatar" type="file" class="form-control" id="avatar"
+                           value="{{ old('avatar') }}"></td>
                 <td>
-                    <select name="pay" id="pay">
-                        <option value="1">Да</option>
-                        <option selected value="0">Нет</option>
+                    <select name="seen" id="seen">
+                        <option selected value="1">Да</option>
+                        <option value="0">Нет</option>
                     </select>
                 </td>
+                <td>{{--<input name="shirt_id" type="file" class="form-control" id="shirt"
+                           value="{{ old('shirt_id') }}">--}}</td>
+                <td>{{--<input name="background" type="file" class="form-control" id="background"
+                           value="{{ old('background') }}">--}}</td>
+                <td>{{--<input name="border" type="file" class="form-control" id="border"
+                           value="{{ old('border') }}">--}}</td>
+                <td><input name="price" type="text" class="form-control" id="price"
+                           value="{{ old('price') }}" required></td>
                 <td>
                     <button type="submit" class="btn btn-primary">Создать</button>
                 </td>
@@ -73,19 +71,12 @@
 
             <tr @if ($cardSet->deleted_at)
                 style="background-color: #e4b9b9;"
-                @elseif ($cardSet->hidden)
+                @elseif (!$cardSet->seen)
                 style="background-color: #9B859D;"
                     @endif>
                 <td>{{ $cardSet->id }}</td>
                 <td></td>
-                <td>{{ $cardSet->set_name }}</td>
-                <td>
-                    @if ($cardSet->hidden)
-                        Нет
-                    @else
-                        Да
-                    @endif
-                </td>
+                <td>{{ $cardSet->name }}</td>
                 <td>{{ $cardSet->type }}</td>
                 <td>
                     @if ($cardSet->user)
@@ -97,10 +88,18 @@
                         {{ $cardSet->race->name }}
                     @endif
                 </td>
-                <td>{{ $cardSet->shirt }}</td>
-                <td>{{ $cardSet->background }}</td>
-                <td>{{ $cardSet->border }}</td>
-                <td>{{ $cardSet->pay }}</td>
+                <td>{{ $cardSet->avatar }}</td>
+                <td>
+                    @if ($cardSet->seen)
+                        Да
+                    @else
+                        Нет
+                    @endif
+                </td>
+                <td>{{--{{ $cardSet->shirt }}--}}</td>
+                <td>{{--{{ $cardSet->background }}--}}</td>
+                <td>{{--{{ $cardSet->border }}--}}</td>
+                <td>{{ $cardSet->price }}</td>
                 <td>
                     <form action="{{ route('cardSetDelete', ['id'=>$cardSet->id]) }}"
                           method="post">

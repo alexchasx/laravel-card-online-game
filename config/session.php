@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => 525600, // минут в году
 
     'expire_on_close' => false,
 

@@ -19,7 +19,7 @@ class CreateFilesTable extends Migration
             $table->integer('owner_id')->nullable(); // Для MySQL 5.0 полиморф не работает
             $table->string('owner_type')->nullable(); // Для MySQL 5.0 метод foreign() не работает
             $table->tinyInteger('seen')->default(1);
-            $table->tinyInteger('pay')->default(0);
+            $table->string('price')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

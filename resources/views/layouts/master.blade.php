@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <!-- Bootstrap -->
-    <link href="{{ asset('my/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('my/css/font-awesome.css') }}" rel="stylesheet">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

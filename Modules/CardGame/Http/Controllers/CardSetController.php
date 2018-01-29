@@ -3,6 +3,7 @@
 namespace Modules\CardGame\Http\Controllers;
 
 use Illuminate\View\View;
+use Modules\CardGame\Http\Entities\CardType;
 use Modules\CardGame\Http\Entities\Race;
 use App\Http\Controllers\BaseController;
 use Modules\CardGame\Http\Entities\CardSet;
@@ -26,12 +27,10 @@ class CardSetController extends BaseController
      */
     public function index()
     {
-        self::checkAdmin();
-
         return view('cardgame::card_set.index')->with([
-            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class, 'set_name'),
+            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
-            'types' => CardSet::TYPES,
+            'types' =>$this->repository->showEntitiesByClassName(CardType::class),
         ]);
     }
 
@@ -42,8 +41,6 @@ class CardSetController extends BaseController
      */
     public function edit($id)
     {
-        self::checkAdmin();
-
         $cardSet = parent::edit($id);
 
         return view('cardgame::card_set.update')->with([

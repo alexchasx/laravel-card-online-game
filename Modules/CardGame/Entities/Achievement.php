@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $id
  * @property string  $name
  * @property string  $description
- * @property integer $avatar_id
+ * @property string  $avatar
  * @property integer $sort
  * @property float   $rating
  * @property boolean $seen
@@ -39,12 +39,4 @@ class Achievement extends BaseModel
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * @return BelongsTo
-     */
-    public function avatar()
-    {
-        return $this->belongsTo(File::class, 'avatar_id');
-    }
 }

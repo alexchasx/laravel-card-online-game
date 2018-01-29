@@ -1,6 +1,7 @@
 @import "bootstrap.min.css";
+@import "font-awesome.min.css";
 @import "reset.css";
-@font-face {
+/*@font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/FontAwesome/FontAwesome.eot');
   src: url('../fonts/FontAwesome/FontAwesome.eot#iefix') format('embedded-opentype'), url('/fonts/FontAwesome/FontAwesome.woff') format('woff'), url('/fonts/FontAwesome/FontAwesome.ttf') format('truetype'), url('/fonts/FontAwesome/FontAwesome.svg') format('svg');
@@ -13,7 +14,7 @@
   src: url('../fonts/FontAwesome-Bold/FontAwesome-Bold.eot#iefix') format('embedded-opentype'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.woff') format('woff'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.ttf') format('truetype'), url('/fonts/FontAwesome-Bold/FontAwesome-Bold.svg') format('svg');
   font-weight: bold;
   font-style: normal;
-}
+}*/
 /*box-shadow: inset(тень внутри) <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет>*/
 body {
   font-family: Tahoma, fontRegular, sans-serif;

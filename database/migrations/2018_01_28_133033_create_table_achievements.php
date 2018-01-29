@@ -18,7 +18,7 @@ class CreateTableAchievements extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('avatar_id')->nullable();
+            $table->string('avatar')->nullable();
             $table->bigInteger('sort')->nullable();
             $table->double('rating')->default(0);
             $table->tinyInteger('seen')->default(1);

@@ -37,7 +37,8 @@
                             </td>
                             <td><input name="description" type="text" class="form-control" id="description"
                                        value="{{ old('description') }}"></td>
-                            <td></td>
+                            <input name="avatar" type="file" class="form-control" id="avatar"
+                                   value="{{ old('avatar') }}"></td>
                             <td><input name="sort" type="text" class="form-control"
                                        id="sort" value="{{ old('sort') }}"></td>
                             <td><input name="rating" type="text" class="form-control" id="rating"
@@ -69,7 +70,7 @@
                                 @endif
                             </td>
                             <td>{{ $achievement->description }}</td>
-                            <td>{{--{{ $achievement->avatar->path }}--}}</td>
+                            <td>{{ $achievement->avatar }}</td>
                             <td>{{ $achievement->sort }}</td>
                             <td>{{ $achievement->rating }}</td>
                             <td>{{ $achievement->price }}</td>

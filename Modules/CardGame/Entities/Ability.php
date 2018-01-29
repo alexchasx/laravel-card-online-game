@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer $id
  * @property string  $name
- * @property integer $avatar_id
+ * @property string  $avatar
  * @property boolean $seen
  * @property string  $description
  * @property string  $full_description
@@ -37,12 +37,4 @@ class Ability extends BaseModel
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * @return BelongsTo
-     */
-    public function avatar()
-    {
-        return $this->belongsTo(File::class, 'avatar_id');
-    }
 }

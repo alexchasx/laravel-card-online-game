@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BaseRequest;
 use Illuminate\Http\Request;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -24,17 +25,12 @@ class BaseController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param BaseRequest $request
      *
-     * @return RedirectResponse | HttpException
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(BaseRequest $request)
     {
-        // TODO сделать валидацию
-//        $this->validate($request->all(), [
-//            'set_name' => 'required|max:255',
-//        ]);
-
         $this->repository->create($request);
 
         return redirect()->back();
@@ -52,21 +48,12 @@ class BaseController extends Controller
     }
 
     /**
-     * Редактирует статью
+     * @param BaseRequest $request
      *
-     * POST /admin/Card/update
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse | HttpException
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(BaseRequest $request)
     {
-        // TODO сделать валидацию
-//        $this->validate($request, [
-//            'title' => 'required|max:255',
-//        ]);
-
         $this->repository->withTrashedWhere('id', $request->id)
             ->update(array_except($request->all(), ['_token']));
 

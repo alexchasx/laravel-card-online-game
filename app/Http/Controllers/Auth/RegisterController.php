@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Model\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Validator as Validation;
@@ -62,11 +64,9 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
      * @param Request $request
      *
-     * @return $this | Authenticatable
+     * @return $this | Model
      */
     protected function create(Request $request)
     {
@@ -103,7 +103,9 @@ class RegisterController extends Controller
             $user = $this->create($request)
         ));
 
-        return redirect($this->redirectTo);
+        Auth::login($user);
+
+        return redirect()->intended('/profile');
 
 //        dispatch(new SendVerificationEmail($user));
 //

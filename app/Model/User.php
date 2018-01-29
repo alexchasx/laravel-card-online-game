@@ -27,7 +27,7 @@ use Modules\CardGame\Http\Entities\Rank;
  * @property integer $prom
  * @property boolean $vip
  * @property boolean $seen
- * @property string  $price
+ * @property string  $balance
  * @property integer $rememberTokenName
  *
  * @property Carbon  $created_at

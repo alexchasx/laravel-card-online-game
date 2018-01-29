@@ -6,12 +6,11 @@
             <h1 class="logo">{{config('app.name')}}</h1>
             <br>
             <br>
-            <br>
 
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Авторизация
+                        Вход
                     </div>
                     <div class="panel-body">
 
@@ -67,7 +66,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-8 col-md-offset-3">
+                                <div class="col-md-6 col-md-offset-3">
                                     <a class="btn btn-success text-center" style="width: 100%"
                                        href="{{ url('register') }}">
                                         Создать аккаунт

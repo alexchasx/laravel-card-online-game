@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $type_id
  * @property integer $user_id
  * @property integer $race_id
- * @property integer $avatar_id
+ * @property string  $avatar
  * @property boolean $seen
  * @property integer $shirt_id
  * @property integer $background_id
@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon  $deleted_at
  *
  * @property Card[]  $cards
+ * @property File    $shirt
+ * @property File    $background
+ * @property File    $border
  */
 class CardSet extends BaseModel
 {
@@ -57,8 +60,24 @@ class CardSet extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function avatar()
+    public function shirt()
     {
-        return $this->belongsTo(File::class, 'avatar_id');
+        return $this->belongsTo(File::class, 'shirt_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function background()
+    {
+        return $this->belongsTo(File::class, 'background_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function border()
+    {
+        return $this->belongsTo(File::class, 'border_id');
     }
 }

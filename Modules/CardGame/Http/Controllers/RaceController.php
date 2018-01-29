@@ -26,8 +26,6 @@ class RaceController extends BaseController
      */
     public function index()
     {
-        self::checkAdmin();
-
         return view('cardgame::race.index')->with([
             'races' => $this->repository->showEntitiesByClassName(Race::class),
         ]);
@@ -40,8 +38,6 @@ class RaceController extends BaseController
      */
     public function edit($id)
     {
-        self::checkAdmin();
-
         $race = parent::edit($id);
 
         return view('cardgame::race.update')->with([

@@ -10,8 +10,6 @@ use Modules\CardGame\Repositories\AchievementRepository;
 class AchievementController extends BaseController
 {
     /**
-     * BaseController constructor.
-     *
      * @param AchievementRepository $repository
      */
     public function __construct(AchievementRepository $repository)
@@ -20,8 +18,6 @@ class AchievementController extends BaseController
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @return View
      */
     public function index()
@@ -34,18 +30,6 @@ class AchievementController extends BaseController
     }
 
     /**
-     * @param Request $request
-     *
-     * @return void
-     */
-    public function store(Request $request)
-    {
-        parent::store($request);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
      * @param  int $id
      *
      * @return View
@@ -58,26 +42,4 @@ class AchievementController extends BaseController
             'achievement' => $achievement,
         ]);
     }
-
-    /**
-     * @param Request $request
-     *
-     * @return void
-     */
-    public function update(Request $request)
-    {
-        parent::update($request);
-    }
-
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int $id
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        parent::destroy($id);
-//    }
 }

@@ -7,9 +7,7 @@
                 <h1 class="logo">{{config('app.name')}}</h1>
                 <br/>
                 <br/>
-                <br/>
                 <div class="panel panel-default">
-                    <div class="panel-heading">Регистрация</div>
                     <div class="panel-body">
 
                         <form class="form-horizontal" role="form" method="POST"

@@ -17,12 +17,12 @@ class CreateTableBattlefield extends Migration
         Schema::create('battlefields', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('avatar_id')->nullable();
-            $table->tinyInteger('seen')->default(1);
-            $table->string('description')->nullable();
-            $table->string('price')->nullable();
-            $table->integer('background_id')->nullable();
+            $table->string('background')->nullable();
+            $table->string('avatar')->nullable();
             $table->integer('border_id')->nullable();
+            $table->string('description')->nullable();
+            $table->tinyInteger('seen')->default(1);
+            $table->string('price')->nullable();
             $table->softDeletes();
         });
 

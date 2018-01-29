@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer $id
  * @property string  $name
- * @property integer $avatar_id
- * @property boolean $seen
- * @property string  $description
- * @property string  $price
- * @property integer $background_id
+ * @property string  $background
+ * @property string  $avatar
  * @property integer $border_id
+ * @property string  $description
+ * @property boolean $seen
+ * @property string  $price
  *
  * @property Carbon  $deleted_at
  */
@@ -43,8 +43,8 @@ class BattleField extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function avatar()
+    public function border()
     {
-        return $this->belongsTo(File::class, 'avatar_id');
+        return $this->belongsTo(File::class, 'border_id');
     }
 }

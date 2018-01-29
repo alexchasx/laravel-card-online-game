@@ -17,7 +17,7 @@ class CreateTableCardTypes extends Migration
         Schema::create('card_types', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('avatar_id')->nullable();
+            $table->string('avatar')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->string('description')->nullable();
             $table->string('price')->nullable();

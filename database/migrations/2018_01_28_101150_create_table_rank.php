@@ -17,7 +17,8 @@ class CreateTableRank extends Migration
         Schema::create('ranks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('avatar_id')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('border')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->double('rating')->default(0);
             $table->integer('race_id')->default(2);

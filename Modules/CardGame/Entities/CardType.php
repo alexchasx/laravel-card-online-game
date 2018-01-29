@@ -2,16 +2,14 @@
 
 namespace Modules\CardGame\Http\Entities;
 
-use App\Model\File;
 use Carbon\Carbon;
 use App\Model\BaseModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
  * @property string  $name
- * @property integer $avatar_id
+ * @property string  $avatar
  * @property boolean $seen
  * @property string  $description
  * @property string  $price
@@ -37,12 +35,4 @@ class CardType extends BaseModel
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * @return BelongsTo
-     */
-    public function avatar()
-    {
-        return $this->belongsTo(File::class, 'avatar_id');
-    }
 }

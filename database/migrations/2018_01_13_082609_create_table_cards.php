@@ -16,7 +16,7 @@ class CreateTableCards extends Migration
         Schema::create('cards', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name', 150);
-            $table->integer('avatar_id')->nullable();
+            $table->string('avatar')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->integer('card_sets_id')->nullable();
             $table->integer('race_id')->nullable();

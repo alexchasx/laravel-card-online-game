@@ -20,7 +20,7 @@ class CreateTableCardSets extends Migration
             $table->integer('type_id')->default(1);
             $table->integer('user_id')->nullable();
             $table->integer('race_id')->nullable();
-            $table->integer('avatar_id')->nullable();
+            $table->string('avatar')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->integer('shirt_id')->comment('рубашка')->nullable();
             $table->integer('background_id')->nullable();

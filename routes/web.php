@@ -14,6 +14,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index'])->name('home');
+
 Auth::routes();
 
 Route::group([
@@ -42,7 +44,6 @@ Route::get('contact', function() {
     return view('contact');
 })->name('contact');
 
-Route::get('/', ['as' => 'index', 'uses' => 'SiteController@index'])->name('home');
 
 
 // Отправка электронной почты

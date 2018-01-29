@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer   $id
  * @property string    $name
- * @property integer   $avatar_id
+ * @property string    $avatar
  * @property boolean   $seen
  * @property integer   $card_sets_id
  * @property integer   $race_id
@@ -29,7 +29,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property CardSet[] $cardSet
  * @property Race[]    $race
- * @property File      $avatar
  * @property Ability   $ability1
  * @property Ability   $ability2
  * @property Rarity    $rarity
@@ -101,13 +100,5 @@ class Card extends BaseModel
     public function race()
     {
         return $this->belongsTo(Race::class, 'race_id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function avatar()
-    {
-        return $this->belongsTo(File::class, 'avatar_id');
     }
 }
