@@ -25,8 +25,6 @@ class AbilityController extends BaseController
      */
     public function index()
     {
-        self::checkAdmin();
-
         return view('cardgame::ability.index')->with([
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
         ]);
@@ -39,8 +37,6 @@ class AbilityController extends BaseController
      */
     public function edit($id)
     {
-        self::checkAdmin();
-
         $ability = parent::edit($id);
 
         return view('cardgame::ability.update')->with([

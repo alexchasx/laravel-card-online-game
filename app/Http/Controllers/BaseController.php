@@ -27,7 +27,7 @@ class BaseController extends Controller
     /**
      * @param BaseRequest $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(BaseRequest $request)
     {
@@ -50,7 +50,7 @@ class BaseController extends Controller
     /**
      * @param BaseRequest $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(BaseRequest $request)
     {
@@ -59,6 +59,27 @@ class BaseController extends Controller
 
         return redirect()->back();
     }
+
+//    /**
+//     * @param BaseRequest $request
+//     * @param string      $column
+//     *
+//     * @return RedirectResponse
+//     */
+//    public function updateOnceColumn(BaseRequest $request, string $column)
+//    {
+//        $model = $this->repository->withTrashedWhere('id', $request->id)
+//            ->first();
+//
+//        $input = $request->input($column);
+//        dd($input);
+//
+//        $model->$column = $input;
+//
+//        $model->save();
+//
+//        return redirect()->back();
+//    }
 
     /**
      * @param $id

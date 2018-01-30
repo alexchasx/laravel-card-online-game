@@ -779,13 +779,12 @@ header .header-data .hdata em{
 
 .mainbar{
 	position: relative;
-	margin-left: 150px;
+	margin-left: 0px;
 	margin-right: 0px;
 	width: auto;
 	background:#eee url("../img/main-back.png") repeat;
 	border-left: 1px solid #ccc;
 	z-index: 50;
-	min-height: 800px;
 }
 
 .mainbar .container{

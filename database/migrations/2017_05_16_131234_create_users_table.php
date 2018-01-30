@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('rank_id')->default(1);
             $table->tinyInteger('verified')->default(0);
             $table->string('email_token')->nullable();
-            $table->double('rating')->default(0);
+            $table->double('rating')->nullable();
             $table->integer('count_wins')->default(0);
             $table->integer('count_battles')->default(0);
             $table->integer('prom')->default(0);

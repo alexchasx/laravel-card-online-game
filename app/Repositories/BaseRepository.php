@@ -56,8 +56,7 @@ abstract class BaseRepository
      */
     public function showEntitiesByClassName($className, $column = 'name')
     {
-        return $className::query()
-            ->where('seen', true)
+        return $className::withTrashed()
             ->orderBy($column)
             ->get();
     }
@@ -76,9 +75,9 @@ abstract class BaseRepository
             $basePath = $request->file('avatar')
                 ->storeAs('upload', $originalName);
 
-            $card = $this->model->create(array_except($request->all(), ['avatar']));
-            $card->avatar = config('cardgame.avatar_path') . $basePath;
-            $card->save();
+            $model = $this->model->create(array_except($request->all(), ['avatar']));
+            $model->avatar = config('cardgame.avatar_path') . $basePath;
+            $model->save();
         } else {
             $this->model->create($request->all());
         }

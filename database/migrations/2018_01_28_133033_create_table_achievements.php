@@ -20,7 +20,7 @@ class CreateTableAchievements extends Migration
             $table->string('description')->nullable();
             $table->string('avatar')->nullable();
             $table->bigInteger('sort')->nullable();
-            $table->double('rating')->default(0);
+            $table->double('rating')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->string('price')->nullable();
             $table->softDeletes();

@@ -11,10 +11,10 @@
                         <td>ID</td>
                         <td style="min-width: 100px;">Наименование</td>
                         <td style="min-width: 50px;">Видимость</td>
-                        <td style="min-width: 50px;">Описание</td>
+                        <td style="min-width: 400px;">Описание</td>
                         <td {{--style="min-width: 140px;"--}}>Аватар</td>
                         <td style="min-width: 50px;">Сорт.</td>
-                        <td style="min-width: 50px;">Рейтинг</td>
+                        <td style="max-width: 20px;">Рейтинг</td>
                         <td style="min-width: 120px;">Цена</td>
                         <td></td>
                         <td>Удалено</td>
@@ -30,14 +30,14 @@
                             <td><input name="name" type="text" class="form-control"
                                        id="name" value="{{ old('name') }}" required></td>
                             <td>
-                                <select class="form-control" name="seen" id="hidden">
+                                <select class="form-control" name="seen" id="seen">
                                     <option selected value="1">Да</option>
                                     <option value="0">Нет</option>
                                 </select>
                             </td>
                             <td><input name="description" type="text" class="form-control" id="description"
                                        value="{{ old('description') }}"></td>
-                            <input name="avatar" type="file" class="form-control" id="avatar"
+                            <td><input name="avatar" type="file" class="form-control" id="avatar"
                                    value="{{ old('avatar') }}"></td>
                             <td><input name="sort" type="text" class="form-control"
                                        id="sort" value="{{ old('sort') }}"></td>
@@ -45,8 +45,11 @@
                                        value="{{ old('rating') }}"></td>
                             <td><input name="price" type="text" class="form-control" id="price"
                                        value="{{ old('price') }}"></td>
+                            <td></td>
                             <td>
-                                <button type="submit" class="btn btn-primary">Создать</button>
+                                <button type="submit" class="btn btn-xs btn-success">
+                                    <i class="fa fa-check"></i>
+                                </button>
                             </td>
                             <td></td>
                             {{ csrf_field() }}
@@ -70,7 +73,7 @@
                                 @endif
                             </td>
                             <td>{{ $achievement->description }}</td>
-                            <td>{{ $achievement->avatar }}</td>
+                            <td><img width="50" src="{{ $achievement->avatar }}" alt=""></td>
                             <td>{{ $achievement->sort }}</td>
                             <td>{{ $achievement->rating }}</td>
                             <td>{{ $achievement->price }}</td>
@@ -79,20 +82,31 @@
                                       method="post">
                                     {{method_field('DELETE')}}
                                     {{csrf_field()}}
-                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                    <button class="btn btn-xs btn-danger">
+                                        <i class="fa fa-times"></i>
+                                    </button>
                                 </form>
                             </td>
-                            <td>{{ $achievement->deleted_at }}</td>
-                            <td><a class="btn btn-success"
-                                   href="{{ route('achievementRestore',['comment'=>$achievement->id]) }}"
-                                   role="button">Восстановить</a>
+                            <td>
+                                @if ($achievement->deleted_at)
+                                    <span class="label label-danger">Уд.</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('achievementRestore',['comment'=>$achievement->id]) }}"
+                                   role="button">
+                                    <button class="btn btn-xs btn-success">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                </a>
                             </td>
                             <td>
                                 <form action="{{ route('achievementForceDelete', ['id'=>$achievement->id]) }}"
                                       method="post">
                                     {{method_field('DELETE')}}
                                     {{csrf_field()}}
-                                    <button type="submit" class="btn btn-danger">Полное удаление
+                                    <button class="btn btn-xs btn-danger">
+                                        <i class="fa fa-trash-o"></i>
                                     </button>
                                 </form>
                             </td>

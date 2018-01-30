@@ -15,6 +15,48 @@
             <a href="/" class="navbar-brand lg">Главная</a>
         </div>
 
+        <div class="navbar-header">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown pull-right">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="fa fa-user"></i> Список <b class="caret"></b>
+                    </a>
+
+                    <!-- Dropdown menu -->
+                    <ul class="dropdown-menu">
+                        <li><a class="link"
+                               @if ('cardIndex' == Route::current()->getName())
+                               style="color: #0b16d6;"
+                               @endif
+                               href="{{route('cardIndex')}}">Карты</a></li>
+                        <li><a class="link"
+                               @if ('cardSetIndex' == Route::current()->getName())
+                               style="color: #0b16d6;"
+                               @endif
+                               href="{{route('cardSetIndex')}}">Наборы</a></li>
+                        <li><a class="link active"
+                               @if ('raceIndex' == Route::current()->getName())
+                               style="color: #0b16d6;"
+                               @endif
+                               href="{{route('raceIndex')}}">Расы</a></li>
+                        <li><a class="link"
+                               @if ('abilityIndex' == Route::current()->getName())
+                               style="color: #0b16d6;"
+                               @endif
+                               href="{{route('abilityIndex')}}">Способности</a></li>
+                        <li><a class="link"
+                               @if ('achievement.index' == Route::current()->getName())
+                               style="color: #0b16d6;"
+                               @endif
+                               href="{{route('achievement.index')}}">Достижения</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
         <!-- Navigation starts -->
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <!-- Links -->
@@ -26,7 +68,7 @@
 
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-user"></i> Профиль</a></li>
+                        <li><a href="{{ route('getProfile') }}"><i class="fa fa-user"></i> Профиль</a></li>
                         <li><a href="#"><i class="fa fa-cogs"></i> Настройки</a></li>
                         <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Выход</a></li>
                     </ul>
@@ -43,41 +85,41 @@
 <div class="content">
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
+    {{--<div class="sidebar">--}}
+        {{--<div class="sidebar-dropdown"><a href="#">Navigation</a></div>--}}
 
-        <!--- Sidebar navigation -->
-        <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
-        <ul id="nav">
-            <!-- Main menu with font awesome icon -->
-            <br>
-            <li><a class="link"
-                   @if ('cardIndex' == Route::current()->getName())
-                   style="color: #0b16d6;"
-                   @endif
-                   href="{{route('cardIndex')}}">Карты</a></li>
-                <li><a class="link"
-                       @if ('cardSetIndex' == Route::current()->getName())
-                       style="color: #0b16d6;"
-                       @endif
-                       href="{{route('cardSetIndex')}}">Наборы</a></li>
-                <li><a class="link active"
-                       @if ('raceIndex' == Route::current()->getName())
-                       style="color: #0b16d6;"
-                       @endif
-                       href="{{route('raceIndex')}}">Расы</a></li>
-                <li><a class="link"
-                       @if ('abilityIndex' == Route::current()->getName())
-                       style="color: #0b16d6;"
-                       @endif
-                       href="{{route('abilityIndex')}}">Способности</a></li>
-                <li><a class="link"
-                       @if ('achievement.index' == Route::current()->getName())
-                       style="color: #0b16d6;"
-                       @endif
-                       href="{{route('achievement.index')}}">Достижения</a></li>
-        </ul>
-    </div>
+        {{--<!--- Sidebar navigation -->--}}
+        {{--<!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->--}}
+        {{--<ul id="nav">--}}
+            {{--<!-- Main menu with font awesome icon -->--}}
+            {{--<br>--}}
+            {{--<li><a class="link"--}}
+                   {{--@if ('cardIndex' == Route::current()->getName())--}}
+                   {{--style="color: #0b16d6;"--}}
+                   {{--@endif--}}
+                   {{--href="{{route('cardIndex')}}">Карты</a></li>--}}
+                {{--<li><a class="link"--}}
+                       {{--@if ('cardSetIndex' == Route::current()->getName())--}}
+                       {{--style="color: #0b16d6;"--}}
+                       {{--@endif--}}
+                       {{--href="{{route('cardSetIndex')}}">Наборы</a></li>--}}
+                {{--<li><a class="link active"--}}
+                       {{--@if ('raceIndex' == Route::current()->getName())--}}
+                       {{--style="color: #0b16d6;"--}}
+                       {{--@endif--}}
+                       {{--href="{{route('raceIndex')}}">Расы</a></li>--}}
+                {{--<li><a class="link"--}}
+                       {{--@if ('abilityIndex' == Route::current()->getName())--}}
+                       {{--style="color: #0b16d6;"--}}
+                       {{--@endif--}}
+                       {{--href="{{route('abilityIndex')}}">Способности</a></li>--}}
+                {{--<li><a class="link"--}}
+                       {{--@if ('achievement.index' == Route::current()->getName())--}}
+                       {{--style="color: #0b16d6;"--}}
+                       {{--@endif--}}
+                       {{--href="{{route('achievement.index')}}">Достижения</a></li>--}}
+        {{--</ul>--}}
+    {{--</div>--}}
 
     <!-- Sidebar ends -->
 

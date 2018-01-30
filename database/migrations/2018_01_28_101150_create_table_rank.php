@@ -20,7 +20,7 @@ class CreateTableRank extends Migration
             $table->string('avatar')->nullable();
             $table->string('border')->nullable();
             $table->tinyInteger('seen')->default(1);
-            $table->double('rating')->default(0);
+            $table->double('rating')->nullable();
             $table->integer('race_id')->default(2);
             $table->string('price')->nullable();
             $table->softDeletes();
