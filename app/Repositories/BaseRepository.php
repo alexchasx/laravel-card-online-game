@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\BaseRequest;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -80,6 +81,31 @@ abstract class BaseRepository
             $model->save();
         } else {
             $this->model->create($request->all());
+        }
+    }
+
+    /**
+     * @param BaseRequest $request
+     *
+     * @return void
+     */
+    public function update(BaseRequest $request)
+    {
+        $this->model = $this->withTrashedWhere('id', $request->id)
+            ->first();
+
+        $this->model->update(array_except($request->all(), ['avatar', '_token']));
+
+        if ($request->file('avatar')) {
+            $originalName = $request->file('avatar')
+                ->getClientOriginalName();
+
+            $basePath = $request->file('avatar')
+                ->storeAs('upload', $originalName);
+
+            $this->model->avatar = config('cardgame.avatar_path') . $basePath;
+
+            $this->model->save();
         }
     }
 

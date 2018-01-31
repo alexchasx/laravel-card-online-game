@@ -45,7 +45,7 @@
     <link rel="shortcut icon" href="{{ asset('macadmin/img/favicon/favicon.png') }}">
 </head>
 
-<body>
+<body class="widget wblack">
 
 @yield('content')
 

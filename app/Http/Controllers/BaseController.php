@@ -54,8 +54,7 @@ class BaseController extends Controller
      */
     public function update(BaseRequest $request)
     {
-        $this->repository->withTrashedWhere('id', $request->id)
-            ->update(array_except($request->all(), ['_token']));
+        $this->repository->update($request);
 
         return redirect()->back();
     }

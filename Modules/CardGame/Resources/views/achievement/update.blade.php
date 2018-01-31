@@ -1,123 +1,163 @@
-@extends('admin.admin_layout')
+@extends('cardgame::layouts.admin_layout')
 
 @section('inner_content')
+    <div class="widget-content">
+        <div class="padd">
+            <div class="modal-content" style="background-color: #2e3436;">
+                <!-- Form starts.  -->
+                <form action="{{ route('cardUpdate') }}" method="post" role="form"
+                      enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" style="color: #2e3436;">Создание карты</h4>
+                    </div>
+                    <div class="modal-body">
 
-    <div class="container">
-        <div class="row">
-            <form action="{{ route('articleUpdate') }}" method="post" role="form">
-                <p>Поля, обозначенные звёздочкой (&#10033;), обязательны для заполнения.</p>
+                        <input name="id" type="text" class="form-control" placeholder="ID"
+                               id="name" value="{{ $card->id }}" required>
+                        <br>
 
-                <div class="form-group">
-                    <label for="id">ID</label>
-                    <input name="id" type="hidden" class="form-control" value="{{$article->id}}">
-                    <input type="numeric" class="form-control" id="id" value="{{$article->id}}"
-                           disabled>
-                </div>
-                <div class="form-group">
-                    <label for="title">Заголовок</label>&nbsp;&#10033;
-                    <input name="title" type="text" class="form-control" id="title"
-                           value="{{$article->title}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="categories_id">Категория</label>&nbsp;&#10033;
-                    <select name="categories_id" size="3" class="form-control" id="categories_id"
-                            required>
-                        @foreach ($categories as $category)
+                        <input name="name" type="text" class="form-control" placeholder="Наименование"
+                               id="name" value="{{ $card->name }}" required>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Видна?</label>
+                        <select class="form-control" name="seen" id="seen">
                             <option
-                                    @if($article->categories_id == $category->id)
+                                    @if($card->seen)
                                     selected
                                     @endif
-                                    value="{{$category->id}}">{{$category->title}}</option>
-
-                        @endforeach
-                    </select>
-                </div>
-                {{--<div class="form-group">--}}
-                    {{--<label for="file">Загрузить файл</label><!--&nbsp;&#10033;--}}
-                    {{--<input type="hidden" name="MAX_FILE_SIZE" value="500000"/> -->--}}
-                    {{--<input name="file" type="file" class="form-control" id="file">--}}
-                {{--</div>--}}
-                <div class="form-group">
-                    <label for="description">Краткое описание</label>&nbsp;&#10033;
-                    <textarea name="description" rows="4" class="form-control"
-                              id="description" required>{{$article->description}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">Полный текст</label>&nbsp;&#10033;
-                    <textarea name="content" rows="7" class="form-control" id="content"
-                              required>{{$article->content}}</textarea>
-                </div>
-                <div class="form-group">
-                    <input name="user_id" type="hidden" class="form-control" id="user_id"
-                           value="{{Auth::user()->id}}">
-                </div>
-                <div class="form-group">
-                    <label for="status">Показывать?</label>
-                    <select name="status" id="status">
-                        <option selected value="1">Да</option>
-                        <option value="0">Нет</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="meta_desc">Мета: описание</label>
-                    <input name="meta_desc" type="text" class="form-control" id="meta_desc"
-                           value="{{$article->meta_desc}}">
-                </div>
-                <div class="form-group">
-                    <label for="keywords">Мета: ключевые слова</label>
-                    <input name="keywords" type="text" class="form-control" id="keywords"
-                           value="{{$article->keywords}}">
-                </div>
-                <div class="form-group">
-                    <label for="tags_id">Все теги:</label>
-                    <select name="tags_id[]" size="5" class="form-control" id="tags_id"
-                            multiple>
-                        @foreach ($tags as $tag)
+                                    value="1">Да</option>
                             <option
-                                    @if (1 === $tag->id)
+                                    @if(!$card->seen)
                                     selected
                                     @endif
-                                    value="{{$tag->id}}">{{$tag->title}}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            <!-- 			<div class="form-group">
-				<label for="created_at">Дата создания</label>
-				<input name="created_at" type="text" class="form-control" id="created_at" value="{{time()}}">
-			</div>
-			<div class="form-group">
-				<label for="updated_at">Дата создания</label>
-				<input name="updated_at" type="text" class="form-control" id="updated_at" value="{{time()}}">
-			</div> -->
+                                    value="0">Нет</option>
+                        </select>
 
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <label class="col-lg-2 control-label"></label>
+                        <input name="energy" type="text" class="form-control" placeholder="Энергия"
+                               id="energy"
+                               value="{{ $card->energy }}">
 
-                {{ csrf_field() }}
-            </form>
+                        <label class="col-lg-2 control-label"></label>
+                        <input name="attack" type="text" class="form-control" placeholder="Атака"
+                               id="attack"
+                               value="{{ $card->attack }}">
 
-            <label for="tags">Выбранные теги:</label>
-            <table>
-                @if (!$article->tags->count())
-                    Тегов нет.
-                @endif
+                        <label class="col-lg-2 control-label"></label>
+                        <input name="health" type="text" class="form-control" placeholder="Прочность"
+                               id="health" value="{{ $card->health }}">
 
-                @foreach ($article->tags as $tag)
-                    <tr>
-                        <td>{{$tag->title}}</td>
-                        <td>
-                            <form action="{{ route('articleTagDelete', ['card'=>$article->id, 'ability'=>$tag->id]) }}"
-                                  method="post">
-                                <!-- <input type="hidden" name="_method" value="DELETE"> -->
-                                {{method_field('DELETE')}}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn-twitter btn-danger">Удалить</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
+                        <label class="col-lg-2 control-label"></label>
+                        <input name="armor" type="text" class="form-control" placeholder="Броня"
+                               id="armor"
+                               value="{{ $card->armor }}">
+                        <br>
+
+                        <label class="col-lg-2 control-label">Нация</label>
+                        <select class="form-control" name="race_id" size="3"
+                                class="form-control" id="race_id">
+                            @foreach ($races as $race)
+                                <option
+                                        @if($card->race_id === $race->id)
+                                        selected
+                                        @endif
+                                        value="{{$race->id}}">{{$race->name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Способность1</label>
+                        <select class="form-control" name="ability1_id" size="3"
+                                class="form-control"
+                                id="ability1_id">
+                            @foreach ($abilities as $ability)
+                                <option
+                                        @if($card->ability1_id === $ability->id)
+                                        selected
+                                        @endif
+                                        value="{{$ability->id}}">{{$ability->name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Способность2</label>
+                        <select class="form-control" name="ability2_id" size="3"
+                                class="form-control"
+                                id="ability2_id">
+                            @foreach ($abilities as $ability)
+                                <option
+                                        @if($card->ability2_id === $ability->id)
+                                        selected
+                                        @endif
+                                        value="{{$ability->id}}">{{$ability->name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Аватар</label>
+                        <input name="avatar" type="file" class="form-control" placeholder="Аватар"
+                               id="armor"
+                               value="{{ $card->avatar }}"></td>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Набор</label>
+                        <select class="form-control" name="card_sets_id" size="3"
+                                class="form-control"
+                                id="card_sets_id">
+                            @foreach ($cardSets as $cardSet)
+                                <option
+                                        @if($card->card_sets_id === $cardSet->id)
+                                        selected
+                                        @endif
+                                        value="{{$cardSet->id}}">{{$cardSet->name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Тип</label>
+                        <select class="form-control" name="card_type_id" size="3"
+                                class="form-control"
+                                id="card_type_id">
+                            @foreach ($types as $type)
+                                <option
+                                        @if($card->card_type_id === $type->id)
+                                        selected
+                                        @endif
+                                        value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
+                        <label class="col-lg-2 control-label">Редкость</label>
+                        <select class="form-control" name="rarity_id" size="3"
+                                class="form-control"
+                                id="rarity_id">
+                            @foreach ($rarities as $rarity)
+                                <option
+                                        @if($card->rarity_id === $rarity->id)
+                                        selected
+                                        @endif
+                                        value="{{ $rarity->id }}">{{ $rarity->name }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="col-lg-2 control-label"></label>
+                        <input name="price" type="text" class="form-control" placeholder="Цена"
+                               id="price"
+                               value="{{ $card->price }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                aria-hidden="true">Отмена
+                        </button>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                        {{ csrf_field() }}
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
 @endsection

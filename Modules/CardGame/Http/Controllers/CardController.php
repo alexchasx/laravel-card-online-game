@@ -50,11 +50,13 @@ class CardController extends BaseController
      */
     public function edit($id)
     {
-        $card = parent::edit($id);
-
-        return view('cardgame::card.update')->with([
-            'card' => $card,
+        return view('cardgame::update')->with([
+            'card' => parent::edit($id),
             'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
+            'races' => $this->repository->showEntitiesByClassName(Race::class),
+            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
+            'types' => $this->repository->showEntitiesByClassName(CardType::class),
+            'rarities' => $this->repository->showEntitiesByClassName(Rarity::class),
         ]);
     }
 }
