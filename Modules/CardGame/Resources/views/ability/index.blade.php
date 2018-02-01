@@ -26,7 +26,7 @@
             <td><input name="name" type="text" class="form-control" id="name"
                        value="{{ old('name') }}" required></td>
             <td>
-                <select name="seen" id="seen">
+                <select name="seen" class="form-control" id="seen">
                     <option selected value="1">Да</option>
                     <option value="0">Нет</option>
                 </select>
@@ -42,71 +42,35 @@
                 </button>
             </td>
             <td></td>
+            <td></td>
+            <td></td>
             {{ csrf_field() }}
         </form>
     </tr>
 
-    @foreach($abilities as $ability)
+    @foreach($entities as $entity)
 
-        <tr {{--@if ($ability->deleted_at)
+        <tr {{--@if ($entity->deleted_at)
                             style="background-color: #e4b9b9;"
-                            @elseif (!$ability->seen)--}}
-            @if (!$ability->seen)
+                            @elseif (!$entity->seen)--}}
+            @if (!$entity->seen)
             style="background-color: #b39cb5;"
                 @endif>
-            <td>{{ $ability->id }}</td>
-            <td><img width="50" src="{{ $ability->avatar }}" alt=""></td>
-            <td>{{ $ability->name }}</td>
+            <td>{{ $entity->id }}</td>
+            <td><img width="50" src="{{ $entity->avatar }}" alt=""></td>
+            <td>{{ $entity->name }}</td>
             <td>
-                @if (!$ability->seen)
+                @if (!$entity->seen)
                     Нет
                 @else
                     Да
                 @endif
             </td>
-            <td>{{ $ability->description }}</td>
-            <td>{{ $ability->full_description }}</td>
-            <td>
-                <form action="{{ route('abilityDelete', ['id'=>$ability->id]) }}"
-                      method="post">
-                    {{method_field('DELETE')}}
-                    {{csrf_field()}}
-                    <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </form>
-            </td>
-            <td><a href="{{ route('abilityEdit',['id'=>$ability->id]) }}"
-                   role="button">
-                    <button class="btn btn-xs btn-warning">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                </a>
-            </td>
-            <td>
-                @if ($ability->deleted_at)
-                    <span class="label label-danger">Уд.</span>
-                @endif
-            </td>
-            <td>
-                <a href="{{ route('abilityRestore',['comment'=>$ability->id]) }}"
-                   role="button">
-                    <button class="btn btn-xs btn-success">
-                        <i class="fa fa-refresh"></i>
-                    </button>
-                </a>
-            </td>
-            <td>
-                <form action="{{ route('abilityForceDelete', ['id'=>$ability->id]) }}"
-                      method="post">
-                    {{method_field('DELETE')}}
-                    {{csrf_field()}}
-                    <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-trash-o"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
+            <td>{{ $entity->description }}</td>
+            <td>{{ $entity->full_description }}</td>
+
+        @include('cardgame::layouts.table_end')
+
     @endforeach
     </tbody>
     </table>

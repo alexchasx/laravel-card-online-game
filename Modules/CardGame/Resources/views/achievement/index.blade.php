@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     <tr>
-        <form action="{{ route('achievement.store') }}" method="post" role="form"
+        <form action="{{ route('achievementStore') }}" method="post" role="form"
               enctype="multipart/form-data">
             <td></td>
             <td><input name="name" type="text" class="form-control"
@@ -52,69 +52,30 @@
         </form>
     </tr>
 
-    @foreach($achievements as $achievement)
+    @foreach($entities as $entity)
 
-        <tr @if ($achievement->deleted_at)
+        <tr @if ($entity->deleted_at)
             style="background-color: #e4b9b9;"
-            @elseif (!$achievement->seen)
+            @elseif (!$entity->seen)
             style="background-color: #9B859D;"
                 @endif>
-            <td>{{ $achievement->id }}</td>
-            <td>{{ $achievement->name }}</td>
+            <td>{{ $entity->id }}</td>
+            <td>{{ $entity->name }}</td>
             <td>
-                @if ($achievement->seen)
+                @if ($entity->seen)
                     Да
                 @else
                     Нет
                 @endif
             </td>
-            <td>{{ $achievement->description }}</td>
-            <td><img width="50" src="{{ $achievement->avatar }}" alt=""></td>
-            <td>{{ $achievement->sort }}</td>
-            <td>{{ $achievement->rating }}</td>
-            <td>{{ $achievement->price }}</td>
-            <td>
-                <a href="{{ route('achievementEdit',['id'=>$achievement->id]) }}"
-                   role="button">
-                    <button class="btn btn-xs btn-warning">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                </a>
-            </td>
-            <td>
-                <form action="{{ route('achievement.destroy', ['id'=>$achievement->id]) }}"
-                      method="post">
-                    {{method_field('DELETE')}}
-                    {{csrf_field()}}
-                    <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </form>
-            </td>
-            <td>
-                @if ($achievement->deleted_at)
-                    <span class="label label-danger">Уд.</span>
-                @endif
-            </td>
-            <td>
-                <a href="{{ route('achievementRestore',['comment'=>$achievement->id]) }}"
-                   role="button">
-                    <button class="btn btn-xs btn-success">
-                        <i class="fa fa-refresh"></i>
-                    </button>
-                </a>
-            </td>
-            <td>
-                <form action="{{ route('achievementForceDelete', ['id'=>$achievement->id]) }}"
-                      method="post">
-                    {{method_field('DELETE')}}
-                    {{csrf_field()}}
-                    <button class="btn btn-xs btn-danger">
-                        <i class="fa fa-trash-o"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
+            <td>{{ $entity->description }}</td>
+            <td><img width="50" src="{{ $entity->avatar }}" alt=""></td>
+            <td>{{ $entity->sort }}</td>
+            <td>{{ $entity->rating }}</td>
+            <td>{{ $entity->price }}</td>
+
+        @include('cardgame::layouts.table_end')
+
     @endforeach
     </tbody>
     </table>

@@ -31,10 +31,9 @@ class CardController extends BaseController
      */
     public function index()
     {
-        $cards = $this->repository->withTrashedOrderByDesc();
-
-        return view('cardgame::card.index')->with([
-            'cards' => $cards,
+        return view('cardgame::card.index', [
+            'nameRoute' => 'card',
+            'entities' => $this->repository->withTrashedOrderByDesc(),
             'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
@@ -50,8 +49,8 @@ class CardController extends BaseController
      */
     public function edit($id)
     {
-        return view('cardgame::update')->with([
-            'card' => parent::edit($id),
+        return view('cardgame::card.update', [
+            'entity' => parent::edit($id),
             'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),

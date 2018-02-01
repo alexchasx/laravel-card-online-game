@@ -24,11 +24,10 @@ Route::group([
     Route::get('/', 'CardGameController@index')->name('cardGameIndex');
 
     Route::group(['prefix' => 'card'], function() {
-
         Route::get('index', 'CardController@index')->name('cardIndex');
         Route::get('create', 'CardController@create')->name('cardCreate');
         Route::post('create', 'CardController@store')->name('cardStore');
-        Route::get('update.{id}', 'CardController@edit')->name('cardEdit');
+        Route::get('edit.{id}', 'CardController@edit')->name('cardEdit');
         Route::post('update', 'CardController@update')->name('cardUpdate');
         Route::delete('destroy.{id}', 'CardController@destroy')->name('cardDelete');
         Route::get('restore.{card}', 'CardController@restore')->name('cardRestore');
@@ -67,7 +66,8 @@ Route::group([
     Route::group(['prefix' => 'ability'], function() {
         Route::get('index', 'AbilityController@index')->name('abilityIndex');
         Route::post('create', 'AbilityController@store')->name('abilityStore');
-        Route::post('update', 'AbilityController@update')->name('abilityUpdate');
+        Route::get('edit.{id}', 'AbilityController@edit')->name('abilityEdit');
+        Route::any('update', 'AbilityController@update')->name('abilityUpdate');
         Route::delete('destroy.{id}', 'AbilityController@destroy')->name('abilityDelete');
         Route::delete('force_destroy.{id}', 'AbilityController@forceDestroy')
             ->name('abilityForceDelete');
@@ -76,28 +76,35 @@ Route::group([
     });
 
     Route::group(['prefix' => 'achievement'], function() {
+        Route::get('index', 'AchievementController@index')->name('achievementIndex');
+        Route::post('create', 'AchievementController@store')->name('achievementStore');
+        Route::get('edit.{id}', 'AchievementController@edit')->name('achievementEdit');
+        Route::any('update', 'AchievementController@update')->name('achievementUpdate');
+        Route::delete('destroy.{id}', 'AchievementController@destroy')->name('achievementDelete');
         Route::delete('force_destroy.{id}', 'AchievementController@forceDestroy')
             ->name('achievementForceDelete');
         Route::get('restore.{achievement}', 'AchievementController@restore')
             ->name('achievementRestore');
-
-        Route::get('/{name}', function($name) {
-            return view('errors.404');
-        })->where('name', '(.)*');
     });
-    Route::resource('achievement', 'AchievementController', [
-        'only' => [
-            'index',
-            'store',
-            'update',
-            'destroy',
-        ],
-        [
-            'names' => [
-                'store' => 'achievement.index',
-                'update' => 'achievement.update',
-                'destroy' => 'achievement.destroy',
-            ]
-        ]
-    ]);
+//    Route::resource('achievement', 'AchievementController', [
+//        'only' => [
+//            'index',
+//            'store',
+//            'edit',
+//            'update',
+//            'destroy',
+//        ],
+//        [
+//            'names' => [
+//                'index' => 'achievementIndex',
+//                'store' => 'achievementStore',
+//                'edit' => 'achievementEdit',
+//                'update' => 'achievementUpdate',
+//                'destroy' => 'achievementDelete',
+//            ]
+//        ]
+//    ]);
+    Route::get('achievement/{name}', function($name) {
+        return view('errors.404');
+    })->where('name', '(.)*');
 });

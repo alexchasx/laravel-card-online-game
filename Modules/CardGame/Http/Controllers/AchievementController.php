@@ -22,10 +22,9 @@ class AchievementController extends BaseController
      */
     public function index()
     {
-        $achievements = $this->repository->withTrashedOrderByDesc();
-
-        return view('cardgame::achievement.index')->with([
-            'achievements' => $achievements,
+        return view('cardgame::achievement.index', [
+            'nameRoute' => 'achievement',
+            'entities' => $this->repository->withTrashedOrderByDesc(),
         ]);
     }
 
@@ -36,10 +35,8 @@ class AchievementController extends BaseController
      */
     public function edit($id)
     {
-        $achievement = parent::edit($id);
-
-        return view('cardgame::achievement.update')->with([
-            'achievement' => $achievement,
+        return view('cardgame::achievement.update', [
+            'entity' => parent::edit($id),
         ]);
     }
 }

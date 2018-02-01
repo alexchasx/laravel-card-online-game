@@ -34,7 +34,7 @@
                                    style="color: #0b16d6;"
                                    @endif
                                    href="{{route('cardSetIndex')}}">Наборы</a></li>
-                            <li><a class="link active"
+                            <li><a class="link"
                                    @if ('raceIndex' == Route::current()->getName())
                                    style="color: #0b16d6;"
                                    @endif
@@ -45,10 +45,10 @@
                                    @endif
                                    href="{{route('abilityIndex')}}">Способности</a></li>
                             <li><a class="link"
-                                   @if ('achievement.index' == Route::current()->getName())
+                                   @if ('achievementIndex' == Route::current()->getName())
                                    style="color: #0b16d6;"
                                    @endif
-                                   href="{{route('achievement.index')}}">Достижения</a></li>
+                                   href="{{route('achievementIndex')}}">Достижения</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                         </ul>

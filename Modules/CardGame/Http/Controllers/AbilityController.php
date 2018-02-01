@@ -25,8 +25,9 @@ class AbilityController extends BaseController
      */
     public function index()
     {
-        return view('cardgame::ability.index')->with([
-            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
+        return view('cardgame::ability.index', [
+            'nameRoute' => 'ability',
+            'entities' => $this->repository->showEntitiesByClassName(Ability::class),
         ]);
     }
 
@@ -39,8 +40,8 @@ class AbilityController extends BaseController
     {
         $ability = parent::edit($id);
 
-        return view('cardgame::ability.update')->with([
-            'ability' => $ability,
+        return view('cardgame::ability.update', [
+            'entity' => $ability,
         ]);
     }
 
