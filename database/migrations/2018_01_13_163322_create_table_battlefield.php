@@ -25,22 +25,6 @@ class CreateTableBattlefield extends Migration
             $table->string('price')->nullable();
             $table->softDeletes();
         });
-
-        foreach ([
-                     'Город',
-                     'Степь',
-                     'Прохоровка',
-                     'Малиновка',
-                     'На луне',
-                     'На марсе',
-                     'Антарктида',
-                     'Болото',
-                     'Пустыня',
-                 ] as $battlefield) {
-            DB::table('battlefields')->insert([
-                'name' => $battlefield,
-            ]);
-        }
     }
 
     /**

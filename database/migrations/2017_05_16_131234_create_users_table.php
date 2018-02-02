@@ -51,51 +51,6 @@ class CreateUsersTable extends Migration
                 'role_id' => 2,
             ]);
         }
-
-        // платные ники
-        foreach ([
-                     'Монстр',
-                     'МегаМозг',
-                     'Мегатрон',
-                     'Вихрь',
-                     'Терминатор',
-                     'Детонатор',
-                     'Ликвидатор',
-                     'Каратель',
-                     'Истребитель',
-                     'Гладиатор',
-                     'Танк',
-                     'Кошмар',
-                     'Тиранозавр',
-                     'Гладиатор',
-                     'Бессмертный',
-                     'Убийца',
-                     'Палач',
-                     'Monster',
-                     'MegaMosz',
-                     'Megatron',
-                     'Vortex',
-                     'Terminator',
-                     'Detonator',
-                     'Liquidator',
-                     'Chastener',
-                     'Fighter',
-                     'Gladiator',
-                     'Tank',
-                     'Nightmare',
-                     'Tyrannosaur',
-                     'Gladiator',
-                     'Immortal',
-                     'Assassin',
-                     'Executioner',
-                 ] as $user) {
-            DB::table('users')->insert([
-                'name' => $user,
-                'password' => '1234567',
-                'email' => rand(10, 9999),
-                'role_id' => 3,
-            ]);
-        }
     }
 
     /**

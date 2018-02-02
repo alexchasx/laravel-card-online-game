@@ -26,13 +26,8 @@ class CreateTableRaces extends Migration
         });
 
         foreach ([
-                     'Германия',
-                     'СССР',
-                     'Франция',
-                     'США',
-                     'Китай',
-                     'Япония',
-                     'Великобритания',
+                     'Астартес',
+                     'Нейтралы',
                  ] as $race) {
             DB::table('races')->insert([
                 'name' => $race,

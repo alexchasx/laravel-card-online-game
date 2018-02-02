@@ -32,8 +32,6 @@ class CreateTableCardSets extends Migration
         foreach ([
                      'базовый',
                      'нестандартный',
-                     'германский',
-                     'советский',
                  ] as $set) {
             DB::table('card_sets')->insert([
                 'name' => $set,

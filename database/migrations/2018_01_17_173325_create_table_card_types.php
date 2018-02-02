@@ -23,19 +23,6 @@ class CreateTableCardTypes extends Migration
             $table->string('price')->nullable();
             $table->softDeletes();
         });
-
-        foreach ([
-                     'Лёгкий танк',
-                     'Средний танк',
-                     'Тяжёлый танк',
-                     'ПТ-САУ',
-                     'САУ',
-                     'Событие',
-                 ] as $type) {
-            DB::table('card_types')->insert([
-                'name' => $type,
-            ]);
-        }
     }
 
     /**
