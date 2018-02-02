@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Http\Request;
-use App\Repositories\BaseRepository;
+use App\Model\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -12,16 +11,16 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class BaseController extends Controller
 {
     /**
-     * @var BaseRepository
+     * @var Model
      */
-    protected $repository;
+    protected $model;
 
     /**
-     * @param BaseRepository $repository
+     * @param BaseModel $model
      */
-    public function __construct(BaseRepository $repository = null)
+    public function __construct(BaseModel $model = null)
     {
-        $this->repository = $repository;
+        $this->model = $model;
     }
 
     /**
@@ -31,7 +30,7 @@ class BaseController extends Controller
      */
     public function store(BaseRequest $request)
     {
-        $this->repository->create($request);
+        $this->model->createModel($request->all(), $request->file('avatar'));
 
         return redirect()->back();
     }
@@ -43,7 +42,7 @@ class BaseController extends Controller
      */
     public function edit($id)
     {
-        return $this->repository->withTrashedWhere('id', $id)
+        return $this->model->withTrashedWhere('id', $id)
             ->first();
     }
 
@@ -54,31 +53,10 @@ class BaseController extends Controller
      */
     public function update(BaseRequest $request)
     {
-        $this->repository->update($request);
+        $this->model->updateModel($request->all(), $request->file('avatar'));
 
         return redirect()->back();
     }
-
-//    /**
-//     * @param BaseRequest $request
-//     * @param string      $column
-//     *
-//     * @return RedirectResponse
-//     */
-//    public function updateOnceColumn(BaseRequest $request, string $column)
-//    {
-//        $model = $this->repository->withTrashedWhere('id', $request->id)
-//            ->first();
-//
-//        $input = $request->input($column);
-//        dd($input);
-//
-//        $model->$column = $input;
-//
-//        $model->save();
-//
-//        return redirect()->back();
-//    }
 
     /**
      * @param $id
@@ -87,8 +65,7 @@ class BaseController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->getById($id)
-            ->delete();
+        $this->model->destroyModel($id);
 
         return redirect()->back();
     }
@@ -100,8 +77,7 @@ class BaseController extends Controller
      */
     public function forceDestroy($id)
     {
-        $this->repository->withTrashedWhere('id', $id)
-            ->forceDelete();
+        $this->model->forceDestroyModel($id);
 
         return redirect()->back();
     }
@@ -113,8 +89,7 @@ class BaseController extends Controller
      */
     public function restore($id)
     {
-        $this->repository->withTrashedWhere('id', $id)
-            ->restore();
+        $this->model->restoreModel($id);
 
         return redirect()->back();
     }

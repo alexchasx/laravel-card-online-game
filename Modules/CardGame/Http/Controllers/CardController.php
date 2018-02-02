@@ -10,43 +10,67 @@ use Modules\CardGame\Http\Entities\Rarity;
 use Modules\CardGame\Http\Entities\CardSet;
 use Modules\CardGame\Http\Entities\Ability;
 use Modules\CardGame\Http\Entities\CardType;
-use Modules\CardGame\Repositories\CardRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CardController extends BaseController
 {
     /**
-     * @var CardRepository
+     * @var CardSet
      */
-    protected $repository;
+    private $cardSet;
+    /**
+     * @var Race
+     */
+    private $race;
+    /**
+     * @var Ability
+     */
+    private $ability;
+    /**
+     * @var CardType
+     */
+    private $cardType;
+    /**
+     * @var Rarity
+     */
+    private $rarity;
 
     /**
-     * BaseController constructor.
-     *
-     * @param CardRepository $repository
+     * @param Card     $card
+     * @param CardSet  $cardSet
+     * @param Race     $race
+     * @param Ability  $ability
+     * @param CardType $cardType
+     * @param Rarity   $rarity
      */
-    public function __construct(CardRepository $repository)
+    public function __construct(
+        Card $card,
+        CardSet $cardSet,
+        Race $race,
+        Ability $ability,
+        CardType $cardType,
+        Rarity $rarity
+    )
     {
-        parent::__construct();
+        parent::__construct($card);
 
-        $this->repository;
+        $this->cardSet = $cardSet;
+        $this->race = $race;
+        $this->ability = $ability;
+        $this->cardType = $cardType;
+        $this->rarity = $rarity;
     }
 
-    /**
-     * GET /admin/Card/index
-     *
-     * @return View | HttpException
-     */
     public function index()
     {
         return view('cardgame::card.index', [
             'nameRoute' => 'card',
-            'entities' => $this->repository->withTrashedOrderByDesc(Card::SORT_ENERGY),
-            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
-            'races' => $this->repository->showEntitiesByClassName(Race::class),
-            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
-            'types' => $this->repository->showEntitiesByClassName(CardType::class),
-            'rarities' => $this->repository->showEntitiesByClassName(Rarity::class),
+            'entities' => $this->model->withTrashedOrderByDesc(Card::SORT_ENERGY),
+            'cardSets' => $this->cardSet->showEntities(),
+            'races' => $this->race->showEntities(),
+            'abilities' => $this->ability->showEntities(),
+            'types' => $this->cardType->showEntities(),
+            'rarities' => $this->rarity->showEntities(),
         ]);
     }
 
@@ -59,11 +83,11 @@ class CardController extends BaseController
     {
         return view('cardgame::card.update', [
             'entity' => parent::edit($id),
-            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
-            'races' => $this->repository->showEntitiesByClassName(Race::class),
-            'abilities' => $this->repository->showEntitiesByClassName(Ability::class),
-            'types' => $this->repository->showEntitiesByClassName(CardType::class),
-            'rarities' => $this->repository->showEntitiesByClassName(Rarity::class),
+            'cardSets' => $this->cardSet->showEntities(),
+            'races' => $this->race->showEntities(),
+            'abilities' => $this->ability->showEntities(),
+            'types' => $this->cardType->showEntities(),
+            'rarities' => $this->rarity->showEntities(),
         ]);
     }
 }

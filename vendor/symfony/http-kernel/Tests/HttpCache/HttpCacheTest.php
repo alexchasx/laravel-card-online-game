@@ -212,8 +212,8 @@ class HttpCacheTest extends HttpCacheTestCase
             $etags = preg_split('/\s*,\s*/', $request->headers->get('IF_NONE_MATCH'));
             if ($request->cookies->has('authenticated')) {
                 $response->headers->set('Cache-Control', 'private, no-store');
-                $response->setETag('"private ability"');
-                if (in_array('"private ability"', $etags)) {
+                $response->setETag('"private tag"');
+                if (in_array('"private tag"', $etags)) {
                     $response->setStatusCode(304);
                 } else {
                     $response->setStatusCode(200);
@@ -222,8 +222,8 @@ class HttpCacheTest extends HttpCacheTestCase
                 }
             } else {
                 $response->headers->set('Cache-Control', 'public');
-                $response->setETag('"public ability"');
-                if (in_array('"public ability"', $etags)) {
+                $response->setETag('"public tag"');
+                if (in_array('"public tag"', $etags)) {
                     $response->setStatusCode(304);
                 } else {
                     $response->setStatusCode(200);
@@ -236,7 +236,7 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->request('GET', '/');
         $this->assertHttpKernelIsCalled();
         $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertEquals('"public ability"', $this->response->headers->get('ETag'));
+        $this->assertEquals('"public tag"', $this->response->headers->get('ETag'));
         $this->assertEquals('public data', $this->response->getContent());
         $this->assertTraceContains('miss');
         $this->assertTraceContains('store');
@@ -244,7 +244,7 @@ class HttpCacheTest extends HttpCacheTestCase
         $this->request('GET', '/', array(), array('authenticated' => ''));
         $this->assertHttpKernelIsCalled();
         $this->assertEquals(200, $this->response->getStatusCode());
-        $this->assertEquals('"private ability"', $this->response->headers->get('ETag'));
+        $this->assertEquals('"private tag"', $this->response->headers->get('ETag'));
         $this->assertEquals('private data', $this->response->getContent());
         $this->assertTraceContains('stale');
         $this->assertTraceContains('invalid');

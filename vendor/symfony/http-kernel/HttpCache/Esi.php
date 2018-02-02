@@ -92,7 +92,7 @@ class Esi extends AbstractSurrogate
             }
 
             if (!isset($options['src'])) {
-                throw new \RuntimeException('Unable to process an ESI ability without a "src" attribute.');
+                throw new \RuntimeException('Unable to process an ESI tag without a "src" attribute.');
             }
 
             $chunks[$i] = sprintf('<?php echo $this->surrogate->handle($this, %s, %s, %s) ?>'."\n",

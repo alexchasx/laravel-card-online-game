@@ -77,7 +77,7 @@ class Ssi extends AbstractSurrogate
             }
 
             if (!isset($options['virtual'])) {
-                throw new \RuntimeException('Unable to process an SSI ability without a "virtual" attribute.');
+                throw new \RuntimeException('Unable to process an SSI tag without a "virtual" attribute.');
             }
 
             $chunks[$i] = sprintf('<?php echo $this->surrogate->handle($this, %s, \'\', false) ?>'."\n",

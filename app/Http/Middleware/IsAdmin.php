@@ -15,14 +15,14 @@ class IsAdmin
     /**
      * @var RoleRepository
      */
-    protected $repository;
+    protected $user;
 
     /**
-     * @param UserRepository $repository
+     * @param User $user
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(User $user)
     {
-        $this->repository = $repository;
+        $this->user = $user;
     }
 
     /**
@@ -35,7 +35,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->repository->hasRole(User::ROLE_ADMIN)) {
+        if (!isAdmin()) {
             return response()
                 ->view('errors.403');
         }

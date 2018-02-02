@@ -190,7 +190,7 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
     private $mockObjects = [];
 
     /**
-     * @var array
+     * @var MockGenerator
      */
     private $mockObjectGenerator = null;
 
@@ -945,11 +945,6 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
             $e = $_e;
         }
 
-        if (isset($_e)) {
-            $this->status        = PHPUnit_Runner_BaseTestRunner::STATUS_ERROR;
-            $this->statusMessage = $_e->getMessage();
-        }
-
         // Clean up the mock objects.
         $this->mockObjects = [];
         $this->prophet     = null;
@@ -984,6 +979,11 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
             if (!isset($e)) {
                 $e = $_e;
             }
+        }
+
+        if (isset($_e)) {
+            $this->status        = PHPUnit_Runner_BaseTestRunner::STATUS_ERROR;
+            $this->statusMessage = $_e->getMessage();
         }
 
         clearstatcache();
@@ -1429,7 +1429,7 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
         if ($result === false) {
             throw new PHPUnit_Framework_Exception(
                 'The locale functionality is not implemented on your platform, ' .
-                'the specified locale does not exist or the card_set name is ' .
+                'the specified locale does not exist or the category name is ' .
                 'invalid.'
             );
         }

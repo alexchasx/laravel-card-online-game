@@ -650,8 +650,8 @@ bar: 1
 EOF;
 
         return array(
-            'yaml-ability' => array($yamlTag),
-            'local-ability' => array($localTag),
+            'yaml-tag' => array($yamlTag),
+            'local-tag' => array($localTag),
         );
     }
 
@@ -1741,7 +1741,7 @@ YAML
 
     /**
      * @expectedException \Symfony\Component\Yaml\Exception\ParseException
-     * @expectedExceptionMessage The built-in ability "!!foo" is not implemented at line 1 (near "!!foo").
+     * @expectedExceptionMessage The built-in tag "!!foo" is not implemented at line 1 (near "!!foo").
      */
     public function testExceptionWhenUsingUnsuportedBuiltInTags()
     {
@@ -1895,9 +1895,9 @@ YAML;
 
     /**
      * @group legacy
-     * @expectedDeprecation The !php/const: ability to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) ability instead on line 2.
-     * @expectedDeprecation The !php/const: ability to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) ability instead on line 4.
-     * @expectedDeprecation The !php/const: ability to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) ability instead on line 5.
+     * @expectedDeprecation The !php/const: tag to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) tag instead on line 2.
+     * @expectedDeprecation The !php/const: tag to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) tag instead on line 4.
+     * @expectedDeprecation The !php/const: tag to indicate dumped PHP constants is deprecated since Symfony 3.4 and will be removed in 4.0. Use the !php/const (without the colon) tag instead on line 5.
      */
     public function testDeprecatedPhpConstantTagMappingKey()
     {

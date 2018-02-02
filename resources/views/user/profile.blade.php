@@ -1,14 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.profile_layout')
 
-@section('content')
+@section('inner_content')
     <div class="container">
         <div class="row">
-            <a href="{{ route('logout') }}">Выйти</a>
-
-            <br>
-
-            <a href="{{ route('cardIndex') }}">Админка</a>
-
+            @if(isAdmin())
+                <a href="{{ route('cardIndex') }}">Админка</a>
+            @endif
 
             <br>
 

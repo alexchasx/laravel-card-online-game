@@ -8,12 +8,15 @@ use App\Repositories\BaseRepository;
 
 class CardRepository extends BaseRepository
 {
+    public $model;
     /**
      * @param Card $model
      */
     public function __construct(Card $model)
     {
-        parent::__construct($model);
+        parent::__construct();
+
+        $this->model = $model;
     }
 
     /**
@@ -24,7 +27,7 @@ class CardRepository extends BaseRepository
     public function withTrashedOrderByDesc($column = 'id')
     {
         return $this->model->with(
-            'cardSets',
+            'cardSet',
             'ability1',
             'ability2',
             'rarity',

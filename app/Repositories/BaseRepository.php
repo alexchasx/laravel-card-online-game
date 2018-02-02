@@ -18,7 +18,7 @@ abstract class BaseRepository
     /**
      * @param Model $model
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model = null)
     {
         $this->model = $model;
     }

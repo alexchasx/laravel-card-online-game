@@ -221,7 +221,7 @@ class OutputFormatterTest extends TestCase
     {
         $formatter = new OutputFormatter(true);
 
-        $this->assertEquals("\033[32msome \033[39m\033[32m<ability>\033[39m\033[32m \033[39m\033[32m<setting=value>\033[39m\033[32m styled \033[39m\033[32m<p>\033[39m\033[32msingle-char ability\033[39m\033[32m</p>\033[39m", $formatter->format('<info>some <ability> <setting=value> styled <p>single-char ability</p></info>'));
+        $this->assertEquals("\033[32msome \033[39m\033[32m<tag>\033[39m\033[32m \033[39m\033[32m<setting=value>\033[39m\033[32m styled \033[39m\033[32m<p>\033[39m\033[32msingle-char tag\033[39m\033[32m</p>\033[39m", $formatter->format('<info>some <tag> <setting=value> styled <p>single-char tag</p></info>'));
     }
 
     public function testFormatLongString()

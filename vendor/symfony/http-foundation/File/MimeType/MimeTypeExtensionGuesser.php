@@ -720,7 +720,7 @@ class MimeTypeExtensionGuesser implements ExtensionGuesserInterface
         'text/html' => 'html',
         'text/n3' => 'n3',
         'text/plain' => 'txt',
-        'text/prs.lines.ability' => 'dsc',
+        'text/prs.lines.tag' => 'dsc',
         'text/richtext' => 'rtx',
         'text/rtf' => 'rtf',
         'text/sgml' => 'sgml',

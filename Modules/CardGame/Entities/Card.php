@@ -104,4 +104,24 @@ class Card extends BaseModel
     {
         return $this->belongsTo(Race::class, 'race_id');
     }
+
+    /**
+     * @param string $column
+     *
+     * @return self
+     */
+    public function withTrashedOrderByDesc($column = 'id')
+    {
+        return $this->with(
+            'cardSet',
+            'ability1',
+            'ability2',
+            'rarity',
+            'cardType',
+            'race'
+        )
+            ->withTrashed()
+            ->orderByDesc($column)
+            ->get();
+    }
 }

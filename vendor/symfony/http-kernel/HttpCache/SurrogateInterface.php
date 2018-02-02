@@ -57,12 +57,12 @@ interface SurrogateInterface
     public function needsParsing(Response $response);
 
     /**
-     * Renders a Surrogate ability.
+     * Renders a Surrogate tag.
      *
      * @param string $uri          A URI
      * @param string $alt          An alternate URI
      * @param bool   $ignoreErrors Whether to ignore errors or not
-     * @param string $comment      A comment to add as an esi:include ability
+     * @param string $comment      A comment to add as an esi:include tag
      *
      * @return string
      */

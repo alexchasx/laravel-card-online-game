@@ -2,7 +2,10 @@
 /* Author : Ashok
 /* Website : http://responsivewebinc.com
 ****************************/
-
+html {
+	height: 100%;
+	/*overflow: hidden;*/
+}
 body{
 	font-size: 12px;
 	line-height: 22px;
@@ -11,6 +14,9 @@ body{
 	background:#343434 url("../img/back.png") repeat;  
 	padding-top: 37px;
 	-webkit-font-smoothing: antialiased;
+	height: 100%;
+	position: relative;
+	margin-bottom: -10px;
 }
 
 
@@ -1012,6 +1018,7 @@ header .header-data .hdata em{
   background: #fafafa url('../img/black.png') repeat;
   color: #ddd;
   border: 1px solid #222;
+	height: 100%;
 }
 
 .widget.wblack hr{
@@ -1622,13 +1629,16 @@ border:1px solid #eee;
 /* Footer */
 
 footer{
-  background-color: #f8f8f8;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+  background-color: #3c4b92;
   background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
-  background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: linear-gradient(top, #f8f8f8, #f2f2f2);
+  background: -webkit-linear-gradient(top, #3c4b92, #f2f2f2);
+  background: -moz-linear-gradient(top, #3c4b92, #f2f2f2);
+  background: -ms-linear-gradient(top, #3c4b92, #f2f2f2);
+  background: -o-linear-gradient(top, #3c4b92, #f2f2f2);
+  background: linear-gradient(top, #3c4b92, #f2f2f2);
 	padding:10px 0px;
 	color: #777;
 	font-size: 12px;
@@ -1641,7 +1651,7 @@ footer .container{
 }
 
 footer a, footer a:visited{
-	color: #444;
+	color: #c7c7c7;
 }
 
 footer a:hover{
