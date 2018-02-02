@@ -50,6 +50,7 @@ class User extends Authenticatable
     const ROLE_USER = 'user';
     const ROLE_MANAGER = 'manager';
     const ROLE_BOT = 'bot';
+    const ROLE_PAID_NAME = 'paid_name';
 
     /**
      * Связанная с моделью таблица.

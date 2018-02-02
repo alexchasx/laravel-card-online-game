@@ -14,14 +14,4 @@ class RoleRepository extends BaseRepository
     {
         parent::__construct($model);
     }
-
-    /**
-     * @param User  $user
-     *
-     * @return Role
-     */
-    public function getByUser(User $user)
-    {
-        return $user->role;
-    }
 }

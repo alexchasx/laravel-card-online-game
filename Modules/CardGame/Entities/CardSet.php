@@ -4,6 +4,7 @@ namespace Modules\CardGame\Http\Entities;
 
 use App\Model\BaseModel;
 use App\Model\File;
+use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,6 +26,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon  $deleted_at
  *
  * @property Card[]  $cards
+ * @property User[]  $users
+ * @property Race[]  $races
  * @property File    $shirt
  * @property File    $background
  * @property File    $border
@@ -55,6 +58,22 @@ class CardSet extends BaseModel
     public function cards()
     {
         return $this->hasMany(Card::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function races()
+    {
+        return $this->hasMany(Race::class);
     }
 
     /**

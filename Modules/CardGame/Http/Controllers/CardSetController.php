@@ -13,13 +13,20 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class CardSetController extends BaseController
 {
     /**
+     * @var CardSetRepository
+     */
+    protected $repository;
+
+    /**
      * BaseController constructor.
      *
      * @param CardSetRepository $repository
      */
     public function __construct(CardSetRepository $repository)
     {
-        parent::__construct($repository);
+        parent::__construct();
+
+        $this->repository;
     }
 
     /**
@@ -28,9 +35,9 @@ class CardSetController extends BaseController
     public function index()
     {
         return view('cardgame::card_set.index')->with([
-            'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
+            'cardSets' => $this->repository->showEntities(),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
-            'types' =>$this->repository->showEntitiesByClassName(CardType::class),
+            'types' => $this->repository->showEntitiesByClassName(CardType::class),
         ]);
     }
 

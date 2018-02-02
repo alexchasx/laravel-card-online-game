@@ -4,6 +4,7 @@ namespace Modules\CardGame\Http\Controllers;
 
 use Illuminate\View\View;
 use App\Http\Controllers\BaseController;
+use Modules\CardGame\Http\Entities\Card;
 use Modules\CardGame\Http\Entities\Race;
 use Modules\CardGame\Http\Entities\Rarity;
 use Modules\CardGame\Http\Entities\CardSet;
@@ -15,13 +16,20 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class CardController extends BaseController
 {
     /**
+     * @var CardRepository
+     */
+    protected $repository;
+
+    /**
      * BaseController constructor.
      *
      * @param CardRepository $repository
      */
     public function __construct(CardRepository $repository)
     {
-        parent::__construct($repository);
+        parent::__construct();
+
+        $this->repository;
     }
 
     /**
@@ -33,7 +41,7 @@ class CardController extends BaseController
     {
         return view('cardgame::card.index', [
             'nameRoute' => 'card',
-            'entities' => $this->repository->withTrashedOrderByDesc(),
+            'entities' => $this->repository->withTrashedOrderByDesc(Card::SORT_ENERGY),
             'cardSets' => $this->repository->showEntitiesByClassName(CardSet::class),
             'races' => $this->repository->showEntitiesByClassName(Race::class),
             'abilities' => $this->repository->showEntitiesByClassName(Ability::class),

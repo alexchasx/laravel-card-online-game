@@ -13,4 +13,14 @@ class UserRepository extends BaseRepository
     {
         parent::__construct($model);
     }
+
+    /**
+     * @param string $role
+     *
+     * @return bool
+     */
+    public function hasRole(string $role)
+    {
+        return $this->model->role === $role;
+    }
 }

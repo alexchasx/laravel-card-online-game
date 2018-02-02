@@ -33,7 +33,7 @@
                            value="{{ old('attack') }}">
 
                     <label class="col-lg-2 control-label"></label>
-                    <input name="health" type="text" class="form-control" placeholder="Прочность"
+                    <input name="health" type="text" class="form-control" placeholder="Здоровье/Прочность"
                            id="health" value="{{ old('health') }}">
 
                     <label class="col-lg-2 control-label"></label>
@@ -42,8 +42,8 @@
                            value="{{ old('armor') }}">
                     <br>
 
-                    <label class="col-lg-2 control-label">Нация</label>
-                    <select class="form-control" name="race_id" size="3"
+                    <label class="col-lg-2 control-label">Раса</label>
+                    <select class="form-control" name="race_id" size="5"
                             class="form-control" id="race_id">
                         @foreach ($races as $race)
                             <option value="{{$race->id}}">{{$race->name}}</option>
@@ -52,7 +52,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность1</label>
-                    <select class="form-control" name="ability1_id" size="3"
+                    <select class="form-control" name="ability1_id" size="5"
                             class="form-control"
                             id="ability1_id">
                         @foreach ($abilities as $ability)
@@ -62,7 +62,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность2</label>
-                    <select class="form-control" name="ability2_id" size="3"
+                    <select class="form-control" name="ability2_id" size="5"
                             class="form-control"
                             id="ability2_id">
                         @foreach ($abilities as $ability)
@@ -78,7 +78,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Набор</label>
-                    <select class="form-control" name="card_sets_id" size="3"
+                    <select class="form-control" name="card_sets_id" size="5"
                             class="form-control"
                             id="card_sets_id">
                         @foreach ($cardSets as $cardSet)
@@ -88,7 +88,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Тип</label>
-                    <select class="form-control" name="card_type_id" size="3"
+                    <select class="form-control" name="card_type_id" size="5"
                             class="form-control"
                             id="card_type_id">
                         @foreach ($types as $type)
@@ -98,7 +98,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Редкость</label>
-                    <select class="form-control" name="rarity_id" size="3"
+                    <select class="form-control" name="rarity_id" size="5"
                             class="form-control"
                             id="rarity_id">
                         @foreach ($rarities as $rarity)

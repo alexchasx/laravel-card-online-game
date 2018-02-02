@@ -19,7 +19,7 @@ class BaseController extends Controller
     /**
      * @param BaseRepository $repository
      */
-    public function __construct(BaseRepository $repository)
+    public function __construct(BaseRepository $repository = null)
     {
         $this->repository = $repository;
     }

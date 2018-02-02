@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon    $deleted_at
  *
  * @property CardSet[] $cardSet
- * @property Race[]    $race
+ * @property Race      $race
  * @property Ability   $ability1
  * @property Ability   $ability2
  * @property Rarity    $rarity
@@ -39,6 +39,9 @@ class Card extends BaseModel
     use SoftDeletes;
 
     const TABLE_NAME = 'cards';
+
+    const SORT_ENERGY = 'energy';
+    const SORT_ATTACK = 'attack';
 
     /**
      * @var string

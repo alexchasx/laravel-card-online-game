@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Model\User;
 use App\Repositories\RoleRepository;
+use App\Repositories\UserRepository;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,9 @@ class IsAdmin
     protected $repository;
 
     /**
-     * @param RoleRepository $repository
+     * @param UserRepository $repository
      */
-    public function __construct(RoleRepository $repository)
+    public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -34,9 +35,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $role = $this->repository->getByUser(Auth::user());
-
-        if (User::ROLE_ADMIN !== $role->name) {
+        if ($this->repository->hasRole(User::ROLE_ADMIN)) {
             return response()
                 ->view('errors.403');
         }
