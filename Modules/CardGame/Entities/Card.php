@@ -42,6 +42,7 @@ class Card extends BaseModel
 
     const SORT_ENERGY = 'energy';
     const SORT_ATTACK = 'attack';
+    const SORT_HEALTH = 'health';
 
     /**
      * @var string
@@ -107,10 +108,16 @@ class Card extends BaseModel
 
     /**
      * @param string $column
+     * @param string $column1
+     * @param string $column2
      *
      * @return self
      */
-    public function withTrashedOrderByDesc($column = 'id')
+    public function withTrashedAll(
+        $column = self::SORT_ENERGY,
+        $column1 = self::SORT_ATTACK,
+        $column2 = self::SORT_HEALTH
+    )
     {
         return $this->with(
             'cardSet',
@@ -121,7 +128,9 @@ class Card extends BaseModel
             'race'
         )
             ->withTrashed()
-            ->orderByDesc($column)
+            ->orderBy($column)
+            ->orderBy($column1)
+            ->orderBy($column2)
             ->get();
     }
 }

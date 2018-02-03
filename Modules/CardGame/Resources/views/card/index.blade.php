@@ -11,7 +11,7 @@
         <table class="table">
             <thead>
             <tr style="background-color: #9696e4;color: #000;">
-                <td>ID</td>
+                {{--<td>ID</td>--}}
                 <td style="min-width: 100px;">Наименование</td>
                 <td>Вид.</td>
                 <td>Нация</td>
@@ -37,7 +37,7 @@
                     @elseif (!$entity->seen)
                     style="background-color: #9B859D;"
                         @endif>
-                    <td>{{ $entity->id }}</td>
+                    {{--<td>{{ $entity->id }}</td>--}}
                     <td>
                         {{ $entity->name }}
                         <br>

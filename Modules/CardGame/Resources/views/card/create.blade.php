@@ -12,7 +12,8 @@
                     <h4 class="modal-title" style="color: #2e3436;">Создание карты</h4>
                 </div>
                 <div class="modal-body">
-                    <input name="name" type="text" class="form-control" placeholder="Наименование"
+                    <label class="col-lg-2 control-label">Наименование</label>
+                    <input name="name" type="text" class="form-control"
                            id="name" value="{{ old('name') }}" required>
                     <br>
 
@@ -22,21 +23,21 @@
                         <option value="0">Нет</option>
                     </select>
 
-                    <label class="col-lg-2 control-label"></label>
+                    <label class="col-lg-2 control-label">Энергия</label>
                     <input name="energy" type="text" class="form-control" placeholder="Энергия"
                            id="energy"
                            value="{{ old('energy') }}">
 
-                    <label class="col-lg-2 control-label"></label>
+                    <label class="col-lg-2 control-label">Атака</label>
                     <input name="attack" type="text" class="form-control" placeholder="Атака"
                            id="attack"
                            value="{{ old('attack') }}">
 
-                    <label class="col-lg-2 control-label"></label>
+                    <label class="col-lg-2 control-label">Здоровье/Прочность</label>
                     <input name="health" type="text" class="form-control" placeholder="Здоровье/Прочность"
                            id="health" value="{{ old('health') }}">
 
-                    <label class="col-lg-2 control-label"></label>
+                    <label class="col-lg-2 control-label">Броня</label>
                     <input name="armor" type="text" class="form-control" placeholder="Броня"
                            id="armor"
                            value="{{ old('armor') }}">
@@ -52,9 +53,10 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность1</label>
-                    <select class="form-control" name="ability1_id" size="5"
+                    <select class="form-control" name="ability1_id" size="7"
                             class="form-control"
                             id="ability1_id">
+                        <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option value="{{$ability->id}}">{{$ability->name}}</option>
                         @endforeach
@@ -62,9 +64,10 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность2</label>
-                    <select class="form-control" name="ability2_id" size="5"
+                    <select class="form-control" name="ability2_id" size="7"
                             class="form-control"
                             id="ability2_id">
+                        <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option value="{{$ability->id}}">{{$ability->name}}</option>
                         @endforeach
@@ -106,7 +109,7 @@
                         @endforeach
                     </select>
 
-                    <label class="col-lg-2 control-label"></label>
+                    <label class="col-lg-2 control-label">Цена</label>
                     <input name="price" type="text" class="form-control" placeholder="Цена"
                            id="price"
                            value="{{ old('price') }}">

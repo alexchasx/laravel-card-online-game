@@ -42,13 +42,13 @@
                     </select>
 
                     <label class="col-lg-2 control-label">Кратк. описание</label>
-                    <textarea name="description" style="color: #000;" id="description" cols="30" rows="10">
+                    <textarea class="form-control" name="description" style="color: #000;" id="description" cols="30" rows="10">
                             {{ $entity->description }}
                     </textarea>
                     <br>
 
                     <label class="col-lg-2 control-label">Полн. описание</label>
-                    <textarea name="full_description" style="color: #000;" id="description" cols="30" rows="10">
+                    <textarea class="form-control" name="full_description" style="color: #000;" id="description" cols="30" rows="10">
                             {{ $entity->full_description }}
                     </textarea>
                     <br>

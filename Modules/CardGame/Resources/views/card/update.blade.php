@@ -63,7 +63,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Нация</label>
-                    <select class="form-control" name="race_id" size="3"
+                    <select class="form-control" name="race_id" size="5"
                             class="form-control" id="race_id">
                         @foreach ($races as $race)
                             <option
@@ -76,7 +76,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность1</label>
-                    <select class="form-control" name="ability1_id" size="3"
+                    <select class="form-control" name="ability1_id" size="7"
                             class="form-control"
                             id="ability1_id">
                         @foreach ($abilities as $ability)
@@ -90,7 +90,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность2</label>
-                    <select class="form-control" name="ability2_id" size="3"
+                    <select class="form-control" name="ability2_id" size="7"
                             class="form-control"
                             id="ability2_id">
                         @foreach ($abilities as $ability)
@@ -104,13 +104,14 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Аватар</label>
+                    <img width="114" src="{{ $entity->avatar }}" alt="">
                     <input name="avatar" type="file" class="form-control" placeholder="Аватар"
                            id="armor"
                            value="{{ $entity->avatar }}"></td>
                     <br>
 
                     <label class="col-lg-2 control-label">Набор</label>
-                    <select class="form-control" name="card_sets_id" size="3"
+                    <select class="form-control" name="card_sets_id" size="5"
                             class="form-control"
                             id="card_sets_id">
                         @foreach ($cardSets as $cardSet)
@@ -124,7 +125,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Тип</label>
-                    <select class="form-control" name="card_type_id" size="3"
+                    <select class="form-control" name="card_type_id" size="5"
                             class="form-control"
                             id="card_type_id">
                         @foreach ($types as $type)

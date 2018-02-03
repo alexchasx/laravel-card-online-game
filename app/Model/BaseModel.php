@@ -47,23 +47,34 @@ class BaseModel extends Model
     }
 
     /**
-     * @param array        $inputs
-     * @param UploadedFile $file
+     * @param array               $inputs
+     * @param UploadedFile | null $file
      *
      * @return void
      */
-    public function createModel(array $inputs, UploadedFile $file)
+    public function createModel(array $inputs, UploadedFile $file = null)
+    {
+        $model = $this->create(array_except($inputs, ['avatar']));
+
+        $this->uploadFile($model, $file);
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @param Model        $model
+     *
+     * @return void
+     */
+    protected function uploadFile(Model $model, UploadedFile $file = null)
     {
         if ($file) {
             $originalName = $file->getClientOriginalName();
 
             $basePath = $file->storeAs('upload', $originalName);
 
-            $model = $this->create(array_except($inputs, ['avatar']));
             $model->avatar = config('cardgame.avatar_path') . $basePath;
+
             $model->save();
-        } else {
-            $this->create($inputs);
         }
     }
 
@@ -74,22 +85,14 @@ class BaseModel extends Model
      *
      * @return void
      */
-    public function updateModel(array $inputs, UploadedFile $file)
+    public function updateModel(array $inputs, UploadedFile $file = null)
     {
         $model = $this->withTrashedWhere('id', $inputs['id'])
             ->first();
 
         $model->update(array_except($inputs, ['avatar', '_token']));
 
-        if ($file) {
-            $originalName = $file->getClientOriginalName();
-
-            $basePath = $file->storeAs('upload', $originalName);
-
-            $model->avatar = config('cardgame.avatar_path') . $basePath;
-
-            $model->save();
-        }
+        $this->uploadFile($model, $file);
     }
 
     /**

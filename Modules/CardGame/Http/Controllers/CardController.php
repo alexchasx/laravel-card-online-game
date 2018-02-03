@@ -65,7 +65,7 @@ class CardController extends BaseController
     {
         return view('cardgame::card.index', [
             'nameRoute' => 'card',
-            'entities' => $this->model->withTrashedOrderByDesc(Card::SORT_ENERGY),
+            'entities' => $this->model->withTrashedAll(Card::SORT_ENERGY),
             'cardSets' => $this->cardSet->getAll(),
             'races' => $this->race->getAll(),
             'abilities' => $this->ability->getAll(),
