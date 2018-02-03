@@ -2,9 +2,11 @@
 
 @section('content')
 
+    @include('layouts.style_profile')
+
     <div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
 
-        <div class="conjtainer">
+        <div class="container-fluid">
             <!-- Menu button for smallar screens -->
             <div class="navbar-header">
                 <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse"
@@ -13,24 +15,6 @@
                 </button>
                 <!-- Site name for smallar screens -->
                 <a href="/" class="navbar-brand lg">В бой!</a>
-            </div>
-
-            <div class="navbar-header">
-                <ul class="nav navbar-nav pull-right">
-                    <li class="dropdown pull-right">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="fa fa-user"></i> Список <b class="caret"></b>
-                        </a>
-
-                        <!-- Dropdown menu -->
-                        <ul class="dropdown-menu">
-                            <li><a class="link">Режим</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Другое</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
             </div>
 
             <!-- Navigation starts -->

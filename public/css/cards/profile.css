@@ -1,0 +1,28 @@
+
+.profile-list {
+    background-color: #0E2231;
+    color: #c1e2b3;
+}
+.profile-avatar {
+    width: 20vh;
+}
+.avatar {
+    width: 20vh;
+    position: relative;
+}
+.rank {
+    position: absolute;
+    top: -30px;
+}
+.rank .profile-list li a {
+    max-height: 40px;
+    width: 20vh;
+    text-align: center;
+    padding-left: auto;
+    padding-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.btn-ava {
+    width: 20vh;
+}

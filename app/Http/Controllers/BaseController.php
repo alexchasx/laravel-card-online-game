@@ -42,6 +42,11 @@ class BaseController extends Controller
      */
     public function edit($id)
     {
+        if (isUser()) {
+            return $this->model->getById($id)
+                ->first();
+        }
+
         return $this->model->withTrashedWhere('id', $id)
             ->first();
     }
