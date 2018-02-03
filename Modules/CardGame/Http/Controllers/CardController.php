@@ -66,11 +66,11 @@ class CardController extends BaseController
         return view('cardgame::card.index', [
             'nameRoute' => 'card',
             'entities' => $this->model->withTrashedOrderByDesc(Card::SORT_ENERGY),
-            'cardSets' => $this->cardSet->showEntities(),
-            'races' => $this->race->showEntities(),
-            'abilities' => $this->ability->showEntities(),
-            'types' => $this->cardType->showEntities(),
-            'rarities' => $this->rarity->showEntities(),
+            'cardSets' => $this->cardSet->getAll(),
+            'races' => $this->race->getAll(),
+            'abilities' => $this->ability->getAll(),
+            'types' => $this->cardType->getAll(),
+            'rarities' => $this->rarity->getAll(),
         ]);
     }
 
@@ -83,11 +83,11 @@ class CardController extends BaseController
     {
         return view('cardgame::card.update', [
             'entity' => parent::edit($id),
-            'cardSets' => $this->cardSet->showEntities(),
-            'races' => $this->race->showEntities(),
-            'abilities' => $this->ability->showEntities(),
-            'types' => $this->cardType->showEntities(),
-            'rarities' => $this->rarity->showEntities(),
+            'cardSets' => $this->cardSet->getAll(),
+            'races' => $this->race->getAll(),
+            'abilities' => $this->ability->getAll(),
+            'types' => $this->cardType->getAll(),
+            'rarities' => $this->rarity->getAll(),
         ]);
     }
 }

@@ -5,7 +5,6 @@ namespace Modules\CardGame\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\BaseController;
 use Modules\CardGame\Http\Entities\Ability;
-use Modules\CardGame\Repositories\AbilityRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AbilityController extends BaseController
@@ -13,11 +12,11 @@ class AbilityController extends BaseController
     /**
      * BaseController constructor.
      *
-     * @param AbilityRepository $repository
+     * @param Ability $model
      */
-    public function __construct(AbilityRepository $repository)
+    public function __construct(Ability $model)
     {
-        parent::__construct($repository);
+        parent::__construct($model);
     }
 
     /**
@@ -27,7 +26,7 @@ class AbilityController extends BaseController
     {
         return view('cardgame::ability.index', [
             'nameRoute' => 'ability',
-            'entities' => $this->repository->showEntitiesByClassName(Ability::class),
+            'entities' => $this->model->getAll(),
         ]);
     }
 
@@ -38,10 +37,8 @@ class AbilityController extends BaseController
      */
     public function edit($id)
     {
-        $ability = parent::edit($id);
-
         return view('cardgame::ability.update', [
-            'entity' => $ability,
+            'entity' => parent::edit($id),
         ]);
     }
 

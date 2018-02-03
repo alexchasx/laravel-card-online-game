@@ -14,7 +14,7 @@ class BaseModel extends Model
      *
      * @return Collection[] | Model[]
      */
-    public function showEntities($column = 'name')
+    public function getAll($column = 'name')
     {
         return $this->withTrashed()
             ->orderBy($column)

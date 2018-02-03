@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 
 use Illuminate\View\View;
 use Modules\CardGame\Http\Entities\Race;
-use Modules\CardGame\Repositories\RaceRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RaceController extends BaseController
@@ -14,11 +13,11 @@ class RaceController extends BaseController
     /**
      * BaseController constructor.
      *
-     * @param RaceRepository $repository
+     * @param Race $model
      */
-    public function __construct(RaceRepository $repository)
+    public function __construct(Race $model)
     {
-        parent::__construct($repository);
+        parent::__construct($model);
     }
 
     /**
@@ -26,8 +25,8 @@ class RaceController extends BaseController
      */
     public function index()
     {
-        return view('cardgame::race.index')->with([
-            'races' => $this->repository->showEntitiesByClassName(Race::class),
+        return view('cardgame::race.index', [
+            'races' => $this->model->getAll(),
         ]);
     }
 
@@ -38,10 +37,8 @@ class RaceController extends BaseController
      */
     public function edit($id)
     {
-        $race = parent::edit($id);
-
-        return view('cardgame::race.update')->with([
-            'race' => $race,
+        return view('cardgame::race.update', [
+            'race' => parent::edit($id),
         ]);
     }
 

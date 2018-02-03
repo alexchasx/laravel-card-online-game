@@ -18,7 +18,7 @@ class BaseController extends Controller
     /**
      * @param BaseModel $model
      */
-    public function __construct(BaseModel $model = null)
+    public function __construct(BaseModel $model)
     {
         $this->model = $model;
     }

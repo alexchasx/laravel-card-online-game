@@ -3,18 +3,17 @@
 namespace Modules\CardGame\Http\Controllers;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use Modules\CardGame\Repositories\AchievementRepository;
+use Modules\CardGame\Http\Entities\Achievement;
 
 class AchievementController extends BaseController
 {
     /**
-     * @param AchievementRepository $repository
+     * @param Achievement $model
      */
-    public function __construct(AchievementRepository $repository)
+    public function __construct(Achievement $model)
     {
-        parent::__construct($repository);
+        parent::__construct($model);
     }
 
     /**
@@ -24,7 +23,7 @@ class AchievementController extends BaseController
     {
         return view('cardgame::achievement.index', [
             'nameRoute' => 'achievement',
-            'entities' => $this->repository->withTrashedOrderByDesc(),
+            'entities' => $this->model->withTrashedOrderByDesc(),
         ]);
     }
 
