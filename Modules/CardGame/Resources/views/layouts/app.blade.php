@@ -35,6 +35,8 @@
     <link href="{{ asset('macadmin/css/style.css') }}" rel="stylesheet">
     <!-- Widgets stylesheet -->
     <link href="{{ asset('macadmin/css/widgets.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/profile.css') }}" rel="stylesheet" type="text/css"
+          media="all"/>
 
     <script src="{{ asset('macadmin/js/respond.min.js') }}"></script>
     <!--[if lt IE 9]>

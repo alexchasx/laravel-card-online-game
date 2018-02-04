@@ -1,80 +1,57 @@
-@extends('cardgame::layouts.app')
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!-- Title and other stuffs -->
+    <title>Tables - MacAdmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
 
-@section('content')
 
-    @include('layouts.style_profile')
+    <!-- Stylesheets -->
+    <link href="{{ asset('macadmin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link href="{{ asset('macadmin/css/style.css') }}" rel="stylesheet">
+    <!-- Widgets stylesheet -->
+    <link href="{{ asset('macadmin/css/widgets.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards/profile.css') }}" rel="stylesheet" type="text/css"
+          media="all"/>
 
-    <div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
+    <script src="{{ asset('macadmin/js/respond.min.js') }}"></script>
+    <!--[if lt IE 9]>
+    <script src="{{ asset('macadmin/js/html5shiv.js') }}"></script>
+    <![endif]-->
 
-        <div class="container-fluid">
-            <!-- Menu button for smallar screens -->
-            <div class="navbar-header">
-                <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse"
-                        data-target=".bs-navbar-collapse">
-                    <span>Menu</span>
-                </button>
-                <!-- Site name for smallar screens -->
-                <a href="/" class="navbar-brand lg">В бой!</a>
-            </div>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('macadmin/img/favicon/favicon.png') }}">
+</head>
 
-            <!-- Navigation starts -->
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                <!-- Links -->
-                <ul class="nav navbar-nav pull-right">
-                    <li class="dropdown pull-right">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="fa fa-user"></i> {{ $user->name}} <b class="caret"></b>
-                        </a>
+<body class="profile-container">
 
-                        <!-- Dropdown menu -->
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-cogs"></i> Настройки</a></li>
-                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Выход</a>
-                            </li>
-                        </ul>
-                    </li>
+{{--@include('layouts.sidebar')--}}
 
-                </ul>
-            </nav>
+<!-- Main bar -->
+    {{--<div class="mainbar widget">--}}
+        <!-- Matter -->
 
-        </div>
-    </div>
 
-    <!-- Main content starts -->
+            @yield('inner_content')
 
-    <div class="content">
+            {{--<div class="widget-foot">--}}
 
-    {{--@include('layouts.sidebar')--}}
+            <div class="clearfix"></div>
 
-    <!-- Main bar -->
-        <div class="mainbar widget wblack">
-            <!-- Matter -->
+    {{--</div>--}}
 
-            <div class="matter">
-                <div class="container">
+{{--@include('layouts.footer')--}}
 
-                    <!-- Table -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="widget wblack">
-                                <div class="widget-content">
+<!-- JS -->
+    <script src="{{ asset('macadmin/js/jquery.js') }}"></script> <!-- jQuery -->
+    <script src="{{ asset('macadmin/js/bootstrap.min.js') }}"></script> <!-- Bootstrap -->
+    <script src="{{ asset('macadmin/js/jquery-ui.min.js') }}"></script> <!-- jQuery UI -->
 
-                                    @yield('inner_content')
-
-                                    {{--<div class="widget-foot wblack">--}}
-
-                                    <div class="clearfix"></div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    @include('layouts.footer')
-
-@endsection
+</body>
+</html>

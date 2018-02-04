@@ -5,6 +5,7 @@ namespace App\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\CardGame\Http\Entities\CardSet;
@@ -110,6 +111,24 @@ class User extends Authenticatable
     public function rank()
     {
         return $this->belongsTo(Rank::class, 'rank_id');
+    }
+
+    /**
+     * @param array        $inputs
+     *
+     * @param UploadedFile $file
+     *
+     * @return void
+     */
+    public function updateModel(array $inputs, UploadedFile $file = null)
+    {
+        die('helloAAA');
+        $model = $this->withTrashedWhere('id', $inputs['id'])
+            ->first();
+
+        $model->update(array_except($inputs, ['avatar', '_token']));
+
+        $this->uploadFile($model, $file);
     }
 
 }

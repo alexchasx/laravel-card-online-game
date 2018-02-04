@@ -13,6 +13,7 @@ class UserRequest extends BaseRequest
     {
         return [
              'name' => 'required|unique:users|string|max:140',
+             'avatar' => 'file',
         ];
     }
 }
