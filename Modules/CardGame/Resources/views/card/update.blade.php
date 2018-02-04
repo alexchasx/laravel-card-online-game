@@ -11,6 +11,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
                     </button>
                     <h4 class="modal-title" style="color: #2e3436;">Создание карты</h4>
+                    <a href="{{ route('cardIndex') }}">
+                        <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"
+                                aria-hidden="true">Отмена
+                        </button>
+                    </a>
                 </div>
                 <div class="modal-body">
 
@@ -79,6 +84,7 @@
                     <select class="form-control" name="ability1_id" size="7"
                             class="form-control"
                             id="ability1_id">
+                        <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option
                                     @if($entity->ability1_id === $ability->id)
@@ -93,6 +99,7 @@
                     <select class="form-control" name="ability2_id" size="7"
                             class="form-control"
                             id="ability2_id">
+                        <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option
                                     @if($entity->ability2_id === $ability->id)

@@ -133,4 +133,18 @@ class Card extends BaseModel
             ->orderBy($column2)
             ->get();
     }
+
+    /**
+     * @return array
+     */
+    public function getCountsWithEnergy()
+    {
+        $result = [];
+
+        for ($i = 0; $i < 11; $i++) {
+            $result[$i] = $this->where('energy', $i)->count();
+        }
+
+        return $result;
+    }
 }

@@ -6,6 +6,12 @@
         <!-- Button to trigger modal -->
         <a href="#myModal" class="btn btn-info" data-toggle="modal">Создать новую карту</a>
 
+        @foreach($counts as $key => $count)
+            <span> </span>
+            <span style="font-size: 14px; color: #000;" class="label label-warning">{{  $key }}:</span>
+            {{ $count }}
+        @endforeach
+
         @include('cardgame::card.create')
 
         <table class="table">

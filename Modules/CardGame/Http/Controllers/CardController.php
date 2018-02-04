@@ -15,6 +15,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class CardController extends BaseController
 {
     /**
+     * @var Card
+     */
+    protected $model;
+    /**
      * @var CardSet
      */
     private $cardSet;
@@ -52,8 +56,9 @@ class CardController extends BaseController
         Rarity $rarity
     )
     {
-        parent::__construct($card);
+        parent::__construct();
 
+        $this->model = $card;
         $this->cardSet = $cardSet;
         $this->race = $race;
         $this->ability = $ability;
@@ -65,6 +70,7 @@ class CardController extends BaseController
     {
         return view('cardgame::card.index', [
             'nameRoute' => 'card',
+            'counts' => $this->model->getCountsWithEnergy(),
             'entities' => $this->model->withTrashedAll(Card::SORT_ENERGY),
             'cardSets' => $this->cardSet->getAll(),
             'races' => $this->race->getAll(),
