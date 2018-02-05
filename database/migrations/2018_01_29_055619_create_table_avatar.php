@@ -15,7 +15,7 @@ class CreateTableAvatar extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('path');
+            $table->string('avatar')->nullable();
             $table->tinyInteger('seen')->default(1);
             $table->string('price')->nullable();
             $table->integer('user_id')->nullable();

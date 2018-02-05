@@ -45,6 +45,11 @@
                                    @endif
                                    href="{{route('abilityIndex')}}">Способности</a></li>
                             <li><a class="link"
+                                   @if ('avatarIndex' == Route::current()->getName())
+                                   style="color: #0b16d6;"
+                                   @endif
+                                   href="{{route('avatarIndex')}}">Аватарки</a></li>
+                            <li><a class="link"
                                    @if ('achievementIndex' == Route::current()->getName())
                                    style="color: #0b16d6;"
                                    @endif

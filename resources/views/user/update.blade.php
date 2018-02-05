@@ -12,6 +12,9 @@
                     <h4 class="modal-title" style="color: #2e3436;">Редактирование профиля</h4>
                 </div>
                 <div class="modal-body">
+                    <input name="id" type="hidden" class="form-control"
+                           id="id" value="{{ $user->id }}" required>
+
                     <label class="col-lg-2 control-label">Имя</label>
                     <input name="name" type="text" class="form-control"
                            id="name" value="{{ $user->name }}" required>

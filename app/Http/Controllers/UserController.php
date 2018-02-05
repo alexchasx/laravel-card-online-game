@@ -11,11 +11,18 @@ use Illuminate\View\View;
 class UserController extends BaseController
 {
     /**
+     * @var User
+     */
+    protected $model;
+
+    /**
      * @param User $user
      */
     public function __construct(User $user)
     {
-        parent::__construct($user);
+        parent::__construct();
+
+        $this->model = $user;
     }
 
     /**

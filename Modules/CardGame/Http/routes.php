@@ -75,6 +75,18 @@ Route::group([
             ->name('abilityRestore');
     });
 
+    Route::group(['prefix' => 'avatar'], function() {
+        Route::get('index', 'AvatarController@index')->name('avatarIndex');
+        Route::post('create', 'AvatarController@store')->name('avatarStore');
+        Route::get('edit.{id}', 'AvatarController@edit')->name('avatarEdit');
+        Route::any('update', 'AvatarController@update')->name('avatarUpdate');
+        Route::delete('destroy.{id}', 'AvatarController@destroy')->name('avatarDelete');
+        Route::delete('force_destroy.{id}', 'AvatarController@forceDestroy')
+            ->name('avatarForceDelete');
+        Route::get('restore.{avatar}', 'AvatarController@restore')
+            ->name('avatarRestore');
+    });
+
     Route::group(['prefix' => 'achievement'], function() {
         Route::get('index', 'AchievementController@index')->name('achievementIndex');
         Route::post('create', 'AchievementController@store')->name('achievementStore');

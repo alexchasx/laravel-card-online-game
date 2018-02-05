@@ -115,20 +115,44 @@ class User extends Authenticatable
 
     /**
      * @param array        $inputs
-     *
      * @param UploadedFile $file
      *
      * @return void
      */
     public function updateModel(array $inputs, UploadedFile $file = null)
     {
-        die('helloAAA');
-        $model = $this->withTrashedWhere('id', $inputs['id'])
-            ->first();
+        $user = $this->findOrFail($inputs['id']);
 
-        $model->update(array_except($inputs, ['avatar', '_token']));
+        if (!$inputs['password']) {
+            $inputs['password'] = $user->password;
+        }
 
-        $this->uploadFile($model, $file);
+        $user->update(array_except($inputs, [
+            'avatar',
+            '_token',
+        ]));
+
+        if ($file) {
+            $this->uploadFile($file);
+        }
+    }
+
+    /**
+     * @param UploadedFile $file
+     *
+     * @return void
+     */
+    public function uploadFile(UploadedFile $file)
+    {
+        $originalName = $file->getClientOriginalName();
+        $basePath = $file->storeAs('upload', $originalName);
+
+        $this->avatar()
+            ->save(new File([
+                'path' => $basePath,
+                'owner_id' => $this->id,
+                'owner_type' => self::class,
+            ]));
     }
 
 }

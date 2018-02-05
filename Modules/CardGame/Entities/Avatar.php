@@ -8,19 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
- * @property string  $name
  * @property string  $avatar
+ * @property string  $price
  * @property boolean $seen
- * @property string  $description
- * @property string  $full_description
+ * @property integer $user_id
  *
  * @property Carbon  $deleted_at
  */
-class Ability extends BaseModel
+class Avatar extends BaseModel
 {
     use SoftDeletes;
 
-    const TABLE_NAME = 'abilities';
+    const TABLE_NAME = 'avatars';
 
     /**
      * @var string
