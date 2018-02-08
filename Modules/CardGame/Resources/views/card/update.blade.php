@@ -68,8 +68,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Нация</label>
-                    <select class="form-control" name="race_id" size="5"
-                            class="form-control" id="race_id">
+                    <select class="form-control" name="race_id" size="5" id="race_id">
                         @foreach ($races as $race)
                             <option
                                     @if($entity->race_id === $race->id)
@@ -81,9 +80,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность1</label>
-                    <select class="form-control" name="ability1_id" size="7"
-                            class="form-control"
-                            id="ability1_id">
+                    <select class="form-control" name="ability1_id" size="7" id="ability1_id">
                         <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option
@@ -96,9 +93,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Способность2</label>
-                    <select class="form-control" name="ability2_id" size="7"
-                            class="form-control"
-                            id="ability2_id">
+                    <select class="form-control" name="ability2_id" size="7" id="ability2_id">
                         <option value="">Нет</option>
                         @foreach ($abilities as $ability)
                             <option
@@ -118,9 +113,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Набор</label>
-                    <select class="form-control" name="card_sets_id" size="5"
-                            class="form-control"
-                            id="card_sets_id">
+                    <select class="form-control" name="card_sets_id" size="5" id="card_sets_id">
                         @foreach ($cardSets as $cardSet)
                             <option
                                     @if($entity->card_sets_id === $cardSet->id)
@@ -132,9 +125,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Тип</label>
-                    <select class="form-control" name="card_type_id" size="5"
-                            class="form-control"
-                            id="card_type_id">
+                    <select class="form-control" name="card_type_id" size="5" id="card_type_id">
                         @foreach ($types as $type)
                             <option
                                     @if($entity->card_type_id === $type->id)
@@ -146,9 +137,7 @@
                     <br>
 
                     <label class="col-lg-2 control-label">Редкость</label>
-                    <select class="form-control" name="rarity_id" size="3"
-                            class="form-control"
-                            id="rarity_id">
+                    <select class="form-control" name="rarity_id" size="3" id="rarity_id">
                         @foreach ($rarities as $rarity)
                             <option
                                     @if($entity->rarity_id === $rarity->id)

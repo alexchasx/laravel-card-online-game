@@ -1,0 +1,226 @@
+/* Eric Meyer's CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* End of Eric Meyer's CSS Reset */
+
+html {
+    height: 100%;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
+body {
+    font: 16px/20px Arial, sans-serif;
+    font-weight: 600;
+    height: 100%;
+    background: #5b5960 url('../../images/profile/profile1.jpg') no-repeat top center;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 30px;
+}
+
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+.pick {
+    color: #c1e2b3;
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+.header {
+    height: 100px;
+}
+
+/* Middle
+-----------------------------------------------------------------------------*/
+.middle {
+    width: 100%;
+    padding: 0 0 100px;
+    position: relative;
+}
+
+.middle:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.right-sidebar {
+    width: 630px;
+    float: right;
+    overflow: hidden;
+    margin-right: 5px;
+    height: 400px;
+}
+
+.block {
+    background: rgba(18, 17, 19, 0.77);
+    border: solid transparent 1px;
+    border-radius: 5px;
+    color: #7e93af;
+    padding: 10px;
+}
+
+/* Left Sidebar
+-----------------------------------------------------------------------------*/
+.left-sidebar {
+    width: 280px;
+    height: 400px;
+    position: relative;
+}
+
+/* Footer
+-----------------------------------------------------------------------------*/
+.footer {
+    margin: -100px auto 0;
+    min-width: 760px;
+    max-width: 1020px;
+    height: 100px;
+    background: #BFF08E;
+    position: relative;
+}
+
+/* Avatar
+-----------------------------------------------------------------------------*/
+.header img {
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+
+.sub-nick {
+    float: left;
+    width: 170px;
+    display: inline-block;
+    background: rgba(18, 17, 19, 0.77);
+    border: solid transparent 1px;
+    border-radius: 5px;
+    color: #7e93af;
+    margin-left: 10px;
+}
+table {
+    border-spacing: 10px 2px;
+}
+
+/* Кнопки
+-----------------------------------------------------------------------------*/
+.header-menu {
+    float: right;
+    position: relative;
+    width: 480px;
+    padding: 10px;
+    height: 80px;
+}
+
+.knopka01 {
+    margin: 5px;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(255, 255, 255, .2), 0 -1px rgba(0, 0, 0, .8);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: rgb(66, 98, 133) radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, .2), rgba(0, 0, 0, 0));
+    box-shadow: inset rgba(0, 0, 0, .6) 0 -2px 5px, inset rgba(252, 255, 255, .7) 0 2px 5px, rgba(0, 0, 0, .8) 0 2px 5px -1px;
+    color: rgb(30, 52, 69);
+    user-select: none;
+    -webkit-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+
+}
+
+.knopka01:hover {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.knopka01:active {
+    padding-bottom: 1px;
+    box-shadow: inset rgba(0, 0, 0, 1) 0 1px 3px,
+    inset rgba(0, 0, 0, .6) 0 -2px 5px,
+    inset rgba(252, 255, 255, .7) 0 2px 5px,
+    0 1px rgba(255, 255, 255, .08);
+    color: rgb(128, 207, 214);
+}
+
+/* Вкладки
+--------------------------------------------------------------------------*/
+.tabs > div, .tabs > input {
+    display: none;
+}
+.tabs label {
+
+}
+.tabs input[type="radio"]:checked + label {
+    border-bottom: 3px solid #bf103f;
+}
+.tabs > input:nth-of-type(1):checked ~ div:nth-of-type(1),
+.tabs > input:nth-of-type(2):checked ~ div:nth-of-type(2),
+.tabs > input:nth-of-type(3):checked ~ div:nth-of-type(3),
+.tabs > input:nth-of-type(4):checked ~ div:nth-of-type(4),
+.tabs > input:nth-of-type(5):checked ~ div:nth-of-type(5),
+.tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6) {
+    display: block;
+    padding: 5px;
+}

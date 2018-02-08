@@ -17,6 +17,18 @@ class BaseModel extends Model
     public function getAll($column = 'name')
     {
         return $this->withTrashed()
+//            ->with('user')  //TODO доделать!
+            ->orderBy($column)
+            ->get();
+    }
+    /**
+     * @param string $column
+     *
+     * @return Collection[] | Model[]
+     */
+    public function getAllForUsers($column = 'id')
+    {
+        return $this->where('seen', true)
             ->orderBy($column)
             ->get();
     }

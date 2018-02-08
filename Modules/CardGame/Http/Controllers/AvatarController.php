@@ -31,6 +31,17 @@ class AvatarController extends BaseController
     }
 
     /**
+     * @return View
+     */
+    public function indexForUsers()
+    {
+        return view('avatar.index', [
+            'nameRoute' => 'avatar',
+            'entities' => $this->model->getAllForUsers('id'),
+        ]);
+    }
+
+    /**
      * @var int $id
      *
      * @return View | HttpException

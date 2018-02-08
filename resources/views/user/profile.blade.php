@@ -1,90 +1,116 @@
 @extends('layouts.profile_layout')
 
-@section('inner_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-xs-4">
+@section('content')
 
-                @if(isAdmin())
-                    <a style="position: absolute;top:-25px;" href="{{ route('cardIndex') }}">Админка</a>
-                @endif
+    <div class="wrapper">
 
-                <div class="rank">
-                    <ul class="nav navbar-nav pull-left profile-list">
-                        <li class="dropdown pull-right">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-user"></i> Капитан <b class="caret"></b>
-                            </a>
-                            <!-- Dropdown menu -->
-                            <ul class="dropdown-menu profile-list">
-                                <li><a class="link">Рядовой - 100 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li><a class="link">Сержант - 200 очков</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Другое</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="avatar">
-                    <img class="profile-avatar" src="" alt="аватар">
-                    <div class="prof-nik">{{ $user->name }}</div>
-
-                    <br>
-                    <a href="#myModal" data-toggle="modal">
-                        <button class="btn-primary btn-ava">
-                            Изменить свои данные
-                        </button>
-                    </a>
-                    <br>
-                    <br>
-                    <button class="btn-warning btn-ava" href="">Поддержать игру</button>
-                    <br>
-                    <br>
-                    <br>
-                </div>
-
+        <div class="tabs">
+        <header class="header">
+            <img class="avatar" src="images/profile/avatar.jpg" alt="аватар">
+            <div class="header-menu">
+                <a class="knopka01" href="{{--{{ route('magazinIndex') }}--}}">Магазин</a>
             </div>
+            <div class="sub-nick">
+                <table>
+                    <tr>
+                        <td>Имя: </td>
+                        <td><span class="pick">{{ $user->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Звание: </td>
+                        <td><span class="pick">{{ $user->rank->name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Рейтинг: </td>
+                        <td><span class="pick">{{ $user->rating }}</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="sub-nick">
+                <table>
+                    <tr>
+                        <td>Сыграно игр:</td>
+                        <td><span class="pick">{{ $user->count_battles }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Побед:</td>
+                        <td><span class="pick">{{ $user->count_wins }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Поражений:</td>
+                        <td><span class="pick">{{--{{ $user->countDefeat() }}--}}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </header><!-- .header-->
 
-            <div class="col-md-4 col-xs-6 text border">
+            <input type="radio" name="odin" checked="checked" id="vkl1"/><label class="knopka01" for="vkl1">Звания</label>
+            <input type="radio" name="odin" id="vkl2"/><label class="knopka01" for="vkl2">Задания</label>
+            <input type="radio" name="odin" id="vkl3"/><label class="knopka01" for="vkl3">Колоды</label>
+            <input type="radio" name="odin" id="vkl4"/><label class="knopka01" for="vkl4">Арена</label>
+            <input type="radio" name="odin" id="vkl5"/><label class="knopka01" for="vkl5">Рейтинги</label>
+
+        <div class="middle">
+            <main class="right-sidebar block">
+                sdsds
+            </main><!-- .content -->
+
+            <aside class="left-sidebar block">
                 Статистика:
+                <hr>
                 <ul>
-                    <li>Игр сыграно: 5</li>
-                    <li>Побед: 5</li>
-                    <li>Поражений: 5</li>
+                    <li>Сыграно игр: {{ $user->count_battles }}</li>
+                    <li>Побед: {{ $user->count_wins }}</li>
+                    <li>Поражений: {{--{{ $user->countDefeat() }}--}}</li>
                 </ul>
-            </div>
+            </aside><!-- .left-sidebar -->
+        </div><!-- .middle-->
 
-            <div class="col-md-4 col-xs-12 text-center text">
-                <button class="btn-primary btn-ava" href="">Создать колоду</button>
-                <br>
-                <br>
-                <div class="border">
-                    &nbsp;&nbsp;Доступные колоды:
-                    <br>
-                    <ol>
-                        <li>&nbsp;&nbsp;<a href="">Стартовая колода</a></li>
-                        <li>&nbsp;&nbsp;<a href="">Стартовая колода</a></li>
-                    </ol>
+        <div class="middle">
+            <main class="right-sidebar block">
+                GGGGGGGGGGGGGGGGGGGG
+            </main><!-- .content -->
 
-                </div>
-            </div>
+            <aside class="left-sidebar block">
+                GGGGGGGGGGGGGGGGGGG
+            </aside><!-- .left-sidebar -->
+        </div><!-- .middle-->
+
+        <div class="middle">
+            <main class="right-sidebar block">
+                ZZZZZZZZZZZZZZZZ
+            </main><!-- .content -->
+
+            <aside class="left-sidebar block">
+                ZZZZZZZZZZZZZZZZZZZ
+            </aside><!-- .left-sidebar -->
+        </div><!-- .middle-->
+
+        <div class="middle">
+            <main class="right-sidebar block">
+                BBBBBBBBBBBBBBBBBB
+            </main><!-- .content -->
+
+            <aside class="left-sidebar block">
+                BBBBBBBBBBBBBBB
+            </aside><!-- .left-sidebar -->
+        </div><!-- .middle-->
+
+        <div class="middle">
+            <main class="right-sidebar block">
+                AAAAAAAAAAAAAAAAAAA
+            </main><!-- .content -->
+
+            <aside class="left-sidebar block">
+                AAAAAAAAAAAAAAAAAAAA
+            </aside><!-- .left-sidebar -->
+        </div><!-- .middle-->
 
         </div>
-    </div>
+    </div><!-- .wrapper -->
 
-    @include('user.update')
+    {{--<footer class="footer block">--}}
+    {{--<strong>Footer:</strong> Mus elit Morbi mus enim lacus at quis Nam eget morbi. Et semper urna urna non at cursus dolor vestibulum neque enim. Tellus interdum at laoreet laoreet lacinia lacinia sed Quisque justo quis. Hendrerit scelerisque lorem elit orci tempor tincidunt enim Phasellus dignissim tincidunt. Nunc vel et Sed nisl Vestibulum odio montes Aliquam volutpat pellentesque. Ut pede sagittis et quis nunc gravida porttitor ligula.--}}
+    {{--</footer><!-- .footer -->--}}
+
 @endsection

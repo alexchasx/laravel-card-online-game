@@ -64,7 +64,6 @@ Route::group([
     });
 
     Route::group(['prefix' => 'ability'], function() {
-        Route::get('index', 'AbilityController@index')->name('abilityIndex');
         Route::post('create', 'AbilityController@store')->name('abilityStore');
         Route::get('edit.{id}', 'AbilityController@edit')->name('abilityEdit');
         Route::any('update', 'AbilityController@update')->name('abilityUpdate');

@@ -7,9 +7,19 @@
         <tr>
             <td>ID</td>
             <td>Имя</td>
+            <td>Аватар</td>
             <td>E-mail</td>
             <td>Роль</td>
+            <td>Набор</td>
+            <td>Звание</td>
             <td>Подтвержден</td>
+            <td>Рэйтинг</td>
+            <td>Кол-во побед</td>
+            <td>Кол-во игр</td>
+            <td>Продвижение</td>
+            <td>VIP</td>
+            <td>Виден?</td>
+            <td>Баланс</td>
             <td></td>
             <td>Удалено</td>
             <td></td>
@@ -26,13 +36,13 @@
             >
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
-                {{--<td style="max-width:70px;">--}}
-                    {{--@unless (empty($avatar = $user->files->last()))--}}
-                        {{--<img class="media-object"--}}
-                             {{--src="{{ asset('storage/app/'. $avatar) }}"--}}
-                             {{--alt="image">--}}
-                    {{--@endunless--}}
-                {{--</td>--}}
+                <td style="max-width:70px;">
+                    @unless (empty($avatar = $user->files->last()))
+                        <img class="media-object"
+                             src="{{ asset('storage/app/'. $avatar) }}"
+                             alt="image">
+                    @endunless
+                </td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->role}}</td>
                 <td>{{ $user->verified }}</td>

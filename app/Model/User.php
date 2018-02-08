@@ -3,11 +3,13 @@
 namespace App\Model;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Collection;
 use Modules\CardGame\Http\Entities\CardSet;
 use Modules\CardGame\Http\Entities\Rank;
 
@@ -128,31 +130,44 @@ class User extends Authenticatable
         }
 
         $user->update(array_except($inputs, [
-            'avatar',
+//            'file', // TODO Реализовать загрузку своих картинок?
             '_token',
         ]));
 
-        if ($file) {
-            $this->uploadFile($file);
-        }
+//        if ($file) {
+//            $this->uploadFile($user, $file);
+//        }
     }
 
     /**
+     * @param User         $user
      * @param UploadedFile $file
      *
      * @return void
      */
-    public function uploadFile(UploadedFile $file)
+    protected function uploadFile(self $user, UploadedFile $file = null)
     {
-        $originalName = $file->getClientOriginalName();
-        $basePath = $file->storeAs('upload', $originalName);
+        if ($file) {
+            $originalName = $file->getClientOriginalName();
 
-        $this->avatar()
-            ->save(new File([
-                'path' => $basePath,
-                'owner_id' => $this->id,
-                'owner_type' => self::class,
-            ]));
+            $basePath = $file->storeAs('upload', $originalName);
+
+            $user->avatar = config('cardgame.avatar_path') . $basePath;
+
+            $user->save();
+        }
+    }
+
+    /**
+     * @param string $column
+     *
+     * @return Collection[] | Model[]
+     */
+    public function getAll($column = 'name')
+    {
+        return $this->withTrashed()
+            ->orderBy($column)
+            ->get();
     }
 
 }

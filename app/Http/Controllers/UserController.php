@@ -7,6 +7,7 @@ use App\Model\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Modules\CardGame\Http\Entities\Avatar;
 
 class UserController extends BaseController
 {
@@ -26,6 +27,17 @@ class UserController extends BaseController
     }
 
     /**
+     * @return View
+     */
+    public function index()
+    {
+        return view('user.index', [
+            'nameRoute' => 'user',
+            'entities' => $this->model->getAll(),
+        ]);
+    }
+
+    /**
      * @return RedirectResponse
      */
     public function logout()
@@ -36,12 +48,15 @@ class UserController extends BaseController
     }
 
     /**
+     * @param Avatar $avatar
+     *
      * @return View
      */
-    public function getProfile()
+    public function getProfile(Avatar $avatar)
     {
-        return view('user.profile')->with([
+        return view('user.profile', [
             'user' => Auth::user(),
+            'avatars' => $avatar->getAll('avatar'),
         ]);
     }
 
@@ -52,7 +67,7 @@ class UserController extends BaseController
      */
     public function updateUser(UserRequest $request)
     {
-        $this->model->updateModel($request->all(), $request->file('avatar'));
+        $this->model->updateModel($request->all());
 
         return redirect()->back();
     }

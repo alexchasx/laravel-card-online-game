@@ -20,22 +20,11 @@
                            id="name" value="{{ $user->name }}" required>
                     <br>
 
-                    {{--<label class="col-lg-2 control-label">Видна?</label>--}}
-                    {{--<select class="form-control" name="seen" id="seen">--}}
-                        {{--<option selected value="1">Да</option>--}}
-                        {{--<option value="0">Нет</option>--}}
-                    {{--</select>--}}
-
-                    <label class="col-lg-2 control-label">Аватар</label>
-                    <input name="avatar" type="file" class="form-control" placeholder="Аватар"
-                           id="armor"
-                           value="">
-                    <br>
-
                     <label class="col-lg-2 control-label">E-mail</label>
                     <input name="email" type="text" class="form-control"
                            id="email"
                            value="{{ $user->email }}">
+                    <br>
 
                     <label class="col-lg-2 control-label">Пароль</label>
                     <input name="password" type="text" class="form-control"
