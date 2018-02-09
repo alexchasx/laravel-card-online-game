@@ -21,13 +21,12 @@ Auth::routes();
 Route::group([
     'middleware' => 'guest',
 ], function() {
-    Route::get('register', function(){
+    Route::get('register', function() {
         return view('auth.register');
     })->name('registerForm');
 
     Route::post('/register', 'Auth\RegisterController@register')->name('register');
 });
-
 
 Route::group([
     'middleware' => ['web', 'auth'],
@@ -36,19 +35,19 @@ Route::group([
     Route::get('/verify_email/{token}', 'Auth\RegisterController@verify');
 
     Route::get('/profile', 'UserController@getProfile')->name('getProfile');
-    Route::post('/user/update', 'UserController@updateUser')->name('userUpdate');
+    Route::get('user.magazin', 'UserController@getProducts')->name('magazinIndex');
+    Route::post('user.change_avatar', 'UserController@changeAvatar')->name('changeAvatar');
+    Route::post('/user/update', 'UserController@updateUser')->name('updateUser');
     Route::any('/logout', 'UserController@logout')->name('logout');
 
     Route::get('cardgame:ability.index', 'AbilityController@index')->name('abilityIndex');
-});
 
+});
 
 // Contact
 Route::get('contact', function() {
     return view('contact');
 })->name('contact');
-
-
 
 // Отправка электронной почты
 //Route::post('send.simple.email','MailController@simplePHPEmail')->name('simplePHPEmail');
@@ -56,7 +55,6 @@ Route::get('contact', function() {
 //Route::post('send.basic.email','MailController@basicEmail')->name('basicEmail');
 //Route::post('send.html.email','MailController@htmlEmail')->name('htmlEmail');
 //Route::post('send.attachment.email','MailController@attachmentEmail')->name('attachmentEmail');
-
 
 Route::group([
     'middleware' => ['web', 'admin'],

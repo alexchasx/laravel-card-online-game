@@ -16,5 +16,6 @@
 
 @yield('content')
 
+<script src="{{ asset('js/profile.js') }}"></script>
 </body>
 </html>

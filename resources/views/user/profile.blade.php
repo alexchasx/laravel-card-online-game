@@ -8,40 +8,14 @@
         <header class="header">
             <img class="avatar" src="images/profile/avatar.jpg" alt="аватар">
             <div class="header-menu">
-                <a class="knopka01" href="{{--{{ route('magazinIndex') }}--}}">Магазин</a>
+                <a class="knopka01" href="{{ route('magazinIndex') }}">Магазин</a>
+                <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
+                    <span class="pick">200&#8381;</span>
+                </a>
             </div>
-            <div class="sub-nick">
-                <table>
-                    <tr>
-                        <td>Имя: </td>
-                        <td><span class="pick">{{ $user->name }}</span></td>
-                    </tr>
-                    <tr>
-                        <td>Звание: </td>
-                        <td><span class="pick">{{ $user->rank->name }}</span></td>
-                    </tr>
-                    <tr>
-                        <td>Рейтинг: </td>
-                        <td><span class="pick">{{ $user->rating }}</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="sub-nick">
-                <table>
-                    <tr>
-                        <td>Сыграно игр:</td>
-                        <td><span class="pick">{{ $user->count_battles }}</span></td>
-                    </tr>
-                    <tr>
-                        <td>Побед:</td>
-                        <td><span class="pick">{{ $user->count_wins }}</span></td>
-                    </tr>
-                    <tr>
-                        <td>Поражений:</td>
-                        <td><span class="pick">{{--{{ $user->countDefeat() }}--}}</span></td>
-                    </tr>
-                </table>
-            </div>
+
+            @include('layouts.sub_nick')
+
         </header><!-- .header-->
 
             <input type="radio" name="odin" checked="checked" id="vkl1"/><label class="knopka01" for="vkl1">Звания</label>

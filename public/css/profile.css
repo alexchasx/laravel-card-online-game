@@ -69,7 +69,9 @@ body {
     background-size: cover;
     padding-top: 30px;
 }
-
+button {
+    cursor: pointer;
+}
 .wrapper {
     width: 980px;
     margin: 0 auto;
@@ -138,7 +140,7 @@ body {
 
 /* Avatar
 -----------------------------------------------------------------------------*/
-.header img {
+.avatar {
     width: 70px;
     height: 70px;
     float: left;
@@ -204,6 +206,41 @@ table {
     color: rgb(128, 207, 214);
 }
 
+a.button11 {
+    position: relative;
+    z-index: 1;
+    color: #7e93af;
+    text-decoration: none;
+    padding: .25em .5em;
+}
+a.button11:after {
+    content: "Пополнить";  /* здесь 6 букв */
+    position: absolute;
+    z-index: -1;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    width: calc(100% + 9*(1em*90/135) - 2px*2*2);  /* где 6*(1em*90/135), где 6 - это 6 букв, 90 - это font-size after, а 135 - это font-size родителя */
+    text-align: right;
+    color: #fff;
+    font-size: 90%;
+    padding: .2em .5em;
+    border-radius: 5px;
+    border: 2px solid #c61e40;
+    -webkit-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+    background: linear-gradient(#d4536d, #c61e40) no-repeat 100% 0;
+    background-size: calc(9*(1em*90/135) + .5em) 100%;
+    box-shadow: inset calc(-9*(1em*90/135) - .5em) 0 rgba(255,255,255,0);
+    transition: .3s;
+}
+a.button11:hover:after {
+    box-shadow: inset calc(-9*(1em*90/135) - .5em) 0 rgba(255,255,255,.2);
+}
+a.button11:active:after {
+    background-image: linear-gradient(#c61e40, #d4536d);
+}
+
 /* Вкладки
 --------------------------------------------------------------------------*/
 .tabs > div, .tabs > input {
@@ -223,4 +260,71 @@ table {
 .tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6) {
     display: block;
     padding: 5px;
+}
+
+
+/* Модальное окно смены аватар
+---------------------------------------------------------------------------*/
+.overlay {
+    background: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    opacity: .5;
+}
+.visible {
+    background: #fff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -200px;
+    overflow: hidden;
+    z-index: 2000;
+    width: 500px;
+    padding: 0px;
+    margin-left: -250px;
+}
+#modalPay button {
+    float: right;
+    line-height: 20px;
+    margin: 1.2em;
+    border: none;
+    background: transparent;
+    color: blue;
+}
+#modalPay button[type="button"]:hover {
+    cursor: pointer;
+    color: navy;
+    text-decoration: underline;
+}
+#modalPay h3 {
+    text-align: center;
+    color: #555;
+}
+.content {
+    padding: 0 1em;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: WhiteSmoke;
+}
+.content p {
+    text-align: center;
+    margin: 10px;
+}
+
+
+/* Сообщения об ошбках
+---------------------------------------------------------*/
+.message.error {
+    text-align: center;
+    padding: 30px 20px 5px;
+    z-index: 999;
+    font-size: 170%;
+    font-weight: 800;
+    color: #ff6c27;
+    background-color: #c1e2b3;
+    height: 50px;
 }

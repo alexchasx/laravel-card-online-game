@@ -4,85 +4,79 @@
 
     <div class="wrapper">
 
+        @if($errors->any())
+            <div class="message error">
+                {{$errors->first()}}
+
+                <button onClick="location.reload();">Закрыть</button>
+            </div>
+        @endif
+
         <div class="tabs">
             <header class="header">
-                <img class="avatar" src="images/profile/avatar.jpg" alt="аватар">
+                <img class="avatar" src="
+                    @unless(empty($user->avatar_id))
+                        {{ $user->avatar->avatar }}
+                    @endunless
+                        " alt="аватар">
                 <div class="header-menu">
-                    <a class="knopka01" href="{{ route('avatarIndex') }}">Аватарки</a>
+                    <a class="knopka01" href="{{ route('getProfile') }}">Профиль</a>
+                    <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
+                        <span class="pick">200 &#8381;</span>
+                    </a>
                 </div>
-                <div class="sub-nick">{{ $user->name }}
-                    <br>Звание: {{ $user->rank }}
-                    <br>Рейтинг: {{ $user->rating }}
-                </div>
+
+                @include('layouts.sub_nick')
+
             </header><!-- .header-->
 
-            <input type="radio" name="odin" checked="checked" id="vkl1"/><label class="knopka01" for="vkl1">Профиль</label>
-            <input type="radio" name="odin" id="vkl2"/><label class="knopka01" for="vkl2">Задания</label>
-            <input type="radio" name="odin" id="vkl3"/><label class="knopka01" for="vkl3">Колоды</label>
-            <input type="radio" name="odin" id="vkl4"/><label class="knopka01" for="vkl4">Арена</label>
-            <input type="radio" name="odin" id="vkl5"/><label class="knopka01" for="vkl5">Рейтинги</label>
+            <input type="radio" name="odin" checked="checked" id="vkl1"/><label class="knopka01"
+                                                                                for="vkl1">Цены</label>
+            <input type="radio" name="odin" id="vkl2"/><label class="knopka01"
+                                                              for="vkl2">Аватарки</label>
 
             <div class="middle">
                 <main class="right-sidebar block">
-                    sdsds
                 </main><!-- .content -->
 
                 <aside class="left-sidebar block">
-                    Статистика:
-                    <hr>
-                    <ul>
-                        <li>Сыграно игр: {{ $user->count_battles }}</li>
-                        <li>Побед: {{ $user->count_wins }}</li>
-                        <li>Поражений: {{--{{ $user->countDefeat() }}--}}</li>
-                    </ul>
+                    <table>
+                        @foreach($products as $product)
+                            <tr>
+                                <td>{{ $product->name }}</td>
+                                <td><span class="pick">{{ $product->price }} &#8381;</span></td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </aside><!-- .left-sidebar -->
             </div><!-- .middle-->
 
-            <div class="middle">
-                <main class="right-sidebar block">
-                    GGGGGGGGGGGGGGGGGGGG
-                </main><!-- .content -->
-
-                <aside class="left-sidebar block">
-                    GGGGGGGGGGGGGGGGGGG
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
-
-            <div class="middle">
-                <main class="right-sidebar block">
-                    ZZZZZZZZZZZZZZZZ
-                </main><!-- .content -->
-
-                <aside class="left-sidebar block">
-                    ZZZZZZZZZZZZZZZZZZZ
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
-
-            <div class="middle">
-                <main class="right-sidebar block">
-                    BBBBBBBBBBBBBBBBBB
-                </main><!-- .content -->
-
-                <aside class="left-sidebar block">
-                    BBBBBBBBBBBBBBB
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
-
-            <div class="middle">
-                <main class="right-sidebar block">
-                    AAAAAAAAAAAAAAAAAAA
-                </main><!-- .content -->
-
-                <aside class="left-sidebar block">
-                    AAAAAAAAAAAAAAAAAAAA
-                </aside><!-- .left-sidebar -->
+            <div class="middle block">
+                @foreach($avatars as $avatar)
+                    <a href="#modalPay" onClick="getElementById('modalPay').removeAttribute('style');">
+                        <img class="avatar" id="avatar{{ $avatar->id }}"
+                             data-avatar="{{ $avatar->id }}" src="{{ $avatar->avatar }}" alt="аватар">
+                    </a>
+                @endforeach
             </div><!-- .middle-->
 
         </div>
     </div><!-- .wrapper -->
 
-    {{--<footer class="footer block">--}}
-    {{--<strong>Footer:</strong> Mus elit Morbi mus enim lacus at quis Nam eget morbi. Et semper urna urna non at cursus dolor vestibulum neque enim. Tellus interdum at laoreet laoreet lacinia lacinia sed Quisque justo quis. Hendrerit scelerisque lorem elit orci tempor tincidunt enim Phasellus dignissim tincidunt. Nunc vel et Sed nisl Vestibulum odio montes Aliquam volutpat pellentesque. Ut pede sagittis et quis nunc gravida porttitor ligula.--}}
-    {{--</footer><!-- .footer -->--}}
+    <div id="modalPay" style="display:none;">
+        <div class="overlay"></div>
+        <div class="visible">
+            <div class="content">
+                <p>Вы уверены, что хотите сменить аватар?</p>
+                <form action="{{ route('changeAvatar') }}" method="post">
+                    <input type="hidden" name="avatar_id" id="input-avatar-pay">
+                    <br>
+                    {{ csrf_field() }}
+                    <button class="confirm" type="submit">Да</button>
+                </form>
+            </div>
+            <button class="close" type="button" onClick="getElementById('modalPay').style.display='none';">Нет</button>
+        </div>
+    </div>
 
 @endsection

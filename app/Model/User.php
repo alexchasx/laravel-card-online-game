@@ -10,6 +10,8 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use Modules\CardGame\Http\Entities\Avatar;
 use Modules\CardGame\Http\Entities\CardSet;
 use Modules\CardGame\Http\Entities\Rank;
 
@@ -39,7 +41,7 @@ use Modules\CardGame\Http\Entities\Rank;
  *
  * @property Role    $role
  * @property Rank    $rank
- * @property File    $avatar
+ * @property Avatar  $avatar
  * @property CardSet $cardSet
  */
 class User extends Authenticatable
@@ -96,7 +98,7 @@ class User extends Authenticatable
      */
     public function avatar()
     {
-        return $this->belongsTo(File::class, 'avatar_id');
+        return $this->belongsTo(Avatar::class, 'avatar_id');
     }
 
     /**
@@ -116,27 +118,25 @@ class User extends Authenticatable
     }
 
     /**
-     * @param array        $inputs
-     * @param UploadedFile $file
+     * @param array $inputs
      *
-     * @return void
+     * @return bool
      */
-    public function updateModel(array $inputs, UploadedFile $file = null)
+    public function updateModel(array $inputs)
     {
         $user = $this->findOrFail($inputs['id']);
 
-        if (!$inputs['password']) {
+        if (!empty($inputs['password'])) {
             $inputs['password'] = $user->password;
         }
 
-        $user->update(array_except($inputs, [
-//            'file', // TODO Реализовать загрузку своих картинок?
+        if (!empty($inputs['name'])) {
+            $inputs['name'] = $user->name;
+        }
+
+        return $user->update(array_except($inputs, [
             '_token',
         ]));
-
-//        if ($file) {
-//            $this->uploadFile($user, $file);
-//        }
     }
 
     /**
@@ -168,6 +168,34 @@ class User extends Authenticatable
         return $this->withTrashed()
             ->orderBy($column)
             ->get();
+    }
+
+    /**
+     * @param $avatarId
+     *
+     * @return bool
+     */
+    public function changeAvatar($avatarId)
+    {
+        $this->avatar_id = $avatarId;
+
+        return $this->save();
+    }
+
+    /**
+     * @param Model $model
+     *
+     * @return float | null
+     */
+    public function changeBalance(Model $model)
+    {
+        $balanceAfter = floatval(Auth::user()->balance - $model->price);
+
+        if ($balanceAfter < 0) {
+            return null;
+        }
+
+        return $balanceAfter;
     }
 
 }

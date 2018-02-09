@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: #2e3436;">
             <!-- Form starts.  -->
-            <form action="{{ route('userUpdate') }}" method="post" role="form"
+            <form action="{{ route('updateUser') }}" method="post" role="form"
                   enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
