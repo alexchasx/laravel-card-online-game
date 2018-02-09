@@ -56,7 +56,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 body {
     font: 16px/20px Arial, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     height: 100%;
     background: #5b5960 url('../../images/profile/profile1.jpg') no-repeat top center;
     -webkit-background-size: 100%;
@@ -108,22 +108,22 @@ button {
     float: right;
     overflow: hidden;
     margin-right: 5px;
-    height: 400px;
+    min-height: 400px;
 }
 
 .block {
     background: rgba(18, 17, 19, 0.77);
     border: solid transparent 1px;
     border-radius: 5px;
-    color: #7e93af;
+    color: #7f93af;
     padding: 10px;
 }
 
 /* Left Sidebar
 -----------------------------------------------------------------------------*/
 .left-sidebar {
-    width: 280px;
-    height: 400px;
+    width: 285px;
+    min-height: 400px;
     position: relative;
 }
 
@@ -158,6 +158,9 @@ button {
 }
 table {
     border-spacing: 10px 2px;
+}
+table>thead>tr>td {
+    border-bottom: solid #fffacd 2px;
 }
 
 /* Кнопки

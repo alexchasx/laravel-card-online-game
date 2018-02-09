@@ -122,7 +122,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function updateModel(array $inputs)
+    public function updateUser(array $inputs)
     {
         $user = $this->findOrFail($inputs['id']);
 

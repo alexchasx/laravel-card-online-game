@@ -34,11 +34,12 @@ Route::group([
 
     Route::get('/verify_email/{token}', 'Auth\RegisterController@verify');
 
-    Route::get('/profile', 'UserController@getProfile')->name('getProfile');
-    Route::get('user.magazin', 'UserController@getProducts')->name('magazinIndex');
-    Route::post('user.change_avatar', 'UserController@changeAvatar')->name('changeAvatar');
     Route::post('/user/update', 'UserController@updateUser')->name('updateUser');
     Route::any('/logout', 'UserController@logout')->name('logout');
+
+    Route::get('/profile', 'ProfileController@getProfile')->name('getProfile');
+    Route::get('user.magazin', 'ProfileController@getProducts')->name('magazinIndex');
+    Route::post('user.change_avatar', 'ProfileController@changeAvatar')->name('changeAvatar');
 
     Route::get('cardgame:ability.index', 'AbilityController@index')->name('abilityIndex');
 

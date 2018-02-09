@@ -10,6 +10,9 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BaseController extends Controller
 {
+    const ERROR_NEGATIVE_BALANCE = 'У вас недостаточно средств. Пополните баланс.';
+    const ERROR_NOT_SAVED = 'Не удалось сохранить изменения :(';
+
     /**
      * @var Model
      */

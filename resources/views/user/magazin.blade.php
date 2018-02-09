@@ -22,7 +22,7 @@
                 <div class="header-menu">
                     <a class="knopka01" href="{{ route('getProfile') }}">Профиль</a>
                     <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
-                        <span class="pick">200 &#8381;</span>
+                        <span class="pick">{{ $user->balance }} &#8381;</span>
                     </a>
                 </div>
 
@@ -53,9 +53,9 @@
 
             <div class="middle block">
                 @foreach($avatars as $avatar)
-                    <a href="#modalPay" onClick="getElementById('modalPay').removeAttribute('style');">
-                        <img class="avatar" id="avatar{{ $avatar->id }}"
-                             data-avatar="{{ $avatar->id }}" src="{{ $avatar->avatar }}" alt="аватар">
+                    <a href="#modalPay" onClick="getElementById('modalPay').removeAttribute('style');
+                        getElementById('input-avatar-pay').value = {{ $avatar->id }};">
+                        <img class="avatar" src="{{ $avatar->avatar }}" alt="аватар">
                     </a>
                 @endforeach
             </div><!-- .middle-->
@@ -69,7 +69,7 @@
             <div class="content">
                 <p>Вы уверены, что хотите сменить аватар?</p>
                 <form action="{{ route('changeAvatar') }}" method="post">
-                    <input type="hidden" name="avatar_id" id="input-avatar-pay">
+                    <input type="text" name="avatar_id" id="input-avatar-pay">
                     <br>
                     {{ csrf_field() }}
                     <button class="confirm" type="submit">Да</button>

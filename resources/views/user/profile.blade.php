@@ -6,11 +6,14 @@
 
         <div class="tabs">
         <header class="header">
-            <img class="avatar" src="images/profile/avatar.jpg" alt="аватар">
+            <img class="avatar" src="{{ $user->avatar->avatar }}" alt="аватар">
             <div class="header-menu">
                 <a class="knopka01" href="{{ route('magazinIndex') }}">Магазин</a>
+                @if (isAdmin())
+                    <a class="knopka01" href="{{ route('cardIndex') }}">Админка</a>
+                @endif
                 <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
-                    <span class="pick">200&#8381;</span>
+                    <span class="pick">{{ $user->balance }} &#8381;</span>
                 </a>
             </div>
 
@@ -23,40 +26,111 @@
             <input type="radio" name="odin" id="vkl3"/><label class="knopka01" for="vkl3">Колоды</label>
             <input type="radio" name="odin" id="vkl4"/><label class="knopka01" for="vkl4">Арена</label>
             <input type="radio" name="odin" id="vkl5"/><label class="knopka01" for="vkl5">Рейтинги</label>
+            <input type="radio" name="odin" id="vkl6"/><label class="knopka01" for="vkl6">Отзыв</label>
 
         <div class="middle">
             <main class="right-sidebar block">
-                sdsds
-            </main><!-- .content -->
-
-            <aside class="left-sidebar block">
-                Статистика:
+                За что даются очки:
                 <hr>
-                <ul>
-                    <li>Сыграно игр: {{ $user->count_battles }}</li>
-                    <li>Побед: {{ $user->count_wins }}</li>
-                    <li>Поражений: {{--{{ $user->countDefeat() }}--}}</li>
-                </ul>
+                <table>
+                    <tr>
+                        <td>За игру: </td>
+                        <td><span class="pick">10</span></td>
+                    </tr>
+                    <tr>
+                        <td>За победу: </td>
+                        <td><span class="pick">5</span></td>
+                    </tr>
+                    <tr>
+                        <td>За выполнение задания: </td>
+                        <td><span class="pick">10</span></td>
+                    </tr>
+                </table>
+                <hr>
+                <span class="pick">Внимание: </span>
+                <p>Что бы получить звание выше <span class="pick">сержанта</span>,
+                    плюс к соответствующему рейтингу необходим <span class="pick">офицерский взнос</span>
+                 (если на балансе есть соответствующая сумма - она <span class="pick">будет снята автоматически</span>)</p>
+            </main><!-- .content -->
+
+            <aside class="left-sidebar block">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Звание</td>
+                            <td>Рейтинг</td>
+                            <td>Взнос</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($ranks as $rank)
+                            <tr>
+                                <td>{{ $rank->name }}:</td>
+                                <td><span class="pick">{{ $rank->rating }}</span></td>
+                                <td>
+                                    @if($rank->price)
+                                        <span class="pick">+{{ $rank->price }} &#8381;</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </aside><!-- .left-sidebar -->
         </div><!-- .middle-->
 
         <div class="middle">
             <main class="right-sidebar block">
-                GGGGGGGGGGGGGGGGGGGG
-            </main><!-- .content -->
 
+            </main><!-- .content -->
             <aside class="left-sidebar block">
-                GGGGGGGGGGGGGGGGGGG
+
             </aside><!-- .left-sidebar -->
         </div><!-- .middle-->
 
         <div class="middle">
             <main class="right-sidebar block">
-                ZZZZZZZZZZZZZZZZ
+                <table>
+                    @foreach($cards as $entity)
+                        <tr>
+                            <td>
+                                {{ $entity->name }}
+                                <br>
+                                <span class="label label-danger">{{ $entity->attack }}</span>
+                                <span class="label label-success">{{ $entity->health }}</span>
+                                <span class="label label-warning">{{ $entity->energy }}</span>
+                                <span class="label label-default">{{ $entity->armor }}</span>
+                            </td>
+                            <td>
+                                @if ($entity->ability1)
+                                    {{ $entity->ability1->name }}
+                                @endif
+                            </td>
+                            <td>
+                                @if ($entity->ability2)
+                                    {{ $entity->ability2->name }}
+                                @endif
+                            </td>
+                            <td><img width="30" src="{{ $entity->avatar }}" alt=""></td>
+                            <td>
+                                @if ($entity->cardType)
+                                    {{ $entity->cardType->name }}
+                                @endif
+                            </td>
+                        @endforeach
+                </table>
             </main><!-- .content -->
 
             <aside class="left-sidebar block">
-                ZZZZZZZZZZZZZZZZZZZ
+                <table>
+                    @foreach($cardSets as $cardSet)
+                        <tr>
+                            <td><span class="pick">{{ $loop->iteration }}</span></td>
+                            <td>{{ $cardSet->name }}</td>
+                        </tr>
+                    @endforeach
+                </table>
             </aside><!-- .left-sidebar -->
         </div><!-- .middle-->
 
