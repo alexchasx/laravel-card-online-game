@@ -63,6 +63,20 @@ Route::group([
             ->name('raceForceDelete');
     });
 
+    Route::group(['prefix' => 'rank'], function() {
+        Route::get('index', 'RankController@index')->name('rankIndex');
+        Route::post('create', 'RankController@store')->name('rankStore');
+        Route::get('create', 'RankController@create')->name('rankCreate');
+        Route::get('update.{id}', 'RankController@edit')->name('rankEdit');
+        Route::any('update', 'RankController@update')->name('rankUpdate');
+        Route::delete('destroy.{rank}', 'RankController@destroy')
+            ->name('rankDelete');
+        Route::get('restore.{rank}', 'RankController@restore')
+            ->name('rankRestore');
+        Route::delete('force_destroy.{id}', 'RankController@forceDestroy')
+            ->name('rankForceDelete');
+    });
+
     Route::group(['prefix' => 'ability'], function() {
         Route::post('create', 'AbilityController@store')->name('abilityStore');
         Route::get('edit.{id}', 'AbilityController@edit')->name('abilityEdit');

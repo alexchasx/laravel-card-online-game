@@ -68,8 +68,12 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-button {
+button, a {
+    transition: .5s;
     cursor: pointer;
+}
+a {
+    color: #cb541e;
 }
 .wrapper {
     width: 950px;
@@ -90,7 +94,6 @@ button {
 .header-menu {
     float: left;
     position: relative;
-    width: 490px;
     padding: 5px;
     padding-left: 12px;
 }
@@ -188,10 +191,11 @@ td {
     user-select: none;
     -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg);
-
+    transition: .5s;
 }
 .knopka01:hover {
-    color: rgb(0, 0, 0);
+    background-color: #cb541e;
+    color: black;
     cursor: pointer;
 }
 .knopka01:active {
@@ -202,15 +206,16 @@ td {
     0 1px rgba(255, 255, 255, .08);
     color: rgb(128, 207, 214);
 }
+/*---------------------------------------------*/
 a.button11 {
     position: relative;
     z-index: 1;
     color: #7e93af;
     text-decoration: none;
-    padding: .25em .5em;
+    padding: .25em .8em;
 }
 a.button11:after {
-    content: "Пополнить";  /* здесь 6 букв */
+    content: "Пополнить";  /* здесь 9 букв */
     position: absolute;
     z-index: -1;
     top: -2px;
@@ -219,8 +224,8 @@ a.button11:after {
     width: calc(100% + 9*(1em*90/135) - 2px*2*2);  /* где 6*(1em*90/135), где 6 - это 6 букв, 90 - это font-size after, а 135 - это font-size родителя */
     text-align: right;
     color: #fff;
-    font-size: 90%;
-    padding: .2em .5em;
+    font-size: 100%;
+    padding: .2em .9em;
     border-radius: 5px;
     border: 2px solid #c61e40;
     -webkit-transform: skewX(-10deg);
@@ -235,6 +240,66 @@ a.button11:hover:after {
 }
 a.button11:active:after {
     background-image: linear-gradient(#c61e40, #d4536d);
+}
+/*---------------------------------------------*/
+
+.button {
+    transition: .5s;
+    width: 60px;
+    text-align: center;
+    background-color: #7e93af;
+    background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    background-image:    -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    background-image:     -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    background-image:      -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    background-image:         linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    border: none;
+    border-radius: .5em;
+    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
+    inset 0 2px 0 hsla(0,0%,100%,.1),
+    inset 0 1.2em 0 hsla(0,0%,100%,0.1),
+    inset 0 -.2em 0 hsla(0,0%,100%,.1),
+    inset 0 -.25em 0 hsla(0,0%,0%,.25),
+    0 .25em .25em hsla(0,0%,0%,.05);
+    color: #444;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: .5em 1.5em .75em;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 1px hsla(0,0%,100%,.25);
+    vertical-align: middle;
+    margin: 10px 10px 10px 0;
+}
+.button:hover {
+    outline: none;
+}
+.button:hover,
+.button:focus {
+    background-color: #cb541e;
+    color: black;
+}
+.button:active {
+    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
+    inset 0 2px 0 hsla(0,0%,100%,.1),
+    inset 0 1.2em 0 hsla(0,0%,100%,.1),
+    inset 0 0 0 3em hsla(0,0%,100%,.2),
+    inset 0 .25em .5em hsla(0,0%,0%,.05),
+    0 -1px 1px hsla(0,0%,0%,.1),
+    0 1px 1px hsla(0,0%,100%,.25);
+    margin-top: .25em;
+    outline: none;
+    padding-bottom: .5em;
+}
+.large {
+     font-size: 16px;
+ }
+.round {
+    border-radius: 1.25em;
 }
 
 /* Вкладки
@@ -253,7 +318,8 @@ a.button11:active:after {
 .tabs > input:nth-of-type(3):checked ~ div:nth-of-type(3),
 .tabs > input:nth-of-type(4):checked ~ div:nth-of-type(4),
 .tabs > input:nth-of-type(5):checked ~ div:nth-of-type(5),
-.tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6) {
+.tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6),
+.tabs > input:nth-of-type(7):checked ~ div:nth-of-type(7) {
     display: block;
 }
 

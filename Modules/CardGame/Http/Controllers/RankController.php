@@ -3,83 +3,55 @@
 namespace Modules\CardGame\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\BaseRequest;
+use HttpException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Modules\CardGame\Http\Entities\Rank;
 
 class RankController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * BaseController constructor.
      *
-     * @return \Illuminate\Http\Response
+     * @param Rank $model
+     */
+    public function __construct(Rank $model)
+    {
+        parent::__construct($model);
+    }
+
+    /**
+     * @return View
      */
     public function index()
     {
-        //
+        return view('cardgame::rank.index', [
+            'ranks' => $this->model->getAll('sort'),
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @param BaseRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function create()
+    public function update(BaseRequest $request)
     {
-        //
-    }
+        $ranks = [];
+        foreach ($request->all() as $field => $value) {
+            if (is_array($value)) {
+                foreach ($value as $id => $val) {
+                    $ranks[$id][$field] = $val;
+                }
+            }
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        foreach ($ranks as $rank) {
+            $this->model->updateModel($rank);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->back();
     }
 }

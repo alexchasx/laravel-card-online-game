@@ -54,6 +54,11 @@
                                    style="color: #0b16d6;"
                                    @endif
                                    href="{{route('achievementIndex')}}">Достижения</a></li>
+                            <li><a class="link"
+                                   @if ('rankIndex' == Route::current()->getName())
+                                   style="color: #0b16d6;"
+                                   @endif
+                                   href="{{route('rankIndex')}}">Ранги</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                         </ul>
