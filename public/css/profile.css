@@ -47,7 +47,7 @@ q:before, q:after {
 /* End of Eric Meyer's CSS Reset */
 
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -55,10 +55,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 }
 
 body {
-    font: 16px/20px Arial, sans-serif;
+    font: 18px/20px Calibri, Tahoma, Geneva, sans-serif;
     font-weight: 500;
     height: 100%;
-    background: #5b5960 url('../../images/profile/profile1.jpg') no-repeat top center;
+    background: #121924 url('../../images/profile/profile1.jpg') no-repeat;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -67,17 +67,14 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding-top: 30px;
 }
 button {
     cursor: pointer;
 }
 .wrapper {
-    width: 980px;
+    width: 950px;
     margin: 0 auto;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
+    min-height: 580px;
 }
 .pick {
     color: #c1e2b3;
@@ -86,14 +83,22 @@ button {
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
-    height: 100px;
+    height: 80px;
+    padding-top: 8px;
+    margin-bottom: -20px;
 }
-
+.header-menu {
+    float: left;
+    position: relative;
+    width: 490px;
+    padding: 5px;
+    padding-left: 12px;
+}
 /* Middle
 -----------------------------------------------------------------------------*/
 .middle {
+    z-index: -5;
     width: 100%;
-    padding: 0 0 100px;
     position: relative;
 }
 
@@ -104,39 +109,32 @@ button {
 }
 
 .right-sidebar {
-    width: 630px;
+    width: 615px;
     float: right;
-    overflow: hidden;
-    margin-right: 5px;
-    min-height: 400px;
 }
-
-.block {
+.left-sidebar {
+    width: 285px;
+    position: relative;
+}
+.sidebar {
     background: rgba(18, 17, 19, 0.77);
     border: solid transparent 1px;
     border-radius: 5px;
     color: #7f93af;
     padding: 10px;
-}
-
-/* Left Sidebar
------------------------------------------------------------------------------*/
-.left-sidebar {
-    width: 285px;
-    min-height: 400px;
-    position: relative;
+    min-height: 420px;
 }
 
 /* Footer
 -----------------------------------------------------------------------------*/
-.footer {
-    margin: -100px auto 0;
-    min-width: 760px;
-    max-width: 1020px;
-    height: 100px;
-    background: #BFF08E;
-    position: relative;
-}
+/*.footer {*/
+    /*margin: -100px auto 0;*/
+    /*min-width: 760px;*/
+    /*max-width: 1020px;*/
+    /*height: 100px;*/
+    /*background: #BFF08E;*/
+    /*position: relative;*/
+/*}*/
 
 /* Avatar
 -----------------------------------------------------------------------------*/
@@ -155,24 +153,22 @@ button {
     border-radius: 5px;
     color: #7e93af;
     margin-left: 10px;
+    padding-left: 10px;
 }
+
 table {
-    border-spacing: 10px 2px;
+    border-collapse: collapse;
 }
 table>thead>tr>td {
     border-bottom: solid #fffacd 2px;
 }
+td {
+    line-height: 9px;
+    padding: 7px 10px 7px 0;
+}
 
 /* Кнопки
 -----------------------------------------------------------------------------*/
-.header-menu {
-    float: right;
-    position: relative;
-    width: 480px;
-    padding: 10px;
-    height: 80px;
-}
-
 .knopka01 {
     margin: 5px;
     display: inline-block;
@@ -194,12 +190,10 @@ table>thead>tr>td {
     transform: skewX(-10deg);
 
 }
-
 .knopka01:hover {
     color: rgb(0, 0, 0);
     cursor: pointer;
 }
-
 .knopka01:active {
     padding-bottom: 1px;
     box-shadow: inset rgba(0, 0, 0, 1) 0 1px 3px,
@@ -208,7 +202,6 @@ table>thead>tr>td {
     0 1px rgba(255, 255, 255, .08);
     color: rgb(128, 207, 214);
 }
-
 a.button11 {
     position: relative;
     z-index: 1;
@@ -262,7 +255,6 @@ a.button11:active:after {
 .tabs > input:nth-of-type(5):checked ~ div:nth-of-type(5),
 .tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6) {
     display: block;
-    padding: 5px;
 }
 
 
