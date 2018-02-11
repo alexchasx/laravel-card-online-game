@@ -446,8 +446,10 @@ a.button11:active:after {
 /* Колоды
 ------------------------------------------------------------------*/
 .card-container {
-    border: solid #a5a5a5 3px;
-    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: solid #4343ff 3px;
+    border-radius: 6px;
     width: 100px;
     height: 140px;
     float: left;
@@ -456,50 +458,80 @@ a.button11:active:after {
     padding: 0;
 }
 .card {
+    position: relative;
     width: 100px;
-    height: 100px;
+    height: 120px;
 }
 .card-name {
-     width: 100px;
-     height: 20px;
-     text-align: center;
-     background: #ff963f;
-     color: #17232f;
+    font-family: Andalus;
+    line-height: 16px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    background: #4343ff;
+    color: #0c0d18;
  }
 .card-type {
-
+    left: 3px;
+    font-size: 12px;
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    text-align: left;
+    color: #ffffff;
+    bottom: 0;
 }
 .property {
-    transform: rotate(45grad);
+    top: 18px;
+    left: 0;
+    transform: rotate(48grad);
     border: solid black 1px;
-    line-height: 15px;
+    line-height: 16px;
     text-align: center;
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background: transparent;
     color: #000000;
     font-weight: 800;
     font-size: 14px;
 }
 .text {
+    position: relative;
     transform: rotate(-45grad);
 }
-.attack {
-    background: rgb(140, 1, 4);
-    right: 0;
-}
+/*--------------------*/
 .energy {
+    z-index: 5;
     background: rgb(220, 178, 24);
-    left: 0;
+}
+.attack {
+    z-index: 4;
+    background: rgb(193, 1, 4);
+    top: 36px;
 }
 .health {
+    z-index: 3;
     background: #0e7d26;
-    bottom: 0;
-    left: 0;
+    top: 54px;
 }
 .armor {
-    background: #555555;
-    right: 0;
-    bottom: 0;
+    z-index: 2;
+    background: #3436c2;
+    top: 72px;
+}
+.type {
+    font-size: 16px;
+    top: 102px;
+    z-index: 1;
+    background: #7e93af;
+}
+/*--------------------*/
+.technique{
+    border: solid #000000 3px;
+}
+.event {
+    border: solid #af2698 3px;
 }

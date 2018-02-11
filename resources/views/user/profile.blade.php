@@ -194,13 +194,27 @@
                         <div class="card-container">
                             {{--@if ($card->avatar)--}}
                             <a href="#">
-                                <div class="card-name">dfdffdff</div>
+                                <div class="card-name">
+                                    {{ $card->name }}
+                                </div>
+                                <div class="property type">
+                                    <div class="text">
+                                        @if ($card->cardType->name === 'Техника') &#10022;
+                                        @elseif ($card->cardType->name === 'Событие') &#10042;
+                                        @else &#9829;
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="property energy"><div class="text">12</div></div>
-                                <div class="property attack">1</div>
-                                <div class="property armor">12</div>
-                                <div class="property health">1</div>
+                                <div class="property attack"><div class="text">12</div></div>
+                                <div class="property armor"><div class="text">12</div></div>
+                                <div class="property health"><div class="text">12</div></div>
                                 <img class="card" src="images/profile/1.jpg" alt="">
-                                <div class="card-type">dfdffdff</div>
+                                <div class="card-type">
+                                    @if ($card->ability1)
+                                        {{ $card->ability1->name }}
+                                    @endif
+                                </div>
                             </a>
                             {{--@else--}}
                                 {{--<a href="#">--}}
