@@ -77,6 +77,7 @@ button, a {
     cursor: pointer;
 }
 a {
+    text-decoration: none;
     color: #cb541e;
 }
 .wrapper {
@@ -98,8 +99,8 @@ a {
 .header-menu {
     float: left;
     position: relative;
-    padding: 5px;
-    padding-left: 12px;
+    padding: 5px 5px 5px 12px;
+    width: 650px;
 }
 /* Middle
 -----------------------------------------------------------------------------*/
@@ -226,19 +227,19 @@ a.button11:after {
     z-index: -1;
     top: -2px;
     bottom: -2px;
-    left: -2px;
-    width: calc(100% + 9*(1em*90/135) - 2px*2*2);  /* где 6*(1em*90/135), где 6 - это 6 букв, 90 - это font-size after, а 135 - это font-size родителя */
+    left: 2px;
+    width: calc(100% + 7*(1em*90/140) - 2px*2*2);  /* где 6*(1em*90/135), где 6 - это 6 букв, 90 - это font-size after, а 135 - это font-size родителя */
     text-align: right;
     color: #fff;
     font-size: 100%;
-    padding: .2em .9em;
+    padding: .2em .5em;
     border-radius: 5px;
     border: 2px solid #cb541e;
     -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg);
     background: linear-gradient(rgba(203, 84, 30, 0.55), #cb541e) no-repeat 100% 0;
-    background-size: calc(9*(1em*90/135) + .5em) 100%;
-    box-shadow: inset calc(-9*(1em*90/135) - .5em) 0 rgba(255,255,255,0);
+    background-size: calc(8*(1em*90/135) + .5em) 100%;
+    box-shadow: inset calc(-8*(1em*90/135) + .5em) 0 rgba(255,255,255,0);
     transition: .3s;
 }
 a.button11:hover:after {
@@ -305,7 +306,7 @@ a.button11:active:after {
     border-radius: 1.25em;
 }
 .width70px {
-    width: 70px;
+    width: 60px;
 }
 .width232px {
     width: 232px;
@@ -313,6 +314,15 @@ a.button11:active:after {
 .width200px {
     margin-left: 15px;
     width: 200px;
+}
+.bg {
+    background-color: #0E2231;
+}
+.btn-admin {
+    background-color: #0E2231;
+    top: 40px;
+    right: 520px;
+    position: absolute;
 }
 
 /* Вкладки
@@ -431,4 +441,65 @@ a.button11:active:after {
     left: 2px;
     background: #ff6c27;
     border-radius: 2px;
+}
+
+/* Колоды
+------------------------------------------------------------------*/
+.card-container {
+    border: solid #a5a5a5 3px;
+    border-radius: 8px;
+    width: 100px;
+    height: 140px;
+    float: left;
+    position: relative;
+    margin: 5px;
+    padding: 0;
+}
+.card {
+    width: 100px;
+    height: 100px;
+}
+.card-name {
+     width: 100px;
+     height: 20px;
+     text-align: center;
+     background: #ff963f;
+     color: #17232f;
+ }
+.card-type {
+
+}
+.property {
+    transform: rotate(45grad);
+    border: solid black 1px;
+    line-height: 15px;
+    text-align: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    color: #000000;
+    font-weight: 800;
+    font-size: 14px;
+}
+.text {
+    transform: rotate(-45grad);
+}
+.attack {
+    background: rgb(140, 1, 4);
+    right: 0;
+}
+.energy {
+    background: rgb(220, 178, 24);
+    left: 0;
+}
+.health {
+    background: #0e7d26;
+    bottom: 0;
+    left: 0;
+}
+.armor {
+    background: #555555;
+    right: 0;
+    bottom: 0;
 }

@@ -6,7 +6,7 @@
 
         <div class="header">
             <div class="tooltip">
-                <img class="avatar" src="{{ $user->avatar->avatar }}" alt="аватар">
+                <img class="avatar" src="images/profile/1.jpg" alt="аватар">
                 <span class="custom info hidden">
                     Сменить аватар можно в магазине (платно!)
                 </span>
@@ -24,12 +24,13 @@
                 <a class="button width70px large round" href="{{ route('magazinIndex') }}">Магазин</a>
 
                 @if (isAdmin())
-                    <a class="button width70px large round" href="{{ route('cardIndex') }}">Админка</a>
+                    <a class="button btn-admin" href="{{ route('cardIndex') }}">Админка</a>
                 @endif
 
                 <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
                     <span class="pick">{{ $user->balance }} &#8381;</span>
                 </a>
+                <a class="button width70px large round bg" style="margin-left: 120px;" href="{{ route('logout') }}">Выйти</a>
             </div>
         </div><!-- .header-->
         <br>
@@ -38,10 +39,10 @@
             <input type="radio" name="odin" id="vkl1"/>
             <label class="knopka01" for="vkl1">Профиль</label>
 
-            <input type="radio" name="odin" checked="checked" id="vkl2"/>
+            <input type="radio" name="odin" id="vkl2"/>
             <label class="knopka01" for="vkl2">Игра</label>
 
-            <input type="radio" name="odin" id="vkl3"/>
+            <input type="radio" name="odin" checked="checked" id="vkl3"/>
             <label class="knopka01" for="vkl3">Колоды</label>
 
             <input type="radio" name="odin" id="vkl4"/>
@@ -186,38 +187,57 @@
                 </div> 
             </div> 
 
-            {{--3--}}
+            {{--3 Колоды--}}
             <div class="middle">
                 <div class="right-sidebar sidebar">
-                    <table>
-                        @foreach($cards as $entity)
-                            <tr>
-                                <td>
-                                    {{ $entity->name }}
-                                    <br>
-                                    <span class="label label-danger">{{ $entity->attack }}</span>
-                                    <span class="label label-success">{{ $entity->health }}</span>
-                                    <span class="label label-warning">{{ $entity->energy }}</span>
-                                    <span class="label label-default">{{ $entity->armor }}</span>
-                                </td>
-                                <td>
-                                    @if ($entity->ability1)
-                                        {{ $entity->ability1->name }}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($entity->ability2)
-                                        {{ $entity->ability2->name }}
-                                    @endif
-                                </td>
-                                <td><img width="30" src="{{ $entity->avatar }}" alt=""></td>
-                                <td>
-                                    @if ($entity->cardType)
-                                        {{ $entity->cardType->name }}
-                                    @endif
-                                </td>
-                        @endforeach
-                    </table>
+                    @foreach($cards as $card)
+                        <div class="card-container">
+                            {{--@if ($card->avatar)--}}
+                            <a href="#">
+                                <div class="card-name">dfdffdff</div>
+                                <div class="property energy"><div class="text">12</div></div>
+                                <div class="property attack">1</div>
+                                <div class="property armor">12</div>
+                                <div class="property health">1</div>
+                                <img class="card" src="images/profile/1.jpg" alt="">
+                                <div class="card-type">dfdffdff</div>
+                            </a>
+                            {{--@else--}}
+                                {{--<a href="#">--}}
+                                    {{--<img class="card" src="images/profile/1.jpg" alt="">--}}
+                                {{--</a>--}}
+                            {{--@endif--}}
+                        </div>
+                    @endforeach
+                    {{--<table>--}}
+                        {{--@foreach($cards as $entity)--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--{{ $entity->name }}--}}
+                                    {{--<br>--}}
+                                    {{--<span class="label label-danger">{{ $entity->attack }}</span>--}}
+                                    {{--<span class="label label-success">{{ $entity->health }}</span>--}}
+                                    {{--<span class="label label-warning">{{ $entity->energy }}</span>--}}
+                                    {{--<span class="label label-default">{{ $entity->armor }}</span>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--@if ($entity->ability1)--}}
+                                        {{--{{ $entity->ability1->name }}--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--@if ($entity->ability2)--}}
+                                        {{--{{ $entity->ability2->name }}--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
+                                {{--<td><img width="30" src="{{ $entity->avatar }}" alt=""></td>--}}
+                                {{--<td>--}}
+                                    {{--@if ($entity->cardType)--}}
+                                        {{--{{ $entity->cardType->name }}--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
+                        {{--@endforeach--}}
+                    {{--</table>--}}
                 </div> 
 
                 <div class="left-sidebar sidebar">
