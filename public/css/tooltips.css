@@ -1,11 +1,15 @@
 
-.tooltip span {
-    display: none;
+.hidden {
+    color: rgba(0, 0, 0, 0.78);
+    font-weight: 900;
+    left: 2000px;
     position: absolute;
     line-height: 100%;
 }
 
-.tooltip:hover span {
+.tooltip:hover .hidden {
+    transform: translateX(50px);
+    transition: .5s;
     display: block;
     border-radius: 5px 5px;
     -moz-border-radius: 5px;
@@ -15,7 +19,7 @@
     -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
     font-family: Calibri, Tahoma, Geneva, sans-serif;
     position: absolute;
-    left: 1em;
+    left: 2em;
     top: 2em;
     z-index: 99;
     margin-left: 0;

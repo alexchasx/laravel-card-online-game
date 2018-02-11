@@ -4,10 +4,10 @@
 
     <div class="wrapper">
 
-        <header class="header">
+        <div class="header">
             <div class="tooltip">
                 <img class="avatar" src="{{ $user->avatar->avatar }}" alt="аватар">
-                <span class="custom info">
+                <span class="custom info hidden">
                     Сменить аватар можно в магазине (платно!)
                 </span>
             </div>
@@ -15,47 +15,52 @@
             @include('layouts.sub_nick')
 
             <div class="header-menu">
-                <a  href="{{--{{ route('magazinIndex') }}--}}" class="tooltip button large round tooltip">
+                <a  href="#" class="button width70px large round tooltip">
                     Отзыв
-                    <span class="custom info">
+                    <span class="custom info hidden">
                         Здесь можно отправить письмо разработчику игры с предложением или отзывом
                     </span>
                 </a>
-                <a class="button large round" href="{{ route('magazinIndex') }}">Магазин</a>
+                <a class="button width70px large round" href="{{ route('magazinIndex') }}">Магазин</a>
+
+                @if (isAdmin())
+                    <a class="button width70px large round" href="{{ route('cardIndex') }}">Админка</a>
+                @endif
+
                 <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
                     <span class="pick">{{ $user->balance }} &#8381;</span>
                 </a>
             </div>
-        </header><!-- .header-->
+        </div><!-- .header-->
         <br>
 
         <div class="tabs">
-            <input type="radio" name="odin" checked="checked" id="vkl1"/>
+            <input type="radio" name="odin" id="vkl1"/>
             <label class="knopka01" for="vkl1">Профиль</label>
 
-            <input type="radio" name="odin" id="vkl2"/>
-            <label class="knopka01" for="vkl2">Арена</label>
+            <input type="radio" name="odin" checked="checked" id="vkl2"/>
+            <label class="knopka01" for="vkl2">Игра</label>
 
             <input type="radio" name="odin" id="vkl3"/>
             <label class="knopka01" for="vkl3">Колоды</label>
 
             <input type="radio" name="odin" id="vkl4"/>
-            <label class="knopka01" for="vkl4">Рейтинги</label>
+            <label class="knopka01" for="vkl4">Награды</label>
 
             <input type="radio" name="odin" id="vkl5"/>
-            <label class="knopka01" for="vkl5">Ранги</label>
+            <label class="knopka01" for="vkl5">Кланы</label>
 
             <input type="radio" name="odin" id="vkl6"/>
-            <label class="knopka01" for="vkl6">Достижения</label>
+            <label class="knopka01" for="vkl6">Рейтинги</label>
 
             <input type="radio" name="odin" id="vkl7"/>
             <label class="knopka01 tooltip" for="vkl7">
-                Задания
+                ---
             </label>
 
-            {{--1--}}
+            {{--1 (Профиль)--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">
+                <div class="right-sidebar sidebar">
                     <table>
                         <tr>
                             <td>Сыграно игр:</td>
@@ -70,12 +75,12 @@
                             <td><span class="pick">{{--{{ $user->countDefeat() }}--}}</span></td>
                         </tr>
                     </table>
-                </main><!-- .content -->
-                <aside class="left-sidebar sidebar">
+                </div> 
+                <div class="left-sidebar sidebar">
                     <table>
                         <tr>
                             <td>
-                                <a href="{{ route('magazinIndex') }}">
+                                <a class="button width70px" href="{{ route('magazinIndex') }}">
                                     Сменить имя
                                 </a>
                             </td>
@@ -83,28 +88,107 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="{{ route('magazinIndex') }}">
+                                <a class="button width70px" href="{{ route('magazinIndex') }}">
                                     Сменить аватар
                                 </a>
                             </td>
                             <td><span class="pick">40 &#8381;</span></td>
                         </tr>
                     </table>
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                </div>
+            </div>
 
-            {{--2--}}
+            {{--2 (Игра)--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">
-                </main><!-- .content -->
 
-                <aside class="left-sidebar sidebar">
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                <div class="left-sidebar sidebar">
+                    <h3>Игры с ботами:</h3>
+                    <hr>
+                    <a class="button width200px" href="#">
+                        Обычный бой
+                    </a>
+                    <a class="button width200px" href="#">
+                        Абордаж крейсера
+                    </a>
+                    <a class="button width200px" href="#">
+                        На выживание
+                    </a>
+                    <a class="button width200px" href="#">
+                        Осада крепости
+                    </a>
+                    <a class="button width200px" href="#">
+                        Оборона станции
+                    </a>
+                    <a class="button width200px" href="#">
+                        Эскорт транспорта
+                    </a>
+                </div> 
+
+                <div class="left-sidebar sidebar">
+                    <h3>Создать вызов:</h3>
+                    <hr>
+
+                    <form action="#" method="post">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="tooltip">
+                                        <input class="checkbox" type="checkbox" name="checkbox-test">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="label">Только игроки моего ранга</span>
+                                        <span class="custom critical hidden">
+                                            Не рекомендуется. Подбор будет долгим.
+                                        </span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <label class="tooltip">
+                            <a type="submit" class="button">Создать вызов</a>
+                            <span class="custom info hidden">
+                                Создать запись в списке "Вызовы (реальных игроков)" (справа).
+                                Эти записи видны всем игрокам.
+                            </span>
+                        </label>
+                    {{ csrf_field() }}
+                    </form>
+                </div> 
+
+                <div class="left-sidebar sidebar">
+                    <h3>Вызовы (реальных игроков):</h3>
+                    <hr>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Имя</td>
+                            <td>Ранг</td>
+                            <td>Кнопка</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->rank->name }}</td>
+                            {{--@if (isOwner($user->id))--}}
+                                {{--<td>--}}
+                                    {{--<a href="#" class="button">Отмена</a>--}}
+                                {{--</td>--}}
+                            {{--@else--}}
+                                <td>
+                                    <a href="#" class="button">В бой</a>
+                                </td>
+                            {{--@endif--}}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div> 
+            </div> 
 
             {{--3--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">
+                <div class="right-sidebar sidebar">
                     <table>
                         @foreach($cards as $entity)
                             <tr>
@@ -134,9 +218,9 @@
                                 </td>
                         @endforeach
                     </table>
-                </main><!-- .content -->
+                </div> 
 
-                <aside class="left-sidebar sidebar">
+                <div class="left-sidebar sidebar">
                     <table>
                         @foreach($cardSets as $cardSet)
                             <tr>
@@ -145,21 +229,21 @@
                             </tr>
                         @endforeach
                     </table>
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                </div> 
+            </div> 
 
             {{--4--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">
-                </main><!-- .content -->
+                <div class="right-sidebar sidebar">
+                </div> 
 
-                <aside class="left-sidebar sidebar">
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                <div class="left-sidebar sidebar">
+                </div> 
+            </div> 
 
             {{--5--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">
+                <div class="right-sidebar sidebar">
                     За что даются очки рейтинга:
                     <hr>
                     <table>
@@ -183,9 +267,9 @@
                         плюс к соответствующему рейтингу необходим <span class="pick">офицерский взнос</span>
                         (если на балансе есть соответствующая сумма - она <span class="pick">будет снята автоматически</span>)
                     </p>
-                </main><!-- .content -->
+                </div> 
 
-                <aside class="left-sidebar sidebar">
+                <div class="left-sidebar sidebar">
                     <table>
                         <thead>
                         <tr>
@@ -209,26 +293,26 @@
                         @endforeach
                         </tbody>
                     </table>
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                </div> 
+            </div> 
 
             {{--6--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">ыв
-                </main><!-- .content -->
+                <div class="right-sidebar sidebar">ыв
+                </div> 
 
-                <aside class="left-sidebar sidebar">ыв
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                <div class="left-sidebar sidebar">ыв
+                </div> 
+            </div> 
 
             {{--7--}}
             <div class="middle">
-                <main class="right-sidebar sidebar">фыфы
-                </main><!-- .content -->
+                <div class="right-sidebar sidebar">фыфы
+                </div> 
 
-                <aside class="left-sidebar sidebar">фыфы
-                </aside><!-- .left-sidebar -->
-            </div><!-- .middle-->
+                <div class="left-sidebar sidebar">фыфы
+                </div> 
+            </div> 
 
         </div>
     </div><!-- .wrapper -->

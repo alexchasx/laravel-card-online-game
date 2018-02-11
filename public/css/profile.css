@@ -54,6 +54,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     display: block;
 }
 
+h3 {
+    font-size: 110%;
+}
+
 body {
     font: 18px/20px Calibri, Tahoma, Geneva, sans-serif;
     font-weight: 500;
@@ -69,7 +73,7 @@ body {
     background-size: cover;
 }
 button, a {
-    transition: .5s;
+    transition: .3s;
     cursor: pointer;
 }
 a {
@@ -116,6 +120,8 @@ a {
     float: right;
 }
 .left-sidebar {
+    float: left;
+    margin-right: 5px;
     width: 285px;
     position: relative;
 }
@@ -204,7 +210,7 @@ td {
     inset rgba(0, 0, 0, .6) 0 -2px 5px,
     inset rgba(252, 255, 255, .7) 0 2px 5px,
     0 1px rgba(255, 255, 255, .08);
-    color: rgb(128, 207, 214);
+    background-color: #cb541e;
 }
 /*---------------------------------------------*/
 a.button11 {
@@ -227,10 +233,10 @@ a.button11:after {
     font-size: 100%;
     padding: .2em .9em;
     border-radius: 5px;
-    border: 2px solid #c61e40;
+    border: 2px solid #cb541e;
     -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg);
-    background: linear-gradient(#d4536d, #c61e40) no-repeat 100% 0;
+    background: linear-gradient(rgba(203, 84, 30, 0.55), #cb541e) no-repeat 100% 0;
     background-size: calc(9*(1em*90/135) + .5em) 100%;
     box-shadow: inset calc(-9*(1em*90/135) - .5em) 0 rgba(255,255,255,0);
     transition: .3s;
@@ -239,15 +245,13 @@ a.button11:hover:after {
     box-shadow: inset calc(-9*(1em*90/135) - .5em) 0 rgba(255,255,255,.2);
 }
 a.button11:active:after {
-    background-image: linear-gradient(#c61e40, #d4536d);
+    background-image: linear-gradient(#cb541e, rgba(203, 84, 30, 0.55));
 }
 /*---------------------------------------------*/
 
 .button {
     transition: .5s;
-    width: 60px;
     text-align: center;
-    background-color: #7e93af;
     background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
     background-image:    -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
     background-image:     -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
@@ -261,19 +265,18 @@ a.button11:active:after {
     inset 0 -.2em 0 hsla(0,0%,100%,.1),
     inset 0 -.25em 0 hsla(0,0%,0%,.25),
     0 .25em .25em hsla(0,0%,0%,.05);
-    color: #444;
+    color: #d2d2d2;
     cursor: pointer;
     display: inline-block;
     font-family: sans-serif;
     font-size: 1em;
     font-weight: bold;
-    line-height: 1.5;
-    padding: .5em 1.5em .75em;
+    padding: .5em 1.5em .5em;
     position: relative;
     text-decoration: none;
     text-shadow: 0 1px 1px hsla(0,0%,100%,.25);
     vertical-align: middle;
-    margin: 10px 10px 10px 0;
+    margin: 5px 10px 5px 0;
 }
 .button:hover {
     outline: none;
@@ -301,6 +304,16 @@ a.button11:active:after {
 .round {
     border-radius: 1.25em;
 }
+.width70px {
+    width: 70px;
+}
+.width232px {
+    width: 232px;
+}
+.width200px {
+    margin-left: 15px;
+    width: 200px;
+}
 
 /* Вкладки
 --------------------------------------------------------------------------*/
@@ -311,7 +324,7 @@ a.button11:active:after {
 
 }
 .tabs input[type="radio"]:checked + label {
-    border-bottom: 3px solid #bf103f;
+    background-color: #cb541e;
 }
 .tabs > input:nth-of-type(1):checked ~ div:nth-of-type(1),
 .tabs > input:nth-of-type(2):checked ~ div:nth-of-type(2),
@@ -321,6 +334,7 @@ a.button11:active:after {
 .tabs > input:nth-of-type(6):checked ~ div:nth-of-type(6),
 .tabs > input:nth-of-type(7):checked ~ div:nth-of-type(7) {
     display: block;
+    z-index: 2;
 }
 
 
@@ -388,4 +402,33 @@ a.button11:active:after {
     color: #ff6c27;
     background-color: #c1e2b3;
     height: 50px;
+}
+
+/* Checkbox
+---------------------------------------------------------*/
+.checkbox {
+    display: none;
+}
+.checkbox-custom {
+    cursor: pointer;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+}
+.checkbox-custom, .label {
+    display: inline-block;
+    vertical-align: middle;
+}
+.checkbox:checked + .checkbox-custom::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    background: #ff6c27;
+    border-radius: 2px;
 }

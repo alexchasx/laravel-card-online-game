@@ -22,3 +22,15 @@ if (!function_exists('isUser')) {
         return User::ROLE_USER === Auth::user()->role->name;
     }
 }
+
+if (!function_exists('isOwner')) {
+    /**
+     * @param $id
+     *
+     * @return bool
+     */
+    function isOwner($id)
+    {
+        return $id === Auth::id();
+    }
+}
