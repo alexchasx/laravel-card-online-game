@@ -136,12 +136,19 @@
                             <tr>
                                 <td>
                                     <label class="tooltip">
-                                        <input class="checkbox" type="checkbox" name="checkbox-test">
+                                        <input class="checkbox" type="checkbox" name="check_rank">
                                         <span class="checkbox-custom"></span>
                                         <span class="label">Только игроки моего ранга</span>
                                         <span class="custom critical hidden">
                                             Не рекомендуется. Подбор будет долгим.
                                         </span>
+                                    </label>
+                                    <br>
+                                    <br>
+                                    <label>
+                                        <input class="checkbox" type="checkbox" name="seen_rank">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="label">Скрыть мой ранг</span>
                                     </label>
                                 </td>
                             </tr>
@@ -172,15 +179,15 @@
 
                         <tbody>
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->rank->name }}</td>
+                            <td><span class="pick">{{ $user->name }}</span></td>
+                            <td><span class="{{ $user->rank->class_css }}">{{ $user->rank->name }}</span></td>
                             {{--@if (isOwner($user->id))--}}
                                 {{--<td>--}}
                                     {{--<a href="#" class="button">Отмена</a>--}}
                                 {{--</td>--}}
                             {{--@else--}}
                                 <td>
-                                    <a href="#" id="miganie" class="button">В бой</a>
+                                    <a href="#" id="miganie" class="button">Принять</a>
                                 </td>
                             {{--@endif--}}
                         </tr>
@@ -315,17 +322,7 @@
                         <tbody>
                         @foreach($ranks as $rank)
                             <tr>
-                                <td><span class="
-                                @if ($loop->iteration < 7)
-                                    grin
-                                    @elseif ($loop->iteration < 13 && $loop->iteration > 6)
-                                    blue
-                                    @elseif ($loop->iteration < 19 && $loop->iteration > 12)
-                                    violet
-                                    @elseif ($loop->iteration > 18)
-                                    orange
-                                @endif
-                                ">{{ $rank->name }}</span></td>
+                                <td><span class="{{ $rank->class_css }}">{{ $rank->name }}</span></td>
                                 <td><span class="pick">{{ $rank->rating }}</span></td>
                                 <td>
                                     @if($rank->price)

@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td>Звание: </td>
-            <td><span class="pick">{{ $user->rank->name }}</span></td>
+            <td><span class="{{ $user->rank->class_css }}">{{ $user->rank->name }}</span></td>
         </tr>
         <tr>
             <td>Рейтинг: </td>

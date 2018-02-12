@@ -1,4 +1,4 @@
-@extends('layouts.layout_simple')
+@extends('DELETE.layout_simple')
 
 @section('content-title', '404 Error Page')
 @section('content-subtitle', '')

@@ -7,6 +7,7 @@
                 <td></td>
                 <td>ID</td>
                 <td>Сорт.</td>
+                <td>class_css</td>
                 <td style="min-width: 100px;">Наименование</td>
                 <td>Рейтинг</td>
                 <td>Цена</td>
@@ -27,6 +28,10 @@
                         <td width="70">
                             <input name="sort[{{ $rank->id }}]" type="text" class="form-control"
                                    id="sort" value="{{ $rank->sort }}">
+                        </td>
+                        <td width="100">
+                            <input name="class_css[{{ $rank->id }}]" type="text" class="form-control"
+                                   id="class_css" value="{{ $rank->class_css }}">
                         </td>
                         <td width="150">
                             <input name="name[{{ $rank->id }}]" type="text" class="form-control"

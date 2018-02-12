@@ -18,6 +18,7 @@ class CreateTableRank extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('sort')->nullable();
+            $table->string('class_css')->default('green');
             $table->string('avatar')->nullable();
             $table->string('border')->nullable();
             $table->tinyInteger('seen')->default(1);
