@@ -2,13 +2,12 @@
 .hidden {
     color: rgba(0, 0, 0, 0.78);
     font-weight: 900;
-    left: 2000px;
+    display: none;
     position: absolute;
     line-height: 100%;
 }
 
 .tooltip:hover .hidden {
-    transform: translateX(50px);
     transition: .5s;
     display: block;
     border-radius: 5px 5px;
@@ -20,7 +19,7 @@
     font-family: Calibri, Tahoma, Geneva, sans-serif;
     position: absolute;
     left: 2em;
-    top: 2em;
+    top: 0;
     z-index: 99;
     margin-left: 0;
     width: 250px;

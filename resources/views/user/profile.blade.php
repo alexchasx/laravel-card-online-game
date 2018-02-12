@@ -15,22 +15,24 @@
             @include('layouts.sub_nick')
 
             <div class="header-menu">
+                <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
+                    <span class="pick">{{ $user->balance }} &#8381;</span>
+                </a>
+
+                <a class="button width70px large round magazin" href="{{ route('magazinIndex') }}">Магазин</a>
+
                 <a  href="#" class="button width70px large round tooltip">
                     Отзыв
                     <span class="custom info hidden">
                         Здесь можно отправить письмо разработчику игры с предложением или отзывом
                     </span>
                 </a>
-                <a class="button width70px large round" href="{{ route('magazinIndex') }}">Магазин</a>
 
                 @if (isAdmin())
                     <a class="button btn-admin" href="{{ route('cardIndex') }}">Админка</a>
                 @endif
 
-                <a class="button11" href="{{--{{ route('magazinIndex') }}--}}">Баланс:
-                    <span class="pick">{{ $user->balance }} &#8381;</span>
-                </a>
-                <a class="button width70px large round bg" style="margin-left: 120px;" href="{{ route('logout') }}">Выйти</a>
+                <a class="button width70px large round bg" href="{{ route('logout') }}">Выйти</a>
             </div>
         </div><!-- .header-->
         <br>
@@ -39,20 +41,20 @@
             <input type="radio" name="odin" id="vkl1"/>
             <label class="knopka01" for="vkl1">Профиль</label>
 
-            <input type="radio" name="odin" id="vkl2"/>
+            <input type="radio" name="odin" checked="checked" id="vkl2"/>
             <label class="knopka01" for="vkl2">Игра</label>
 
-            <input type="radio" name="odin" checked="checked" id="vkl3"/>
+            <input type="radio" name="odin" id="vkl3"/>
             <label class="knopka01" for="vkl3">Колоды</label>
 
             <input type="radio" name="odin" id="vkl4"/>
             <label class="knopka01" for="vkl4">Награды</label>
 
             <input type="radio" name="odin" id="vkl5"/>
-            <label class="knopka01" for="vkl5">Кланы</label>
+            <label class="knopka01 no" for="vkl5">Кланы</label>
 
             <input type="radio" name="odin" id="vkl6"/>
-            <label class="knopka01" for="vkl6">Рейтинги</label>
+            <label class="knopka01 no" for="vkl6">Рейтинги</label>
 
             <input type="radio" name="odin" id="vkl7"/>
             <label class="knopka01 tooltip" for="vkl7">
@@ -108,19 +110,19 @@
                     <a class="button width200px" href="#">
                         Обычный бой
                     </a>
-                    <a class="button width200px" href="#">
+                    <a class="button width200px no no1" href="#">
                         Абордаж крейсера
                     </a>
-                    <a class="button width200px" href="#">
+                    <a class="button width200px no no1" href="#">
                         На выживание
                     </a>
-                    <a class="button width200px" href="#">
+                    <a class="button width200px no no1" href="#">
                         Осада крепости
                     </a>
-                    <a class="button width200px" href="#">
+                    <a class="button width200px no no1" href="#">
                         Оборона станции
                     </a>
-                    <a class="button width200px" href="#">
+                    <a class="button width200px no no1" href="#">
                         Эскорт транспорта
                     </a>
                 </div> 
@@ -178,7 +180,7 @@
                                 {{--</td>--}}
                             {{--@else--}}
                                 <td>
-                                    <a href="#" class="button">В бой</a>
+                                    <a href="#" id="miganie" class="button">В бой</a>
                                 </td>
                             {{--@endif--}}
                         </tr>
@@ -194,27 +196,33 @@
                         <div class="card-container">
                             {{--@if ($card->avatar)--}}
                             <a href="#">
-                                <div class="card-name">
+                                <div class="card-name"
+                                     @if ($card->cardType->name === 'Техника')
+                                             style="background: #000;color: #8c8c8c;"
+                                     @elseif ($card->cardType->name === 'Событие')
+                                        style="background: #2f2faf;"
+                                     @endif
+                                >
                                     {{ $card->name }}
                                 </div>
-                                <div class="property type">
-                                    <div class="text">
-                                        @if ($card->cardType->name === 'Техника') &#10022;
-                                        @elseif ($card->cardType->name === 'Событие') &#10042;
-                                        @else &#9829;
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="property energy"><div class="text">12</div></div>
+                                {{--<div class="property type">--}}
+                                    {{--<div class="text">--}}
+                                        {{--@if ($card->cardType->name === 'Техника') &#10022;--}}
+                                        {{--@elseif ($card->cardType->name === 'Событие') &#10042;--}}
+                                        {{--@else &#9829;--}}
+                                        {{--@endif--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                <div class="property energy">18</div>
                                 <div class="property attack"><div class="text">12</div></div>
-                                <div class="property armor"><div class="text">12</div></div>
-                                <div class="property health"><div class="text">12</div></div>
+                                <div class="property armor">19</div>
+                                <div class="property health">19</div>
                                 <img class="card" src="images/profile/1.jpg" alt="">
-                                <div class="card-type">
                                     @if ($card->ability1)
+                                    <div class="card-type">
                                         {{ $card->ability1->name }}
+                                    </div>
                                     @endif
-                                </div>
                             </a>
                             {{--@else--}}
                                 {{--<a href="#">--}}
@@ -264,18 +272,9 @@
                         @endforeach
                     </table>
                 </div> 
-            </div> 
+            </div>
 
             {{--4--}}
-            <div class="middle">
-                <div class="right-sidebar sidebar">
-                </div> 
-
-                <div class="left-sidebar sidebar">
-                </div> 
-            </div> 
-
-            {{--5--}}
             <div class="middle">
                 <div class="right-sidebar sidebar">
                     За что даются очки рейтинга:
@@ -316,7 +315,17 @@
                         <tbody>
                         @foreach($ranks as $rank)
                             <tr>
-                                <td>{{ $rank->name }}:</td>
+                                <td><span class="
+                                @if ($loop->iteration < 7)
+                                    grin
+                                    @elseif ($loop->iteration < 13 && $loop->iteration > 6)
+                                    blue
+                                    @elseif ($loop->iteration < 19 && $loop->iteration > 12)
+                                    violet
+                                    @elseif ($loop->iteration > 18)
+                                    orange
+                                @endif
+                                ">{{ $rank->name }}</span></td>
                                 <td><span class="pick">{{ $rank->rating }}</span></td>
                                 <td>
                                     @if($rank->price)
@@ -328,7 +337,17 @@
                         </tbody>
                     </table>
                 </div> 
-            </div> 
+            </div>
+
+            {{--5--}}
+            <div class="middle">
+                <div class="right-sidebar sidebar">
+                </div>
+
+                <div class="left-sidebar sidebar">
+                </div>
+            </div>
+
 
             {{--6--}}
             <div class="middle">
