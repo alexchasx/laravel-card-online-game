@@ -65,6 +65,7 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         ),
         'P' => 
         array (
+            'Pusher\\' => 7,
             'Psy\\' => 4,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
@@ -201,6 +202,10 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Pusher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
         ),
         'Psy\\' => 
         array (
@@ -352,8 +357,8 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
     );
 
     public static $classMap = array (
-        'App\\Classes\\Authorization\\AuthorizationClass' => __DIR__ . '/../..' . '/app/Classes/Authorization/AuthorizationClass.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Events\\CreateProvocation' => __DIR__ . '/../..' . '/app/Events/CreateProvocation.php',
         'App\\Events\\SendMailFromContactEvent' => __DIR__ . '/../..' . '/app/Events/SendMailFromContactEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -364,6 +369,9 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileController.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
+        'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\ProvocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProvocationController.php',
         'App\\Http\\Controllers\\SiteController' => __DIR__ . '/../..' . '/app/Http/Controllers/SiteController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -374,8 +382,11 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\BaseRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BaseRequest.php',
+        'App\\Http\\Requests\\ChangeAvatarRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ChangeAvatarRequest.php',
+        'App\\Http\\Requests\\ProvocationRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProvocationRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Jobs\\SendVerificationEmail' => __DIR__ . '/../..' . '/app/Jobs/SendVerificationEmail.php',
+        'App\\Listeners\\CreateProvocationListener' => __DIR__ . '/../..' . '/app/Listeners/CreateProvocationListener.php',
         'App\\Listeners\\LogSentMessage' => __DIR__ . '/../..' . '/app/Listeners/LogSentMessage.php',
         'App\\Listeners\\SendMailFromContactEventListener' => __DIR__ . '/../..' . '/app/Listeners/SendMailFromContactEventListener.php',
         'App\\Mail\\EmailVerification' => __DIR__ . '/../..' . '/app/Mail/EmailVerification.php',
@@ -383,6 +394,8 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'App\\Model\\BaseModel' => __DIR__ . '/../..' . '/app/Model/BaseModel.php',
         'App\\Model\\Comment' => __DIR__ . '/../..' . '/app/Model/Comment.php',
         'App\\Model\\File' => __DIR__ . '/../..' . '/app/Model/File.php',
+        'App\\Model\\Product' => __DIR__ . '/../..' . '/app/Model/Product.php',
+        'App\\Model\\Provocation' => __DIR__ . '/../..' . '/app/Model/Provocation.php',
         'App\\Model\\Role' => __DIR__ . '/../..' . '/app/Model/Role.php',
         'App\\Model\\User' => __DIR__ . '/../..' . '/app/Model/User.php',
         'App\\Policies\\ModelPolicy' => __DIR__ . '/../..' . '/app/Policies/ModelPolicy.php',
@@ -412,6 +425,8 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'CreateTableCardTypes' => __DIR__ . '/../..' . '/database/migrations/2018_01_17_173325_create_table_card_types.php',
         'CreateTableCards' => __DIR__ . '/../..' . '/database/migrations/2018_01_13_082609_create_table_cards.php',
         'CreateTableComments' => __DIR__ . '/../..' . '/database/migrations/2018_01_28_122500_create_table_comments.php',
+        'CreateTableProducts' => __DIR__ . '/../..' . '/database/migrations/2018_02_09_094223_create_table_products.php',
+        'CreateTableProvocations' => __DIR__ . '/../..' . '/database/migrations/2018_02_12_143508_create_table_provocations.php',
         'CreateTableRaces' => __DIR__ . '/../..' . '/database/migrations/2018_01_13_162454_create_table_races.php',
         'CreateTableRank' => __DIR__ . '/../..' . '/database/migrations/2018_01_28_101150_create_table_rank.php',
         'CreateTableRarities' => __DIR__ . '/../..' . '/database/migrations/2018_01_17_172417_create_table_rarities.php',
@@ -3205,6 +3220,9 @@ class ComposerStaticInit0bad7e19b7981c56cb51a2add87e0a61
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/Psy/VersionUpdater/NoopChecker.php',
+        'Pusher\\Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Pusher.php',
+        'Pusher\\PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherException.php',
+        'Pusher\\PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherInstance.php',
         'Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
         'Ramsey\\Uuid\\Builder\\DegradedUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DegradedUuidBuilder.php',

@@ -15,11 +15,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SendMailFromContactEvent' => [
-            'App\Listeners\SendMailFromContactEventListener',
-        ],
-        'Illuminate\Mail\Events\MessageSending' => [
-            'App\Listeners\LogSentMessage',
+//        'App\Events\SendMailFromContactEvent' => [
+//            'App\Listeners\SendMailFromContactEventListener',
+//        ],
+//        'Illuminate\Mail\Events\MessageSending' => [
+//            'App\Listeners\LogSentMessage',
+//        ],
+        'App\Events\CreateProvocation' => [
+            'App\Listeners\CreateProvocationListener',
         ],
     ];
 

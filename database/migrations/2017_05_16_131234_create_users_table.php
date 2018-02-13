@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('prom')->default(0);
             $table->tinyInteger('vip')->default(0);
             $table->tinyInteger('seen')->default(1);
-            $table->string('balance')->nullable();
+            $table->string('balance')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

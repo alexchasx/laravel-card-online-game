@@ -129,7 +129,7 @@ Route::group([
 //            ]
 //        ]
 //    ]);
-    Route::get('achievement/{name}', function($name) {
-        return view('errors.404');
-    })->where('name', '(.)*');
+//    Route::get('achievement/{name}', function($name) {
+//        return view('errors.404');
+//    })->where('name', '(.)*');
 });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class UserRequest extends BaseRequest
+class ProvocationRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,7 +12,7 @@ class UserRequest extends BaseRequest
     public function rules()
     {
         return [
-             'name' => 'required|unique:users|string|max:140',
+            'seen_rank' => 'nullable|boolean',
         ];
     }
 }

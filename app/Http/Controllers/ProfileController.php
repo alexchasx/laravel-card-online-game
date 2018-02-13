@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangeAvatarRequest;
 use App\Model\Product;
+use App\Model\Provocation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -30,18 +31,22 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @param Rank    $rank
-     * @param CardSet $cardSets
+     * @param Rank        $rank
+     * @param CardSet     $cardSets
+     * @param Card        $card
+     * @param Provocation $provocation
      *
      * @return View
      */
-    public function getProfile(Rank $rank, CardSet $cardSets, Card $card)
+    public function getProfile(Rank $rank, CardSet $cardSets, Card $card, Provocation $provocation)
     {
         return view('user.profile', [
             'user' => Auth::user(),
             'ranks' => $rank->getAllForUsers('rating'),
             'cardSets' => $cardSets->getAllForUsers('name'),
             'cards' => $card->getAllForUsers('energy'),
+            'provocations' => $provocation->getAllForUsers('id'),
+            'ownerProvocation' => $provocation->getOwner()
         ]);
     }
 

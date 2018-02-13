@@ -20,7 +20,9 @@
 
 @yield('content')
 
-<script src="https://unpkg.com/vue"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{{--<script src="https://js.pusher.com/4.1/pusher.min.js"></script>--}}
+{{--<script src="https://unpkg.com/vue"></script>--}}
 <script src="{{ asset('js/profile.js') }}"></script>
 </body>
 </html>

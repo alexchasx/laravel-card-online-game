@@ -1,7 +1,11 @@
 @extends('layouts.profile_layout')
 
 @section('content')
-
+    <script>
+        $(document).ready(function(){
+            alert('Ваша версия jQuery ' + jQuery.fn.jquery);
+        });
+    </script>
     <div class="wrapper">
 
         <div class="header">
@@ -21,7 +25,7 @@
 
                 <a class="button width70px large round magazin" href="{{ route('magazinIndex') }}">Магазин</a>
 
-                <a  href="#" class="button width70px large round tooltip">
+                <a href="#" class="button width70px large round tooltip">
                     Отзыв
                     <span class="custom info hidden">
                         Здесь можно отправить письмо разработчику игры с предложением или отзывом
@@ -78,7 +82,7 @@
                             <td><span class="pick">{{--{{ $user->countDefeat() }}--}}</span></td>
                         </tr>
                     </table>
-                </div> 
+                </div>
                 <div class="left-sidebar sidebar">
                     <table>
                         <tr>
@@ -125,45 +129,42 @@
                     <a class="button width200px no no1" href="#">
                         Эскорт транспорта
                     </a>
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">
                     <h3>Создать вызов:</h3>
                     <hr>
 
-                    <form action="#" method="post">
+                    @if($errors->any())
+                        <div class="message form-error">
+                            {{$errors->first()}}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('provocation') }}" method="post">
                         <table>
                             <tr>
                                 <td>
-                                    <label class="tooltip">
-                                        <input class="checkbox" type="checkbox" name="check_rank">
-                                        <span class="checkbox-custom"></span>
-                                        <span class="label">Только игроки моего ранга</span>
-                                        <span class="custom critical hidden">
-                                            Не рекомендуется. Подбор будет долгим.
-                                        </span>
-                                    </label>
                                     <br>
-                                    <br>
-                                    <label>
-                                        <input class="checkbox" type="checkbox" name="seen_rank">
-                                        <span class="checkbox-custom"></span>
-                                        <span class="label">Скрыть мой ранг</span>
-                                    </label>
+                                    <input type="checkbox" class="checkbox" name="seen_rank"
+                                           id="checkbox" value="0"/>
+                                    <label for="checkbox">Скрыть мой ранг</label>
                                 </td>
                             </tr>
                         </table>
 
                         <label class="tooltip">
-                            <a type="submit" class="button">Создать вызов</a>
-                            <span class="custom info hidden">
-                                Создать запись в списке "Вызовы (реальных игроков)" (справа).
-                                Эти записи видны всем игрокам.
-                            </span>
+                            <button type="submit" class="button">
+                                Создать вызов
+                            </button>
+                            {{--<span class="custom info hidden">--}}
+                            {{--Создать запись в списке "Вызовы (реальных игроков)" (справа).--}}
+                            {{--Эти записи видны всем игрокам.--}}
+                            {{--</span>--}}
                         </label>
-                    {{ csrf_field() }}
+                        {{ csrf_field() }}
                     </form>
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">
                     <h3>Вызовы (реальных игроков):</h3>
@@ -178,23 +179,62 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td><span class="pick">{{ $user->name }}</span></td>
-                            <td><span class="{{ $user->rank->class_css }}">{{ $user->rank->name }}</span></td>
-                            {{--@if (isOwner($user->id))--}}
-                                {{--<td>--}}
-                                    {{--<a href="#" class="button">Отмена</a>--}}
-                                {{--</td>--}}
-                            {{--@else--}}
+                        @if ($ownerProvocation)
+                            <tr>
+                            <tr>
                                 <td>
-                                    <a href="#" id="miganie" class="button">Принять</a>
+                                    <span class="pick">
+                                        {{ $ownerProvocation->user->name }}
+                                    </span>
                                 </td>
-                            {{--@endif--}}
-                        </tr>
+                                <td>
+                                    @if ($ownerProvocation->seen_rank)
+                                        <span class="{{ $ownerProvocation->rank->class_css }}">
+                                            {{ $ownerProvocation->rank->name }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('provocationDelete', ['id' => $ownerProvocation->id]) }}"
+                                          method="post">
+                                        {{method_field('DELETE')}}
+                                        {{csrf_field()}}
+                                        <button type="submit"
+                                                class="button large round provocation close-prov">
+                                            Отмена
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                        @foreach($provocations as $provocation)
+                            @if ($provocation->user && $provocation->user->id !== Auth::id())
+                                <tr>
+                                    <td>
+                                        <span class="pick">
+                                            {{ $provocation->user->name }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if ($provocation->seen_rank)
+                                            <span class="{{ $provocation->rank->class_css }}">
+                                            {{ $provocation->rank->name }}
+                                        </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button href="#" id="miganie"
+                                                class="button large round provocation">
+                                            Принять
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
                         </tbody>
                     </table>
-                </div> 
-            </div> 
+                </div>
+            </div>
 
             {{--3 Колоды--}}
             <div class="middle">
@@ -205,69 +245,71 @@
                             <a href="#">
                                 <div class="card-name"
                                      @if ($card->cardType->name === 'Техника')
-                                             style="background: #000;color: #8c8c8c;"
+                                     style="background: #000;color: #8c8c8c;"
                                      @elseif ($card->cardType->name === 'Событие')
-                                        style="background: #2f2faf;"
-                                     @endif
+                                     style="background: #2f2faf;"
+                                        @endif
                                 >
                                     {{ $card->name }}
                                 </div>
                                 {{--<div class="property type">--}}
-                                    {{--<div class="text">--}}
-                                        {{--@if ($card->cardType->name === 'Техника') &#10022;--}}
-                                        {{--@elseif ($card->cardType->name === 'Событие') &#10042;--}}
-                                        {{--@else &#9829;--}}
-                                        {{--@endif--}}
-                                    {{--</div>--}}
+                                {{--<div class="text">--}}
+                                {{--@if ($card->cardType->name === 'Техника') &#10022;--}}
+                                {{--@elseif ($card->cardType->name === 'Событие') &#10042;--}}
+                                {{--@else &#9829;--}}
+                                {{--@endif--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 <div class="property energy">18</div>
-                                <div class="property attack"><div class="text">12</div></div>
+                                <div class="property attack">
+                                    <div class="text">12</div>
+                                </div>
                                 <div class="property armor">19</div>
                                 <div class="property health">19</div>
                                 <img class="card" src="images/profile/1.jpg" alt="">
-                                    @if ($card->ability1)
+                                @if ($card->ability1)
                                     <div class="card-type">
                                         {{ $card->ability1->name }}
                                     </div>
-                                    @endif
+                                @endif
                             </a>
                             {{--@else--}}
-                                {{--<a href="#">--}}
-                                    {{--<img class="card" src="images/profile/1.jpg" alt="">--}}
-                                {{--</a>--}}
+                            {{--<a href="#">--}}
+                            {{--<img class="card" src="images/profile/1.jpg" alt="">--}}
+                            {{--</a>--}}
                             {{--@endif--}}
                         </div>
                     @endforeach
                     {{--<table>--}}
-                        {{--@foreach($cards as $entity)--}}
-                            {{--<tr>--}}
-                                {{--<td>--}}
-                                    {{--{{ $entity->name }}--}}
-                                    {{--<br>--}}
-                                    {{--<span class="label label-danger">{{ $entity->attack }}</span>--}}
-                                    {{--<span class="label label-success">{{ $entity->health }}</span>--}}
-                                    {{--<span class="label label-warning">{{ $entity->energy }}</span>--}}
-                                    {{--<span class="label label-default">{{ $entity->armor }}</span>--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--@if ($entity->ability1)--}}
-                                        {{--{{ $entity->ability1->name }}--}}
-                                    {{--@endif--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--@if ($entity->ability2)--}}
-                                        {{--{{ $entity->ability2->name }}--}}
-                                    {{--@endif--}}
-                                {{--</td>--}}
-                                {{--<td><img width="30" src="{{ $entity->avatar }}" alt=""></td>--}}
-                                {{--<td>--}}
-                                    {{--@if ($entity->cardType)--}}
-                                        {{--{{ $entity->cardType->name }}--}}
-                                    {{--@endif--}}
-                                {{--</td>--}}
-                        {{--@endforeach--}}
+                    {{--@foreach($cards as $entity)--}}
+                    {{--<tr>--}}
+                    {{--<td>--}}
+                    {{--{{ $entity->name }}--}}
+                    {{--<br>--}}
+                    {{--<span class="label label-danger">{{ $entity->attack }}</span>--}}
+                    {{--<span class="label label-success">{{ $entity->health }}</span>--}}
+                    {{--<span class="label label-warning">{{ $entity->energy }}</span>--}}
+                    {{--<span class="label label-default">{{ $entity->armor }}</span>--}}
+                    {{--</td>--}}
+                    {{--<td>--}}
+                    {{--@if ($entity->ability1)--}}
+                    {{--{{ $entity->ability1->name }}--}}
+                    {{--@endif--}}
+                    {{--</td>--}}
+                    {{--<td>--}}
+                    {{--@if ($entity->ability2)--}}
+                    {{--{{ $entity->ability2->name }}--}}
+                    {{--@endif--}}
+                    {{--</td>--}}
+                    {{--<td><img width="30" src="{{ $entity->avatar }}" alt=""></td>--}}
+                    {{--<td>--}}
+                    {{--@if ($entity->cardType)--}}
+                    {{--{{ $entity->cardType->name }}--}}
+                    {{--@endif--}}
+                    {{--</td>--}}
+                    {{--@endforeach--}}
                     {{--</table>--}}
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">
                     <table>
@@ -278,7 +320,7 @@
                             </tr>
                         @endforeach
                     </table>
-                </div> 
+                </div>
             </div>
 
             {{--4--}}
@@ -307,7 +349,7 @@
                         плюс к соответствующему рейтингу необходим <span class="pick">офицерский взнос</span>
                         (если на балансе есть соответствующая сумма - она <span class="pick">будет снята автоматически</span>)
                     </p>
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">
                     <table>
@@ -322,7 +364,8 @@
                         <tbody>
                         @foreach($ranks as $rank)
                             <tr>
-                                <td><span class="{{ $rank->class_css }}">{{ $rank->name }}</span></td>
+                                <td><span class="{{ $rank->class_css }}">{{ $rank->name }}</span>
+                                </td>
                                 <td><span class="pick">{{ $rank->rating }}</span></td>
                                 <td>
                                     @if($rank->price)
@@ -333,7 +376,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div> 
+                </div>
             </div>
 
             {{--5--}}
@@ -349,20 +392,20 @@
             {{--6--}}
             <div class="middle">
                 <div class="right-sidebar sidebar">ыв
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">ыв
-                </div> 
-            </div> 
+                </div>
+            </div>
 
             {{--7--}}
             <div class="middle">
                 <div class="right-sidebar sidebar">фыфы
-                </div> 
+                </div>
 
                 <div class="left-sidebar sidebar">фыфы
-                </div> 
-            </div> 
+                </div>
+            </div>
 
         </div>
     </div><!-- .wrapper -->

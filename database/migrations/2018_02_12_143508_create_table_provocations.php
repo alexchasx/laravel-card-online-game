@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableProvokations extends Migration
+class CreateTableProvocations extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,8 @@ class CreateTableProvokations extends Migration
         Schema::create('provocations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('min_rating')->default(0);
-            $table->integer('max_rating')->default();
-            $table->softDeletes();
+            $table->integer('rank_id')->nullable();
+            $table->tinyInteger('seen_rank')->default(1);
         });
     }
 

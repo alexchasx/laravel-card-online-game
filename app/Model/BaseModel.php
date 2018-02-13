@@ -21,6 +21,7 @@ class BaseModel extends Model
             ->orderBy($column)
             ->get();
     }
+
     /**
      * @param string $column
      *
@@ -62,13 +63,15 @@ class BaseModel extends Model
      * @param array               $inputs
      * @param UploadedFile | null $file
      *
-     * @return void
+     * @return Model
      */
     public function createModel(array $inputs, UploadedFile $file = null)
     {
         $model = $this->create(array_except($inputs, ['avatar']));
 
         $this->uploadFile($model, $file);
+
+        return $model;
     }
 
     /**
