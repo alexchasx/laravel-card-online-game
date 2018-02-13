@@ -19,6 +19,49 @@ class ProvocationController extends BaseController
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function index()
+    {
+        $provocations = $this->model->getAllForUsers('id');
+
+        $provocationJson = [];
+        foreach ($provocations as $provocation) {
+
+            $diffTime = time() - $provocation->created_at->getTimestamp();
+
+            if ($diffTime < 3000000) {
+                if ($provocation->user && $provocation->user->id !== Auth::id()) {
+//                    $provocationJson[] = [
+//                        'name' => $provocation->user->name,
+//                        'rank' => $provocation->seen_rank ? $provocation->rank->name : null,
+//                        'rankCss' => $provocation->rank->class_css,
+//                    ];
+
+                    $provocationJson[] = "<tr>
+                                            <td>
+                                            <span class=\"pick\">".
+                                            $provocation->user->name . "
+                                            </span>
+                                            </td>
+                                            <td><span class=\"
+                                            ". $provocation->rank->class_css ."
+                                            \">" .( $provocation->seen_rank ? $provocation->rank->name : null ). "</span>                                            
+                                            </td>
+                                            <td>
+                                            <button href=\"#\" class=\"button large round provocation\">
+                                            Принять
+                                            </button>
+                                            </td>
+                                            </tr>";
+                }
+            }
+        }
+
+        return response()->json($provocationJson);
+    }
+
+    /**
      * @param ProvocationRequest $request
      *
      * @return JsonResponse

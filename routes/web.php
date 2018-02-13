@@ -43,7 +43,8 @@ Route::group([
 
     Route::get('cardgame:ability.index', 'AbilityController@index')->name('abilityIndex');
 
-    Route::post('provocation.create', 'ProvocationController@create')->name('provocation');
+    Route::get('/provocation', 'ProvocationController@index')->name('provocationIndex');
+    Route::post('/provocation/create', 'ProvocationController@create')->name('provocation');
     Route::any('provocation.destroy.{id}', 'ProvocationController@destroy')->name('provocationDelete');
 
 });

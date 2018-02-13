@@ -18,6 +18,7 @@ class CreateTableProvocations extends Migration
             $table->integer('user_id');
             $table->integer('rank_id')->nullable();
             $table->tinyInteger('seen_rank')->default(1);
+            $table->timestamps();
         });
     }
 

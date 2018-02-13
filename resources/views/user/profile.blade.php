@@ -1,11 +1,6 @@
 @extends('layouts.profile_layout')
 
 @section('content')
-    <script>
-        $(document).ready(function(){
-            alert('Ваша версия jQuery ' + jQuery.fn.jquery);
-        });
-    </script>
     <div class="wrapper">
 
         <div class="header">
@@ -23,7 +18,8 @@
                     <span class="pick">{{ $user->balance }} &#8381;</span>
                 </a>
 
-                <a class="button width70px large round magazin" href="{{ route('magazinIndex') }}">Магазин</a>
+                <a class="button width70px large round magazin"
+                   href="{{ route('provocationIndex') }}">Магазин</a>
 
                 <a href="#" class="button width70px large round tooltip">
                     Отзыв
@@ -170,17 +166,8 @@
                     <h3>Вызовы (реальных игроков):</h3>
                     <hr>
                     <table>
-                        <thead>
-                        <tr>
-                            <td>Имя</td>
-                            <td>Ранг</td>
-                            <td>Кнопка</td>
-                        </tr>
-                        </thead>
-
                         <tbody>
                         @if ($ownerProvocation)
-                            <tr>
                             <tr>
                                 <td>
                                     <span class="pick">
@@ -207,30 +194,34 @@
                                 </td>
                             </tr>
                         @endif
-                        @foreach($provocations as $provocation)
-                            @if ($provocation->user && $provocation->user->id !== Auth::id())
-                                <tr>
-                                    <td>
-                                        <span class="pick">
-                                            {{ $provocation->user->name }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        @if ($provocation->seen_rank)
-                                            <span class="{{ $provocation->rank->class_css }}">
-                                            {{ $provocation->rank->name }}
-                                        </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <button href="#" id="miganie"
-                                                class="button large round provocation">
-                                            Принять
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody id="body-provocation">
+                        {{--@foreach($provocations as $provocation)--}}
+                        {{--@if ($provocation->user && $provocation->user->id !== Auth::id())--}}
+                        {{--<tr>--}}
+                        {{--<td>--}}
+                        {{--<span class="pick">--}}
+                        {{--{{ $provocation->user->name }}--}}
+                        {{--</span>--}}
+                        {{--</td>--}}
+                        {{--<td>--}}
+                        {{--@if ($provocation->seen_rank)--}}
+                        {{--<span class="{{ $provocation->rank->class_css }}">--}}
+                        {{--{{ $provocation->rank->name }}--}}
+                        {{--</span>--}}
+                        {{--@endif--}}
+                        {{--</td>--}}
+                        {{--<td>--}}
+                        {{--<button href="#" id="miganie"--}}
+                        {{--class="button large round provocation">--}}
+                        {{--Принять--}}
+                        {{--</button>--}}
+                        {{--</td>--}}
+                        {{--</tr>--}}
+                        {{--@endif--}}
+                        {{--@endforeach--}}
                         </tbody>
                     </table>
                 </div>

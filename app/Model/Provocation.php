@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,6 +16,9 @@ use Modules\CardGame\Http\Entities\Rank;
  * @property integer $rank_id
  * @property boolean $seen_rank
  *
+ * @property Carbon  $created_at
+ * @property Carbon  $updated_at
+ *
  * @property User    $user
  * @property Rank    $rank
  */
@@ -27,7 +31,16 @@ class Provocation extends BaseModel
      */
     protected $table = self::TABLE_NAME;
 
-    public $timestamps = false;
+    /**
+     * Атрибуты, которые должны быть преобразованы в даты.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     /**
      * Атрибуты, для которых запрещено массовое назначение.
