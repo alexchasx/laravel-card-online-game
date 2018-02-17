@@ -40,7 +40,7 @@ class ProfileController extends BaseController
      */
     public function getProfile(Rank $rank, CardSet $cardSets, Card $card, Provocation $provocation)
     {
-        return view('user.profile', [
+        return view('user.profile.profile', [
             'user' => Auth::user(),
             'ranks' => $rank->getAllForUsers('rating'),
             'cardSets' => $cardSets->getAllForUsers('name'),
@@ -58,7 +58,7 @@ class ProfileController extends BaseController
      */
     public function getProducts(Product $product, Avatar $avatar)
     {
-        return view('user.magazin', [
+        return view('user.profile.magazin', [
             'products' => $product->getAllForUsers(),
             'user' => Auth::user(),
             'avatars' => $avatar->getAll('avatar'),

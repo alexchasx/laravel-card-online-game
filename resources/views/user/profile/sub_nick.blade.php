@@ -1,4 +1,3 @@
-
 <div class="sub-nick">
     <table>
         <tr>

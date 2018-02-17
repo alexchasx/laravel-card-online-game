@@ -534,36 +534,35 @@ a.button11:active:after {
 .card {
     position: relative;
     width: 100px;
-    height: 122px;
+    height: 100px;
 }
 .card-name {
-    /*font-family: Andalus;*/
-    font-family: sans-serif;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 16px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     width: 100px;
-    height: 18px;
+    height: 15px;
     text-align: center;
     background: #357456;
     color: #000000;
  }
 .card-type {
-    left: 3px;
+    left: 4px;
+    bottom: 25px;
     font-size: 12px;
     position: absolute;
     margin-left: -4px;
     margin-bottom: 2px;
-    padding: 0 5px;
+    padding: 0 2px;
     height: 20px;
     text-align: left;
-    background: rgba(18, 17, 19, 0.77);
-    color: #99b7d3;
-    bottom: 0;
+    background: rgba(18, 17, 19, 0.81);
+    color: #abceea;
 }
 .property {
     z-index: 2;
-    top: 18px;
+    top: 15px;
     left: 2px;
     border: solid black 1px;
     line-height: 14px;
@@ -578,23 +577,21 @@ a.button11:active:after {
 /*--------------------*/
 .energy {
     background: rgb(220, 178, 24);
+    left: 0;
 }
 .attack {
-    transform: rotate(49grad);
-    background: rgb(193, 1, 4);
-    left: 82px;
-}
-.text {
-    position: relative;
-    transform: rotate(-48grad);
+    background: rgb(182, 1, 4);
+    left: 85px;
 }
 .health {
     background: #0e7d26;
-    top: 70px;
+    top: 45px;
+    left: 0;
 }
 .armor {
     background: #6b6b6b;
-    top: 87px;
+    top: 60px;
+    left: 0;
 }
 /*.energy {*/
     /*z-index: 5;*/
