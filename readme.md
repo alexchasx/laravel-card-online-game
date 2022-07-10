@@ -1,3 +1,6 @@
+
+Модульность создается с помощью пакета "nwidart/laravel-modules" [https://github.com/nWidart/laravel-modules].
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
